@@ -1,0 +1,18 @@
+site_name: SDE Prep A2Z
+theme: 
+  name: material
+
+nav: 
+  - Home: index.md 
+  - DSA:  
+    - Arrays: DSAyy/arrays.md 
+    - Dynamic Programming: DSAyy/dp.md 
+    - Graphs: DSAyy/graph.md
+
+markdown_extensions:
+  - pymdownx.arithmatex
+
+extra_javascript:
+  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML
+
+
