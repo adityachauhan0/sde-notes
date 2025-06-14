@@ -26,6 +26,9 @@
     
       <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
       
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
       
 
 
@@ -53,7 +56,14 @@
   </head>
   
   
-    <body dir="ltr">
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -74,9 +84,7 @@
     
       
 
-  
-
-<header class="md-header md-header--shadow" data-md-component="header">
+<header class="md-header" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="SDE Prep A2Z" class="md-header__button md-logo" aria-label="SDE Prep A2Z" data-md-component="logo">
       
@@ -104,6 +112,28 @@
         </div>
       </div>
     </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
     
     
       <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
@@ -160,6 +190,56 @@
       
         
           
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  DSA
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
         
       
       <main class="md-main" data-md-component="main">
@@ -173,8 +253,10 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="SDE Prep A2Z" class="md-nav__button md-logo" aria-label="SDE Prep A2Z" data-md-component="logo">
       
@@ -221,15 +303,21 @@
     
     
     
+      
+        
+        
+      
+      
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
         <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   
@@ -655,9 +743,9 @@
 
 
 
-<h1 id="array-simulation">Array Simulation</h1>
-<h2 id="spiral-order-matrix">Spiral Order Matrix</h2>
-<h3 id="question-kya-hai">Question kya hai</h3>
+<h1 id="array-simulation">Array Simulation<a class="headerlink" href="#array-simulation" title="Permanent link">&para;</a></h1>
+<h2 id="spiral-order-matrix">Spiral Order Matrix<a class="headerlink" href="#spiral-order-matrix" title="Permanent link">&para;</a></h2>
+<h3 id="question-kya-hai">Question kya hai<a class="headerlink" href="#question-kya-hai" title="Permanent link">&para;</a></h3>
 <p>Matrix A: Size M x N, return all elements in the spiral order. (clockwise starting from top-left)</p>
 <p>$$
 \begin{bmatrix}
@@ -665,136 +753,136 @@
 \end{bmatrix}
 $$
 the output would be <span class="arithmatex">\(1,2,3,6,9,8,7,4,5\)</span></p>
-<h3 id="how-to-do-this">How to do this</h3>
+<h3 id="how-to-do-this">How to do this<a class="headerlink" href="#how-to-do-this" title="Permanent link">&para;</a></h3>
 <p>Take 4 pointers and continuously run for loops on that bitch. 
 Bas run top first, then right, then down, then left</p>
-<pre><code class="language-cpp">vector&lt;int&gt; spiralOrder(vector&lt;vector&lt;int&gt;&gt; &amp;A){
-    int M = A.size(), N = A[0].size();
-    int u = 0, d = M-1, l = 0, r = N-1;
-    vector&lt;int&gt; spiral;
-    while (l &lt;= r &amp;&amp; u &lt;= d){
-        for (int i = l; i &lt;= r; ++i)
-            spiral.push_back(A[u][i]);
-        ++u;
-        for (int i = u; i &lt;= d; ++i)
-            spiral.push_back(A[i][r]);
-        --r;
-        if (u &lt;= d){
-            for (int i = r; i &gt;= l; --i)
-                spiral.push_back(A[d][i]);
-            --d;
-        }
-        if (l &lt;= r){
-            for (int i = d; i &gt;= u; --i)
-                spiral.push_back(A[i][l]);
-            ++l;
-        }
-    }
-    return spiral;
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">spiralOrder</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">A</span><span class="p">){</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">M</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">size</span><span class="p">(),</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="n">size</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">M</span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">N</span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">    </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">spiral</span><span class="p">;</span>
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">l</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">r</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">u</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">d</span><span class="p">){</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">l</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">r</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span>
+<span class="w">            </span><span class="n">spiral</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">        </span><span class="o">++</span><span class="n">u</span><span class="p">;</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">u</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">d</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span>
+<span class="w">            </span><span class="n">spiral</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">r</span><span class="p">]);</span>
+<span class="w">        </span><span class="o">--</span><span class="n">r</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">u</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">d</span><span class="p">){</span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">l</span><span class="p">;</span><span class="w"> </span><span class="o">--</span><span class="n">i</span><span class="p">)</span>
+<span class="w">                </span><span class="n">spiral</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">d</span><span class="p">][</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">            </span><span class="o">--</span><span class="n">d</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">l</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">r</span><span class="p">){</span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">d</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">u</span><span class="p">;</span><span class="w"> </span><span class="o">--</span><span class="n">i</span><span class="p">)</span>
+<span class="w">                </span><span class="n">spiral</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">l</span><span class="p">]);</span>
+<span class="w">            </span><span class="o">++</span><span class="n">l</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">spiral</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>Iski time complexity is <span class="arithmatex">\(O(n \times m)\)</span>
 Space complexity bhi same</p>
-<h2 id="large-factorial">Large Factorial</h2>
-<h3 id="question">Question</h3>
+<h2 id="large-factorial">Large Factorial<a class="headerlink" href="#large-factorial" title="Permanent link">&para;</a></h2>
+<h3 id="question">Question<a class="headerlink" href="#question" title="Permanent link">&para;</a></h3>
 <p>Given integer A,
 compute A ! as a string, coz kuch zyaada hi bada number hai.</p>
-<h3 id="kaise-karna-hai-ye">Kaise karna hai ye</h3>
+<h3 id="kaise-karna-hai-ye">Kaise karna hai ye<a class="headerlink" href="#kaise-karna-hai-ye" title="Permanent link">&para;</a></h3>
 <p>Dekh bro as a string return karna hai answer toh legit make a multiply function for strings and karle solve. Kya hi dumb shit hai ye.
 Just know ki digits would be reversed for the convenience of the carry shit. 
 Toh reverse pointer se string meh add kariyo.</p>
-<pre><code class="language-cpp">string factorial(int A){
-    vector&lt;int&gt; digits {1}; // har factorial meh 1 toh hota hi hai
+<div class="highlight"><pre><span></span><code><span class="n">string</span><span class="w"> </span><span class="nf">factorial</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">A</span><span class="p">){</span>
+<span class="w">    </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">digits</span><span class="w"> </span><span class="p">{</span><span class="mi">1</span><span class="p">};</span><span class="w"> </span><span class="c1">// har factorial meh 1 toh hota hi hai</span>
 
-    auto multiply = [&amp;](int i) {
-        int carry = 0;
-        for (int &amp;d : digits){
-            long long prod = (long long)d * i + carry;
-            d = prod % 10; // same time digit update kar diya
-            carry = prod / 10;
-        }
-        while (carry){
-            digits.push_back(carry % 10);
-            carry /= 10;
-        }
-    };
+<span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">multiply</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">](</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">carry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="n">d</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">digits</span><span class="p">){</span>
+<span class="w">            </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">prod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="p">)</span><span class="n">d</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">carry</span><span class="p">;</span>
+<span class="w">            </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prod</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="c1">// same time digit update kar diya</span>
+<span class="w">            </span><span class="n">carry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">prod</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">carry</span><span class="p">){</span>
+<span class="w">            </span><span class="n">digits</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">carry</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">10</span><span class="p">);</span>
+<span class="w">            </span><span class="n">carry</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">};</span>
 
-    for (int i = 2; i &lt;= A; ++i) // multiply sabkuch from 2 to A
-    {
-        multiply(i); // multiple every number into 2
-    }
-    string s;
-    // put all the digits into a string
-    for (auto it = digits.rbegin(); it != digits.rend(); ++it){
-        s.push_back('0' + *it); 
-    }
-    return s;
-}
-</code></pre>
-<h2 id="max-non-negative-subarray">Max Non-Negative Subarray</h2>
-<h3 id="question-kya-hai_1">Question kya hai</h3>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">A</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="c1">// multiply sabkuch from 2 to A</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">multiply</span><span class="p">(</span><span class="n">i</span><span class="p">);</span><span class="w"> </span><span class="c1">// multiple every number into 2</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">string</span><span class="w"> </span><span class="n">s</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// put all the digits into a string</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">digits</span><span class="p">.</span><span class="n">rbegin</span><span class="p">();</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">digits</span><span class="p">.</span><span class="n">rend</span><span class="p">();</span><span class="w"> </span><span class="o">++</span><span class="n">it</span><span class="p">){</span>
+<span class="w">        </span><span class="n">s</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="sc">&#39;0&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="o">*</span><span class="n">it</span><span class="p">);</span><span class="w"> </span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">s</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="max-non-negative-subarray">Max Non-Negative Subarray<a class="headerlink" href="#max-non-negative-subarray" title="Permanent link">&para;</a></h2>
+<h3 id="question-kya-hai_1">Question kya hai<a class="headerlink" href="#question-kya-hai_1" title="Permanent link">&para;</a></h3>
 <p>Array A of N integers, find the subarray with max sum.
 agar tied, choose the longer one.
 still tied? smallest starting index</p>
 <p>Sunn BEHENCHOD, Subarray means continuous, sab kuch subsequence nahi hota</p>
-<h3 id="karna-kaise-hai">Karna kaise hai</h3>
+<h3 id="karna-kaise-hai">Karna kaise hai<a class="headerlink" href="#karna-kaise-hai" title="Permanent link">&para;</a></h3>
 <p>kadane kadane khelenge
 agar negative number mila, that is where we stop and process the answer.
 By process i mean, bas compare karke check karlenge if its max</p>
 <p>End meh bhi ek baar check kar lena coz when the loop ends, ek baar remaining computation bhi toh update karni hai.</p>
-<pre><code class="language-cpp">vector&lt;int&gt; maxSet(vector&lt;int&gt; &amp;A){
-    int n = A.size();
-    long long bestSum = -1, curSum = 0;
-    int bestStart = 0, bestEnd = -1, bestLen = 0;
-    int curStart = 0;
-    for (int i = 0; i &lt; n; ++i){
-        if (A[i] &gt;= 0)
-            curSum += A[i];
-        else {
-            int curLen = i - curStart;
-            if (curSum &gt; bestSum || (curSum == bestSum &amp;&amp; curLen &gt; bestLen)){
-                bestSum = curSum;
-                bestStart = curStart;
-                bestEnd = i - 1;
-                bestLen = curLen;
-            }
-            curSum = 0;
-            curStart = i+1;
-        }
-    }
-    if (curStart &lt; n){
-        int curLen = n - curStart;
-        if (curSum &gt; bestSum || (curSum == bestSum &amp;&amp; curLen &gt; bestLen)){
-            bestSum = curSum;
-            bestStart = curStart;
-            bestEnd = n - 1;
-            bestLen = curLen;
-        }
-    }
-    if (bestEnd &lt; bestStart) return {};
-    return vector&lt;int&gt;(A.begin()+bestStart, A.begin()+bestEnd + 1);
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">maxSet</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">A</span><span class="p">){</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">bestSum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="n">curSum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">bestStart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">bestEnd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w"> </span><span class="n">bestLen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">curStart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">){</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">            </span><span class="n">curSum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">curLen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">curStart</span><span class="p">;</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">curSum</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">bestSum</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="n">curSum</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">bestSum</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">curLen</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">bestLen</span><span class="p">)){</span>
+<span class="w">                </span><span class="n">bestSum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">curSum</span><span class="p">;</span>
+<span class="w">                </span><span class="n">bestStart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">curStart</span><span class="p">;</span>
+<span class="w">                </span><span class="n">bestEnd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">                </span><span class="n">bestLen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">curLen</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="n">curSum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">            </span><span class="n">curStart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">curStart</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">){</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">curLen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">curStart</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">curSum</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">bestSum</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="n">curSum</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">bestSum</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">curLen</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">bestLen</span><span class="p">)){</span>
+<span class="w">            </span><span class="n">bestSum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">curSum</span><span class="p">;</span>
+<span class="w">            </span><span class="n">bestStart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">curStart</span><span class="p">;</span>
+<span class="w">            </span><span class="n">bestEnd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">            </span><span class="n">bestLen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">curLen</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">bestEnd</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">bestStart</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">{};</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">A</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span><span class="o">+</span><span class="n">bestStart</span><span class="p">,</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span><span class="o">+</span><span class="n">bestEnd</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>Time complexity is O(n), space complexity is O(1)</p>
-<h2 id="pick-from-both-sides">Pick from Both Sides</h2>
+<h2 id="pick-from-both-sides">Pick from Both Sides<a class="headerlink" href="#pick-from-both-sides" title="Permanent link">&para;</a></h2>
 <p>Array A of N elements. Pick exactly B elements from either left ya right end, and just get the max sum.</p>
-<h3 id="karna-kaise-hai_1">Karna kaise hai</h3>
+<h3 id="karna-kaise-hai_1">Karna kaise hai<a class="headerlink" href="#karna-kaise-hai_1" title="Permanent link">&para;</a></h3>
 <p>Imagine kar ek sexy sa sliding window, but instead on inside the array, ye saala bahar se aa raha hai.
 like the right pointer is left meh and left wala is right meh.
 ye leke bas max sum with B elements karle.
 Start the right pointer at B - i, and keep the left wala at n - i, and baaju baaju shift and update karte ja.
 Keep a sum of first B elements, and fir middle se ek hata and right end wala ek daal.</p>
-<pre><code class="language-cpp">int pickBothSides(vector&lt;int&gt; &amp;A, int B){
-    int n = A.size();
-    int window = accumulate(A.begin(), A.begin() + B, 0);
-    int ans = window;
-    for (int i = 1; i &lt;= B; ++i){
-        window = window - A[B-i] + A[n-i];
-        ans = max(ans, window);
-    }
-    return ans;
-}
-</code></pre>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">pickBothSides</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">B</span><span class="p">){</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">window</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">accumulate</span><span class="p">(</span><span class="n">A</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">B</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">window</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">B</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">){</span>
+<span class="w">        </span><span class="n">window</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">window</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="n">B</span><span class="o">-</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="n">n</span><span class="o">-</span><span class="n">i</span><span class="p">];</span>
+<span class="w">        </span><span class="n">ans</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">max</span><span class="p">(</span><span class="n">ans</span><span class="p">,</span><span class="w"> </span><span class="n">window</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ans</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
 <p>Time complexity is O(n) and space complexity is O(1)</p>
 
 
@@ -815,6 +903,12 @@ Keep a sum of first B elements, and fir middle se ek hata and right end wala ek 
           
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
         
       </main>
       
@@ -844,7 +938,7 @@ Keep a sum of first B elements, and fir middle se ek hata and right end wala ek 
     
     
       
-      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.top", "content.code.copy", "content.code.annotate"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
