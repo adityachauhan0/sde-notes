@@ -1,17 +1,48 @@
 site_name: SDE Prep A2Z
+
 theme: 
   name: material
+  features:
+    - navigation.tabs
+    - navigation.top
+    - content.code.copy  # Enables "copy" button on code blocks
+    - content.code.annotate  # Enables code annotation if needed
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
 
 nav: 
   - Home: index.md 
   - DSA:  
-    - Arrays: DSAyy/arrays.md 
-    - Dynamic Programming: DSAyy/dp.md 
-    - Graphs: DSAyy/graph.md
+      - Arrays: DSAyy/arrays.md 
+      - Dynamic Programming: DSAyy/dp.md 
+      - Graphs: DSAyy/graph.md
 
 markdown_extensions:
   - pymdownx.arithmatex:
       generic: true
+  - codehilite:
+      guess_lang: false
+      linenums: true
+  - toc:
+      permalink: true
+  - admonition
+  - pymdownx.highlight
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  - pymdownx.snippets
+  - pymdownx.details
+  - pymdownx.keys
+  - pymdownx.tabbed
+  - pymdownx.tasklist:
+      custom_checkbox: true
 
 extra_javascript:
   - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML
