@@ -4,10 +4,10 @@
 
 Matrix A: Size M x N, return all elements in the spiral order. (clockwise starting from top-left)
 
-$$ 
-\matrix{
-{1,2,3,} \\ {4,5,6} \\ {7,8,9}
-}
+$$
+\begin{bmatrix}
+1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9
+\end{bmatrix}
 $$
 the output would be $1,2,3,6,9,8,7,4,5$
 
