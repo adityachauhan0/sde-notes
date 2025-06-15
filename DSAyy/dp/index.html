@@ -241,7 +241,11 @@
         <li><a href="#how-to-do-this-painting">How to do this painting</a></li><li><a href="#ways-to-decode">Ways to decode</a></li>
         <li><a href="#karna-kaise-hai_2">Karna kaise hai</a></li><li><a href="#stairs">Stairs</a></li>
         <li><a href="#legendary-beginner-problem">Legendary beginner problem</a></li><li><a href="#karna-kaise-hai_3">Karna kaise hai</a></li><li><a href="#longest-increasing-subsequence">Longest Increasing Subsequence</a></li>
-        <li><a href="#problem-kya-hai_2">Problem kya hai</a></li><li><a href="#karna-kaise-hai_4">Karna kaise hai</a></li>
+        <li><a href="#problem-kya-hai_2">Problem kya hai</a></li><li><a href="#karna-kaise-hai_4">Karna kaise hai</a></li><li><a href="#intersecting-chords-in-a-circle">Intersecting chords in a circle</a></li>
+        <li><a href="#how-tho">How tho</a></li><li><a href="#birthday-bombs">Birthday Bombs</a></li>
+        <li><a href="#problem">Problem</a></li><li><a href="#how_1">How</a></li><li><a href="#jump-game-array">Jump Game Array</a></li>
+        <li><a href="#problem_1">Problem</a></li><li><a href="#how_2">How:</a></li><li><a href="#min-jumps-array">Min Jumps Array</a></li>
+        <li><a href="#problem_2">Problem</a></li><li><a href="#how_3">How</a></li>
     </ul>
 </nav>
 </aside>
@@ -974,6 +978,114 @@ Length of the tail at the end is the ans</p>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">tails</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
 <span class="p">}</span>
 </code></pre></div>
+<h2 id="intersecting-chords-in-a-circle">Intersecting chords in a circle<a class="headerlink" href="#intersecting-chords-in-a-circle" title="Permanent link">&para;</a></h2>
+<p>Given an integer <span class="arithmatex">\(A\)</span> return the number of ways to draw A chords in a circle with <span class="arithmatex">\(2A\)</span> points, such that no two chords intersect.
+Two ways are different if atleast one chord is present in one way but not the other.
+Return modulo <span class="arithmatex">\(10^9 + 7\)</span></p>
+<p>Example:
+- A = 1, Output = 1
+- A = 2, Output = 2</p>
+<h3 id="how-tho">How tho<a class="headerlink" href="#how-tho" title="Permanent link">&para;</a></h3>
+<p>The number of ways to draw A non-intersecting chords on 2A points on a circle is the A-th Catalan number.
+$$
+C_0 = 1, \space \space C_n = \sum_{i=0}^{n-1} C_i \times C_{n-1 - i}
+$$
+where <span class="arithmatex">\(C_n\)</span> is the number of valid chord drawings with n chords.</p>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">chordCut</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">A</span><span class="p">){</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">MOD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1e9</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">7</span><span class="p">;</span>
+<span class="w">    </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="o">&gt;</span><span class="w"> </span><span class="n">C</span><span class="p">(</span><span class="n">A</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">C</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">A</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">n</span><span class="p">){</span>
+<span class="w">        </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">ways</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">){</span>
+<span class="w">            </span><span class="n">ways</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">ways</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">C</span><span class="p">[</span><span class="n">n</span><span class="mi">-1</span><span class="o">-</span><span class="n">i</span><span class="p">])</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">MOD</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">C</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ways</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">C</span><span class="p">[</span><span class="n">A</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="birthday-bombs">Birthday Bombs<a class="headerlink" href="#birthday-bombs" title="Permanent link">&para;</a></h2>
+<h3 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h3>
+<p>Tengu has N friends. Each friend <span class="arithmatex">\(i\)</span> has a positive strength <span class="arithmatex">\(B[i]\)</span> and can kick tengu any number of times. Tengu has pain resistance limit A.
+Find lexicographically smallest array of max pos length of friend indices, where each friend index can appear any number of times, such that their sum of strengths is <span class="arithmatex">\(\leq\)</span> A.</p>
+<h3 id="how_1">How<a class="headerlink" href="#how_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Max num of kicks: <span class="arithmatex">\(M = \frac{A}{w_{min}}\)</span>   where <span class="arithmatex">\(w_{min}\)</span> is the min val in B.</li>
+<li>At each kick pos, to keep ans smallest, try each friend in asc order and pick the lowest index friend whose cost allows enough resistance for remaining M-1 kicks, all possibly using the cheapest friend.</li>
+<li>After choosing, subtract from capacity and continue.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">smallKicks</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">B</span><span class="p">){</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">B</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">w_min</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">min_element</span><span class="p">(</span><span class="n">B</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="n">B</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">M</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="o">/</span><span class="n">w_min</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">M</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">{};</span>
+<span class="w">    </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ans</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">cap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">;</span><span class="w"> </span><span class="c1">// remaining capacity</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">pos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">pos</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">M</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">pos</span><span class="p">){</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">rem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">M</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">pos</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">){</span>
+<span class="w">            </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">cost_i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">            </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">needed_for_rest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1L</span><span class="n">L</span><span class="o">*</span><span class="w"> </span><span class="n">rem</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">w_min</span><span class="p">;</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">cost_i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">needed_for_rest</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">cap</span><span class="p">){</span>
+<span class="w">                </span><span class="n">ans</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="w">                </span><span class="n">cap</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">cost_i</span><span class="p">;</span>
+<span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span><span class="w">   </span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ans</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="jump-game-array">Jump Game Array<a class="headerlink" href="#jump-game-array" title="Permanent link">&para;</a></h2>
+<h3 id="problem_1">Problem<a class="headerlink" href="#problem_1" title="Permanent link">&para;</a></h3>
+<p>Given array A with non-neg int, you are at index 0. Each element <code>A[i]</code> is the max jump len from pos i. Determine if you can reach the last index.</p>
+<p>Example
+- <span class="arithmatex">\(A = [2,3,1,1,4]\)</span> , Output = 1
+- <span class="arithmatex">\(A = [3,2,1,0,4]\)</span> , Output = 0</p>
+<h3 id="how_2">How:<a class="headerlink" href="#how_2" title="Permanent link">&para;</a></h3>
+<p>Keep track of <code>maxReach</code> index, like the farthest we can reach
+- for each index i, if i &gt; maxReach, we are stuck, return 0
+- warna update maxReach and move on</p>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">canJump</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">A</span><span class="p">){</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">maxReach</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">){</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">maxReach</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="n">maxReach</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">max</span><span class="p">(</span><span class="n">maxReach</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">maxReach</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">n</span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="min-jumps-array">Min Jumps Array<a class="headerlink" href="#min-jumps-array" title="Permanent link">&para;</a></h2>
+<h3 id="problem_2">Problem<a class="headerlink" href="#problem_2" title="Permanent link">&para;</a></h3>
+<p>Given array A with non-neg int, you are at index 0. Each <code>A[i]</code> represents the max jump length from that pos. Return the min number of jumps required to reach the last index.
+If not pos, return -1.</p>
+<h3 id="how_3">How<a class="headerlink" href="#how_3" title="Permanent link">&para;</a></h3>
+<p>Use a greedy BFS
+- <code>current_end</code> : the farthest index we can reach with current jumps
+- <code>furthest</code> : farthest we can reach with one more jump
+- for every i in <span class="arithmatex">\([0,current\_end]\)</span> , update furthest to the farthest you can go.
+- when i reaches current_end, increment jump count, and extend curr_end to furthest.
+- if current_end cannot be extended, return -1
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">jump</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">$A</span><span class="p">){</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">jumps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">current_end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">furthest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">){</span>
+<span class="w">        </span><span class="n">furthest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">max</span><span class="p">(</span><span class="n">furthest</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">current_end</span><span class="p">){</span>
+<span class="w">            </span><span class="n">jumps</span><span class="o">++</span><span class="p">;</span>
+<span class="w">            </span><span class="n">current_end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">furthest</span><span class="p">;</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">current_end</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">n</span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">jumps</span><span class="p">;</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">current_end</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">current_end</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="o">?</span><span class="w"> </span><span class="n">jumps</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></p>
 </section>
 
             </main>
