@@ -1,7 +1,7 @@
 site_name: SDE Prep A2Z
 
 theme: 
-  name: material
+  name: terminal
   features:
     - navigation.tabs
     - navigation.top
