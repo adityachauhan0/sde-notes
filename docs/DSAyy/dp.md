@@ -759,3 +759,127 @@ int lis(vector<int> &A){
 }
 ```
 
+## Intersecting chords in a circle
+Given an integer $A$ return the number of ways to draw A chords in a circle with $2A$ points, such that no two chords intersect.
+Two ways are different if atleast one chord is present in one way but not the other.
+Return modulo $10^9 + 7$
+
+Example:
+- A = 1, Output = 1
+- A = 2, Output = 2
+
+### How tho
+The number of ways to draw A non-intersecting chords on 2A points on a circle is the A-th Catalan number.
+$$
+C_0 = 1, \space \space C_n = \sum_{i=0}^{n-1} C_i \times C_{n-1 - i}
+$$
+where $C_n$ is the number of valid chord drawings with n chords.
+
+```cpp
+int chordCut(int A){
+	const int MOD = 1e9 + 7;
+	vector<long long> C(A+1, 0);
+	C[0] = 1;
+	for (int n = 1; n <= A; ++n){
+		long long ways = 0;
+		for (int i = 0; i < n; ++i){
+			ways = (ways + C[i] * C[n-1-i]) % MOD;
+		}
+		C[n] = ways;
+	}
+	return (int)C[A];
+}
+```
+
+## Birthday Bombs
+### Problem
+Tengu has N friends. Each friend $i$ has a positive strength $B[i]$ and can kick tengu any number of times. Tengu has pain resistance limit A.
+Find lexicographically smallest array of max pos length of friend indices, where each friend index can appear any number of times, such that their sum of strengths is $\leq$ A.
+
+### How
+- Max num of kicks: $M = \frac{A}{w_{min}}$   where $w_{min}$ is the min val in B.
+- At each kick pos, to keep ans smallest, try each friend in asc order and pick the lowest index friend whose cost allows enough resistance for remaining M-1 kicks, all possibly using the cheapest friend.
+- After choosing, subtract from capacity and continue.
+
+```cpp
+vector<int> smallKicks(int A, vector<int>& B){
+	int N = B.size();
+	int w_min = *min_element(B.begin(),B.end());
+	int M = A/w_min;
+	if (M == 0) return {};
+	vector<int> ans;
+	long long cap = A; // remaining capacity
+	for (int pos = 0; pos < M; ++pos){
+		int rem = M - pos - 1;
+		for (int i = 0; i < N; ++i){
+			long long cost_i = B[i];
+			long long needed_for_rest = 1LL* rem * w_min;
+			if (cost_i + needed_for_rest <= cap){
+				ans.push_back(i);
+				cap -= cost_i;
+				break;
+			}	
+		}
+	}
+	return ans;
+}
+```
+
+
+## Jump Game Array
+### Problem
+Given array A with non-neg int, you are at index 0. Each element `A[i]` is the max jump len from pos i. Determine if you can reach the last index.
+
+Example
+- $A = [2,3,1,1,4]$ , Output = 1
+- $A = [3,2,1,0,4]$ , Output = 0
+### How:
+Keep track of `maxReach` index, like the farthest we can reach
+- for each index i, if i > maxReach, we are stuck, return 0
+- warna update maxReach and move on
+
+```cpp
+int canJump(vector<int> &A){
+	int n = A.size();
+	long long maxReach = 0;
+	for (int i = 0; i < n; ++i){
+		if (i > maxReach) return 0;
+		maxReach = max(maxReach, (long long i) + A[i]);
+		if (maxReach >= n-1) return 1;
+	}
+	return 1;
+}
+```
+
+## Min Jumps Array
+
+### Problem
+Given array A with non-neg int, you are at index 0. Each `A[i]` represents the max jump length from that pos. Return the min number of jumps required to reach the last index.
+If not pos, return -1.
+
+### How
+Use a greedy BFS
+- `current_end` : the farthest index we can reach with current jumps
+- `furthest` : farthest we can reach with one more jump
+- for every i in $[0,current\_end]$ , update furthest to the farthest you can go.
+- when i reaches current_end, increment jump count, and extend curr_end to furthest.
+- if current_end cannot be extended, return -1
+```cpp
+int jump(vector<int> $A){
+	int n = A.size();
+	if (n <= 1) return 0;
+	if (A[0] == 0) return -1;
+	int jumps = 0, current_end = 0, furthest = 0;
+	for (int i = 0; i+1 < n; ++i){
+		furthest = max(furthest, i + A[i]);
+		if (i == current_end){
+			jumps++;
+			current_end = furthest;
+			if (current_end >= n-1) return jumps;
+			if (current_end == i) return -1;
+		}
+	}
+	return (current_end >= n -1)? jumps : -1;
+}
+```
+
