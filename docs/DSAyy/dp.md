@@ -1131,3 +1131,261 @@ int color(int A){
 	return (int)answer;
 }
 ```
+
+## Kth Manhattan Distance Neighbourhood
+
+### What does the problem say...
+Given a Matrix $n \times m$ and int K, for every el `M[i][j]`, find the max el in K-Manhattan distance neighborhood.
+
+$$
+\text{For each  (i,j), compute }  max\{M[p][q] \space | \space |i-p| + |j-q| \leq K \}
+
+$$
+Example: 
+- M = $\begin{bmatrix} 1 & 2 & 4 \\ 4 & 5 & 8 \end{bmatrix}$ , K = 2, The output would be $\begin{bmatrix} 5 & 8 & 8 \\ 8 & 8 & 8 \end{bmatrix}$ 
+
+### How to look at neighbors?
+We use K rounds of DP.
+At each round d, for every cell (i,j), we compute the max amongst itself and 4 neighbors {up down left right} from the previous round. This way after K rounds, we would have max val within manhattan distance K.
+
+```cpp
+vector<vector<int>> KMan(int A, vector<vector<int>> &B){
+	int n = B.size();
+	if (n == 0) return {};
+	int m = B[0].size(), K = A;
+	vector<vector<int>> dp_prev(n, vector<int>(m)), curr(n, vector<int>(m));
+	// prev would have the max comparisons from the last round
+	for (int i = 0; i < n; ++i) 
+		for (int j = 0; j < m; ++j) dp_prev[i][j] = B[i][j];
+	const int dir[4][2] = {{-1,0}, {1,0}, {0,-1}, {0,1}};
+	for (int d = 1; d <= K; ++d){
+		for (int i = 0; i < n; ++i) {	
+			for (int j = 0; j < m; ++j){
+				int best = dp_prev[i][j];
+				for (auto [x,y] : dir){
+					int ni = i + x, nj = j + y;
+					if (ni >= 0 && ni < n && nj >= 0 && nj < m)
+						best = max(best, dp_prev[ni][nj]);
+				}
+				dp_curr[i][j] = best;
+			}
+		}
+		dp_prev.swap(dp_curr);
+	}
+	return dp_prev;
+}
+```
+
+
+## Best time to buy and sell stocks at most B times.
+
+### Problem statement
+Given an array A of size N, where `A[i]` is the price of the stock on day i, and an integer B, find the maximum profit possible with atmost B transactions. 
+A transaction consists of buying and selling stocks.
+
+Example:
+- $A[i] = [2,4,1]$  B = 2 => Output = 2
+
+### How
+If $B \geq N/2$ , you can trade kitna bhi. So the ans is just the sum of all the upward movements.
+If $B < N/2$ , USE DP. 
+	Let $dp[k][i]$ be the max profit with at index i with atmost k transactions.
+	$$
+	dp[k][i] = max(dp[k][i], A[i] + max_{j < i}(dp[k-1][j] - A[j]))
+	$$
+	But instead of looping purra, we can just maintain the best price.
+	$$
+	bestPrice = max(dp[k-1][j] - A[j]) 
+	$$
+	Maintain this as we move ahead with i.
+
+```cpp
+int BuySellB(vector<int> &A, int B){
+	int N = A.size();
+	if (N < 2 || B == 0) return 0;
+	if (B >= N/2){
+		// as many transactions as we want
+		int profit = 0;
+		for (int i = 1; i < N; ++i)
+			if (A[i] > A[i-1]) 
+				profit += A[i] - A[i-1];
+		return profit;
+	}
+	// otherwise we use normal dp
+	vector<vector<int>> dp(B+1, vector<int>(N,0));
+	for (int k = 1; k <= B; ++k){
+		int bestPrev = dp[k-1][0] - A[0];
+		for (int i = 1; i < N; ++i){
+			dp[k][i] = max(dp[k][i-1], A[i] + bestPrev);
+			bestPrev = max(bestPrev, dp[k-1][i] - A[i]);
+		}
+	}
+	return dp[B][N-1];
+}
+```
+
+## Coins in a Line
+### Problem
+Array A of coins in a line (len n is even). Two players take turns picking either leftmost or the rightmost coin. Each want to maximise their total. Assume you go first. Return max money you can win.
+
+Example
+- $A = [1,2,3,4]$ => Output = 6
+- $A = [5,4,8,10]$ => Output = 15
+### Explanation
+Let $dp[i][j]$ be the max money you can get from $A[i...j]$ if its your turn.
+- If you pick $A[i]$, your opponent faces $A[i+1...j]$ and will min your future gain
+	- You get $A[i] + min(dp[i+2][j],dp[i+1][j-1] )$ 
+- If you pick $A[j]$ , you get $A[j] + min(dp[i][j-2], dp[i+1][j-1])$ 
+- Take max of both
+
+```cpp
+int maxCoin(vector<int> &A){
+	int n = A.size();
+	if (n == 0) return 0;
+	vector<vector<int>> dp(n, vector<int>(n, 0));
+	for (int i = 0; i < n; ++i) dp[i][i] = A[i];
+	for (int i = 0; i +1 < n; ++i) dp[i][i+1] = max(A[i],A[i+1]);
+
+	for (int len = 3; len <= n; ++len){
+		for (int i = 0; i + len < n; ++i){
+			int j = i + len - 1;
+			int pickLeft = A[i] + min(
+				(i+2 <= j ? dp[i+2][j] : 0),
+				(i + 1 <= j-1 ? dp[i+1][j-1] : 0);
+			);
+			int pickRight = A[i] + min(
+				(i <= j-2 ? dp[i][j-2] : 0),
+				(i+1 <= j-1 ? dp[i+1][j-1] : 0)
+			);
+			dp[i][j] = max(pickLeft, pickRight);
+		}
+	}
+	return dp[0][n-1];
+}
+```
+
+## Evaluate Expression To True
+
+### Problem
+Boolean expression de rakha, count ways to parenthesize A such that it evaluates to true. Return ans modulo 1003.
+Example:
+- A = "T|F" => 1
+- A = "T^TF" => 0
+### How
+Let n be len of A. There are (n+1)/2 operands (at even pos).
+Let `dp_t[i][j]` be the number of ways to evaluate operands i to j to true.
+Let `dp_f[i][j]` be the number of ways to eval operands i to j to false.
+- Part at k: `[i..k]` and `[k+1..j]`, operator `A[2k + 1]`
+- For each operator, count ways to get T/F by comb results from L and R subprobs.
+
+```cpp
+int cntTrue(string A){
+	const int MOD = 1003;
+	int n = A.size();
+	int m = (n+1)/2;
+	vector<vector<int>> dp_t(m, vector<int> (m,0));
+	vector<vector<int>> dp_f(m, vector<int> (m,0));
+	// initialize single characters
+	for (int k = 0; k < m; ++k){
+		char c = A[2*k]; // every operand is at even index
+		if (c == 'T') dp_t[k][k] = 1;
+		else dp_f[k][k] = 1;
+	} 
+	// fill dp for substr of increasing len
+	for (int len = 2; len <= m; ++len){
+		for (int i = 0; i < len -1 < m; ++i){
+			int j = i + len - 1;
+			int waysT = 0, waysF= 0;
+			for (int k = i; k < j; ++k){
+				char op = A[2*k + 1]; //operator between the operands
+				int lt = dp_t[i][k], lf = dp_f[i][k];
+				int rt = dp_t[k+1][j], rf = dp_f[k+1][j];
+				int totL = (lt + rt) % MOD;
+				int totR = (rt +rf) % MOD;
+				if (op == '&'){
+					waysT += lt*rt;
+					waysF += totL*totR - lt*rt;
+				}
+				else if (op == '|'){
+					waysF += lf * rf;
+					waysT += totL*totR - lt*rt;
+				}
+				else if (op == '^'){
+					waysT += lt*rf + lf*rt;
+					waysF += lt*rt + lf*rf;
+				}
+			}
+			dp_t[i][j] = waysT;
+			dp_f[i][j] = waysF;
+		}
+	}
+	return dp_t[0][m-1];
+}
+```
+
+
+## Egg Drop Problem
+### Problem toh zindagi meh hai
+Given A Eggs, and building with B floors. Find min moves reqd to find the critical floor C (such that any egg dropped above C would break, and at or below C would not).
+Each move, you may drop egg from any floor. An egg that breaks cannot be used again.
+
+Input : 2 integers, A and B.
+Example:
+- A = 1, B = 2, output = 2
+- A = 2, B = 10, output = 4
+### ????
+Let `dp[k]` be max num of floors you can test k eggs and m moves.
+$$
+dp[k] = 1 + dp[k] + dp[k-1]
+$$
+Drop an egg
+- If it breaks, you have `k-1` eggs, `m-1` moves left. (`dp[k-1]`)
+- if it doesn't, you have k eggs and m-1 moves left. `dp[k]` floors
++1 for current floor being tested.
+
+```cpp
+int eggDrop(int A, int B){
+	vector<int> dp(A+1,0); // dp[k] = max floor with k eggs
+	int moves = 0;
+	while (dp[A] < B){ // we have to test atleast all the floors to be certain
+		moves ++;
+		for (int k = A; k >= 1; --k)
+			dp[k] += dp[k-1] + 1;
+	}
+	return moves;
+}
+```
+
+
+## Best time to buy and sell stocks 3
+
+`A[i]` is the price of stock on day `i`. Find the max possible profit by making atmost 2 interactions.
+You must sell before you buy again.
+
+Example
+- $A = [1,2,1,2]$ Output is 2
+- $A = [7,2,4,8,7]$ Output is 6
+
+### Kaise
+- Let `firstBuy` be max profit after first buy (-ve )
+- let `firstSell` be the max profit after first sell.
+- let `secondBuy` be max prof after second buy (= profit after first sell - price)
+- let `secondSell` max prof after second sell.
+On each day we update thse
+
+```cpp
+int buySell3(vector<int>& A){
+	int n = A.size();
+	if (n < 2) return 0;
+	int firstBuy = INT_MIN, secondBuy = INT_MIN;
+	int firstSell = 0, secondSell = 0;
+	for (int price : A){
+		firstBuy = max(firstBuy, -price);
+		firstSell = max(firstSell, firstBuy + price);
+		secondBuy = max(secondBuy, firstSell - price);
+		secondSell = max(secondSell,secondBuy + price);
+	}
+	return secondSell;
+}
+```
+
