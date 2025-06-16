@@ -883,3 +883,251 @@ int jump(vector<int> $A){
 }
 ```
 
+## Longest Arithmetic Progression
+### Problem statement (ass)
+Given int arr A of size N, find len of longest AP in A.
+AP is a seq where consec elements ka diff is same.
+
+Example:
+- `A = [3,6,9,12]` Output: 4
+- `A = [9,4,7,2,10]` Output: 3 (4,7,10)
+
+### Kya Kyu Kaise
+- Let `ap[i][j]` be the len of longest AP ending at i,j
+- For each j > i, try to find a pehle ka index `k` such that `A[k]` , `A[i]`, `A[j]` form an AP.
+- Agar waise kuch exists, se`ap[i][j]` = `ap[k][i] + 1` (matlab AP goes on), warna `ap[i][j] = 2` (atleast 2 number toh hai ye dono bhai)
+- Use hashmap for finding last occurence
+
+```cpp
+int longestAP(vector<int> &A){
+	int n = A.size();
+	if (n <= 2) return n;
+	map<int,int> occ;
+	vector<vector<int>> ap(n+1, vector<int>(n+1,0));
+	for (int i = 0; i < n; ++i){
+		for (int j = i+1; j < n; ++j){
+			int x = 2*A[i] - A[j]; // aise we find prev element
+			if (occ.find(x) != occ.end()){
+				// ap ki legacy goes on
+				ap[i][j] = max(ap[i][j], 1 + ap[mp[x]][i]);
+			}
+			else {
+				ap[i][j] = 2;
+			}
+			ans = max(ans,ap[i][j]);
+		}
+		mp[A[i]] = i;
+	}
+	return ans;
+}
+```
+
+## N digit numbers with digit sum S
+### Problem Statement
+Given 2 integers N and S, find out the num of N-digit numbers whose digit sum to S. 
+Note valid num dont have leading zeroes.
+Return ans $modulo \space 10^9 + 7$
+
+Example: N = 2, S = 4, Output = 4 (numbers = 13,22,31,40)
+
+### Kaise?
+Let $dp[sum]$ be the num of ways to get sum `sum` with a fixed number of digits so far.
+First digit ke liye we can only put 1-9.
+Uske aage we can put 0-9
+For each pos, update all possible digit sum using the prev position ka possibilities.
+
+```cpp
+int digitSum(int N, int S){
+	const int MOD = 1e9 + 7;
+	vector<int> dp(S+1,0), next_dp(S+1,0);
+	// first digit wala base case
+	for (int d=  1; d <= 9; ++d) 
+		if (d <= S) dp[d] = 1;
+	for (int pos = 2; pos <= N; ++pos){
+		fill(next_dp.begin(),next_dp.end(), 0);
+		for (int sum = 0; sum <= S; ++sum){
+			if (dp[sum] == 0) continue; // we have nothing to add
+			for (int d = 0; d <= 9; ++d){
+				if (sum + d > S) break;
+				// jitne bhi next sum possible hai, sab ke ways add karde
+				next_dp[sum + d] = (next_dp[sum + d] + dp[sum]) % MOD; 
+			}
+		}
+		// calculations update kar de
+		dp.swap(next_dp);
+	}
+	return dp[S];
+}
+```
+
+## Shortest Common Superstring
+### Problem kya yap kar raha
+Given a set of strings A of len N, return len of shortest string that contains all string in A as substrings.
+
+Example:
+- $A = ['aaaa', 'aa'],\space  Output = 4$  (superstring : "aaaa")
+- `A = [abcd,cdef,fgh,de]` Output: 8 (superstring : "abcdefgh")
+### How the fuck
+Pehle toh remove any string that is a substring of another
+For all pairs `i,j` precompute maximum suffix-prefix ka overlap between `A[i]` and `A[j]`.
+Ab let `dp[mask][last]` be the min len superstring for set of strings mask, ending at string `last`.
+Transition: For every mask, for every mask, try adding any `nxt` not in the mask
+The cost to add `A[nxt]` after `A[last]` is 
+$$
+|A[nxt]| - overlap[last][nxt]
+$$
+Matlab length of `A[nxt]` - overlap between `A[last]` and `A[nxt]`
+Then the answer would be min of `dp[all-used][last]`
+
+Iska code thoda heavy hai
+```cpp
+int computeOverlap(string a, string b){
+	int maxLen = min(a.size(),b.size());
+	for (int k = maxLen, k > 0; --k){
+		if (a.substr(a.size()-k,k) == b.substr(0,k)){
+			return k;
+			// agar a ke last k matches b ke first k, toh its better to join them
+		}
+	}
+}
+
+int minComSups(vector<string> &A){
+	int n = A.size();
+	if (n == 0) return 0;
+	// remove substrings coz time na waste kar yaar
+	vector<bool> keep(n,true);
+	for (int i = 0; i < n; ++i){
+		if (!keep[i]) continue;
+		for (int j = 0; j < n; ++j){
+			if (i == j || !keep[j]) continue;
+			if (A[i].find(A[j]) != string::npos)
+				keep[j] = 0;
+			else if (A[j].find(A[i]) != string::npos){
+				keep[i] = false;
+				break;
+			}
+		}
+	}
+	vector<string> strs;
+	for (int i = 0; i < n; ++i) if (keep[i]) strs.push_back(A[i]);
+	A.swap(strs); // cleaned A by removing faaltu ke subtrs
+	// precompute overlap
+	vector<vector<int>> overlap(n, vector<int>(n,0));
+	for (int i = 0; i < n; ++i){
+		for (int j = 0; j < n; ++j){
+			if (i == j) continue;
+			overlap[i][j] = computeOverlap(A[i],A[j]);
+		}
+	}
+	// ab finally dp
+	int FULL = 1 << n, INF = 1e9;
+	vector<vector<int>> dp(FULL, vector<int>(n,INF));
+	// min com supstr of A[i] ending at i is A[i] bhai duh
+	for (int i = 0; i < n; ++i) dp[i << i][i] = A[i].length();
+
+	for (int mask = 0; mask < FULL; ++mask){
+		for (int last = 0; last < n; ++last){
+			if (!(mask & (1 << last))) continue;
+			// agar last pehle compute kar rakha then continue
+			int curLen = dp[mask][last];
+			if (curLen == INF) continue; // not computed, abhi bhi default value hai
+			int rem = (~mask) & (FULL - 1);
+			for (int nxt = 0; nxt < n; ++nxt){
+				if (!(rem & (1 << nxt))) continue; // nxt already in mask
+				int add = (int)A[nxt].size() - overlap[last][nxt];
+				int newMask = mask | (1 << nxt);
+				dp[newMask][nxt] = min(dp[newMask][nxt],curLen + add);
+			}
+		}
+	}
+	int ans = INF, finalMask = FULL - 1;
+	for (int last = 0; last < n; ++last)
+		ans = min(ans, dp[finalMask][last]);
+	return ansl
+}
+```
+
+## Ways to color a 3 x N Board.
+### Problem 
+Given 3xA board, find ways to color it using atmost 4 colors such that no two baaju wala cells have the same color.
+Return ans modulo $10^9 + 7$
+
+Example: 
+- A = 1, ans = 36
+- A = 2, ans = 588
+### How the fuck
+DP with State Compression
+Each column can be colored in $4 \times 3 \times 3 = 36$ ways. Choose colors for top, middle, and bottom. All different from adjacent vertically.
+Let `patterns[i]` mean i-th valid color pattern for a column.
+Let `compatList[i]` as the set of prev column patterns compatible with i (no color repeats in any row)
+Let `dp[i]` be the number of ways so far if the rightmost column uses the pattern i.
+So the transition would be:
+$$
+nextDP[i] = \sum_{j \in compatList[i]} dp[j]
+$$
+So pehle,
+Gemerate all 36 valid column colorings 
+Now for each pattern, build a list of compatible previous patterns
+Then bas ways add karde of all that are compatible
+
+```cpp
+const int MOD = 1e9 + 7;
+vector<array<int,3>> buildAllPatterns(){
+	vector<array<int,3>> patterns;
+	for (int c0 = 0; c0 < 4; ++c0){
+		for (int c1 = 0; c1 < 4: ++c1){
+			if (c1 == c0) continue; // valid nahi hai
+			for (int c2 = 0; c2 < 4: ++c2){
+				if (c2 == c1) continue;
+				patterns.push_back({c0,c1,c2});
+			}
+		}
+	}
+}
+
+vector<vector<int>> buildCompat(vector<array<int,3>> &patterns){
+	int M = patterns.size();
+	vector<vector<int>> compatList(M);
+	for (int i = 0; i < M; ++i){
+		for (int j = 0; j < M; ++j){
+			bool ok = 1;
+			for (int r = 0; r < 3; ++r){
+				//check the rows incase adj nikale toh not okk
+				if (patterns[i][c] == patterns[j][c]){
+					ok = 0;
+					break;
+				}
+			}
+			if (ok) compatList[i].push_back(j);
+		}
+	}
+	return compatList;
+}
+
+int color(int A){
+	int N = A:
+	if (N <= 0) return 0;
+	vector<array<int,3>> patterns = buildAllTriples();
+	vector<vector<int>> compatList = buildCompat(patterns);
+	// ways of coloring i columns is dp[i]
+	vector<int> dp(36,1), next_dp(36,0);
+	for (int col = 2; col <= N; ++col){
+		for (int i = 0; i < 36; ++i) nextDP[i] = 0;
+		for (int i = 0; i < 36; ++i){
+			long long sumWays = 0;
+			for (int j : compatList[i]){
+				sumWays += dp[j];
+				if (sumWays >= MOD) sumWays -= MOD;
+			}
+			nextDP[i] = (int)sumWays;
+		}
+		dp.swap(nextDP);
+	}
+	long long answer = 0;
+	for (int i = 0; i < 36; ++i){
+		answer += dp[i];
+		if (answer >= MOD) answer -= MOD;
+	}
+	return (int)answer;
+}
+```

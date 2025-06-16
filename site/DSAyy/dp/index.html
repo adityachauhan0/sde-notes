@@ -1,252 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
-    <meta charset="UTF-8">
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="generator" content="mkdocs-1.6.1, mkdocs-terminal-4.7.0">
-     
-     
-    <link rel="icon" type="image/png" sizes="192x192" href="../../img/android-chrome-192x192.png" />
-<link rel="icon" type="image/png" sizes="512x512" href="../../img/android-chrome-512x512.png" />
-<link rel="apple-touch-icon" sizes="180x180" href="../../img/apple-touch-icon.png" />
-<link rel="shortcut icon" type="image/png" sizes="48x48" href="../../img/favicon.ico" />
-<link rel="icon" type="image/png" sizes="16x16" href="../../img/favicon-16x16.png" />
-<link rel="icon" type="image/png" sizes="32x32" href="../../img/favicon-32x32.png" />
-
-
-    
- 
-<title>Dynamic Programming - SDE Prep A2Z</title>
-
-
-<link href="../../css/fontawesome/css/fontawesome.min.css" rel="stylesheet">
-<link href="../../css/fontawesome/css/solid.min.css" rel="stylesheet">
-<link href="../../css/normalize.css" rel="stylesheet">
-<link href="../../css/terminal.css" rel="stylesheet">
-<link href="../../css/theme.css" rel="stylesheet">
-<link href="../../css/theme.tile_grid.css" rel="stylesheet">
-<link href="../../css/theme.footer.css" rel="stylesheet">
-<!-- [{'scheme': 'default', 'primary': 'indigo', 'accent': 'indigo'}, {'scheme': 'slate', 'primary': 'indigo', 'accent': 'indigo', 'toggle': {'icon': 'material/weather-night', 'name': 'Switch to dark mode'}}] color palette -->
-<link href="../../css/palettes/[{'scheme': 'default', 'primary': 'indigo', 'accent': 'indigo'}, {'scheme': 'slate', 'primary': 'indigo', 'accent': 'indigo', 'toggle': {'icon': 'material/weather-night', 'name': 'Switch to dark mode'}}].css" rel="stylesheet">
-
-<!-- page layout -->
-<style>
-/* initially set page layout to a one column grid */
-.terminal-mkdocs-main-grid {
-    display: grid;
-    grid-column-gap: 1.4em;
-    grid-template-columns: auto;
-    grid-template-rows: auto;
-}
-
-/*  
-*   when side navigation is not hidden, use a two column grid.  
-*   if the screen is too narrow, fall back to the initial one column grid layout.
-*   in this case the main content will be placed under the navigation panel. 
-*/
-@media only screen and (min-width: 70em) {
-    .terminal-mkdocs-main-grid {
-        grid-template-columns: 4fr 9fr;
-    }
-}</style>
-
-
-
-     
-    
-    
-
-    
-    <!-- search css support -->
-<link href="../../css/search/bootstrap-modal.css" rel="stylesheet">
-<!-- search scripts -->
-<script>
-    var base_url = "../..",
-    shortcuts = "{}";
-</script>
-<script src="../../js/jquery/jquery-1.10.1.min.js" defer></script>
-<script src="../../js/bootstrap/bootstrap.min.js" defer></script>
-<script src="../../js/mkdocs/base.js" defer></script>
     
     
     
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-    
-    <script src="../../search/main.js"></script>
-    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Dynamic Programming - SDE Prep A2Z</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
 
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
     
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Longest Common Subsequence", url: "#_top", children: [
+          ]},
+          {title: "Question Statement", url: "#question-statement", children: [
+              {title: "Kaise karna hai", url: "#kaise-karna-hai" },
+          ]},
+          {title: "Longest Palindromic Subsequence", url: "#longest-palindromic-subsequence", children: [
+              {title: "Question Statement", url: "#question-statement_1" },
+              {title: "Karna kaise hai", url: "#karna-kaise-hai" },
+          ]},
+          {title: "Edit Distance", url: "#edit-distance", children: [
+              {title: "Problem Statement", url: "#problem-statement" },
+              {title: "Kaise karna", url: "#kaise-karna" },
+              {title: "Base Cases", url: "#base-cases" },
+          ]},
+          {title: "Repeating Subsequence", url: "#repeating-subsequence", children: [
+              {title: "Problem kya yap kar raha", url: "#problem-kya-yap-kar-raha" },
+              {title: "How to solve?", url: "#how-to-solve" },
+          ]},
+          {title: "Distinct Subsequences", url: "#distinct-subsequences", children: [
+              {title: "Problem Statement", url: "#problem-statement_1" },
+              {title: "Karu kaise?", url: "#karu-kaise" },
+          ]},
+          {title: "Scramble String", url: "#scramble-string", children: [
+              {title: "What does the dog say?", url: "#what-does-the-dog-say" },
+              {title: "Bhai mar jau meh?", url: "#bhai-mar-jau-meh" },
+              {title: "Hard Truth", url: "#hard-truth" },
+          ]},
+          {title: "WildCard Pattern Matching", url: "#wildcard-pattern-matching", children: [
+              {title: "Problem kya hai", url: "#problem-kya-hai" },
+              {title: "Karna kaise hai", url: "#karna-kaise-hai_1" },
+          ]},
+          {title: "Pattern Matching . and *", url: "#pattern-matching-and", children: [
+              {title: "Problem kya hai", url: "#problem-kya-hai_1" },
+              {title: "Kaise karna hai", url: "#kaise-karna-hai_1" },
+              {title: "Rishte", url: "#rishte" },
+              {title: "Truth", url: "#truth" },
+          ]},
+          {title: "Length of Longest Subsequence", url: "#length-of-longest-subsequence", children: [
+              {title: "Problem yap", url: "#problem-yap" },
+              {title: "How????", url: "#how" },
+          ]},
+          {title: "Smallest subsequence given the primes.", url: "#smallest-subsequence-given-the-primes", children: [
+              {title: "Sexy ass statement", url: "#sexy-ass-statement" },
+              {title: "How to do this shit.", url: "#how-to-do-this-shit" },
+          ]},
+          {title: "Largest Area of Rectangle with Permutations", url: "#largest-area-of-rectangle-with-permutations", children: [
+              {title: "What does this bitch yap", url: "#what-does-this-bitch-yap" },
+              {title: "How to do this?", url: "#how-to-do-this" },
+          ]},
+          {title: "Tiling with Dominoes", url: "#tiling-with-dominoes", children: [
+              {title: "Problem Statement", url: "#problem-statement_2" },
+              {title: "Maths behind this", url: "#maths-behind-this" },
+          ]},
+          {title: "Paint House", url: "#paint-house", children: [
+              {title: "How to do this painting", url: "#how-to-do-this-painting" },
+          ]},
+          {title: "Ways to decode", url: "#ways-to-decode", children: [
+              {title: "Karna kaise hai", url: "#karna-kaise-hai_2" },
+          ]},
+          {title: "Stairs", url: "#stairs", children: [
+              {title: "Legendary beginner problem", url: "#legendary-beginner-problem" },
+              {title: "Karna kaise hai", url: "#karna-kaise-hai_3" },
+          ]},
+          {title: "Longest Increasing Subsequence", url: "#longest-increasing-subsequence", children: [
+              {title: "Problem kya hai", url: "#problem-kya-hai_2" },
+              {title: "Karna kaise hai", url: "#karna-kaise-hai_4" },
+          ]},
+          {title: "Intersecting chords in a circle", url: "#intersecting-chords-in-a-circle", children: [
+              {title: "How tho", url: "#how-tho" },
+          ]},
+          {title: "Birthday Bombs", url: "#birthday-bombs", children: [
+              {title: "Problem", url: "#problem" },
+              {title: "How", url: "#how_1" },
+          ]},
+          {title: "Jump Game Array", url: "#jump-game-array", children: [
+              {title: "Problem", url: "#problem_1" },
+              {title: "How:", url: "#how_2" },
+          ]},
+          {title: "Min Jumps Array", url: "#min-jumps-array", children: [
+              {title: "Problem", url: "#problem_2" },
+              {title: "How", url: "#how_3" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script> 
 </head>
 
-<body class="terminal"><div class="container">
-    <div class="terminal-nav">
-        <header class="terminal-logo">
-            <div id="mkdocs-terminal-site-name" class="logo terminal-prompt"><a href="/" class="no-style">SDE Prep A2Z</a></div>
-        </header>
-        
-        <nav class="terminal-menu">
-            
-            <ul vocab="https://schema.org/" typeof="BreadcrumbList">
-                
-                
-                <li property="itemListElement" typeof="ListItem">
-                    <a href="../.." class="menu-item " property="item" typeof="WebPage">
-                        <span property="name">Home</span>
-                    </a>
-                    <meta property="position" content="0">
-                </li>
-                
-                
-                
-                    
-                    
-
-
-<li property="itemListElement" typeof="ListItem">
-    <a href="#" class="menu-item" data-toggle="modal" data-target="#mkdocs_search_modal" property="item" typeof="SearchAction">
-        <i aria-hidden="true" class="fa fa-search"></i> <span property="name">Search</span>
-    </a>
-    <meta property="position" content="1">
-</li>
-                    
-            </ul>
-            
-        </nav>
-    </div>
-</div>
-        
-    <div class="container">
-        <div class="terminal-mkdocs-main-grid"><aside id="terminal-mkdocs-side-panel"><nav>
-  
-    <ul class="terminal-mkdocs-side-nav-items">
-        
-          
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
 
 
 
-<li class="terminal-mkdocs-side-nav-li">
-    
-    
-    
-        
-        
-            <a class="
-
-    terminal-mkdocs-side-nav-item" href="../..">Home</a>
-        
-    
-    
-    
-  </li>
-        
-          
-
-
-
-<li class="terminal-mkdocs-side-nav-li">
-    
-    
-        
-        
-
-        
-            
-    
-        
-        <span class="
-        
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
     
 
-    terminal-mkdocs-side-nav-item--active terminal-mkdocs-side-nav-section-no-index">DSA</span>
     
     
-        
       
-        
-            <ul class="terminal-mkdocs-side-nav-li-ul">
-        
-            
-            
+    
 
-             
-                <li class="terminal-mkdocs-side-nav-li-ul-li">
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
     
-        
-        
-            <a class="
+    <div class="wm-article-nav pull-right">
+      <a href="../graph/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../graph/" class="btn btn-xs btn-link">
+        Graphs
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../arrays/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../arrays/" class="btn btn-xs btn-link">
+        Arrays
+      </a>
+    </div>
+    
+  </div>
 
-    terminal-mkdocs-side-nav-item" href="../arrays/">Arrays</a>
-        
     
-    </li>
-            
-        
-            
-            
 
-             
-                <li class="terminal-mkdocs-side-nav-li-ul-li">
-    
-        
-        <span class="
-
-    terminal-mkdocs-side-nav-item--active">Dynamic Programming</span>
-    
-    </li>
-            
-        
-            
-            
-
-             
-                <li class="terminal-mkdocs-side-nav-li-ul-li">
-    
-        
-        
-            <a class="
-
-    terminal-mkdocs-side-nav-item" href="../graph/">Graphs</a>
-        
-    
-    </li>
-            
-            
-    </ul>
-        
-    
-  </li>
-        
-    </ul>
-  
-</nav><hr>
-<nav>
-    <ul>
-        <li><a href="#longest-common-subsequence">Longest Common Subsequence</a></li>
-        <li><a href="#question-statement">Question Statement</a></li>
-        <li><a href="#kaise-karna-hai">Kaise karna hai</a></li><li><a href="#longest-palindromic-subsequence">Longest Palindromic Subsequence</a></li>
-        <li><a href="#question-statement_1">Question Statement</a></li><li><a href="#karna-kaise-hai">Karna kaise hai</a></li><li><a href="#edit-distance">Edit Distance</a></li>
-        <li><a href="#problem-statement">Problem Statement</a></li><li><a href="#kaise-karna">Kaise karna</a></li><li><a href="#base-cases">Base Cases</a></li><li><a href="#repeating-subsequence">Repeating Subsequence</a></li>
-        <li><a href="#problem-kya-yap-kar-raha">Problem kya yap kar raha</a></li><li><a href="#how-to-solve">How to solve?</a></li><li><a href="#distinct-subsequences">Distinct Subsequences</a></li>
-        <li><a href="#problem-statement_1">Problem Statement</a></li><li><a href="#karu-kaise">Karu kaise?</a></li><li><a href="#scramble-string">Scramble String</a></li>
-        <li><a href="#what-does-the-dog-say">What does the dog say?</a></li><li><a href="#bhai-mar-jau-meh">Bhai mar jau meh?</a></li><li><a href="#hard-truth">Hard Truth</a></li><li><a href="#wildcard-pattern-matching">WildCard Pattern Matching</a></li>
-        <li><a href="#problem-kya-hai">Problem kya hai</a></li><li><a href="#karna-kaise-hai_1">Karna kaise hai</a></li><li><a href="#pattern-matching-and">Pattern Matching . and *</a></li>
-        <li><a href="#problem-kya-hai_1">Problem kya hai</a></li><li><a href="#kaise-karna-hai_1">Kaise karna hai</a></li><li><a href="#rishte">Rishte</a></li><li><a href="#truth">Truth</a></li><li><a href="#length-of-longest-subsequence">Length of Longest Subsequence</a></li>
-        <li><a href="#problem-yap">Problem yap</a></li><li><a href="#how">How????</a></li><li><a href="#smallest-subsequence-given-the-primes">Smallest subsequence given the primes.</a></li>
-        <li><a href="#sexy-ass-statement">Sexy ass statement</a></li><li><a href="#how-to-do-this-shit">How to do this shit.</a></li><li><a href="#largest-area-of-rectangle-with-permutations">Largest Area of Rectangle with Permutations</a></li>
-        <li><a href="#what-does-this-bitch-yap">What does this bitch yap</a></li><li><a href="#how-to-do-this">How to do this?</a></li><li><a href="#tiling-with-dominoes">Tiling with Dominoes</a></li>
-        <li><a href="#problem-statement_2">Problem Statement</a></li><li><a href="#maths-behind-this">Maths behind this</a></li><li><a href="#paint-house">Paint House</a></li>
-        <li><a href="#how-to-do-this-painting">How to do this painting</a></li><li><a href="#ways-to-decode">Ways to decode</a></li>
-        <li><a href="#karna-kaise-hai_2">Karna kaise hai</a></li><li><a href="#stairs">Stairs</a></li>
-        <li><a href="#legendary-beginner-problem">Legendary beginner problem</a></li><li><a href="#karna-kaise-hai_3">Karna kaise hai</a></li><li><a href="#longest-increasing-subsequence">Longest Increasing Subsequence</a></li>
-        <li><a href="#problem-kya-hai_2">Problem kya hai</a></li><li><a href="#karna-kaise-hai_4">Karna kaise hai</a></li>
-    </ul>
-</nav>
-</aside>
-            <main id="terminal-mkdocs-main-content">
-<section id="mkdocs-terminal-content">
     <h2 id="longest-common-subsequence">Longest Common Subsequence<a class="headerlink" href="#longest-common-subsequence" title="Permanent link">&para;</a></h2>
 <h2 id="question-statement">Question Statement<a class="headerlink" href="#question-statement" title="Permanent link">&para;</a></h2>
 <p>Given 2 strings, find the length of uska longest common subsequence.
@@ -974,43 +888,151 @@ Length of the tail at the end is the ans</p>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">tails</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
 <span class="p">}</span>
 </code></pre></div>
-</section>
+<h2 id="intersecting-chords-in-a-circle">Intersecting chords in a circle<a class="headerlink" href="#intersecting-chords-in-a-circle" title="Permanent link">&para;</a></h2>
+<p>Given an integer <span class="arithmatex">\(A\)</span> return the number of ways to draw A chords in a circle with <span class="arithmatex">\(2A\)</span> points, such that no two chords intersect.
+Two ways are different if atleast one chord is present in one way but not the other.
+Return modulo <span class="arithmatex">\(10^9 + 7\)</span></p>
+<p>Example:
+- A = 1, Output = 1
+- A = 2, Output = 2</p>
+<h3 id="how-tho">How tho<a class="headerlink" href="#how-tho" title="Permanent link">&para;</a></h3>
+<p>The number of ways to draw A non-intersecting chords on 2A points on a circle is the A-th Catalan number.
+$$
+C_0 = 1, \space \space C_n = \sum_{i=0}^{n-1} C_i \times C_{n-1 - i}
+$$
+where <span class="arithmatex">\(C_n\)</span> is the number of valid chord drawings with n chords.</p>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">chordCut</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">A</span><span class="p">){</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">MOD</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1e9</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">7</span><span class="p">;</span>
+<span class="w">    </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="o">&gt;</span><span class="w"> </span><span class="n">C</span><span class="p">(</span><span class="n">A</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">C</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">A</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">n</span><span class="p">){</span>
+<span class="w">        </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">ways</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">){</span>
+<span class="w">            </span><span class="n">ways</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">ways</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">C</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">C</span><span class="p">[</span><span class="n">n</span><span class="mi">-1</span><span class="o">-</span><span class="n">i</span><span class="p">])</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="n">MOD</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">C</span><span class="p">[</span><span class="n">n</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ways</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="p">)</span><span class="n">C</span><span class="p">[</span><span class="n">A</span><span class="p">];</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="birthday-bombs">Birthday Bombs<a class="headerlink" href="#birthday-bombs" title="Permanent link">&para;</a></h2>
+<h3 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h3>
+<p>Tengu has N friends. Each friend <span class="arithmatex">\(i\)</span> has a positive strength <span class="arithmatex">\(B[i]\)</span> and can kick tengu any number of times. Tengu has pain resistance limit A.
+Find lexicographically smallest array of max pos length of friend indices, where each friend index can appear any number of times, such that their sum of strengths is <span class="arithmatex">\(\leq\)</span> A.</p>
+<h3 id="how_1">How<a class="headerlink" href="#how_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Max num of kicks: <span class="arithmatex">\(M = \frac{A}{w_{min}}\)</span>   where <span class="arithmatex">\(w_{min}\)</span> is the min val in B.</li>
+<li>At each kick pos, to keep ans smallest, try each friend in asc order and pick the lowest index friend whose cost allows enough resistance for remaining M-1 kicks, all possibly using the cheapest friend.</li>
+<li>After choosing, subtract from capacity and continue.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">smallKicks</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">A</span><span class="p">,</span><span class="w"> </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;&amp;</span><span class="w"> </span><span class="n">B</span><span class="p">){</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">N</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">B</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">w_min</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">min_element</span><span class="p">(</span><span class="n">B</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span><span class="n">B</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">M</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="o">/</span><span class="n">w_min</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">M</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="p">{};</span>
+<span class="w">    </span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">ans</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">cap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">;</span><span class="w"> </span><span class="c1">// remaining capacity</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">pos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">pos</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">M</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">pos</span><span class="p">){</span>
+<span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">rem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">M</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">pos</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">N</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">){</span>
+<span class="w">            </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">cost_i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">];</span>
+<span class="w">            </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">needed_for_rest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1L</span><span class="n">L</span><span class="o">*</span><span class="w"> </span><span class="n">rem</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">w_min</span><span class="p">;</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">cost_i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">needed_for_rest</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">cap</span><span class="p">){</span>
+<span class="w">                </span><span class="n">ans</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">i</span><span class="p">);</span>
+<span class="w">                </span><span class="n">cap</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">cost_i</span><span class="p">;</span>
+<span class="w">                </span><span class="k">break</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span><span class="w">   </span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ans</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="jump-game-array">Jump Game Array<a class="headerlink" href="#jump-game-array" title="Permanent link">&para;</a></h2>
+<h3 id="problem_1">Problem<a class="headerlink" href="#problem_1" title="Permanent link">&para;</a></h3>
+<p>Given array A with non-neg int, you are at index 0. Each element <code>A[i]</code> is the max jump len from pos i. Determine if you can reach the last index.</p>
+<p>Example
+- <span class="arithmatex">\(A = [2,3,1,1,4]\)</span> , Output = 1
+- <span class="arithmatex">\(A = [3,2,1,0,4]\)</span> , Output = 0</p>
+<h3 id="how_2">How:<a class="headerlink" href="#how_2" title="Permanent link">&para;</a></h3>
+<p>Keep track of <code>maxReach</code> index, like the farthest we can reach
+- for each index i, if i &gt; maxReach, we are stuck, return 0
+- warna update maxReach and move on</p>
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">canJump</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&amp;</span><span class="n">A</span><span class="p">){</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+<span class="w">    </span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">maxReach</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">){</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">maxReach</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="n">maxReach</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">max</span><span class="p">(</span><span class="n">maxReach</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">long</span><span class="w"> </span><span class="kt">long</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">maxReach</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">n</span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="min-jumps-array">Min Jumps Array<a class="headerlink" href="#min-jumps-array" title="Permanent link">&para;</a></h2>
+<h3 id="problem_2">Problem<a class="headerlink" href="#problem_2" title="Permanent link">&para;</a></h3>
+<p>Given array A with non-neg int, you are at index 0. Each <code>A[i]</code> represents the max jump length from that pos. Return the min number of jumps required to reach the last index.
+If not pos, return -1.</p>
+<h3 id="how_3">How<a class="headerlink" href="#how_3" title="Permanent link">&para;</a></h3>
+<p>Use a greedy BFS
+- <code>current_end</code> : the farthest index we can reach with current jumps
+- <code>furthest</code> : farthest we can reach with one more jump
+- for every i in <span class="arithmatex">\([0,current\_end]\)</span> , update furthest to the farthest you can go.
+- when i reaches current_end, increment jump count, and extend curr_end to furthest.
+- if current_end cannot be extended, return -1
+<div class="highlight"><pre><span></span><code><span class="kt">int</span><span class="w"> </span><span class="nf">jump</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">$A</span><span class="p">){</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="p">.</span><span class="n">size</span><span class="p">();</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">n</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">jumps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">current_end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">furthest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">){</span>
+<span class="w">        </span><span class="n">furthest</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">max</span><span class="p">(</span><span class="n">furthest</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">current_end</span><span class="p">){</span>
+<span class="w">            </span><span class="n">jumps</span><span class="o">++</span><span class="p">;</span>
+<span class="w">            </span><span class="n">current_end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">furthest</span><span class="p">;</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">current_end</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">n</span><span class="mi">-1</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">jumps</span><span class="p">;</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">current_end</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="n">current_end</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="mi">-1</span><span class="p">)</span><span class="o">?</span><span class="w"> </span><span class="n">jumps</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></p>
 
-            </main>
-        </div>
-        <hr><footer>
-    <div class="terminal-mkdocs-footer-grid">
-        <div id="terminal-mkdocs-footer-copyright-info">
-             Site built with <a href="http://www.mkdocs.org">MkDocs</a> and <a href="https://github.com/ntno/mkdocs-terminal">Terminal for MkDocs</a>.
-        </div>
-    </div>
-</footer>
-    </div>
+  <br>
+    
 
     
-    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="alertdialog" aria-modal="true" aria-labelledby="searchModalLabel">
-    <div class="modal-dialog modal-lg" role="search">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="searchModalLabel">Search</h5>
-                <button type="button" class="close btn btn-default btn-ghost" data-dismiss="modal"><span aria-hidden="true">x</span><span class="sr-only">Close</span></button>
-            </div>
-            <div class="modal-body">
-                <p id="searchInputLabel">Type to start searching</p>
-                <form>
-                    <div class="form-group">
-                        <input type="search" class="form-control" aria-labelledby="searchInputLabel" placeholder="" id="mkdocs-search-query" title="Please enter search terms here">
-                    </div>
-                </form>
-                <div id="mkdocs-search-results" data-no-results-text="No document matches found"></div>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../graph/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../graph/" class="btn btn-xs btn-link">
+        Graphs
+      </a>
     </div>
+    
+    <div class="wm-article-nav">
+      <a href="../arrays/" class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../arrays/" class="btn btn-xs btn-link">
+        Arrays
+      </a>
+    </div>
+    
+  </div>
+
+    <br>
 </div>
-    
-    
-</body>
 
+<footer class="container-fluid wm-page-content">
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
 </html>
