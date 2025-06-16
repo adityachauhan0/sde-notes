@@ -1,236 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
-    <meta charset="UTF-8">
+  
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="generator" content="mkdocs-1.6.1, mkdocs-terminal-4.7.0">
-     
-     
-    <link rel="icon" type="image/png" sizes="192x192" href="../../img/android-chrome-192x192.png" />
-<link rel="icon" type="image/png" sizes="512x512" href="../../img/android-chrome-512x512.png" />
-<link rel="apple-touch-icon" sizes="180x180" href="../../img/apple-touch-icon.png" />
-<link rel="shortcut icon" type="image/png" sizes="48x48" href="../../img/favicon.ico" />
-<link rel="icon" type="image/png" sizes="16x16" href="../../img/favicon-16x16.png" />
-<link rel="icon" type="image/png" sizes="32x32" href="../../img/favicon-32x32.png" />
-
-
-    
- 
-<title>Arrays - SDE Prep A2Z</title>
-
-
-<link href="../../css/fontawesome/css/fontawesome.min.css" rel="stylesheet">
-<link href="../../css/fontawesome/css/solid.min.css" rel="stylesheet">
-<link href="../../css/normalize.css" rel="stylesheet">
-<link href="../../css/terminal.css" rel="stylesheet">
-<link href="../../css/theme.css" rel="stylesheet">
-<link href="../../css/theme.tile_grid.css" rel="stylesheet">
-<link href="../../css/theme.footer.css" rel="stylesheet">
-<!-- [{'scheme': 'default', 'primary': 'indigo', 'accent': 'indigo'}, {'scheme': 'slate', 'primary': 'indigo', 'accent': 'indigo', 'toggle': {'icon': 'material/weather-night', 'name': 'Switch to dark mode'}}] color palette -->
-<link href="../../css/palettes/[{'scheme': 'default', 'primary': 'indigo', 'accent': 'indigo'}, {'scheme': 'slate', 'primary': 'indigo', 'accent': 'indigo', 'toggle': {'icon': 'material/weather-night', 'name': 'Switch to dark mode'}}].css" rel="stylesheet">
-
-<!-- page layout -->
-<style>
-/* initially set page layout to a one column grid */
-.terminal-mkdocs-main-grid {
-    display: grid;
-    grid-column-gap: 1.4em;
-    grid-template-columns: auto;
-    grid-template-rows: auto;
-}
-
-/*  
-*   when side navigation is not hidden, use a two column grid.  
-*   if the screen is too narrow, fall back to the initial one column grid layout.
-*   in this case the main content will be placed under the navigation panel. 
-*/
-@media only screen and (min-width: 70em) {
-    .terminal-mkdocs-main-grid {
-        grid-template-columns: 4fr 9fr;
-    }
-}</style>
-
-
-
-     
-    
-    
-
-    
-    <!-- search css support -->
-<link href="../../css/search/bootstrap-modal.css" rel="stylesheet">
-<!-- search scripts -->
-<script>
-    var base_url = "../..",
-    shortcuts = "{}";
-</script>
-<script src="../../js/jquery/jquery-1.10.1.min.js" defer></script>
-<script src="../../js/bootstrap/bootstrap.min.js" defer></script>
-<script src="../../js/mkdocs/base.js" defer></script>
     
     
     
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-    
-    <script src="../../search/main.js"></script>
-    
+    <link rel="shortcut icon" href="../../img/favicon.ico">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>Arrays - SDE Prep A2Z</title>
+    <link href="../../css/bootstrap-3.3.7.min.css" rel="stylesheet">
+    <link href="../../css/font-awesome-4.7.0.css" rel="stylesheet">
+    <link href="../../css/base.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../css/highlight.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
 
+    <script src="../../js/jquery-3.2.1.min.js"></script>
+    <script src="../../js/bootstrap-3.3.7.min.js"></script>
+    <script src="../../js/highlight.pack.js"></script>
     
+    <base target="_top">
+    <script>
+      var base_url = '../..';
+      var is_top_frame = false;
+        
+        var pageToc = [
+          {title: "Array Simulation", url: "#_top", children: [
+              {title: "Spiral Order Matrix", url: "#spiral-order-matrix" },
+              {title: "Large Factorial", url: "#large-factorial" },
+              {title: "Max Non-Negative Subarray", url: "#max-non-negative-subarray" },
+              {title: "Pick from Both Sides", url: "#pick-from-both-sides" },
+          ]},
+        ];
+
+    </script>
+    <script src="../../js/base.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script> 
 </head>
 
-<body class="terminal"><div class="container">
-    <div class="terminal-nav">
-        <header class="terminal-logo">
-            <div id="mkdocs-terminal-site-name" class="logo terminal-prompt"><a href="/" class="no-style">SDE Prep A2Z</a></div>
-        </header>
-        
-        <nav class="terminal-menu">
-            
-            <ul vocab="https://schema.org/" typeof="BreadcrumbList">
-                
-                
-                <li property="itemListElement" typeof="ListItem">
-                    <a href="../.." class="menu-item " property="item" typeof="WebPage">
-                        <span property="name">Home</span>
-                    </a>
-                    <meta property="position" content="0">
-                </li>
-                
-                
-                
-                    
-                    
-
-
-<li property="itemListElement" typeof="ListItem">
-    <a href="#" class="menu-item" data-toggle="modal" data-target="#mkdocs_search_modal" property="item" typeof="SearchAction">
-        <i aria-hidden="true" class="fa fa-search"></i> <span property="name">Search</span>
-    </a>
-    <meta property="position" content="1">
-</li>
-                    
-            </ul>
-            
-        </nav>
-    </div>
-</div>
-        
-    <div class="container">
-        <div class="terminal-mkdocs-main-grid"><aside id="terminal-mkdocs-side-panel"><nav>
-  
-    <ul class="terminal-mkdocs-side-nav-items">
-        
-          
+<body>
+<script>
+if (is_top_frame) { $('body').addClass('wm-top-page'); }
+</script>
 
 
 
-<li class="terminal-mkdocs-side-nav-li">
-    
-    
-    
-        
-        
-            <a class="
-
-    terminal-mkdocs-side-nav-item" href="../..">Home</a>
-        
-    
-    
-    
-  </li>
-        
-          
-
-
-
-<li class="terminal-mkdocs-side-nav-li">
-    
-    
-        
-        
-
-        
-            
-    
-        
-        <span class="
-        
+<div class="container-fluid wm-page-content">
+  <a name="_top"></a>
     
 
-    terminal-mkdocs-side-nav-item--active terminal-mkdocs-side-nav-section-no-index">DSA</span>
     
     
-        
       
-        
-            <ul class="terminal-mkdocs-side-nav-li-ul">
-        
-            
-            
+    
 
-             
-                <li class="terminal-mkdocs-side-nav-li-ul-li">
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
     
-        
-        <span class="
+    <div class="wm-article-nav pull-right">
+      <a href="../dp/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../dp/" class="btn btn-xs btn-link">
+        Dynamic Programming
+      </a>
+    </div>
+    
+    <div class="wm-article-nav">
+      <a href="../.." class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../.." class="btn btn-xs btn-link">
+        Home
+      </a>
+    </div>
+    
+  </div>
 
-    terminal-mkdocs-side-nav-item--active">Arrays</span>
     
-    </li>
-            
-        
-            
-            
 
-             
-                <li class="terminal-mkdocs-side-nav-li-ul-li">
-    
-        
-        
-            <a class="
-
-    terminal-mkdocs-side-nav-item" href="../dp/">Dynamic Programming</a>
-        
-    
-    </li>
-            
-        
-            
-            
-
-             
-                <li class="terminal-mkdocs-side-nav-li-ul-li">
-    
-        
-        
-            <a class="
-
-    terminal-mkdocs-side-nav-item" href="../graph/">Graphs</a>
-        
-    
-    </li>
-            
-            
-    </ul>
-        
-    
-  </li>
-        
-    </ul>
-  
-</nav><hr>
-<nav>
-    <ul>
-        <li><a href="#array-simulation">Array Simulation</a></li>
-        <li><a href="#spiral-order-matrix">Spiral Order Matrix</a></li><li><a href="#large-factorial">Large Factorial</a></li><li><a href="#max-non-negative-subarray">Max Non-Negative Subarray</a></li><li><a href="#pick-from-both-sides">Pick from Both Sides</a></li>
-    </ul>
-</nav>
-</aside>
-            <main id="terminal-mkdocs-main-content">
-<section id="mkdocs-terminal-content">
     <h1 id="array-simulation">Array Simulation<a class="headerlink" href="#array-simulation" title="Permanent link">&para;</a></h1>
 <h2 id="spiral-order-matrix">Spiral Order Matrix<a class="headerlink" href="#spiral-order-matrix" title="Permanent link">&para;</a></h2>
 <h3 id="question-kya-hai">Question kya hai<a class="headerlink" href="#question-kya-hai" title="Permanent link">&para;</a></h3>
@@ -372,43 +226,43 @@ Keep a sum of first B elements, and fir middle se ek hata and right end wala ek 
 <span class="p">}</span>
 </code></pre></div>
 <p>Time complexity is O(n) and space complexity is O(1)</p>
-</section>
 
-            </main>
-        </div>
-        <hr><footer>
-    <div class="terminal-mkdocs-footer-grid">
-        <div id="terminal-mkdocs-footer-copyright-info">
-             Site built with <a href="http://www.mkdocs.org">MkDocs</a> and <a href="https://github.com/ntno/mkdocs-terminal">Terminal for MkDocs</a>.
-        </div>
-    </div>
-</footer>
-    </div>
+  <br>
+    
 
     
-    <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="alertdialog" aria-modal="true" aria-labelledby="searchModalLabel">
-    <div class="modal-dialog modal-lg" role="search">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="searchModalLabel">Search</h5>
-                <button type="button" class="close btn btn-default btn-ghost" data-dismiss="modal"><span aria-hidden="true">x</span><span class="sr-only">Close</span></button>
-            </div>
-            <div class="modal-body">
-                <p id="searchInputLabel">Type to start searching</p>
-                <form>
-                    <div class="form-group">
-                        <input type="search" class="form-control" aria-labelledby="searchInputLabel" placeholder="" id="mkdocs-search-query" title="Please enter search terms here">
-                    </div>
-                </form>
-                <div id="mkdocs-search-results" data-no-results-text="No document matches found"></div>
-            </div>
-            <div class="modal-footer">
-            </div>
-        </div>
+    
+      
+    
+
+  <div class="row wm-article-nav-buttons" role="navigation" aria-label="navigation">
+    
+    <div class="wm-article-nav pull-right">
+      <a href="../dp/" class="btn btn-xs btn-default pull-right">
+        Next
+        <i class="fa fa-chevron-right" aria-hidden="true"></i>
+      </a>
+      <a href="../dp/" class="btn btn-xs btn-link">
+        Dynamic Programming
+      </a>
     </div>
+    
+    <div class="wm-article-nav">
+      <a href="../.." class="btn btn-xs btn-default pull-left">
+        <i class="fa fa-chevron-left" aria-hidden="true"></i>
+        Previous</a><a href="../.." class="btn btn-xs btn-link">
+        Home
+      </a>
+    </div>
+    
+  </div>
+
+    <br>
 </div>
-    
-    
-</body>
 
+<footer class="container-fluid wm-page-content">
+  <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a> using <a href="https://github.com/gristlabs/mkdocs-windmill">Windmill</a> theme by Grist Labs.</p>
+</footer>
+
+</body>
 </html>
