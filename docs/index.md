@@ -20,8 +20,8 @@ Jaake padle gaandu:
 ---
 
 ## ✅ DSA Preparation Checklist
-- [] Dynamic Programming
-- [] Arrays 
-- [] Graph
+-[] Dynamic Programming
+-[] Arrays 
+-[] Graph
 
 ---
