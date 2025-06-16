@@ -1,7 +1,7 @@
 site_name: SDE Prep A2Z
 
 theme: 
-  name: terminal
+  name: windmill
   features:
     - navigation.tabs
     - navigation.top
