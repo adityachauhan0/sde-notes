@@ -1389,3 +1389,404 @@ int buySell3(vector<int>& A){
 }
 ```
 
+## Longest Valid Parentheses
+
+### Problem Statement
+Given a string A, having bracket sequence, find the len of longest valid bracket substring.
+
+Example
+- A = "(()" -> 2
+- A = ")()())" -> 4
+### How
+Let `dp[i]` be the len of longest val substring ending at i
+If `A[i]` = ), then
+	`A[i-1]` = (: tab $dp[i] = 2 + dp[i-2]$ 
+	`A[i-1]` = ): tab try to match with pehle ka (.
+if `A[i]` = (: `dp[i]` = 0
+
+```cpp
+int longValBra(string A){
+	int A = A.size();
+	if (n < 2) return 0;
+	vector<int> dp(n,0);
+	int ans = 0;
+	for (int i = 1; i < n; ++i){
+		if (A[i] == ')'){
+			if (A[i-1] == '(')
+				dp[i] = 2 + (i >= 2? dp[i-2] : 0);
+			else {
+				int prevLen = dp[i-1];
+				int openIndex = i - prevLen - 1;
+				if (openIndex >= 0 && A[openIndex] == '('){
+					dp[i] = prevLen + 2;
+					if (openIndex >= 1){
+						dp[i] += dp[openIndex - 1];
+					}
+				}
+			}
+			ans = max(ans,dp[i]);
+		}
+	}
+	return ans;
+}
+```
+
+
+## Max Edge Queries
+### Problem
+Given a tree with N nodes, and N-1 edges with weight. Answer Q queries in the form of (u,v).
+For each query, return the maximum weight of any edge on the simple path from U to V
+Input:
+Array A of $N-1 \times 3$ dimension. Contains $[u,v,w]$ 
+B = $Q \times 2$ array, containing queries $[u,v]$
+
+### How
+This is the classic Lowest Common Ancestor query with path maximum edge using binary lifting.
+
+For each node v, and for each $2^k$ th ancestor of v:
+	$up[k][v]$ : $2^k$ th ancestor of v
+	$maxEdgeUp[k][v]$ : max edge wt from v up to its $2^k$ ancestor
+To answer a query (u,v):
+	Lift u and v to the same height, tracking maxEdge
+	if $u \neq v$ , keep lifting until their parents match (to make a path)
+	Compare max edges on both path
+
+```cpp
+const int MAXN = 100000, LOGN = 17;
+vector<pair<int,int>> adj[MAXN + 1];
+int up[LOGN+1][MAXN+1];
+int maxEdgeUp[LOGN+1][MAXN+1];
+int depth[MAXN+1];
+
+int lca_maxEdge(int u, int v){
+	int ans = 0;
+	if (depth[u] < depth[v]) swap(u,v);
+	int diff = depth[u] - depth[v];
+	for (int k = 0; k <= LOGN; ++k){
+		if (diff & (1 << k)){
+			ans = max(ans, maxEdgeUp[k][u]);
+			u = up[k][u];
+		}
+	}
+	if (u == v) return ans;
+	for (int k = LOGN; k >= 0; --k){
+		if (up[k][u] != 0 && up[k][u] != up[k][v]){
+			ans = max(ans, maxEdgeUp[k][u]);
+			ans = max(ans, maxEdgeUp[k][v]);
+			u = up[k][u];
+			v = up[k][v];
+		}
+	}
+	ans = max(ans,maxEdgeUp[0][u]);
+	ans = max(ans,maxEdgeUp[0][v]);
+	return ans;
+}
+
+vector<int> mxEdgeQueries(vector<vector<int>> &A, vector<vector<int>> &B){
+	int N = A.size() + 1;
+	for (int i = 1; i <= N; ++i) adj[i].clear();
+	for (&e : A){
+		auto [u,v,w] = e;
+		adj[u].push_back({v,w});
+		adj[v].push_back({u,w});
+	}
+	function<void(int,int,int,int)> dfs = [&](int u, int p, int w, int ht){
+		depth[u] = ht;
+		up[0][u] = p;
+		maxEdgeUp[0][u] = w;
+		for (auto [v,wt] : adj[u]){
+			if (v == p) continue;
+			dfs(v,u,wt,ht+1);
+		}
+	};
+	dfs(1,0,0,0);
+	for (int k = 1; k <= LOGN; ++k){
+		for (int v = 1; v <= N; ++V){
+			int mid = up[k-1][v];
+			up[k][v] = up[k-1][mid];
+			maxEdgeUp[k][v] = max(maxEdgeUp[k-1][v], maxEdgeUp[k-1][mid]);
+		}
+	}
+	vector<int> ans;
+	for (auto [u,v] : B)
+		ans.push_back(lca_maxEdge(u,v));
+	return ans;
+}
+```
+
+
+## Max Sum Path in a binary tree
+### Problem statement
+Given a bin tree, find max path sum. A path can start and end at any node, and must be continuous.
+Inp: root ptr, output: Integer
+
+### How
+For each node:
+best path is current node + max gain from left + max gain from right
+for parent, you only only pass along either left or right (not both)
+
+Approach:
+DFS keeping a global max
+at each node:
+	compute left and right gain
+	update global max : node->val + leftGain + rightGain
+	return to parent : node->val + max(leftGain, rightGain)
+
+```cpp
+
+static int globalMax;
+int dfsMaxGain(TreeNode* node){
+	int (!node) return 0;
+	int leftGain = max(0,dfsMaxGain(node->left));
+	int rightGain = max(0,dfsMaxGain(node->right));
+	int currentSum = node ->val + leftGain + rightGain;
+	globalMax = max(globalMax, currentSum);
+	return node->val + max(leftGain, rightGain);
+}
+int solve(TreeNode*A){
+	globalMax = INT_MIN;
+	dfsMaxGain(A);
+	return globalMax;
+}
+
+```
+
+
+## Kingdom War
+### Problem
+Given $N \times M$ grid A const of strength (can be -ve) of a village. Grid is non-decreasing both row-wise and col-wise, find max sum of any rectangular submatrix.
+
+Input:
+```
+3 3
+-5 -4 -1
+-3  2  4
+ 2  5  8
+```
+Output -> 19
+
+### How
+Since each cell is $\geq$ cells above and left, the largest sum always would be from top left (i,j) and bottom-right (N,M)
+So just 2d prefix sum
+$$
+sum = S_{N,M} - S_{i-1,M} - S_{N,j-1} + S_{i-1, j-1}
+$$
+```cpp
+int maxSm(vector<vector<int>> &A){
+	int N = A.size(), M = A[0].size();
+	vector<vector<int>> S(N+1, vector<int>(M+1,0));
+	for (int i = 1; i <= N; ++i){
+		int rowSum = 0;
+		for (int j = 1; j <= M; ++j){
+			rowSum += A[i-1][j-1];
+			S[i][j] = S[i-1][j] + rowSum;
+		}
+	}
+	int ans = INT_MIN;
+	for (int i = 1; i <= N; ++i){
+		for (int j = 1; j <= M; ++j){
+			int sm = S[N][M] - S[i-1][M] - S[N][j-1] + S[i-1][j-1];
+			ans = max(ans,sm);
+		}
+	}
+	return ans;
+}
+```
+
+## Max Path in Triangle
+### Problem Statement
+Given a triang arr A, of size $N \times N$. find the max path sum from top to bottom. Where each step you move down to an adjacent num on the row below.
+
+```
+A = [ 
+[3, 0, 0, 0]
+[7, 4, 0, 0] 
+[2, 4, 6, 0] 
+[8, 5, 9, 3] 
+]
+```
+Output = 23
+### How
+Classic triangle DP
+Let `dp[j]` be max path sum to pos j of current row.
+update dp inplace from left to right
+
+$$
+dp[j] = max(dp[j-1],dp[j]) + A[i][j]
+$$
+handle leftmost and rightmost separately.
+
+```cpp
+int plinko(vector<vector<int>> &A){
+	int N = A.size();
+	if (N == 0) return 0;
+	vector<int> dp(N,0);
+	dp[0] = A[0][0];
+	for (int i = 1; i < N; ++i){
+		dp[i] = dp[i-1] + A[i][i];
+		for (int j = i-1; j > 0; --j){
+			dp[j] = max(dp[j], dp[j-1]) + A[i][j];
+		}
+		dp[0] = dp[0] + A[i][0];
+	}
+	return *max_element(dp.begin(),dp.end());
+}
+```
+
+
+## Max size square submatrix
+
+### Problem Statement
+Matrix A, $N \times M$. find the area of largest square sub-matrix that contains only 1s.
+```
+	A = [0, 1, 1, 0, 1],
+		[1, 1, 0, 1, 0], 
+		[0, 1, 1, 1, 0], 
+		[1, 1, 1, 1, 0], 
+		[1, 1, 1, 1, 1], 
+		[0, 0, 0, 0, 0] ]
+```
+Output 9
+
+### How
+DP to compute for each cell (i,j) largest size of a square ending at (i,j)
+Let `dp[i][j]` be max side len of a square whose bot right corner is at (i,j)
+if i == 0 or j == 0:
+	if `A[i][j]` is 1, `dp[i][j]` is 1
+	else 0
+warna if `A[i][j]` is 1
+$$
+dp[i][j] = 1 + min(dp[i-1][j],dp[i][j-1],dp[i-1][j-1])
+
+$$
+
+
+```cpp
+int maxArea(vector<vector<int>>& A){
+	int N = A.size();
+	if (N == 0) return 0;
+	int M = A[0].size(), maxSide = 0;
+	vector<int> prev(M,0), curr(M,0);
+	for (int i = 0; i < N; ++i){
+		for (int j = 0; j < M; ++j){
+			if (A[i][j] == 1){
+				if (i == 0 || j == 0)
+					curr[j] = 1;
+				else 
+					curr[j] = 1 + min({prev[j],prev[j-1],curr[j-1]});
+				maxSide = max(maxSide, curr[j]);
+			}
+			else 
+				curr[j] = 0;
+		}
+		prev.swap(curr);
+	}
+	return maxSide*maxSide;
+}
+```
+
+## Increasing path in Matrix
+### Problem
+Given a $N \times M$ matrix A. You can move:
+	Down: (i,j) to (i+1,j) if `A[i+1][j] > A[i][j]`
+	Right: (i,j) to (i,j+1) if `A[i][j+1] > A[i][j]`
+Find the len of longest increasing path from (0,0) ending at (N-1,M-1)
+if no path exists, ret -1;
+
+```
+A = [
+	[1, 2, 3, 4], 
+	[2, 2, 3, 4], 
+	[3, 2, 3, 4], 
+	[4, 5, 6, 7] ] 
+	Output: 7 // 1→2→3→4→5→6→7
+```
+
+### How
+Let `dp[i][j]` be len of longst val path from (0,0) to (i,j)
+`dp[0][0]` = 1 (only itself)
+Now for every new, just take max path up and left and add 1
+
+```cpp
+int maxPath(vector<vector<int>> &A){
+	int N = A.size();
+	if (N == 0) return -1;
+	int M = A[0].size();
+	if (M == 0) return -1;
+	vector<vector<int>> dp(N, vector<int> (M,0));
+	dp[0][0] = 1;
+	for (int i = 0; i < N; ++i){
+		for (int j = 0; j < M; ++j){
+			if (i == 0 && j == 0) continue;
+			int best = 0;
+			if (i > 0 && A[i][j] > A[i-1][j] && dp[i-1][j] > 0)
+				best = max(best, dp[i-1][j] + 1);
+			if (j > 0 && A[i][j] > A[i][j-1] && dp[i][j-1] > 0)
+				best = max(best, dp[i][j-1] + 1);
+			dp[i][j] = best;
+		}
+	}
+	return dp[N-1][M-1] > 0? dp[N-1][M-1] : -1;
+}
+```
+
+## Min difference subsets
+### Problem
+Int array A, partition it into two subsets S1, and S2, so that abs diff between their sum is minimized.  
+Return the min possible difference.
+
+Example
+
+$A = [1, 6, 11, 5]$ Output: 1
+
+### Explanation
+Let total sum be S
+best we can dop is find a subset with sum `s` as close as S/2.
+then the other sum is S - s and abs diff is |S - 2s|
+Use dp to track which sums s s $\leq$ S/2 are possible.
+
+```cpp
+int minDifSub(vector<int> &A){
+	int N = A.size();
+	int tot = accumulate(A.begin(),A.end(),0);
+	int targ = tot / 2;
+	vector<bool> dp(targ + 1, false);
+	dp[0] = true;
+	for (int x : A{
+		for (int s = target; s >= x; --s){
+			if (dp[s-x]) dp[s] = true;
+		}
+	}
+	for (int s = target; s >= 0; --s)
+		if (dp[s])
+			return (tot - 2*s);
+	return tot;
+}
+```
+
+## Subset sum problem
+### Problem
+Given int arr A, and int B. Is there a subset of A whose sum is B?
+$A = [3, 34, 4, 12, 5, 2]$, B = 9 Output: 1 (Because 4 + 5 = 9) 
+$A = [3, 34, 4, 12, 5, 2]$, B = 30 Output: 0 (No subset sums to 30)
+
+### How
+Classic subset DP
+$dp[s]$ is true if some subset of A sums to s
+$dp[0]$ = true
+for each x
+	now for each s from B down to x
+		$dp[s] = dp[s] \space | \space dp[s-x]$ 
+
+```cpp
+int isPoss(vector<int>& A, int B){
+	int N = A.size();
+	vector<bool> dp(B+1, false);
+	dp[0] = 1;
+	for (int x :  A){
+		for (int s = B; s >= x; --s)
+			if (dp[s-x]) dp[s] = true;
+	}
+	return dp[B] ? 1 : 0;
+}
+```
