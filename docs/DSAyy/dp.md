@@ -1790,3 +1790,193 @@ int isPoss(vector<int>& A, int B){
 	return dp[B] ? 1 : 0;
 }
 ```
+
+## Unique Paths in a Grid with Obstacles
+
+### Problem
+$M \times N$ Grid, start at (1,1) , reach (m,n). Movement only R or D. Grid has obstacles, marked as blocked (1) or empty (0).
+Count the number of unique paths fomr top left to bot right, avoid obstacles.
+
+### How
+Let `dp[j]` be ways to reach j in current row.
+Let `dp[0]` = 1. Start jaane ka only one  way
+For each cell (i,j):
+	if `A[i][j]]` = 1, set `dp[j]` = 0. (cant reach here)
+	else `dp[j] += dp[j-1]` (add ways from left if j > 0)
+	upar ke ways would already be here (magical type shit)
+
+
+```cpp
+int uniquePaths(vector<vector<int>> &A){
+	int m = A.size();
+	if (m == 0) return 0;
+	int n = A[0].size();
+	if (A[0][0] || A[m-1][n-1]) return 0; // entry/exit blocked
+	vector<int> dp(n,0);
+	dp[0] = 1;
+	for (int i = 0; i < m; ++i){
+		for (int j = 0; j < n; ++j){
+			if (A[i][j] == 1)
+				dp[j] = 0;
+			else if (j > 0)
+				dp[j] += dp[j-1];
+		}
+	}
+	return dp[n-1];
+}
+```
+
+#### Yaha se down to up dp kinda starts
+## Dungeon Princess (Minimum Initial Health in a grid)
+
+### Problem Statement
+Knight at top left, $M \times N$ dungeon grid, must reach bot right to the princess.
+Each cell has int. -ve for demons (damage), zero = empty, +ve health
+Movement: right and down.
+Find min initial health for knight to reach princess.
+
+```
+A = [ 
+	[-2, -3, 3]
+	[-5, -10, 1]
+	[10, 30, -5] ]
+```
+ Output: 7
+
+### How
+We go from princess to knight.
+Its just max path from source to dist.
+let `dp[i][j]` be min HP upon entering cell (i,j) so that knight can reach the end.
+	always keeping HP $\geq$ 1
+Base:
+	`dp[m-1][n-1]` = max(1, 1 - `A[m-1]][n-1]`)  Protection from negatives
+Fill last row and col, and Reverse DP
+	`dp[i][j]` = max(1,min(`dp[i+1][j]`,`dp[i][j+1]` - `A[i][j]`))
+
+
+```cpp
+int calcminHP(vector<vector<int>> &A){
+	int m = A.size();
+	if (m == 0) return 0;
+	int n = A[0].size();
+	vector<vector<int>> dp(m, vector<int>(n,0));
+	dp[m-1][n-1] = max(1, 1 - A[m-1][n-1]);
+	for (int i = m-2; i >= 0; --i)
+		dp[i][n-1] = max(1, dp[i+1][n-1] - A[i][n-1]); // health we need down + this
+	for (int j = n-2; j >= 0; --j)
+		dp[m-1][j] = max(1,dp[m-1][j+1] - A[m-1][j]); // health we need on right + this
+	for (int i = m-2; i >= 0; --i){
+		for (int j = n-2; j >= 0; --j){
+			int needNext = min(dp[i+1][j], dp[i][j+1]);
+			dp[i][j] = max(1, needNext - A[i][j]);
+		}
+	}
+	return dp[0][0];
+}
+```
+
+## Min sum path in a matrix
+### Problem Statement
+Given a $M \times N$ int grid. Find path from top left to bot right with min path sum.
+You can go Down or Right.
+
+### How
+Basic DP
+Just keep adding elements and comparing top and left.
+In the first row, elements can only come from left.
+In the first col, elements can only come from top.
+Baaki normally $dp[i][j] = A[i][j] + min(dp[i-1][j], dp[i][j-1])$
+
+```cpp
+int minPathSum(vector<vector<int>> &A){
+	int m = A.size();
+	if (m == 0) return 0;
+	int n = A[0].size();
+	vector<vector<int>> dp(m, vector<int> (n,0));
+	dp[0][0] = A[0][0];
+	// first row, only from left
+	for (int j = 1; j < n; ++j)
+		dp[0][j] = dp[0][j-1] + A[0][j];
+	// first col
+	for (int i = 1; i < m; ++i)
+		dp[i][0] = dp[i-1][0] + A[i][0];
+	for (int i = 1; i < m; ++i){
+		for (int j = 1; j < n; ++j){
+			dp[i][j] = A[i][j] + min(dp[i-1][j], dp[i][j-1]);		
+	return dp[m-1][n-1];
+}
+```
+
+## Min Path Sum in Triangle
+### Problem
+Triangle arr de rakha, min path sum top to bot nikal.
+Movement, adjacent numbers on the row below. 
+$$
+	A[i][j] \text{ can go to A[i+1][j] and A[i+1][j+1]}
+$$
+###
+Let $dp[j]$ be min path sum to reach pos j in the current row.
+We start from bot and move up
+Let dp = last row of the triangle.
+Now for each row, update `dp[j]` as $A[i][j] + min(dp[j],dp[j+1])$
+Ans: $dp[0]$ is the min path sum
+
+```cpp
+int minTot(vector<vector<int>> &A){
+	int n = A.size();
+	if (n == 0) return 0;
+	vector<int> dp = A[n-1];
+	for (int i = n-2; i >= 0l --i)
+		for (int j = 0; j <= i; ++j)
+			dp[j] = A[i][j] + min(dp[j], dp[j+1]);
+	return dp[0];
+}
+```
+
+## Max Rectangle in Binary Matrix
+### Problem
+Given a 2D bin matrix. Find largest rectangle with all 1s.
+return its area
+
+```
+A = [1 1 1]
+	[0 1 1]
+	[1 0 0]
+```
+Ans = 4
+
+### Explanation
+Largest rectangle in histogram I see.
+For each row, build a histogram of consec 1s.
+For each row, use a stack to compute largest area in $O(m)$ time.
+Return max found over all.
+
+```cpp
+int maximalRect(vector<vector<int>> &A){
+	int n = A.size();
+	if (n == 0) return 0;
+	int m = A[0].size();
+	vector<int> heights(m,0);
+	int maxArea = 0;
+	for (int i = 0; i < n; ++i){
+		// update the height list.
+		for (int j = 0; j < m; ++j){
+			if (A[i][j] == 1) heights[j]++;
+			else heights[j] = 0;
+		}
+		// largest rect
+		stack<int> st;
+		for (int j = 0; j <= m; ++k){
+			int h = (j == m? 0: heights[j]);
+			while (!st.empty() && h < heights[st.top()]){
+				int height = heights[st.top()];
+				st.pop();
+				int width = st.empty() ? j : (j - st.top() - 1);
+				maxArea = max(maxArea, height * width);
+			}
+			st.push(j);
+		}
+	}
+	return maxArea;
+}
+```
