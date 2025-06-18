@@ -1980,3 +1980,142 @@ int maximalRect(vector<vector<int>> &A){
 	return maxArea;
 }
 ```
+
+
+## Rod Cutting -- DP and reconstruction
+
+### Problem
+Rod len A, int arr B of M weak points (cut locations).
+We must cut at every weak point. Each cut splits a segment into two smaller rods. cost of cut = length of segment in which the cut is made. 
+Order is up to us. 
+Return the sequence of curs that achieves the min total cost.
+If there are many, return the lexicographically smallest.
+
+Example:
+A = 6, B = $[1,2,5]$ 
+Best ans -> 2 1 5 : gives cost 6 + 2 + 4 = 12
+
+### How
+Add 0 and A to the cut positions, and sort.
+P = $[0,sorted(B),A]$ 
+Let M be the new len = len(B) + 2
+
+Let `dp[i][j]` be the min cost to cut the segment ($P_i, P_j)$ . That is making a cut between the positions $P_i$ and $P_j$ 
+if (j = i+1), `dp[i][j]` = 0, coz then we can have no cuts. (kuch hai hi nahi beech meh)
+else  `dp[i][j]` = $min_{i<k<j} ((P_j - P_i) + dp[i][k] + d[k][j])$
+So basically len of the segment + baaki dono subproblems.
+
+Ab bhai lexicographical order check karna.
+Let `cutpos[i][j]` be the index k of the first cut that jisne min cost diya. Bas isse compare karke minimum select karle
+
+Now for reconstruction
+Rec(i,j) = {} if j = i+1, coz kuch hai hi nahi beech me
+	and {$P_k$} + merge(Rec(i,k),Rec(k,j)) otherwise
+Basic recursion
+
+```python
+#python coz this code is hella big
+def rod_cutting(A,B):
+	B.sort()
+	P = [0] + B + [A]
+	n = len(P)
+	dp = [[0]*n for _ in range(n)]
+	cutpos = [[-1]*n for _ in range(n)]
+	#fill the dp table
+	for length in range(2,n):
+		for i in range(n - length):
+			j = i + length
+			min_cost = float('inf')
+			best_k = -1
+			for k in range(i+1,j):
+				cost = P[j] - [i] + dp[i][k] + dp[k][j]
+				if cost < min_cost  or (cost == min_cost and P[k] < P[best_k]):
+					min_cost = cost
+					best_k = k
+			dp[i][j] = min_cost
+			cutpos[i][j] = best_k
+	result = [] #to be reconstructed
+	def reconstruct(i,j):
+		k = cutpos[i][j]
+		if (k == -1): return
+		result.append(P[k])
+		reconstruct(i,k)
+		reconstruct(k,j)
+	reconstruct(0,n-1)
+	return result
+```
+
+## Queen Attack (Grid Scan Technique)
+### Problem
+$N \times M$ chessboard, with some cells having queens. For each cell (i,j) compute how many queens can attack it (assuming no queen at (i,j)).
+No queens can jump over other queens.
+
+### How
+Normal 8D traversal
+For each direction, sweep through the board and record if a queen has already been encountered in that direction.
+Sum up the result for all 8 directions for each cell.
+
+```python
+def queen_attack(grid):
+	n = len(grid)
+	m = len(grid[0])
+	dirs = [(-1,0),(1,0), (0,-1), (0,1),
+			(-1,-1), (-1,1), (1,-1), (1,1)]
+	attack_count = [[0]*m for _ in range(n)]
+	for dx, dy in range(dirs):
+		seen = [[0]*m for _ in range(n)] #queen already seen in this direction
+		x_range = range(n) if dx >= 0 else range(n-1,-1,-1)
+		y_range = range(n) if dy >= 0 else range(m-1,-1,-1)
+
+		for x in x_range:
+			for y in y_range:
+				nx, ny = x-dx, y - dy
+				if 0 <= nx < n and 0 <= ny < m:
+					seen[x][y] = seen[nx][ny]
+				if grid[x][y] == '1':
+					seen[x][y] = 1
+				elif seen[x][y]:
+					attack_count[x][y] += 1
+	return attack_count
+```
+
+
+## Dice Throw: Num of ways to get a given sum
+
+### Problem
+Given A num of dice, each with face 1 to B. Find num of ways to roll these dice such that the sum of the numbers shown on the dice is exactly C.
+Return modulo 1e9  + 7
+
+### How
+Counting DP
+Let `dp[a][s]` be num of ways to roll `a` dice such that their sum is s.
+We know `dp[0][0]` = 1 (1 way to get sum 0 with 0 dice)
+and `dp[0][s]` = 0 for s > 0
+
+Transition
+$$
+dp[a][s] = \sum_{k = 1}^{B} dp[a-1][s-k] \text{ for s } \geq k
+$$
+```python
+def num_ways_to_sum(A,B,C):
+	MOD = 10**9 + 7
+	if C < A or C > A*B:
+		return 0
+	prev = [0]*(C+1)
+	prev[0] = 1
+	for a in range(1,A+1):
+		prefix = [0]*(C+1)
+		prefix[0] = prev[0]
+		for s in range(1,C+1):
+			prefix[s] = (prefix[s-1] + prev[s]) % MOD
+		curr = [0]*(C+1)
+		for s in range(0,C+1):
+			if s == 0:
+				curr[s] = 0
+			else:
+				right = prefix[s-1]
+				left = prefix[s-B-1] if s - B -1 >= 0 else 0
+				curr[s] = (right - left + MOD) % MOD
+		prev = curr
+	return prev[c]
+```
