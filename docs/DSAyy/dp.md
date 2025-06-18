@@ -2119,3 +2119,335 @@ def num_ways_to_sum(A,B,C):
 		prev = curr
 	return prev[c]
 ```
+
+
+## Submatrices with Sum Zero
+2D Matrix of int. Count num of non-empty submatrices with sum 0.
+Example
+
+-8  5  7
+ 3  7  -8
+ 5 -8  9
+
+Output = 2
+
+### How
+KADANE!!! (and prefix sum)
+
+Fix 2 rows, top and bottom. For each column, compute sum of elements betweem these two rows inclusive.
+Now just count zero-sum subarrays in the collapsed column sums array.
+
+```python
+def countZeroSumSubmatrics(matrix):
+	if not matrix or not matrix[0]:
+		return 0
+	rows,cols = len(matrix), len(matrix[0])
+	total = 0
+	for top in range(rows):
+		col_sums = [0]* cols
+		for bottom in range(top,rows):
+			for c in range(cols):
+				col_sums[c] += matrix[bottom][c]
+			# count 0 sum subarrs in col_sums
+			prefix_freq = {0:1} #psum to freq
+			prefix = 0
+			for val in col_sums:
+				prefix += val
+				total += prefix_val.get(prefix,0) # get freq of psum 0
+				prefix_freq[prefix] = prefix_freq.get(prefix,0) + 1
+	return total
+```
+
+
+## Coin sum infinite
+Given a set of unique coins. Find diff ways to get sum B using infinite supply of these coins.
+A = 1 2 3
+B = 4
+Output = 4
+
+### How
+Unbounded knapsack
+let dp(s) store num of ways to get sum s
+dp(0) = 1 (one way to make 0 sum)
+for each coin in A, iterate through all pos sum s from c to B
+and dp(s) = (dp(s) + dp(s-c)) mod
+
+```python 
+def coinChange2(A,B):
+	MOD = 10**9 + 7
+	n = len(A)
+	dp = [0]*(B+1)
+	dp[0] = 1
+	for coin in A:
+		for s in range(coin,B+1):
+			dp[s] = (dp[s] + dp[s-coin]) % MOD
+	return dp[B]
+```
+
+## Max prod subarray
+### Problem
+int arr A, find a contig subarray which has largest prod. return the prod.
+
+Example
+A = 2 3 -2 4
+Output = 6
+
+### How
+Unlike normal kadane, we have to track both max and min prod at each step, due to presence of -ve nums
+A -ve num can turn the smallest into the largest
+`maxEnding` = max prod ending at cur index
+`minEnding` = min prod ending at cur index
+
+if el is -ve, swap maxEnding and minEnding
+then update
+	maxEnding = $max(x,maxEnding \times x)$
+	minEnding = $min(x,minEnding \times x)$
+
+```python
+def maxProdSubarr(A):
+	maxEnding = A[0]
+	minEnding = A[0]
+	ans = A[0]
+	for i in range(1,n):
+		x = A[i]
+		if x < 0:
+			maxEnding,minEnding = minEnding,maxEnding
+		maxEnding = max(x,maxEnding * x)
+		minEnding = min(x,minEnding * x)
+		ans = max(ans, maxEnding)
+	return ans
+```
+
+## Best time to buy and sell stock 1
+
+### Problem
+int arr A, `A[i]` is price of stock on day i
+Allowed one transaction, buy and sell once.
+Find max poss profit. 
+
+Example
+A = 1 2
+Output = 1
+Input 1 4 5 2 4
+Output: 4
+
+How:
+`minPrice` Min price seen so far
+maxProfit = `A[i]` - minPrice
+then update then price
+
+```python
+def buySell(A):
+	minPrice = A[0]
+	maxProfit = 0
+	for i in (1,len(A)):
+		maxProfit = max(maxProfit, A[i] - minPrice)
+		minPrice= min(minPrice, A[i])
+	return maxProfit
+```
+
+## Arrange II
+### Problem
+Given a seq of horses, B means black, W means White
+and K num of stables. YOu have to assign all horses to stables
+Each horse is assigned to only one stable
+Cost of stable = num(White horses) $\times$ num(Black horses)
+Total cost is sum of all stable cost
+Stables cannot be non empty
+If not possible to assign, return -1
+
+Example
+A = `WWWB`, K = 2
+Output = 0
+Arrangement: {WWW}, {B}
+
+### How
+We have to DP with partition
+Let DP state be min cost of placing first i horses into k stables
+	dp(i,k): min cost to place first i horses into k stables
+	cost(j+1,i): cost of placing horses from index j+1 to i in one stable
+So we build psum fopr white and black horses so we can compute cost(j+1,i) in constant time.
+
+Transition will look like
+$$
+dp[i][k] = min_{j = k-1}^{i-1} (dp[j][k-1] + cost(j+1,i))
+$$
+so min cost to place first i horses into k stables is min cost to place any first k horses in k-1 stables and rest of them in a new stable
+
+dp(0,0) = 1
+if i < k: we cannot have k non-empty stables.
+
+```python
+def arrange(A,B):
+	N = len(A)
+	if N < B:
+		return -1
+	w = [0]*(N+1) #psum for white and black horses
+	b= [0]*(N+1)
+	for i in range(1,N+1):
+		w[i] = w[i-1] + (A[i-1] == 'W')
+		b[i] = b[i-1] + (A[i-1]=='B')
+	def cost(i,j):
+		return (w[j]-w[i-1])*(b[j] - b[i-1])
+	INF = 10**15
+	dp = [[INF]* (B+1) for _ in range(N+1)]
+	dp[0][0] = 1
+	for i in range(1,N+1):
+		for k in range(1,B+1):
+			for j in range(k-1,i):
+				if dp[j][k-1] == INF:
+					continue
+				c = cost(j+1,i)
+				dp[i][k] = min(dp[i][k], dp[j][k-1] + c)
+	return dp[N][B] if dp[N][B] >= INF else -1
+```
+
+## Chain of Pairs
+### Problem
+Given list of pairs A, where pair (a,b) has a < b. pair (c,d) can follow (a,b) in a chain if b < c.
+Find max len of chain of such pairs preserving relative order.
+Pairs can be skipped but not rearranged
+
+Exampkle
+A = (5,24) (39,60) (15,28) (27,40) (50,90)
+Output = 3
+
+### How
+Its like longest increasing subsequence but with custom comparator
+First sort pairs by first element
+Let dp(i) be longest chain ending at i
+for each pair i, check previous pairs and if A(j,1) < A(i,0):
+	update dp(i) = max(dp(i), dp(j) + 1)
+
+```python
+def pairLIS(A):
+	N = len(A)
+	dp = [1]*(N)
+	ans = 1
+	for i in range(0,N):
+		for j in range(0,i):
+			if A[j][1] < A[i][0]:
+				dp[i] = max(dp[i], dp[j] + 1)
+		ans = max(ans, dp[i])
+	return ans
+```
+
+## Max Sum without adjacent elements
+### Problem Statement
+Given a $2 \times N$ grid A, select subsets of elements such that:
+	sum of selected nums is maximised
+	no two selected elements are adjacent horizontally vertically or diagonally
+
+Example: 
+	1 2 3 4
+	2 3 4 5
+Output = 8
+
+### How
+This is a variation of classical house robber problem extended to two rows
+
+maintain 3 dp states
+dp0 be maxsum picking nothing in this column
+dp1 be maxsi, picking the top cell
+dp2 be maxsum picking the bottom cell
+
+Transitions:
+dp0 = max(dp0, dp1,dp2)
+dp1 = dp0 + top(k)
+dp2 = dp0 + bottom(k)
+
+```python
+def adjacent(A)
+	N = len(A[0])
+	T,B = A[0],A[1]
+	dp0,dp1,dp2 = 0, T[0], B[0]
+	for k in range(1,N):
+		dp0_n = max([dp0,dp1,dp2])
+		dp1_n = dp0 + T[k]
+		dp2_n = dp0 + B[k]
+		dp0,dp1,dp2 = dp0_n,dp1_n,dp2_n
+	return max([dp0,dp1,dp2])
+```
+
+## Merge Elements
+### Problem
+Given int arr, merge all elements into one by repeatedly merging 2 adjacent elements.
+Rule: merging X and Y, cost is X+Y, val is also X+Y
+return min total cost.
+
+Example:
+A =  1 3 7
+Output 15
+
+costs : 4 + 11 = 15
+
+### How
+This is a variation of Matrix Chain Multiplication
+let  `dp(i,j)` be min cost to merge `A(i to j)`
+sum `(i,j)` be sum of el from `A(i)` to `A(j)`
+
+For each subarr A(i..j), try every split point k and compute
+$$
+dp[i][j] = min_{k=i}^{j-1} (dp[i][k] + dp[k+1][j] + sum(i,j))
+$$
+sum(i,j) is ofc prefix sum
+
+```python
+def mergeElement(A):
+	N = len(A)
+	psum = [0]*(N+1)
+	for i in range(1,N+1):
+		psum[i+1] = psum[i] + A[i]
+	def rangeSum(i,j):
+		return psum[j+1] - psum[i]
+	INF = 10**15
+	dp = [[INF]*(N+1) for _ in range(N+1)]
+	for i in range(N+1):
+		dp[i][i] = 0
+	for length in range(2,N+1):
+		for i in range(0,N - length):
+			j = i + len -1
+			best = INF
+			for k in range(i,j):
+				cost = dp[i][k] + dp[k+1][j] + rangeSum(i,j)
+				best = min(best, cost)
+			dp[i][j] = best
+	return dp[0][N-1]
+```
+
+## Flip Array
+### Problem
+Array A of +ve int, flip sign of some elements such that resultant sum is as close to 0 as possible
+We need to minimize the number of elemnts flipped to achieve this.
+
+Return the numbers flipped.
+
+Example
+	A = 15 10 6
+	Output = 1
+	We just flip 15
+
+### How
+Variation of subset sum problem
+
+Let total be the arr sum
+Find a subset of element such that sum is close to total / 2
+
+Let dp(s) be the min num of el flipped to get subset sum s
+dp(0) = 0
+update from top to down to avoid using same el twice
+
+```python 
+def flip(A):
+	total = sum(A)
+	cap = total/2
+	N = len(A)
+	INF = 10**15
+	dp = [INF]*(N+1)
+	dp[0] = 0
+	for x in A:
+		for s in range(cap,x-1,-1):
+			dp[s] = min(dp[s], dp[s-x] + 1)
+	return min(dp)
+```
+
