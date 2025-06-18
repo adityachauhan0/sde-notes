@@ -1914,7 +1914,7 @@ Movement, adjacent numbers on the row below.
 $$
 	A[i][j] \text{ can go to A[i+1][j] and A[i+1][j+1]}
 $$
-###
+### How
 Let $dp[j]$ be min path sum to reach pos j in the current row.
 We start from bot and move up
 Let dp = last row of the triangle.
