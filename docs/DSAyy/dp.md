@@ -2339,8 +2339,10 @@ Given a $2 \times N$ grid A, select subsets of elements such that:
 	no two selected elements are adjacent horizontally vertically or diagonally
 
 Example: 
+
 	1 2 3 4
 	2 3 4 5
+
 Output = 8
 
 ### How
@@ -2376,6 +2378,7 @@ Rule: merging X and Y, cost is X+Y, val is also X+Y
 return min total cost.
 
 Example:
+
 A =  1 3 7
 Output 15
 
@@ -2423,6 +2426,7 @@ We need to minimize the number of elemnts flipped to achieve this.
 Return the numbers flipped.
 
 Example
+
 	A = 15 10 6
 	Output = 1
 	We just flip 15
@@ -2434,7 +2438,9 @@ Let total be the arr sum
 Find a subset of element such that sum is close to total / 2
 
 Let dp(s) be the min num of el flipped to get subset sum s
+
 dp(0) = 0
+
 update from top to down to avoid using same el twice
 
 ```python 
@@ -2451,3 +2457,391 @@ def flip(A):
 	return min(dp)
 ```
 
+
+## Tengu Bday Party (Unbounded Knapsack)
+### Problem
+Tengu has to feed all his friends. Each friend has an eating capacity.
+Objective: Satisfy all friends by selecting dishes (each friend eats separately, and can use dishes any number of times). such that total cost is minimized.
+
+Example
+
+Friends A = 4 6
+
+Dish Fillings B = 1 3
+
+Dish Cost C = 5 3
+
+Output 14
+
+	Friend 1 eats dish 1  2 : cost: 5 + 3 = 8
+	Friend 2 eats dish 2 twice: cost: 3 + 3 = 6
+	Total cost = 8 + 6 = 14
+
+### How
+
+This is a bounded knapsack applied for each friend.
+But we optimize by precomputing minimum cost to fill any capacity up to max (friend's need), using **unbounded knapsack** (since dishes can be reused)
+
+Let $dp[s]$ be min cost to eat `s` fill of food.
+
+Now for each capacity s, try all dishes and 
+$$
+	dp[s] = min_{all\space dishes}(dp[s], dp[s-fill(dish)] + cost(dish))
+$$
+Once computed the whole thing, sum up `dp[A[i]]` for each friend.
+
+```python
+def unbounded_knapsack(A,B,C):
+	maxFill = max(A)
+	num_dishes = len(B)
+	INF = 10**15
+	dp = [INF]*(maxFill + 1)
+	dp[0] = 1
+	for fill in range(1,maxFill):
+		for j in range(num_dishes):
+			if B[j] <= fill:
+				dp[fill] = min(dp[fill], dp[fill - B[j]] + C[j])
+	totalCost = 0
+	for f in A:
+		totalCost += dp[f]
+	return totalCost
+```
+
+## 0 - 1 Knapsack
+
+Given A values, B weights, C as the capacity of our knapsack.
+
+Select a subset of items such that:
+	weight does not exceed C
+	total value is maximised
+	Either take the whole item or dont take at all
+
+Ex:
+
+	A = 60 100 120
+	B = 10 20 30
+	C - 50
+Ans is 220 (pick 2 and 3)
+
+### How
+
+Let $dp[w]$ be max value achievable for capacity $w$
+
+Now the relation is
+
+$$
+dp[w] = max(dp[w], dp[w - B[i]] + A[i])
+$$
+Since we can pick each el exactly once, loop backwards.
+
+
+```python
+def knapsack_normal(A,B,C):
+	n = len(A)
+	dp = [0]*(C+1)
+	for i in range(n):
+		val,wt = A[i],B[i]
+		for w in range(C,wt-1,-1):
+			dp[w] = max(dp[w], dp[w - wt] + val)
+	return dp[C]
+```
+
+
+## Equal Average Partition (subset sum wt avg equality)
+
+Given an int arr A. Partition it into two non-empty subsets $A_1$ and $A_2$ such that:
+	$average(A_1) == average(A_2)$
+	$|A_1| \leq |A_2|$
+	even if equal, $A_1$ must be lexicographically smaller
+Return the two subsets as a 2D array. If nothing, return an empty list.
+
+Example:
+	A = 1 7 15 29 11 9
+	Output: 9 15 and 1 7 11 29
+	Both have average 12
+### How
+Let S be total sum of arr and n be the size
+
+We try all subset sizes k from 1 to $n/2$ 
+
+For each k, if a subset exists such that $$sum = \frac{S\cdot k}{n}$$
+and this sum is an int, then its valid candidate.
+
+Use dp with bitset to check reachability:
+$$ reachable[i][c][s] = true \iff \text{we can pick c elements from A[i..n-1] to sum to s}$$
+Once it is reachable, reconstruct smallest subset
+
+```python
+from collections import defaultdict
+from functools import lru_cache
+
+def eq_avg_partition(A):
+	A.sort()
+	n = len(A)
+	total_sum = len(A)
+	@lru_cache(None) # memoise for checking subset existence of size k
+	def is_possible(i,k,target):
+		if k == 0:
+			return target == 0
+		if i >= n or k < 0 or target < 0:
+			return False
+		#pick not pick for A[i]
+		return is_possible(i+1,k,target) or is_possible(i+1,k-1,target-A[i])
+	# reconstruct the actual target
+	def find_subset(i,k,target):
+		subset = []
+		while k > 0:
+			if is_possible(i+1,k-1,target - A[i]):
+				subset.append(A[i])
+				target -= A[i]
+				k -= 1
+			i += 1
+		return subset
+	for k in range(1, n//2 + 1):
+		if (total_sum * k) % n != 0:
+			continue
+		target_sum = (total_sum * k) // n
+		if (is_possible(0,k,target_sum):
+			subset1 = find_subset(0,k,target_sum)
+			# build its complement
+			subset2 = A.copy()
+			for x in subset1:
+				subset2.remove(x)
+			return [subset1,subset2]
+	return []
+```
+
+## Potion mixing for min smoke
+Given an arr A of N potions, in range $[0,99]$, indicating its color.
+We have mix all into one, following the below rules
+	Mix only two adjacent potions
+	Mixing X and Y results in X+Y mod 100 color
+	smoke generate during a mix is $X \times Y$ 
+Find min amount of smoke required to mix all potions into one.
+A = 2 3
+ans = 6
+A = 2 3 4 5
+ans = 71
+
+### How?
+
+MCM variant haha loser
+	Let $dp[i][j]$ be min smoke generated to mix potions from i to j
+	Let $color[i][j]$ be final color obtained after mixing potions from i to j
+Base case:
+	for single potions, no smoke:
+		$dp[i][i] = 0,\space color[i][i] = A[i]$ 
+Relation:
+	$$
+	dp[i][j] = min_k(dp[i][k] + dp[k+1][j] + color[i][k] \times color[k+1][j])
+	$$
+	and then just update the color
+	$$
+	color[i][j] = (color[i][k] + color[k+1][j])\space  mod \space 100
+	$$
+
+```python
+def minSmoke(A):
+	if not A: return 0
+	N = len(A)
+	dp = [[0]*(101) for _ in range(101)]
+	color = [[0]*(101) for _ in range(101)]
+	for i in range(N):
+		color[i][i] = A[i] % 100
+	for len in range(2,N+1):
+		for i in range(0,N-len+1):
+			j = i + len - 1
+			dp[i][j] = 10**15 # some max value
+			for k in range(i,j):
+				smoke = dp[i][k] + dp[k+1][j] + color[i][k]*color[k+1][j]
+				if smoke < dp[i][j]:
+					dp[i][j] = smoke
+					color[i][j] = (color[i][k] + color[k+1][j]) % 100
+	return dp[0][n-1]			
+```
+
+## Buy and Sell stock II
+Given arr A of prices. Buy and Sell (transaction) any number of times, but not overlapping.
+
+Return max pos profit.
+
+A = 1 2 3, Output = 2
+
+### How
+
+This is a greedy problem bruv
+
+Just sum all positive differences between $A[i] - A[i-1]$ 
+
+```python
+def maxProfit(A):
+	n = len(A)
+	profit = 0
+	for i in range(1,n):
+		profit += A[i] - A[i-1] if A[i] > A[i-1]
+	return profit
+```
+
+
+## Word Break II
+Given string S and dict of words B, insert spaces into A to construct all possible sentences such that each word is in the dict.
+	A = catsanddogs
+	B = cat cats and sand dog
+	Output = "cat sand dog" "cats and dog"
+
+### Broke ass boy
+This is DFS + Memoization
+
+`dfs(start)` would return all valid sentences starting at index `start`
+and it would be memoized on dfs.
+
+```python
+from functools import lru_cache
+def wordBreak(s,wordDict):
+	word_set = set(wordDict)
+	#lru_cache(maxSize = None)
+	def dfs(start):
+		if start == len(s): return [""]
+		sentences = []
+		for end in range(start + 1, len(s) + 1):
+			word = s[start:end]
+			if word in word_set:
+				for suffix in dfs(end):
+					sentence = word + (" " + suffix if suffix else "")
+					sentences.append(sentence)
+		return sentences
+	result = dfs(0)
+	return sorted(result)
+```
+
+## Unique Binary Search Trees II
+Given int A, compute num of structurally unique BSTs that store value from 1 to A.
+	A = 3, output = 5
+### How
+This is just a **Catalan Number** dp problem.
+$$
+G(n) = \text{number of unique BSTs with node n}
+$$
+$$
+G(n) = \sum_{i=1}^{n} G(i - 1) \cdot G(n-i)
+$$
+G(i-1) counts left subtrees and G(n-i) counts right subtrees.
+Base Case:  G(0) = 1 (Empty tree)
+
+```python
+def UniqueBST(A):
+	G = [0]*(A+1)
+	for n in range(1,A+1):
+		for root in range(1,n+1):
+			G[n] += G[root - 1]*G[n - root]
+	return G[A]
+```
+
+
+## Count Permutations of BST with Given Height
+Given two int A and B, count how many perms of set {1,2..A} produce a BST of height B.
+	A = 3, B = 1, Output = 2. (2 1 3 and 2 3 1)
+	Note vals are inserted from L to R
+	Remember to MOD
+### How
+Let $dp[n][k]$ be num of perms of size n that from a BST of height $\leq$ h
+
+Choose a root( say i, which partitions set into left and right subtrees of size i-1 and  n - i)
+	Left and right subtrees must have height $\leq$ h-1
+	$$
+	dp[n][h] += dp[i-1][h-1] \cdot dp[n-i][h-1] \cdot \binom{n-1}{i-1}
+	$$
+	Precompute combinations and use memoization for dp
+
+```python
+from functools import lru_cache
+import math
+MOD = 10**9 + 7
+MAX = 51
+
+#precompute n choose k
+choose [[0]*MAX for _ in range(MAX)]
+for n in range(MAX):
+	choose[n][0] = choose[n][n] = 1
+	for k in range(1,n):
+		choose[n][k] = (choose[n-1][k-1] + choose[n-1][k]) % MOD
+@lru_cache(maxSize = None)
+def count_permutations(n,h):
+	if h == 0: return 1 if n <= 1 else 0
+	if n == 0: return 1
+	total = 0
+	for i in range(1,n+1):
+		left = count_permutations(i-1,h-1)
+		right = count_permutations(n-i,h-1)
+		total += (left * right % MOD)* choose[n-1][i-1]
+	return total
+def count_exact_height_bsts(A,B):
+	at_most_B = count_permutations(A,B)
+	at_most_B_minus_1 = count_permutations(A,B-1)
+	return (at_most_B - at_most_B_minus_1 + MOD) % MOD
+```
+
+## Palindrome Partitioning II
+Given string A, partition such that every substring in the partition is a **palindrome**.
+
+Return min cuts needed to achieve such a partition.
+	A = aba, output = 0 (already palindrome)
+	A = aab, output = 1  (aa and b)
+### How
+Let $isPal[i][j]$ check if A{i..j} is a palindrome. Precompute this.
+A DP array `f[i]` representing mincuts needed for substring $A[0..i]$
+
+Transition
+$$
+	f[i] = min_{0\leq j < i}(f[j] + 1) \text{ if A[j + 1...i] is a palindrome}
+	$$
+```python
+def minCut(s: str) -> int:
+	n = len(s)
+	isPalindrome = [[False]*n for _ in range(n)]
+	for i in range(n): isPalindrome[i][i] = True
+	for length in range(2,n+1):
+		for i in range(n - length + 1):
+			j = i + length - 1
+			if s[i] == s[j]:
+				isPalindrome[i][j] = isPalindrome[i+1][j-1] if length != 2 else True
+	f = [float(inf)]*n
+	for i in range(n):
+		if palindrome[0][i]:
+			f[i] = 0
+		else:
+			for j in range(i):
+				if isPalindrome[j+1][i]:
+					f[i] = min(f[i],f[j] + 1)
+	return f[n-1]
+```
+
+
+## Word Break
+Given a string A, and dict B of valid words. Can A be segmented into a space -separated sequence of one or more dict words.
+
+Input: A = myinterviewtrainer , B = trainer my interview
+	Output = 1
+
+### How
+
+Let $dp[i]$ be true if $A[0...i]$ can be broken into words from dictionary.
+$dp[0]$ is true , coz empty string is segmentable
+
+Iterate over all lengths, and check if any valid suffix ending at `i` is in the dictionary.
+To optimize this, we compute max word length in the dict, to reduce the substring checks.
+
+```python
+def wordBreak(s: str, wordDict: list[str]) -> bool:
+	word_set = set(wordDict)
+	n = len(s)
+	max_word_length = max(len(word) for word in wordDict)
+	dp = [False]*(n+1)
+	dp[0] = 1
+	for i in range(1,n+1):
+		for length in range(1, min(i, max_word_length) + 1):
+			if dp[i-length] and s[i-length:i] in word_set:
+				dp[i] = True
+				break
+	return dp[n]
+```
