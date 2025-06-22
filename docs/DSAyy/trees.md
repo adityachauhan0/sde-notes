@@ -307,3 +307,527 @@ def max_xor_between_arrays(A,B):
 		max_xor = max(max_xor, curr_xor)
 	return max_xor
 ```
+
+## Hotel Reviews
+Given a string `A` of good words, separated by `_` and a vector B of review strings, where sequence of words are also separated by underscore.
+
+Define the goodness value of a review, as the num of words in the review which match one of the good words. Return a vec of original indices of reviews in B, sorted in descending value of Goodness.
+If two reviews have same goodness, their relative order must be stable. (preserving original order)
+
+Example: A = cool_ice_wifi, B = {water_is_cool, cold_ice_drink, cool_wifi_speed}
+Ans: 2 0 1
+
+### How
+Because num of good words and length of review can be large, we cannot compare every word, so we have to build a trie (prefix tree).
+
+Build a trie of all good words:
+1. Split string A on '_' to extract good word. (length $\leq$  4 in this problem).
+2. Insert each good word into a 26-ary trie (one child for each letter 'a'-'z'). And mark the end of a good word with a boolean flag.
+3. For each review in B split on '_', traverse trie to check if its marked good or not.
+4. Count how many tokens appear in the review and that is the goodness val.
+5. Finally perform the stable sort by comparing goodness in descending order.
+
+```python
+class TrieNode:
+	def __init__(self):
+		self.children = {}
+		self.is_end = True
+class Trie:
+	def __init__(self):
+		self.root = TrieNode()
+	def insert(self,word):
+		 cur = self.root
+		 for char in word:
+			 if char not in cur.children:
+				 cur.children[char] = TrieNode()
+				cur = cur.children[char]
+		cur.is_end = True
+	def search(self,word);
+		cur = self.root
+		for char in word:
+			if char not in cur.children:
+				return False
+			cur = cur.children[char]
+		return cur.is_end
+def hotel_reviews(A,B):
+	trie = Trie()
+	good_words = A.split('_')
+	for word in good_words:
+		trie.insert(word)
+	review_scores = []
+	for index, review in enumerate(B):
+		words = review.split('_')
+		score = sum(1 for word in words if trie.search(word))
+		review_scores.append((score,index))
+	# sort by desc goodness
+	review_scores.sort(key = lambda x: (-x[0],x[1]))
+	#ret indices
+	return [idx for _,idx in review_scores]
+```
+
+
+
+## Shortest Unique Prefix
+Given a list of words (all lowercase with no word being a prefix of the other), find the shortest unique prefix for each word that distinguishes it from all other words in the list.
+
+Example: zebra,dog,duck, dove. -> output z,dog,dy,dov
+
+Simply prefix that no one else has.
+
+### How
+We build a prefix tree, of all inputs and store at each node, the number of words that pass through the node (`count`) . Then:
+1. Insert each word into the trie, incrementing `count` at every node along its path.
+2. To find the shortest unique prefix of a word, traverse its path from root, char by char, appending to the prefix string. As soon as we reach a node where the count is 1, the prefix is going to be unique.
+3. Because no word is a prefix of other, ans is guaranteed.
+
+```python
+class TrieNode:
+	def __init__(self):
+		self.children = {}
+		self.count = 0 #num of words passing through
+class Trie:
+	def __init__(self):
+		self.root = TrieNode()
+	def insert(self, word):
+		cur = self.root
+		for char in word:
+			if char not in cur.childrem:
+				cur.children[char] = TrieNode()
+			cur = cur.children[char]
+			cur.count += 1
+	def find_prefix(self,word):
+		cur = self.root
+		prefix = ""
+		for char in word:
+			prefix += char
+			cur = cur.children[char]
+			if cur.count == 1:
+				return prefix
+		return prefix #fallback, full word
+def shortest_unique_prefix(words):
+	trie = Trie()
+	for word in words: trie.insert(word)
+	return [trie.find_prefix(word) for word in words]
+```
+
+## Path to Given Node
+Given a binary tree `A` with N nodes. Each node has unique int value. And a target `B`.
+Find the path from `root` to the node whose value is `B`.
+
+Given a root pointer, return a 1D array with the path from root to B.
+
+### How
+A common approach for this is DFS and keeping track of node's parent. Once we discover node `B`, we can reconstruct the path by walking backwards to the root using `parent` pointers.
+The just reverse the sequence.
+
+1. Init an empty map parent, with $nodeValue -> parentValue$
+2. Use an explicit stack to DFS the tree. When we visit a child, record $parent[child.val] = current.val$ 
+3. As soon as we pop a node who value equals B, stops the DFS, and start reconstructing using the parent chain.
+
+```python
+class TreeNode:
+	def __init__(self,val = 0, left= None, right= None):
+		self.val = val
+		self.left = left
+		self.right = right
+def path_to_node(root,B):
+	if not root: return []
+	parent = {root.val : None}
+	stack = [root]
+	target_node = None
+
+	while stack:
+		node = stack.pop()
+		if node.val == B:
+			target_node= node
+			break
+		if node.left:
+			parent[node.left.val] = node.val
+			stack.append(node.left)
+		if node.right:
+			parent[node.right.val] = node.val
+			stack.append(node.right)
+	if target_node is None:
+		return []
+	path = []
+	while B is not None:
+		path.append(B)
+		B = parent[B]
+	return path[::-1]
+```
+
+## Remove Half Nodes
+Given a binary tree A with N nodes, remove all half nodes - nodes that have exactly one child- and return the root of the resulting tree. 
+
+A leaf should not be removed.
+
+### How
+If a node has 2 children, keep it, else if it has one child, bypass it by linking it directly with its non-null child.
+
+A bottom-up traversal (post order?)
+1. Recursively process left and right subtrees, so all the half nodes below are already removed.
+2. After recursion, examine node $u$ :
+	1. if u is a leaf, keep it
+	2. if it has 2 children, keep it
+	3. if it has one child, return `u.left` or `u.right` whichever is non-null
+3. Recursive call returns the root of the new pruned tree.
+
+```python
+class TreeNode:
+	def __init__(self, val = 0, left= None, right = None):
+		self.val = val
+		self.left = left
+		self.right = right
+def remove_half_nodes(root):
+	if not root: return None
+	root.left = remove_half_nodes(root.left)
+	root.right = remove_half_nodes(root.right)
+	if root.left and not root.right:
+		return root.left
+	if root.right and not root.left:
+		return root.right
+	return root
+```
+
+
+## Nodes at distance K
+Given the root of a binary tree `A`, and a target node value `B`, and an integer `C`
+Return the array of all nodes that are exactly at distance `C` from the node with value `B`. 
+You can return ans in any order.
+
+### How
+We treat binary tree as an undirected graph. Then we perform a BFS starting from target node, expanding outwards in all three directions (left, right, parent).
+After `C` BFS levels, all nodes in the queue are at distance C.
+
+```python
+from collections import defaultdict, deque
+class TreeNode:
+	def __init__(self,val = 0, left = None, right = None):
+		self.val = val
+		self.left=  left
+		self.right = right
+def distance_k(root, target_val, k):
+	graph = defaultdict(list)
+	def build_graph(node, parent = None):
+		if node:
+			if parent:
+				graph[node.val].append(parent.val)
+				graph[parent.val].append(node.val)
+			build_graph(node.left,node)
+			build_graph(node.right, node)
+	build_graph(root)
+	visited = set()
+	queue = deque([target_val])
+	visited.add(target_val)
+	distance = 0
+	while queue and distance < k:
+		for _ in range(len(queue)):
+			node = queue.popleft()
+			for neighbor in graph[node]:
+				if neighbor not in visited:
+					visited.add(neighbor)
+					queue.append(neighbor)
+		distance += 1
+	return list(queue)
+```
+
+## Last Node in a complete binary tree.
+Given the root of a complete binary tree A. Return the value of the rightmost node, in the last level of the tree. Aim for better than $O(N)$ time.
+
+### How
+In a complete binary tree of height `h`, the last level has indices 0 to $2^k - 1$. 
+
+Define $exists(idx)$ that checks if a node at index `idx` exists. To do this, we start at root, and examine the bits of `idx` from (`h-1`) floor down to 0. A bit of `0` means go left, `1` means go right
+. If you never reach `NULL`, then that `index` exists. This costs $O(h)$ 
+
+This is like binary search on `idx`. 
+
+```python
+class TreeNode:
+	def __init__(self,val = 0, left = None, right = None):
+		self.val = val
+		self.left = left
+		self.right = right
+def compute_height(node):
+	height = 0
+	while node.left:
+		height += 1
+		node = node.left
+	return height
+def exists(idx, height, node):
+	left = 0
+	right = (1 << height) - 1
+	for i in range(height):
+		mid = (left + right)//2
+		if idx <= mid:
+			node = node.left
+			right = mid
+		else:
+			node = node.right
+			left = mid + 1
+		if not node:
+			return False
+	return True
+def last_node_value(root):
+	if not root: return None
+	height = compute_height(root)
+	if height == 0: return root.val
+	left = 0
+	right = (1 << height) - 1 #max pos nodes at last level
+	# binary search for last existing node index
+	while left <= right:
+		mid = (left + right) // 2
+		if exists(mid,height,root):
+			left = mid + 1
+		else:
+			right = mid - 1
+	# traverse the node at index 'right' to get its value
+	idx = right
+	node= root
+	left=  0
+	right = (1 << height) - 1
+	for _ in range(height):
+		mid = (left + right) // 2
+		if idx <= mid:
+			node = node.left
+			right = mid
+		else:
+			node = node.right
+			left = mid + 1
+	return node.val if node else None
+```
+
+## Consecutive Parent-Child
+Given root of binary tree A, count number of parent-child pais such that their values differ by exactly 1. 
+$$
+|parent.val - child.val| = 1
+$$
+### How
+Simple tree traversal, (BFS or DFS), For each node:
+1. If it has a left child, check if $|node.val - node.left.val| = 1,$  if yes increment the count.
+2. Same for the right.
+
+```python
+class TreeNode:
+	def __init__(self, val = 0, left= None, right = None):
+		self.val = val
+		self.left = left
+		self.right = right
+def count_consec_pairs(root):
+	if not root: return 0
+	count = 0
+	stack = [root]
+	while stack:
+		node= stack.pop()
+		if node.left:
+			if abs(node.val - node.left.val) == 1:
+				count += 1
+			stack.append(node.left)
+		if node.right:
+			if abs(node.val - node.right.val) == 1L
+				count += 1
+			stack.append(node.right)
+	return count
+```
+
+## Balanced Binary Tree
+Given root of binary tree A, determine if its height balanced.
+A binary tree is height balanced. 
+
+Height balanced means $|depth(A.left) - depth(A.right)| \leq 1$
+
+Return the boolean if its height balanced.
+
+### How
+Naive way would be computing height of its left and right subtree and checking the difference.
+
+But we can use a single post-order traversal:
+1. Recursively compute the height of each subtree
+2. If any tree if already unbalanced, propogate a sentinel (ex: $-1$ ) upward immediately.
+3. At each node, obtain the leftH and rightH, and if either is $-1$ otherwise do the usual check.
+```python
+class TreeNode:
+	def __init__(self, val= 0 , left = None, right = None):
+		self.val = val
+		self.left = left
+		self.right= right
+def is_balanced(root):
+	def check_height(node):
+		if not node: return 0
+		left_height = check_height(node.left)
+		if left_height == -1: return -1
+		right_height = check_height(node.right)
+		if right_height == -1: return -1
+	
+		if abs(left_height - right_height) > 1:
+			return -1
+		return max(left_height, right_height) + 1
+	return 0 if check_height(root) == -1 else 1
+```
+
+## Maximum Edge Removal
+Given an undirected tree, with an even number of nodes A. You may remove as many edges as possible so that each resulting connected component (subtree) has an even number of nodes.
+
+Return the maximum number of edges that can be removed.
+
+### How
+Root the tree at node 1, we want to cut as many parent-child edges such that resulting connected components have even size.
+1. If a subtree is rooted at u and has even number of nodes, we may cut te edge connecting it to its parent. 
+2. If a subtree has odd size, we cannot cut its root to parent edge.
+
+So
+1. Compute, for every node `u`, the size of its subtree.
+2. Process nodes in post order, (children first). Whenever a node $u\neq$ 1 has an even subtree size, increment the answer by 1, and do not add u's size to its parent. 
+3. If it has odd size, add u's size to its parent's running total.
+4. Root's final collected size is A, which is even, but we can never cut above the root.
+
+```python
+from collections import defaultdict
+def max_edge_removal_even_tree(A,B):
+	#build adj
+	adj = defaultdict(list)
+	for u,v in B:
+		adj[u].append(v)
+		adj[v].append(u)
+	#post order setup
+	parent = [0]*(A+1)
+	parent[1] = 0
+	stack = [(1,0)]
+	postorder = []
+
+	while stack:
+		u,p = stack.pop()
+		postorder.append(u)
+		parent[u] = p
+		for v in adj[u]:
+			if v != p:
+				stack.append((v,u))
+	subsize = [1]*(A+1) #subtree size, default itself (1)
+	answer = 0
+	for u in reversed(postorder):
+		if u != 1 and subsize[u] % 2 == 0:
+			answer += 1
+		else:
+			p = parent[u]
+			if p != 0:
+				subsize[p] += u
+	return answer
+```
+
+
+## Merge Binary Trees
+Given two binary trees `A` and `B`. merge them into a single binary tree according to this rule
+1. if two nodes overlap (both non-null at same position). sum their value to form a new node.
+2. otherwise use the non-null node as in the merged tree.
+Return a pointer to the root of the merged tree.
+
+Input, ptr to A and B, Output the root ptr to merged binary tree.
+
+### How
+We perform a simultaneous pre-order traversal of both trees:
+1. if both current nodes u (from A) and v (from B) are non-null, create (or reuse) a node with value $u.val + v.val$ 
+	1. Recursively merge left children
+	2. Recursively merge right children
+	
+```python
+class TreeNode:
+	def __init__(self,val = 0, left= None, right = None):
+		self.val = val
+		self.left = left
+		self.right = right
+def mergeTrees(u,v):
+	if not u: return v
+	if not v: return u
+	u.val += v.val
+	u.left = mergeTrees(u.left,v.left)
+	u.right = mergeTrees(u.right,v.right)
+	return u
+```
+
+## Symmetric Binary Tree
+Given the root of binary tree A, determine whether it is symmetric around its center (i.e a mirror of itself). In other words, left and right subtree should be mirror images.
+
+### How
+1. If both nodes are null, they match
+2. if one is null and other is not, they dont
+3. otherwise we repeat the top 2 for pair (left.left,right.right) and (left.right, right.left)
+
+```python
+from collections import deque
+class TreeNode:
+	def __init__(self, val = 0, left =None, right = None):
+		self.val = val
+		self.left = left
+		self.right = right
+def is_symmetric(root):
+	if not root: return 1
+	queue = deque()
+	queue.append((root.left,root.right))
+	while queue:
+		u,v = queue.popleft()
+		if not u and not v: continue
+		if not u or not v: return 0
+		if u.val != v.val: return 0
+		queue.append((u.left,v.right))
+		queue.append((u.right,v.right))
+	return 1 
+```
+
+
+## Identical Binary Tree
+Given two trees A and B, return if they are identical, structurally and value vise.
+
+### How
+```python
+class TreeNode:
+	def __init__(self,val = 0, left= None, right = None):
+		self.val = val
+		self.left = left
+		self.right = right
+def is_same_tree(u,v):
+	if not u and not v: return 1
+	if not u or not v: return 0
+	if u.val != v.val: return 0
+	return (is_same_tree(u.left,v.left) and is_same_tree(u.right,v.right)):
+```
+
+## Construct BST from PreOrder
+Given an int arr of distinct elements representing the preorder traversal of a BST, construct the corresponding BST, and return its root pointer.
+
+### How
+In a BST, for a node with val `v`, all subsequent preorder values less than `v` belong to the left subtree. Values greater than `v` belong to the right subtree or higher up.
+
+Simulate insertion using a stack:
+1. First element $A[0]$ becomes the root.
+2. Maintain a stack of nodes representing the path from the root down to the most recently inserted node.
+3. For each new value $A[i]$ :
+	1. If $A[i]$ is less than the value at the top of the stack, it must be the left child of that top value. Create a new node and attach it as top.left and push it on to the stack.
+	2. Else: pop from stack until you find a node that is greater than $A[i]$. The last popped node is the parent of the new node in its right subtree.  Create the new node as parent.right, then push it onto the stack.
+4. Continue until all elements are processed.
+
+```python
+class TreeNode:
+	def __init__(self,val = 0, left = None, right = None):
+		self.val = val
+		self.left = left
+		self.right = right
+def bst_from_preorder(preorder):
+	if not preorder: return Node
+	root = TreeNode(preorder[0])
+	stack = [root]
+	for i in range(1,len(preorder)):
+		curr = TreeNode(preorder[i])
+		#smaller than stack top? left child
+		if preorder[i] < stack[-1].val:
+			stack[-1].left = curr
+		else: #find parent in right chain
+			parent = None
+			while stack and preorder[i] > stack[-1].val:
+				parent = stack.pop()
+			parent.right = curr
+		stack.append(curr)
+	return root
+```
+
+
+

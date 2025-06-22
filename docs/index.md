@@ -16,7 +16,7 @@ Jaake padle gaandu:
 - 📂 [Arrays](DSAyy/arrays.md)
 - 🔁 [Dynamic Programming](DSAyy/dp.md)
 - 🌐 [Graphs](DSAyy/graph.md)
-
+- [Trees](DSAyy/trees.md)
 ---
 
 ## ✅ DSA Preparation Checklist
