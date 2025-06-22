@@ -20,8 +20,23 @@
               "icon": "lucide-file",
               "title": "graph"
             }
+          },
+          {
+            "id": "e8182578acaf9ba5",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "trees.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "trees"
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -170,11 +185,13 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "b12b44e9c1a5c2f8",
+  "active": "e8182578acaf9ba5",
   "lastOpenFiles": [
+    "graph.md",
+    "trees.md",
     "Pasted image 20250620235853.png",
-    "dp.md",
     ",.md",
+    "dp.md",
     "arrays.md"
   ]
 }
