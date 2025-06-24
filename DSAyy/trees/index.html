@@ -970,6 +970,54 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#inorder-traversal-of-a-cartesian-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inorder Traversal Of a Cartesian Tree
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Inorder Traversal Of a Cartesian Tree">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      How
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sorted-array-to-balanced-bst" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sorted Array to Balanced BST
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sorted Array to Balanced BST">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how_21" class="md-nav__link">
+    <span class="md-ellipsis">
+      How
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1478,6 +1526,54 @@
         
           <li class="md-nav__item">
   <a href="#how_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      How
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inorder-traversal-of-a-cartesian-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      Inorder Traversal Of a Cartesian Tree
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Inorder Traversal Of a Cartesian Tree">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how_20" class="md-nav__link">
+    <span class="md-ellipsis">
+      How
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sorted-array-to-balanced-bst" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sorted Array to Balanced BST
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sorted Array to Balanced BST">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how_21" class="md-nav__link">
     <span class="md-ellipsis">
       How
     </span>
@@ -2225,6 +2321,63 @@ Return a pointer to the root of the merged tree.</p>
             <span class="n">parent</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">curr</span>
         <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">curr</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">root</span>
+</code></pre></div>
+<h2 id="inorder-traversal-of-a-cartesian-tree">Inorder Traversal Of a Cartesian Tree<a class="headerlink" href="#inorder-traversal-of-a-cartesian-tree" title="Permanent link">&para;</a></h2>
+<p>Given arr <code>A</code> on distinct integers, representing inorder traversal of a <strong>cartesian tree.</strong> Return the cartesian tree and its root. </p>
+<p>Cartesian Tree:
+1. <strong>Heap Property</strong>: every node's value is greater than all values in its subtree.
+2. <strong>Inorder property</strong>: an inorder traversal of the tree yields exactly the orignal array <code>A</code>.</p>
+<h3 id="how_20">How<a class="headerlink" href="#how_20" title="Permanent link">&para;</a></h3>
+<p>To build the cartesian tree in <span class="arithmatex">\(O(n)\)</span> time, we process A from left to right using a stack.
+1. Init an empty stack <code>st</code> of TreeNode pointers.
+2. For each value x = <code>A[i]</code>
+    1. Create a new node <code>curr</code> = TreeNode(x)
+    2. Pop nodes from the top of the stack while they have value less than x. Let last be the last node popped (or <code>nullptr</code> if none). Attach last as <code>curr.left</code>. This would maintain the inorder property: everything popped lies to the left of <code>x</code>.
+    3. If the stack is nonempty aftert popping, the new top's value is &gt; x, so we attach <code>curr</code> as <code>st.top().right</code>. This would ensure <code>curr</code> becomes the right child of the nearest larger node to its left.
+    4. Push <code>curr</code> onto the stack.
+3. After processing all elements, bottom of the stack (first el pushed) is the root of cartesian tree.</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">TreeNode</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">val</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">val</span> <span class="o">=</span> <span class="n">val</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">build_cartesian_tree</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">st</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)):</span>
+        <span class="n">curr</span> <span class="o">=</span> <span class="n">TreeNode</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="n">last</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">while</span> <span class="n">st</span> <span class="ow">and</span> <span class="n">st</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">val</span> <span class="o">&lt;</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+            <span class="n">last</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="n">curr</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">last</span>
+        <span class="k">if</span> <span class="n">st</span><span class="p">:</span>
+            <span class="n">st</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">curr</span>
+        <span class="n">st</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cur</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">st</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">st</span> <span class="k">else</span> <span class="kc">None</span>
+</code></pre></div>
+<h2 id="sorted-array-to-balanced-bst">Sorted Array to Balanced BST<a class="headerlink" href="#sorted-array-to-balanced-bst" title="Permanent link">&para;</a></h2>
+<p>Given an array <code>A</code> of length <code>n</code> whose elements are sorted in strictly ascending order, convert it into a height balanced BST. </p>
+<p>Basically the depth of right and left subtree differ by atmost 1.</p>
+<h3 id="how_21">How<a class="headerlink" href="#how_21" title="Permanent link">&para;</a></h3>
+<ol>
+<li>In a BST, in-order traversal yields the sorted sequence.</li>
+<li>To keep it balanced, choose the mid element of the array as root,  and half of the elements go to the left subtree and half to the right.</li>
+<li>Recursively apply the same procedure to the left subarray's midpoint and right subarray's midpoint.</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">TreeNode</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">val</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">val</span> <span class="o">=</span> <span class="n">val</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">sorted_arr_to_bst</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">build_bst</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="n">r</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">l</span> <span class="o">&gt;</span> <span class="n">r</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="n">mid</span> <span class="o">=</span> <span class="n">l</span> <span class="o">+</span> <span class="p">(</span><span class="n">r</span><span class="o">-</span> <span class="n">l</span><span class="p">)</span> <span class="o">//</span><span class="mi">2</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">TreeNode</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">mid</span><span class="p">])</span>
+        <span class="n">node</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">build_bst</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="n">mid</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">node</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">build_bst</span><span class="p">(</span><span class="n">mid</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">node</span>
+    <span class="k">return</span> <span class="n">build_bst</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
 </code></pre></div>
 
 
