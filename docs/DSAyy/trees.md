@@ -829,5 +829,70 @@ def bst_from_preorder(preorder):
 	return root
 ```
 
+## Inorder Traversal Of a Cartesian Tree
+Given arr `A` on distinct integers, representing inorder traversal of a **cartesian tree.** Return the cartesian tree and its root. 
 
+Cartesian Tree:
+1. **Heap Property**: every node's value is greater than all values in its subtree.
+2. **Inorder property**: an inorder traversal of the tree yields exactly the orignal array `A`.
+
+### How
+To build the cartesian tree in $O(n)$ time, we process A from left to right using a stack.
+1. Init an empty stack `st` of TreeNode pointers.
+2. For each value x = `A[i]`
+	1. Create a new node `curr` = TreeNode(x)
+	2. Pop nodes from the top of the stack while they have value less than x. Let last be the last node popped (or `nullptr` if none). Attach last as `curr.left`. This would maintain the inorder property: everything popped lies to the left of `x`.
+	3. If the stack is nonempty aftert popping, the new top's value is > x, so we attach `curr` as `st.top().right`. This would ensure `curr` becomes the right child of the nearest larger node to its left.
+	4. Push `curr` onto the stack.
+3. After processing all elements, bottom of the stack (first el pushed) is the root of cartesian tree.
+
+```python
+class TreeNode:
+	def __init__(self,val):
+		self.val = val
+		self.left = None
+		self.right = None
+def build_cartesian_tree(A):
+	st = []
+	for i in range(len(A)):
+		curr = TreeNode(A[i])
+		last = None
+		while st and st[-1].val < A[i]:
+			last = st.pop()
+		curr.left = last
+		if st:
+			st[-1].right = curr
+		st.append(cur)
+	return st[0] if st else None
+```
+
+## Sorted Array to Balanced BST
+
+Given an array `A` of length `n` whose elements are sorted in strictly ascending order, convert it into a height balanced BST. 
+
+Basically the depth of right and left subtree differ by atmost 1.
+
+### How
+
+1. In a BST, in-order traversal yields the sorted sequence.
+2. To keep it balanced, choose the mid element of the array as root,  and half of the elements go to the left subtree and half to the right.
+3. Recursively apply the same procedure to the left subarray's midpoint and right subarray's midpoint.
+
+```python
+class TreeNode:
+	def __init__(self,val):
+		self.val = val
+		self.left = None
+		self.right = None
+def sorted_arr_to_bst(A):
+	def build_bst(l,r):
+		if l > r:
+			return None
+		mid = l + (r- l) //2
+		node = TreeNode(A[mid])
+		node.left = build_bst(l,mid - 1)
+		node.right = build_bst(mid + 1, r)
+		return node
+	return build_bst(0, len(A) - 1)
+```
 
