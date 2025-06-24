@@ -896,3 +896,222 @@ def sorted_arr_to_bst(A):
 	return build_bst(0, len(A) - 1)
 ```
 
+## Construct Binary Tree from Inorder and preorder
+
+Given 2 int arrays A and B having pre-order and in-order traversal. Construct the binary tree and return its root pointer.
+
+### How
+In preorder, first element is always the root. In inorder, the elements to the lest of that root are in left subtree, and els to the right are in right subtree.
+
+1. Maintain a global preIndex into the preorder array.
+2. Define a recursive function $build(inL,inR)$ that constructs the subtree whose in-order indices range from $inL$ to $inR$ .
+3. In $build(inL,inR)$:
+	1. root would be $A[preIndex]$ , increment this ptr
+	2. look for this value in inOrder array. call this `mid`
+	3. Now left subtree would be $B[inL...mid-1]$  and right subtree would be $build(mid+1 ... inR)$ 
+	4. return root
+```python
+class TreeNode:
+	def __init__(self,val):
+		self.val = val
+		self.left=  None
+		self.right = None
+def build_tree(preorder, inorder):
+	idx_map = {val : idx for idx,val in enumerate(inorder)}
+	pre_index = [0] #to pass by index
+	def build(left,right):
+		if left > right: return None
+		root_val = preorder[pre_index[0]]
+		pre_index[0] += 1
+		root = TreeNode(root_val)
+		mid = idx_map[root_val]
+		root.left = build(left, mid - 1)
+		root.right = build(mid + 1, right)
+		return root
+	return build(0, len(inorder) - 1)
+```
+
+## Binary Tree from Inorder and PostOrder
+
+Given inorder and post-order traversal in an array, construct the binary tree and return the root pointer.
+
+### How
+In the post order traversal, last element is always the root of the sub tree.
+Like above we use it but backwards.
+
+```python
+class TreeNode:
+	def __init__(self,val):
+		self.val = val
+		self.left = None
+		self.right = None
+def build_tree(inorder, postorder):
+	idx_map = {val,idx for idx,val in enumerate(inorder)}
+	post_index = [len(postorder) - 1] #use list for mutable int
+	def build(left,right):
+		if left > right: return None
+		root_val = postorder[post_index[0]]
+		post_index[0] -= 1
+		root = TreeNode(root_val)
+		mid = idx_map[root_val]
+		root.right = build(mid + 1, right) #make the right first
+		root.left = build(left, mid - 1)
+		return root
+	return build(0,len(inorder) - 1)
+```
+
+## Vertical Order Traversal of Binary Tree
+Given a binary tree of `N` nodes. Return a 2d array denoting its vertical order traversal.
+Label the root's column index as `0`; for any node at column `c`, its left child at column `c-1`, and its right child at column `c+1`.
+
+Group nodes by column. Basically column index is the array index. Give all elements column wise.
+
+### How
+Perform a BFS but with node, also carry the current column index. When sending in left child, bas do `c-1`, and when going right, do `c+1`.
+
+```python
+from collections import defaultdict, deque
+class TreeNode:
+	def __init__(self,val = 0, left = None, right = None):
+		self.val = val
+		self.left = left
+		self.right = right
+def vertical_order_traversal(root):
+	result = []
+	if root is None: return result
+	col_map = defaultdict(list)
+	min_col = max_col = 0
+	q = deque([(root,0)])
+	while q:
+		node , col = q.popleft()
+		col_map[col].append(node.val)
+		min_col = min(min_col,col)
+		max_col = max(max_col,col)
+		if node.left: q.append((node.left, col - 1))
+		if node.right: q.append((node.right, col + 1))
+	total_cols = max_col - min_col + 1
+	result = [[] for _ in range(total_cols)]
+	for col in range(min_col,max_col + 1):
+		result[col - min_col] = col_map[col]
+	return result
+```
+
+## Diagonal Traversal Of Binary Tree
+
+Given a binary tree A with N nodes, output all nodes in a diagonal order. Where nodes lying on the same line of slope - 1 belong to the same diagonal.
+Label the node's diagonal as 0.
+
+Within each diagonal, node must be in preorder. Finally concatenate the diagonals from smallest index to largest. (leftmost to rightmost)
+
+Input: Root of binary tree.
+Output: 1D array
+
+### How
+A node's diagonal index d is defined as:
+$$
+d(root) = 0, \space d(node.left) = d(node) + 1, \space d(node.right) = d(node)
+$$
+Bas bhai map ke saath banate reh.
+
+```python
+class TreeNode:
+	def __init__(self, val = 0, left = None, right = None):
+		self.val = val
+		self.left = left
+		self.right = right
+def diagonal_traversal(root):
+	if not root: return []
+	diag_nodes = [] #list of lists
+	max_diag = 0
+	stack = [(root,0)]
+	while stack:
+		node, d = stack.pop() #dfs style
+		if len(diag_nodes) <= d: #extend if diagonal too big
+			diag_nodes.extend([[] for _ in range(d - len(diag_nodes) + 1)])
+		diag_nodes[d].append(node.val)
+		max_diag = max(max_diag,d)
+		if node.right:
+			stack.append((node.right, d))
+		if node.left:
+			stack.append((node.left, d+1))
+	for i in range(max_diag + 1):
+		result.extend(diag_nodes[i])
+	return result
+```
+
+## Vertical Sum of a Binary Tree
+Given the root pointer of a binary tree. Comput the *vertical sum* for each vertical line of the tree. Label the root's column as 0; for any node at column c, its left child is at column `c-1` and right at `c+1` . The vertical sum for a column is the sum of all node values that lie in that column. Return an array of these sums, ordered from the leftmost column to the rightmost column.
+
+### How
+Perform a BFS of the tree while tracking each node's column index. Keep a hasmap as column's sum metric. 
+Similar to what we solved above.
+
+```python
+from collections import defaultdict, deque
+class TreeNode:
+	def __init__(self,val = 0, left = None, right = None):
+		self.val = val
+		self.left = left
+		self.right = right
+def vertical_sum(root):
+	if not root: return []
+	col_sum = defaultdict(int)
+	min_col = max_col = 0
+	q = deque([(root,0)])
+	while q:
+		node,col = q.popleft()
+		col_sum[col] += node.val
+		min_col = min(min_col,col)
+		max_col = max(max_col,col)
+		if node.left:
+			q.append((node.left,col - 1))
+		if node.right:
+			q.append((node.right, col + 1))
+	total_cols = max_col - min_col + 1
+	result = [0]*total_cols
+	for col in range(min_cols, max_cols + 1):
+		result[col - min_col] = col_sum[col]
+	return result
+```
+
+
+## Covered / Uncovered Nodes
+Given root of a binary tree A.
+A node is :
+- **Uncovered** if it appears as either the first or the last node on its level.
+- Covered otherwise
+Compute absolute difference of:
+$$
+|\text{(sum of covered values) - (sum of uncovered values)}|
+$$
+### how
+Perform BFS, to identfy first or last at each level.
+```python
+from collections import deque
+class TreeNode:
+	def __init__(self,val = 0, left= None, right = None):
+		self.val = val
+		self.left = left
+		self.right = right
+def covered_minus_uncovered_sum(root):
+	if not root:
+		return 0
+	covered_sum = 0
+	uncovered_sum = 0
+	q = deque([root])
+	while q:
+		sz = len(q)
+		for i in range(sz):
+			node = q.popleft()
+			if i == 0 or i == sz - 1:
+				uncovered_sum += node.val
+			else:
+				covered_sum += node.val
+			if node.left:
+				q.append(node.left)
+			if node.right:
+				q.append(node.right)
+	return covered_sum - uncovered_sum
+```
+
+

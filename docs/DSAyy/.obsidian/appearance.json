@@ -1,5 +1,7 @@
 {
   "cssTheme": "Vanilla AMOLED",
   "accentColor": "#b98c2d",
-  "textFontFamily": ""
+  "textFontFamily": "Noteworthy",
+  "monospaceFontFamily": "MonoLisa",
+  "interfaceFontFamily": "FiraCode"
 }
