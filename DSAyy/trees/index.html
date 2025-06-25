@@ -1255,6 +1255,75 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#populate-next-right-pointers-in-a-binary-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      Populate Next Right Pointers in a Binary Tree
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#burn-a-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      Burn a Tree
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Burn a Tree">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      How
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#max-depth-of-a-binary-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      Max Depth of a Binary Tree
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sum-root-to-leaf-numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sum Root to Leaf Numbers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#path-sum" class="md-nav__link">
+    <span class="md-ellipsis">
+      Path Sum
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#min-depth-of-a-binary-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      Min Depth of a Binary Tree
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2055,6 +2124,75 @@
   <a href="#zigzag-level-order" class="md-nav__link">
     <span class="md-ellipsis">
       Zigzag Level Order
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#populate-next-right-pointers-in-a-binary-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      Populate Next Right Pointers in a Binary Tree
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#burn-a-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      Burn a Tree
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Burn a Tree">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how_30" class="md-nav__link">
+    <span class="md-ellipsis">
+      How
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#max-depth-of-a-binary-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      Max Depth of a Binary Tree
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sum-root-to-leaf-numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sum Root to Leaf Numbers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#path-sum" class="md-nav__link">
+    <span class="md-ellipsis">
+      Path Sum
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#min-depth-of-a-binary-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      Min Depth of a Binary Tree
     </span>
   </a>
   
@@ -3224,6 +3362,164 @@ basically alternating direction every level</p>
         <span class="n">left_to_right</span> <span class="o">=</span> <span class="err">!</span><span class="n">left_to_right</span>
         <span class="n">res</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">level</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">res</span>
+</code></pre></div>
+<h2 id="populate-next-right-pointers-in-a-binary-tree">Populate Next Right Pointers in a Binary Tree<a class="headerlink" href="#populate-next-right-pointers-in-a-binary-tree" title="Permanent link">&para;</a></h2>
+<p>Given the root pointer of a binary tree. The struct also has a next pointer. Populate each node's <code>next</code> pointer so that ir points to the node immediately to its right on the same level. If there is no such node, let <code>next</code> be null.</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">TreeLinkNode</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">left</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="nb">next</span> <span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">val</span> <span class="o">=</span> <span class="n">val</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">left</span><span class="o">=</span> <span class="n">left</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">right</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="nb">next</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">connect</span><span class="p">(</span><span class="n">root</span><span class="p">):</span>
+    <span class="n">head</span> <span class="o">=</span> <span class="n">root</span> <span class="c1">#head of current level</span>
+    <span class="k">while</span> <span class="n">head</span><span class="p">:</span>
+        <span class="n">dummy</span> <span class="o">=</span> <span class="n">TreeLinkNode</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">tail</span> <span class="o">=</span> <span class="n">dummy</span>
+        <span class="n">curr</span> <span class="o">=</span> <span class="n">head</span>
+
+        <span class="k">while</span> <span class="n">cur</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">cur</span><span class="o">.</span><span class="n">left</span><span class="p">:</span>
+                <span class="n">tail</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">left</span>
+                <span class="n">tail</span> <span class="o">=</span> <span class="n">tail</span><span class="o">.</span><span class="n">next</span>
+            <span class="k">if</span> <span class="n">cur</span><span class="o">.</span><span class="n">right</span><span class="p">:</span>
+                <span class="n">tail</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">right</span>
+                <span class="n">tail</span> <span class="o">=</span> <span class="n">tail</span><span class="o">.</span><span class="n">next</span>
+            <span class="n">cur</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">next</span>
+        <span class="n">head</span> <span class="o">=</span> <span class="n">dummy</span><span class="o">.</span><span class="n">next</span>
+</code></pre></div>
+<h2 id="burn-a-tree">Burn a Tree<a class="headerlink" href="#burn-a-tree" title="Permanent link">&para;</a></h2>
+<p>Given <code>root</code> of a binary tree A, and a target leaf <code>B</code>, a fire starts at node B at time = 0. Each second, the fire spreads from any burning node to its directly connected neighbors (left child, right child and parent). Compute minimum time required to burn the entire tree.</p>
+<h3 id="how_30">How<a class="headerlink" href="#how_30" title="Permanent link">&para;</a></h3>
+<p>Run BFS, and treat the tree like an undirected graph. In BFS, also pass the time, and then check the min time.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">deque</span><span class="p">,</span> <span class="n">defaultdict</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TreeNode</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">left</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">val</span> <span class="o">=</span> <span class="n">val</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">left</span><span class="o">=</span> <span class="n">left</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">right</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">build_parent_map</span><span class="p">(</span><span class="n">root</span><span class="p">,</span><span class="n">parent_map</span><span class="p">):</span>
+    <span class="n">queue</span> <span class="o">=</span> <span class="n">deque</span><span class="p">([</span><span class="n">root</span><span class="p">])</span>
+    <span class="k">while</span> <span class="n">queue</span><span class="p">:</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">:</span>
+            <span class="n">parent_map</span><span class="p">[</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">]</span> <span class="o">=</span> <span class="n">node</span>
+            <span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">:</span>
+            <span class="n">parent_map</span><span class="p">[</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">]</span> <span class="o">=</span> <span class="n">node</span>
+            <span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">find_target_node</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span> <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">root</span><span class="o">.</span><span class="n">val</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span> <span class="k">return</span> <span class="n">root</span>
+    <span class="n">left</span> <span class="o">=</span> <span class="n">find_target_node</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">left</span><span class="p">:</span> <span class="k">return</span> <span class="n">left</span>
+    <span class="k">return</span> <span class="n">find_target_node</span><span class="p">(</span><span class="n">root</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">target</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">burn_tree</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">target_val</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span> <span class="k">return</span> <span class="mi">0</span>
+    <span class="n">parent_map</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">build_parent_map</span><span class="p">(</span><span class="n">root</span><span class="p">,</span><span class="n">parent_map</span><span class="p">)</span>
+    <span class="n">target_node</span> <span class="o">=</span> <span class="n">find_target_node</span><span class="p">(</span><span class="n">root</span><span class="p">,</span><span class="n">target_val</span><span class="p">)</span>
+    <span class="n">visited</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="n">queue</span> <span class="o">=</span> <span class="n">deque</span><span class="p">([</span><span class="n">target_node</span><span class="p">])</span>
+    <span class="n">visited</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">target_node</span><span class="p">)</span>
+    <span class="n">time</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="c1">#first level at t = 0</span>
+    <span class="k">while</span> <span class="n">queue</span><span class="p">:</span>
+        <span class="n">sz</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">queue</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">sz</span><span class="p">):</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">neighbor</span> <span class="ow">in</span> <span class="p">[</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">parent_map</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">node</span><span class="p">)]:</span>
+                <span class="k">if</span> <span class="n">neighbor</span> <span class="ow">and</span> <span class="n">neighbor</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">visited</span><span class="p">:</span>
+                    <span class="n">visited</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">neighbor</span><span class="p">)</span>
+                    <span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">neighbor</span><span class="p">)</span>  
+        <span class="n">time</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">time</span>
+</code></pre></div>
+<h2 id="max-depth-of-a-binary-tree">Max Depth of a Binary Tree<a class="headerlink" href="#max-depth-of-a-binary-tree" title="Permanent link">&para;</a></h2>
+<p>Given the <code>root</code> pointer of a binary tree, find its maximum depth.
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">deque</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TreeNode</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">left</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">val</span> <span class="o">=</span> <span class="n">val</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">left</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">right</span><span class="o">=</span> <span class="n">right</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">maxDepth</span><span class="p">(</span><span class="n">root</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span> <span class="k">return</span> <span class="mi">0</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">deque</span><span class="p">([</span><span class="n">root</span><span class="p">])</span>
+    <span class="n">depth</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">q</span><span class="p">:</span>
+        <span class="n">sz</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+        <span class="n">depth</span> <span class="o">++</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">sz</span><span class="p">):</span>
+            <span class="n">node</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">:</span> <span class="n">q</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">:</span> <span class="n">q</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">depth</span>
+</code></pre></div></p>
+<h2 id="sum-root-to-leaf-numbers">Sum Root to Leaf Numbers<a class="headerlink" href="#sum-root-to-leaf-numbers" title="Permanent link">&para;</a></h2>
+<p>Given <code>root</code> to a binary tree whose node contain 0-9, each root to leaf path represents a number concatenating the digits along the way. Return sum of all sum numbers modulo 1003.</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">TreeNode</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">val</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">left</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">val</span> <span class="o">=</span> <span class="n">val</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">left</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">right</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">sum_root_to_leaf_numbers</span><span class="p">(</span><span class="n">root</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span> <span class="k">return</span> <span class="mi">0</span>
+    <span class="n">MOD</span> <span class="o">=</span> <span class="mi">1003</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">stack</span> <span class="o">=</span> <span class="p">[(</span><span class="n">root</span><span class="p">,</span><span class="n">root</span><span class="o">.</span><span class="n">val</span> <span class="o">%</span> <span class="n">MOD</span><span class="p">)]</span> <span class="c1">#(node, cur_sum modulo)</span>
+    <span class="k">while</span> <span class="n">stack</span><span class="p">:</span>
+        <span class="n">node</span><span class="p">,</span> <span class="n">curr</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">:</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="p">(</span><span class="n">result</span> <span class="o">+</span> <span class="n">curr</span><span class="p">)</span> <span class="o">%</span> <span class="n">MOD</span>
+        <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">:</span>
+            <span class="n">next_val</span> <span class="o">=</span> <span class="p">(</span><span class="n">curr</span><span class="o">*</span><span class="mi">10</span> <span class="o">+</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="o">.</span><span class="n">val</span><span class="p">)</span> <span class="o">%</span> <span class="n">MOD</span>
+            <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">next_val</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">:</span>
+            <span class="n">next_val</span> <span class="o">=</span> <span class="p">(</span><span class="n">curr</span><span class="o">*</span><span class="mi">10</span> <span class="o">+</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="o">.</span><span class="n">val</span><span class="p">)</span> <span class="o">%</span> <span class="n">MOD</span>
+            <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">next_val</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">result</span>
+</code></pre></div>
+<h2 id="path-sum">Path Sum<a class="headerlink" href="#path-sum" title="Permanent link">&para;</a></h2>
+<p>Given <code>root</code> of a binary tree, and an int <code>B</code>, determine whether there exists a root-to-leaf path in A such that sum of node values along that path equals B.</p>
+<p>Just DFS and pass cur sum bro</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">TreeNode</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span>  <span class="kc">None</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">val</span> <span class="o">=</span> <span class="n">val</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">left</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">right</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">has_path_sum</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">target_sum</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span> <span class="k">return</span> <span class="mi">0</span>
+    <span class="n">stack</span> <span class="o">=</span> <span class="p">[(</span><span class="n">root</span><span class="p">,</span> <span class="n">root</span><span class="o">.</span><span class="n">val</span><span class="p">)]</span> <span class="c1">#(node, cur sum)</span>
+    <span class="k">while</span> <span class="n">stack</span><span class="p">:</span>
+        <span class="n">node</span><span class="p">,</span> <span class="n">cur_sum</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">cur_sum</span> <span class="o">==</span> <span class="n">target_sum</span><span class="p">:</span> <span class="k">return</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">:</span>
+            <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">cur_sum</span> <span class="o">+</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="o">.</span><span class="n">val</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">:</span>
+            <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">cur_sum</span> <span class="o">+</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="o">.</span><span class="n">val</span><span class="p">))</span>
+    <span class="k">return</span> <span class="mi">0</span>
+</code></pre></div>
+<h2 id="min-depth-of-a-binary-tree">Min Depth of a Binary Tree<a class="headerlink" href="#min-depth-of-a-binary-tree" title="Permanent link">&para;</a></h2>
+<p>Given the <code>root</code> of a binary tree. Find its minimum depth. Basically min root-to-leaf path.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">deque</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TreeNode</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">val</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">left</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">val</span> <span class="o">=</span> <span class="n">val</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">left</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">right</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">min_depth</span><span class="p">(</span><span class="n">root</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span> <span class="k">return</span> <span class="mi">0</span>
+    <span class="n">queue</span><span class="o">=</span> <span class="n">deque</span><span class="p">([(</span><span class="n">root</span><span class="p">,</span><span class="mi">1</span><span class="p">)])</span> <span class="c1">#(node, curr depth)</span>
+    <span class="k">while</span> <span class="n">queue</span><span class="p">:</span>
+        <span class="n">node</span><span class="p">,</span> <span class="n">depth</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">:</span> <span class="c1">#return the earliest you reach leaf</span>
+            <span class="k">return</span> <span class="n">depth</span>
+        <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">:</span> 
+            <span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">depth</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">:</span>
+            <span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">depth</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+    <span class="k">return</span> <span class="mi">0</span>    
 </code></pre></div>
 
 
