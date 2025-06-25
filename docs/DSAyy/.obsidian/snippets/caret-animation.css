@@ -1,0 +1,25 @@
+/* Caret pulse animation */
+.cm-editor .cm-cursor {
+  width: 3px;
+  background-color: #ff4081 !important; /* bright pink caret */
+  animation: blink 1s steps(1) infinite, caretMove 0.7s ease-out;
+}
+
+/* Smooth movement when typing */
+@keyframes caretMove {
+  0% {
+    transform: translateY(-2px);
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Custom blink animation */
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0; }
+  100% { opacity: 1; }
+}

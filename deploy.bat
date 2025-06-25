@@ -6,9 +6,6 @@ IF "%~1"=="" (
     exit /b 1
 )
 
-REM === Activate virtual environment ===
-CALL venv\Scripts\activate
-
 REM === Stage, commit, and push changes ===
 git add .
 git commit -m "%~1"

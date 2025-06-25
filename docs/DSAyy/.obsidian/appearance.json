@@ -1,7 +1,10 @@
 {
   "cssTheme": "Vanilla AMOLED",
   "accentColor": "#b98c2d",
-  "textFontFamily": "Noteworthy",
-  "monospaceFontFamily": "MonoLisa",
-  "interfaceFontFamily": "FiraCode"
+  "textFontFamily": "D2CodingLigature Nerd Font",
+  "monospaceFontFamily": "MonoLisa,D2CodingLigature Nerd Font",
+  "interfaceFontFamily": "FiraCode",
+  "enabledCssSnippets": [
+    "caret-animation"
+  ]
 }

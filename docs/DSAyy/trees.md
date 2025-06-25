@@ -1115,3 +1115,203 @@ def covered_minus_uncovered_sum(root):
 ```
 
 
+## Inorder Traversal of A Binary Tree
+Given `root` pointer of a binary tree, return its nodes in inOrder travesal.
+
+```python
+class TreeNode:
+	def __init__(self,val = 0, left = None, right = None):
+		self.val = val
+		self.left = left
+		self.right = right
+def inorder_traversal(root):
+	res, stack = [], []
+	while root or stack:
+		#go as far left as possible
+		while root:
+			stack.append(root)
+			root = root.left
+		#visit node (mid)
+		root = stack.pop()
+		res.append(root.val)
+		# then go right
+		root = root.right
+	return res
+```
+
+## Preorder Traversal Of a Binary Tree
+Given `root` pointer of a binary tree, return its nodes in preorder traversal.
+```python
+class TreeNode:
+	def __init__(self, val = 0, left = None, right = None):
+		self.val = val
+		self.left = left
+		self.right = right
+def preorder_traversal(root):
+	res, stack = [],[]
+	if root: stack.append(root)
+	while stack:
+		node = stack.pop()
+		res.append(node.val)
+		if node.right: 
+			stack.append(node.right) #right first
+		if node.left:
+			stack.append(node.left) #then left, so left is processed first
+	return res
+```
+
+## PostOrder Traversal Of a binary Tree
+Given `root` pointer of a binary tree, return its nodes in postorder traversal
+```python
+class TreeNode:
+	def __init__(self, val = 0, left = None, right = None):
+		self.val = val
+		self.left = left
+		self.right = right
+def postorder_traversal(root):
+	if not root: return []
+	toVisit, visited = [root], []
+	while s1:
+		node = toVisit.pop()
+		visited.append(node)
+		if node.left: toVisit.append(node.left)
+		if node.right: toVisit.append(node.right)
+	return [n.val for n in reversed(visited)]
+```
+
+## Right view of a binary tree
+Given `root`, return an `array` of int representing the right view of the tree.
+Basically the nodes that are visible when looked from the right.
+
+Basically the last element in every level order.
+
+```python
+from collections import deque
+class TreeNode:
+	def __init__(self,val = 0, left = 0, right = 0):
+		self.val = val
+		self.left =left
+		self.right = right
+def rightView(root):
+	if not root: return []
+	right_view = []
+	q = deque([root])
+	while q:
+		sz = len(q)
+		for i in range(sz):
+			node = q.popleft()
+			if i == sz - 1:
+				right_view.append(node.val)
+			if node.left: q.append(node.left)
+			if node.right: q.append(node.right)
+	return right_view
+```
+
+## Cousins in a binary tree
+Given `root` pointer of a binary tree with `N` nodes, and a target value `B` that exists in the tree. Return an `array` of all the cousins of node whole value is `B`. 
+
+Two nodes are cousins, if they are on the same depth, but have different parents. 
+Sibling nodes are not cousins.
+
+### How
+Perform a single BFS (level order), that keeps track of each node's parent
+1. Record the nodes at the level `levelNodes`
+2. Check if `B` is in `levelNodes` along with its parent pointer.
+3. Return all other nodes on the level with different parent.
+
+```python
+from collections import deque
+class TreeNode:
+	def __init__(self,val = 0,left = None,right = None):
+		self.val = val
+		self.left = left
+		self.right = right
+def find_cousins(root,B):
+	if not root: return []
+	cousins = []
+	q = deque()
+	q.append((root,None)) # (node,parent)
+	while q: 
+		sz = len(q)
+		level_nodes = []
+		target_parent = None
+		for _ in range(sz):
+			node, parent = q.popleft()
+			level_nodes.append((node,parent))
+			if node.val == B:
+				target_parent = parent
+		if target_parent:
+			for node,parent in level_nodes:
+				if parent != target_parent and node.val != B:
+					cousins.append(node.val)
+		#enqueue children for the next level
+		for node,parent in level_nodes:
+			if node.left: q.append((node.left,node))
+			if node.right: q.append((node.right,node))
+	return cousins
+```
+
+## Reverse Level Order Traversal of a Binary Tree
+Given `root`, return nodes in reverse level order. Like from bottom-most to the top.
+### How
+Just do a normal BFS (level order) from top to bottom. But store each level's value in a list then prepend it to a `deque`. 
+1. Record current level, and push it to the front of the `deque`.
+2. Now it will have from bottom to top coz we pushed to the front.
+```python
+from collections import deque
+class TreeNode:
+	def __init__(self,val = 0, left = None, right = None):
+		self.val = val
+		self.left = left
+		self.right = right
+def reverseLevel(root):
+	res = []
+	if not root: return res
+	q = deque([root])
+	levels = deque()
+	while q:
+		sz = len(q)
+		level = []
+		for _ in range(sz):
+			node = q.popleft()
+			level.append(node.val)
+			if node.left: q.append(node.left)
+			if node.right: q.append(node.right)
+		levels.appendleft(level)
+	for lvl in levels: res.extend(lvl)
+	return res
+```
+
+## Zigzag Level Order
+Given `root` of binary tree, return nodes in zigzag level order.
+- level 0, L to R
+- level 1, R to L
+basically alternating direction every level
+
+just reverse the even level bro i dont even know
+
+```python
+from collections import deque
+class TreeNode:
+	def __init__(self,val=0,left = None, right = None):
+		self.val = val
+		self.left = left
+		self.right = right
+def zigzag(root):
+	res = []
+	if not root: return res
+	q = deque([root])
+	left_to_right = True
+	while q:
+		sz = len(q)
+		level = []
+		for _ in range(sz):
+			node = q.popleft()
+			level.append(node)
+			if  node.left: q.append(node.left)
+			if node.right: q.append(node.right)
+		if not left_to_right: level = reversed(level)
+		left_to_right = !left_to_right
+		res.extend(level)
+	return res
+```
