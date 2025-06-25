@@ -1315,3 +1315,182 @@ def zigzag(root):
 		res.extend(level)
 	return res
 ```
+
+## Populate Next Right Pointers in a Binary Tree
+Given the root pointer of a binary tree. The struct also has a next pointer. Populate each node's `next` pointer so that ir points to the node immediately to its right on the same level. If there is no such node, let `next` be null.
+
+```python
+class TreeLinkNode:
+	def __init__(self, val = 0, left = None, right = None, next =None):
+		self.val = val
+		self.left= left
+		self.right = right
+		self.next = next
+def connect(root):
+	head = root #head of current level
+	while head:
+		dummy = TreeLinkNode(0)
+		tail = dummy
+		curr = head
+
+		while cur:
+			if cur.left:
+				tail.next = cur.left
+				tail = tail.next
+			if cur.right:
+				tail.next = cur.right
+				tail = tail.next
+			cur = cur.next
+		head = dummy.next
+
+```
+
+
+## Burn a Tree
+Given `root` of a binary tree A, and a target leaf `B`, a fire starts at node B at time = 0. Each second, the fire spreads from any burning node to its directly connected neighbors (left child, right child and parent). Compute minimum time required to burn the entire tree.
+
+### How
+Run BFS, and treat the tree like an undirected graph. In BFS, also pass the time, and then check the min time.
+
+```python
+from collections import deque, defaultdict
+class TreeNode:
+	def __init__(self, val = 0, left = None, right = None):
+		self.val = val
+		self.left= left
+		self.right = right
+def build_parent_map(root,parent_map):
+	queue = deque([root])
+	while queue:
+		node = queue.popleft()
+		if node.left:
+			parent_map[node.left] = node
+			queue.append(node.left)
+		if node.right:
+			parent_map[node.right] = node
+			queue.append(node.right)
+def find_target_node(root, target):
+	if not root: return None
+	if root.val == target: return root
+	left = find_target_node(root.left, target)
+	if left: return left
+	return find_target_node(root.right, target)
+def burn_tree(root, target_val):
+	if not root: return 0
+	parent_map = {}
+	build_parent_map(root,parent_map)
+	target_node = find_target_node(root,target_val)
+	visited = set()
+	queue = deque([target_node])
+	visited.add(target_node)
+	time = -1 #first level at t = 0
+	while queue:
+		sz = len(queue)
+		for _ in range(sz):
+			node = queue.popleft()
+			for neighbor in [node.left, node.right, parent_map.get(node)]:
+				if neighbor and neighbor not in visited:
+					visited.add(neighbor)
+					queue.append(neighbor)	
+		time += 1
+	return time
+```
+
+## Max Depth of a Binary Tree
+Given the `root` pointer of a binary tree, find its maximum depth.
+```python
+from collections import deque
+class TreeNode:
+	def __init__(self, val = 0, left = None, right = None):
+		self.val = val
+		self.left = left
+		self.right= right
+def maxDepth(root):
+	if not root: return 0
+	q = deque([root])
+	depth = 0
+	while q:
+		sz = len(q)
+		depth ++
+		for _ in range(sz):
+			node = q.popleft()
+			if node.left: q.append(node.left)
+			if node.right: q.append(node.right)
+	return depth
+```
+
+## Sum Root to Leaf Numbers
+Given `root` to a binary tree whose node contain 0-9, each root to leaf path represents a number concatenating the digits along the way. Return sum of all sum numbers modulo 1003.
+
+```python
+class TreeNode:
+	def __init__(self,val = 0, left = None, right = None):
+		self.val = val
+		self.left = left
+		self.right = right
+def sum_root_to_leaf_numbers(root):
+	if not root: return 0
+	MOD = 1003
+	result = 0
+	stack = [(root,root.val % MOD)] #(node, cur_sum modulo)
+	while stack:
+		node, curr = stack.pop()
+		if not node.left and not node.right:
+			result = (result + curr) % MOD
+		if node.right:
+			next_val = (curr*10 + node.right.val) % MOD
+			stack.append((node.right, next_val))
+		if node.left:
+			next_val = (curr*10 + node.left.val) % MOD
+			stack.append((node.left, next_val))
+	return result
+```
+
+## Path Sum
+Given `root` of a binary tree, and an int `B`, determine whether there exists a root-to-leaf path in A such that sum of node values along that path equals B.
+
+Just DFS and pass cur sum bro
+
+```python
+class TreeNode:
+	def __init__(self, val = 0, left=  None, right = None):
+		self.val = val
+		self.left = left
+		self.right = right
+def has_path_sum(root, target_sum):
+	if not root: return 0
+	stack = [(root, root.val)] #(node, cur sum)
+	while stack:
+		node, cur_sum = stack.pop()
+		if not node.left and not node.right:
+			if cur_sum == target_sum: return 1
+		if node.right:
+			stack.append((node.right, cur_sum + node.right.val))
+		if node.left:
+			stack.append((node.left, cur_sum + node.left.val))
+	return 0
+```
+
+## Min Depth of a Binary Tree
+Given the `root` of a binary tree. Find its minimum depth. Basically min root-to-leaf path.
+
+```python
+from collections import deque
+class TreeNode:
+	def __init__(self,val = 0, left = None, right = None):
+		self.val = val
+		self.left = left
+		self.right = right
+def min_depth(root):
+	if not root: return 0
+	queue= deque([(root,1)]) #(node, curr depth)
+	while queue:
+		node, depth = queue.popleft()
+		if not node.left and not node.right: #return the earliest you reach leaf
+			return depth
+		if node.left: 
+			queue.append((node.left, depth + 1))
+		if node.right:
+			queue.append((node.right, depth + 1))
+	return 0	
+```
