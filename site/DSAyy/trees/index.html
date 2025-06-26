@@ -1324,6 +1324,81 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#root-to-leaf-paths-with-sum" class="md-nav__link">
+    <span class="md-ellipsis">
+      Root to leaf paths with sum
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invert-binary-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      Invert Binary Tree
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#least-common-ancestor-in-a-binary-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      Least Common Ancestor in a Binary Tree
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Least Common Ancestor in a Binary Tree">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      How
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flatten-binary-tree-to-linked-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      Flatten Binary tree to Linked List
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#order-of-peoples-heights" class="md-nav__link">
+    <span class="md-ellipsis">
+      Order of People's Heights
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Order of People&#39;s Heights">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how_32" class="md-nav__link">
+    <span class="md-ellipsis">
+      How
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2195,6 +2270,81 @@
       Min Depth of a Binary Tree
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#root-to-leaf-paths-with-sum" class="md-nav__link">
+    <span class="md-ellipsis">
+      Root to leaf paths with sum
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#invert-binary-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      Invert Binary Tree
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#least-common-ancestor-in-a-binary-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      Least Common Ancestor in a Binary Tree
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Least Common Ancestor in a Binary Tree">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how_31" class="md-nav__link">
+    <span class="md-ellipsis">
+      How
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flatten-binary-tree-to-linked-list" class="md-nav__link">
+    <span class="md-ellipsis">
+      Flatten Binary tree to Linked List
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#order-of-peoples-heights" class="md-nav__link">
+    <span class="md-ellipsis">
+      Order of People's Heights
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Order of People&#39;s Heights">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how_32" class="md-nav__link">
+    <span class="md-ellipsis">
+      How
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3520,6 +3670,196 @@ basically alternating direction every level</p>
         <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">:</span>
             <span class="n">queue</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">depth</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
     <span class="k">return</span> <span class="mi">0</span>    
+</code></pre></div>
+<h2 id="root-to-leaf-paths-with-sum">Root to leaf paths with sum<a class="headerlink" href="#root-to-leaf-paths-with-sum" title="Permanent link">&para;</a></h2>
+<p>Given <code>root</code> of a binary tree, and an int <code>B</code>. Find all root-to-leaf paths such that the sum of the node values along each path equals <code>B</code>.
+Return a list of these.</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">TreeNode</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">left</span> <span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">val</span> <span class="o">=</span> <span class="n">val</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">left</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">right</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">find_paths_with_sum</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">target_sum</span><span class="p">):</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span> <span class="k">return</span> <span class="n">res</span>
+    <span class="n">stack</span> <span class="o">=</span> <span class="p">[(</span><span class="n">root</span><span class="p">,</span> <span class="n">root</span><span class="o">.</span><span class="n">val</span><span class="p">,</span> <span class="p">[</span><span class="n">root</span><span class="o">.</span><span class="n">val</span><span class="p">])]</span> <span class="c1">#(node, cur sum, path list)</span>
+    <span class="k">while</span> <span class="n">stack</span><span class="p">:</span>
+        <span class="n">node</span><span class="p">,</span> <span class="n">curr_sum</span><span class="p">,</span> <span class="n">path</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">curr_sum</span> <span class="o">==</span> <span class="n">target_sum</span><span class="p">:</span>
+                <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">:</span>
+            <span class="n">new_path</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="p">[</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="o">.</span><span class="n">val</span><span class="p">]</span>
+            <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">curr_sum</span> <span class="o">+</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="o">.</span><span class="n">val</span><span class="p">,</span> <span class="n">new_path</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">:</span>
+            <span class="n">new_path</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="p">[</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="o">.</span><span class="n">val</span><span class="p">]</span>
+            <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">curr_sum</span> <span class="o">+</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="o">.</span><span class="n">val</span><span class="p">,</span> <span class="n">new_path</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">res</span>
+</code></pre></div>
+<h2 id="invert-binary-tree">Invert Binary Tree<a class="headerlink" href="#invert-binary-tree" title="Permanent link">&para;</a></h2>
+<p>Given <code>root</code> of binary tree, invert the binary tree in place, and return the root of inverted tree. Basically mirror image kar diya.</p>
+<p>Left becomes right and right becomes left.</p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">TreeNode</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">val</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">left</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">val</span> <span class="o">=</span> <span class="n">val</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">left</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">right</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">invert_binary_tree</span><span class="p">(</span><span class="n">root</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span> <span class="k">return</span> <span class="kc">None</span>
+    <span class="n">stack</span> <span class="o">=</span> <span class="p">[</span><span class="n">root</span><span class="p">]</span>
+    <span class="k">while</span> <span class="n">stack</span><span class="p">:</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+        <span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span>
+        <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">:</span>
+            <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">:</span>
+            <span class="n">stack</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">root</span>
+</code></pre></div>
+<h2 id="least-common-ancestor-in-a-binary-tree">Least Common Ancestor in a Binary Tree<a class="headerlink" href="#least-common-ancestor-in-a-binary-tree" title="Permanent link">&para;</a></h2>
+<p>Given <code>root</code> of an unordered binary tree, and two int <code>B</code> and <code>C</code>. Find value of LCA of nodes with value <code>B</code> and <code>C</code>. LCA is like deepest node with common descendents.</p>
+<h3 id="how_31">How<a class="headerlink" href="#how_31" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Locate each node and record its parent.<ul>
+<li>BFS from root.</li>
+<li>Do the parent mapping.</li>
+<li>store the <code>nodeB</code> and <code>nodeC</code> when you come across it.</li>
+<li>do untill both nodeB and nodeC are not found.</li>
+</ul>
+</li>
+<li>Build the ancestor chain for one node, then walk up from other.<ul>
+<li>Visit the ancestor chain of <code>nodeB</code>. Then check nodeC for the deepest ancestor already visited in <code>nodeB</code>'s chain.
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">TreeNode</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">left</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">val</span> <span class="o">=</span> <span class="n">val</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">left</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">right</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">find_lca</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">C</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">root</span><span class="p">:</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+    <span class="n">parent</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">parent</span><span class="p">[</span><span class="n">root</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">nodeB</span> <span class="o">=</span> <span class="n">nodeC</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">deque</span>
+     <span class="n">q</span><span class="o">=</span> <span class="n">deque</span><span class="p">([</span><span class="n">root</span><span class="p">])</span>
+    <span class="k">while</span> <span class="n">q</span><span class="p">:</span> <span class="c1">#fill the parent map and check if both nodes exist</span>
+        <span class="n">node</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">val</span> <span class="o">==</span> <span class="n">B</span><span class="p">:</span>
+            <span class="n">nodeB</span> <span class="o">=</span> <span class="n">node</span>
+        <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">val</span> <span class="o">==</span> <span class="n">C</span><span class="p">:</span>
+            <span class="n">nodeC</span> <span class="o">=</span> <span class="n">node</span>
+        <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">:</span>
+            <span class="n">parent</span><span class="p">[</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">]</span> <span class="o">=</span> <span class="n">node</span>
+            <span class="n">q</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">left</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">:</span>
+            <span class="n">parent</span><span class="p">[</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">]</span> <span class="o">=</span> <span class="n">node</span>
+            <span class="n">q</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">node</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">nodeB</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">nodeC</span><span class="p">:</span> <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+
+    <span class="n">ancestors</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span> <span class="c1">#find the common parent, from ancestor list</span>
+    <span class="n">curr</span> <span class="o">=</span> <span class="n">nodeB</span>
+    <span class="k">while</span> <span class="n">curr</span><span class="p">:</span>
+        <span class="n">ancestors</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">curr</span><span class="p">)</span>
+        <span class="n">curr</span> <span class="o">=</span> <span class="n">parent</span><span class="p">[</span><span class="n">curr</span><span class="p">]</span>
+    <span class="n">curr</span> <span class="o">=</span> <span class="n">nodeC</span>
+    <span class="k">while</span> <span class="n">curr</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">curr</span> <span class="ow">in</span> <span class="n">ancestors</span><span class="p">:</span> <span class="k">return</span> <span class="n">curr</span><span class="o">.</span><span class="n">val</span>
+        <span class="n">curr</span> <span class="o">=</span> <span class="n">parent</span><span class="p">[</span><span class="n">curr</span><span class="p">]</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</code></pre></div></li>
+</ul>
+</li>
+</ol>
+<h2 id="flatten-binary-tree-to-linked-list">Flatten Binary tree to Linked List<a class="headerlink" href="#flatten-binary-tree-to-linked-list" title="Permanent link">&para;</a></h2>
+<p>Given <code>root</code> of a binary tree. Flatten it into a linked list. 
+After flattening:
+1. Every node's left child is <code>NULL</code>
+2. Each node's right child points to the next node in preorder traversal of orignal tree.
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">TreeNode</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">left</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">val</span> <span class="o">=</span> <span class="n">val</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="n">left</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">right</span><span class="o">=</span>  <span class="n">right</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">flatten_binary_tree</span><span class="p">(</span><span class="n">root</span><span class="p">):</span>
+    <span class="n">curr</span> <span class="o">=</span> <span class="n">root</span>
+    <span class="k">while</span> <span class="n">curr</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">curr</span><span class="o">.</span><span class="n">left</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">curr</span> <span class="o">=</span> <span class="n">curr</span><span class="o">.</span><span class="n">right</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1">#find the rightmost node in left subtree</span>
+            <span class="n">pred</span> <span class="o">=</span> <span class="n">curr</span><span class="o">.</span><span class="n">left</span>
+            <span class="k">while</span> <span class="n">pred</span><span class="o">.</span><span class="n">right</span><span class="p">:</span>
+                <span class="n">pred</span> <span class="o">=</span> <span class="n">pred</span><span class="o">.</span><span class="n">right</span>
+            <span class="c1">#rewire the connections</span>
+            <span class="n">pred</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">curr</span><span class="o">.</span><span class="n">right</span>
+            <span class="n">curr</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">curr</span><span class="o">.</span><span class="n">left</span>
+            <span class="n">curr</span><span class="o">.</span><span class="n">left</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="n">curr</span> <span class="o">=</span> <span class="n">curr</span><span class="o">.</span><span class="n">right</span>
+    <span class="k">return</span> <span class="n">root</span>
+</code></pre></div></p>
+<h2 id="order-of-peoples-heights">Order of People's Heights<a class="headerlink" href="#order-of-peoples-heights" title="Permanent link">&para;</a></h2>
+<p>Given pos int <code>N</code>. arr <code>Heights</code> of len <code>N</code>, containing distinct heights of N people standing in a queue.</p>
+<p>arr <code>infront</code> of len <code>N</code>, where <code>InFronts[i]</code> is the number of people taller than the i-th person, who must stand infront of them.</p>
+<p>Return arr of len <code>N</code>, which is the actual ordering of heights from front to back that satisfies all the <code>infront</code> constraints.</p>
+<h3 id="how_32">How<a class="headerlink" href="#how_32" title="Permanent link">&para;</a></h3>
+<p>Sort all people by asc height. When inserting shortest to tallest, every unpplaced person is strictly taller than the current one.
+Hence, if a person of height <code>h</code> has infronts  = <code>k</code>, we need to place them at (<code>k+1</code>)th empty slot, among the remaining positions.</p>
+<p>To find k-th empty slot, and mark a slot as occupied, we can use a segment tree. Each leaf holds 1 if that is position is still free, Internal nodes store the sum of their children (count of free slots in that sub range)</p>
+<ol>
+<li>sort in asc (height, infont), by height</li>
+<li>build seg tree <code>[1..N]</code> init all leaf as 1 (all slots are free)</li>
+<li>for each pair (h,k) in sorted order:<ul>
+<li>Query the segment tree to find the index of (k+1)th free slot.</li>
+<li>place height at <span class="arithmatex">\(answer[pos - 1]\)</span> = h</li>
+<li>update the segtree at leaf pos to 0.</li>
+</ul>
+</li>
+<li>Return the filled answer.</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">SegmentTree</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">size</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">size</span> <span class="o">=</span> <span class="n">size</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">size</span><span class="p">)</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">build</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">l</span> <span class="p">,</span><span class="n">r</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">l</span> <span class="o">==</span> <span class="n">r</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+            <span class="k">return</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">l</span><span class="o">+</span><span class="n">r</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">node</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span>  <span class="n">l</span> <span class="p">,</span><span class="n">m</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="n">node</span><span class="o">*</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="p">[</span><span class="n">node</span> <span class="o">*</span> <span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="p">[</span><span class="n">node</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">node</span><span class="p">,</span> <span class="n">l</span> <span class="p">,</span><span class="n">r</span><span class="p">,</span> <span class="n">pos</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">l</span> <span class="o">==</span> <span class="n">r</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">return</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">l</span><span class="o">+</span><span class="n">r</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span>
+        <span class="k">if</span> <span class="n">pos</span> <span class="o">&lt;=</span> <span class="n">m</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">node</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">pos</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">node</span><span class="o">*</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">m</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="p">[</span><span class="n">node</span><span class="o">*</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="p">[</span><span class="n">node</span><span class="o">*</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">kth_free</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">node</span><span class="p">,</span><span class="n">l</span><span class="p">,</span><span class="n">r</span><span class="p">,</span><span class="n">k</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">l</span> <span class="o">==</span> <span class="n">r</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">l</span>
+        <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="n">l</span> <span class="o">+</span> <span class="n">r</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="n">left_count</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">tree</span><span class="p">[</span><span class="n">node</span><span class="o">*</span> <span class="mi">2</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">k</span> <span class="o">&lt;=</span> <span class="n">left_count</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">kth_free</span><span class="p">(</span><span class="n">node</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="n">l</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">k</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">kth_free</span><span class="p">(</span><span class="n">node</span><span class="o">*</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">m</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="n">r</span><span class="p">,</span> <span class="n">k</span><span class="o">-</span> <span class="n">left_count</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">reconstruct_queue</span><span class="p">(</span><span class="n">heights</span><span class="p">,</span> <span class="n">in_fronts</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">height</span><span class="p">)</span>
+    <span class="n">people</span> <span class="o">=</span> <span class="p">[(</span><span class="n">heights</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">in_fronts</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+    <span class="n">people</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+    <span class="n">seg</span> <span class="o">=</span> <span class="n">SegmentTree</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">seg</span><span class="o">.</span><span class="n">build</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">answer</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
+    <span class="k">for</span> <span class="n">h</span><span class="p">,</span> <span class="n">inf</span> <span class="ow">in</span> <span class="n">people</span><span class="p">:</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="n">inf</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="n">pos</span> <span class="o">=</span> <span class="n">sef</span><span class="o">.</span><span class="n">kth_free</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">k</span><span class="p">)</span>
+        <span class="n">answer</span><span class="p">[</span><span class="n">pos</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">h</span>
+        <span class="n">seg</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="n">pos</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">answer</span>
 </code></pre></div>
 
 

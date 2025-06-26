@@ -16,22 +16,39 @@ theme:
     - search.suggest
   
   palette:
-  - scheme: default
-    primary: indigo
-    accent: indigo
-    toggle:
-      icon: material/weather-night
-      name: Switch to dark mode
-  - scheme: slate
-    primary: deep purple
-    accent: deep purple
-    toggle:
-      icon: material/weather-sunny
-      name: Switch to light mode
-  - scheme: dracula
-    toggle:
-      icon: material/ghost
-      name: Dracula Mode
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+
+    - scheme: slate
+      primary: deep purple
+      accent: deep purple
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+    - scheme: dracula
+      toggle:
+        icon: material/ghost
+        name: Dracula Mode
+
+    - scheme: neon
+      primary: lime
+      accent: pink
+      toggle:
+        icon: material/lightbulb-on-outline
+        name: Neon Pulse Mode
+
+    - scheme: cyberpunk
+      primary: yellow
+      accent: light blue
+      toggle:
+        icon: material/robot
+        name: Cyberpunk Mode
+
 
 
 nav:
@@ -41,6 +58,7 @@ nav:
       - Dynamic Programming: DSAyy/dp.md
       - Graphs: DSAyy/graph.md
       - Trees: DSAyy/trees.md
+      - Two Pointers: DSAyy/TwoPointers.md
 
 markdown_extensions:
   - pymdownx.arithmatex:
