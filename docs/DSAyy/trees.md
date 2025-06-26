@@ -1494,3 +1494,207 @@ def min_depth(root):
 			queue.append((node.right, depth + 1))
 	return 0	
 ```
+
+## Root to leaf paths with sum
+Given `root` of a binary tree, and an int `B`. Find all root-to-leaf paths such that the sum of the node values along each path equals `B`.
+Return a list of these.
+
+```python
+class TreeNode:
+	def __init__(self, val = 0, left =None, right = None):
+		self.val = val
+		self.left = left
+		self.right = right
+def find_paths_with_sum(root, target_sum):
+	res = []
+	if not root: return res
+	stack = [(root, root.val, [root.val])] #(node, cur sum, path list)
+	while stack:
+		node, curr_sum, path = stack.pop()
+		if node.left is None and node.right is None:
+			if curr_sum == target_sum:
+				res.append(path)
+		if node.right:
+			new_path = path + [node.right.val]
+			stack.append((node.right, curr_sum + node.right.val, new_path))
+		if node.left:
+			new_path = path + [node.left.val]
+			stack.append((node.left, curr_sum + node.left.val, new_path))
+	return res
+```
+
+
+## Invert Binary Tree
+Given `root` of binary tree, invert the binary tree in place, and return the root of inverted tree. Basically mirror image kar diya.
+
+Left becomes right and right becomes left.
+
+```python
+class TreeNode:
+	def __init__(self,val = 0, left = None, right = None):
+		self.val = val
+		self.left = left
+		self.right = right
+def invert_binary_tree(root):
+	if not root: return None
+	stack = [root]
+	while stack:
+		node = stack.pop()
+		node.left, node.right = node.right, node.left
+		if node.left:
+			stack.append(node.left)
+		if node.right:
+			stack.append(node.right)
+	return root
+```
+
+## Least Common Ancestor in a Binary Tree
+Given `root` of an unordered binary tree, and two int `B` and `C`. Find value of LCA of nodes with value `B` and `C`. LCA is like deepest node with common descendents.
+
+### How
+1. Locate each node and record its parent.
+	- BFS from root.
+	- Do the parent mapping.
+	- store the `nodeB` and `nodeC` when you come across it.
+	- do untill both nodeB and nodeC are not found.
+2. Build the ancestor chain for one node, then walk up from other.
+	- Visit the ancestor chain of `nodeB`. Then check nodeC for the deepest ancestor already visited in `nodeB`'s chain.
+```python
+class TreeNode:
+	def __init__(self, val = 0, left = None, right = None):
+		self.val = val
+		self.left = left
+		self.right = right
+def find_lca(root, B, C):
+	if not root: return -1
+	parent = {}
+	parent[root] = None
+	nodeB = nodeC = None
+
+	from collections import deque
+	 q= deque([root])
+	while q: #fill the parent map and check if both nodes exist
+		node = q.popleft()
+		if node.val == B:
+			nodeB = node
+		if node.val == C:
+			nodeC = node
+		if node.left:
+			parent[node.left] = node
+			q.append(node.left)
+		if node.right:
+			parent[node.right] = node
+			q.append(node.right)
+	if not nodeB or not nodeC: return -1
+
+	ancestors = set() #find the common parent, from ancestor list
+	curr = nodeB
+	while curr:
+		ancestors.add(curr)
+		curr = parent[curr]
+	curr = nodeC
+	while curr:
+		if curr in ancestors: return curr.val
+		curr = parent[curr]
+	return -1
+```
+
+## Flatten Binary tree to Linked List
+Given `root` of a binary tree. Flatten it into a linked list. 
+After flattening:
+1. Every node's left child is `NULL`
+2. Each node's right child points to the next node in preorder traversal of orignal tree.
+```python
+class TreeNode:
+	def __init__(self, val = 0, left = None, right = None):
+		self.val = val
+		self.left = left
+		self.right=  right
+def flatten_binary_tree(root):
+	curr = root
+	while curr:
+		if curr.left is None:
+			curr = curr.right
+		else:
+			#find the rightmost node in left subtree
+			pred = curr.left
+			while pred.right:
+				pred = pred.right
+			#rewire the connections
+			pred.right = curr.right
+			curr.right = curr.left
+			curr.left = None
+			curr = curr.right
+	return root
+```
+
+
+## Order of People's Heights
+Given pos int `N`. arr `Heights` of len `N`, containing distinct heights of N people standing in a queue.
+
+arr `infront` of len `N`, where `InFronts[i]` is the number of people taller than the i-th person, who must stand infront of them.
+
+Return arr of len `N`, which is the actual ordering of heights from front to back that satisfies all the `infront` constraints.
+
+### How
+
+Sort all people by asc height. When inserting shortest to tallest, every unpplaced person is strictly taller than the current one.
+Hence, if a person of height `h` has infronts  = `k`, we need to place them at (`k+1`)th empty slot, among the remaining positions.
+
+To find k-th empty slot, and mark a slot as occupied, we can use a segment tree. Each leaf holds 1 if that is position is still free, Internal nodes store the sum of their children (count of free slots in that sub range)
+
+1. sort in asc (height, infont), by height
+2. build seg tree `[1..N]` init all leaf as 1 (all slots are free)
+3. for each pair (h,k) in sorted order:
+	- Query the segment tree to find the index of (k+1)th free slot.
+	- place height at $answer[pos - 1]$ = h
+	- update the segtree at leaf pos to 0.
+4. Return the filled answer.
+
+```python
+class SegmentTree:
+	def __init__(self, size):
+		self.size = size
+		self.tree = [0]*(4 * size)
+	def build(self, node, l ,r):
+		if l == r:
+			self.tree[node] = 1
+			return
+		m = (l+r)//2
+		self.build(node * 2,  l ,m)
+		self.build(node*2 + 1, m+1, r)
+		self.tree[node] = self.tree[node * 2] + self.tree[node * 2 + 1]
+	def update(self, node, l ,r, pos):
+		if l == r:
+			self.tree[node] = 0
+			return
+		m = (l+r)//2
+		if pos <= m:
+			self.update(node*2, l,m,pos)
+		else:
+			self.update(node*2 + 1, m + 1, r, pos)
+		self.tree[node] = self.tree[node*2] + self.tree[node*2 + 1]
+	def kth_free(self,node,l,r,k):
+		if l == r:
+			return l
+		m = (l + r) // 2
+		left_count = self.tree[node* 2]
+		if k <= left_count:
+			return self.kth_free(node*2, l,m,k)
+		else:
+			return self.kth_free(node*2 + 1, m+1, r, k- left_count)
+def reconstruct_queue(heights, in_fronts):
+	n = len(height)
+	people = [(heights[i], in_fronts[i]) for i in range(n)]
+	people.sort(key = lambda x: (x[0], x[1]))
+	seg = SegmentTree(n)
+	seg.build(1,1,n)
+	answer = [0]*n
+	for h, inf in people:
+		k = inf + 1
+		pos = sef.kth_free(1,1,n,k)
+		answer[pos - 1] = h
+		seg.update(1,1,n,pos)
+	return answer
+```
+
