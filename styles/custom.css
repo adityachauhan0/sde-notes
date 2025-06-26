@@ -1,0 +1,182 @@
+/* =============================
+   Custom Color Schemes
+   Material for MkDocs - SDE Prep A2Z
+   ============================= */
+
+/*
+  GENERAL NOTES
+  -------------
+  • Color variables prefixed with --md-* are Material for MkDocs hooks.
+  • We override component styles (header, sidebar, code, etc.) for a
+    coherent look that goes beyond the base palette.
+  • Each scheme is wrapped in a [data-md-color-scheme="<name>"] selector.
+  • Feel free to tweak hex values or add more rules – changes are hot-reloaded
+    when running `mkdocs serve`.
+*/
+
+/* ------------------------------------------------------------------
+   NEON PULSE (dark, glowing lime + magenta)
+   ------------------------------------------------------------------ */
+[data-md-color-scheme="neon"] {
+  /* Core palette */
+  --md-primary-fg-color:           #39ff14;  /* Lime */
+  --md-primary-fg-color--light:    #92ff7c;
+  --md-primary-fg-color--dark:     #00b732;
+  --md-primary-bg-color:           #000000;  /* Black header/sidebar */
+
+  --md-accent-fg-color:            #ff00ff;  /* Magenta */
+  --md-accent-fg-color--light:     #ff66ff;
+  --md-accent-fg-color--dark:      #b600b6;
+
+  --md-default-bg-color:           #000000;  /* Page background */
+  --md-default-fg-color:           #d0ffd6;  /* Default text */
+
+  /* Code & inline code */
+  --md-code-bg-color:              #0e0e0e;
+  --md-code-fg-color:              #39ff14;
+
+  /* Links */
+  --md-typeset-a-color:            var(--md-accent-fg-color);
+}
+
+/* Header & tabs */
+[data-md-color-scheme="neon"] .md-header,
+[data-md-color-scheme="neon"] .md-tabs {
+  background-color: var(--md-primary-bg-color) !important;
+  border-bottom: 1px solid var(--md-primary-fg-color);
+}
+
+[data-md-color-scheme="neon"] .md-header__title {
+  color: var(--md-primary-fg-color);
+  text-shadow: 0 0 6px var(--md-primary-fg-color), 0 0 12px var(--md-primary-fg-color);
+}
+
+/* Sidebar navigation */
+[data-md-color-scheme="neon"] .md-sidebar--primary {
+  background-color: var(--md-primary-bg-color);
+}
+
+[data-md-color-scheme="neon"] .md-nav__link--active,
+[data-md-color-scheme="neon"] .md-nav__link:focus,
+[data-md-color-scheme="neon"] .md-nav__link:hover {
+  color: var(--md-accent-fg-color);
+}
+
+/* Headings glow */
+[data-md-color-scheme="neon"] h1,
+[data-md-color-scheme="neon"] h2,
+[data-md-color-scheme="neon"] h3 {
+  text-shadow: 0 0 8px var(--md-primary-fg-color), 0 0 16px var(--md-primary-fg-color);
+}
+
+/* Code blocks */
+[data-md-color-scheme="neon"] pre,
+[data-md-color-scheme="neon"] pre > code {
+  background: var(--md-code-bg-color) !important;
+  color: var(--md-code-fg-color) !important;
+  border: 1px solid var(--md-primary-fg-color--dark);
+  border-radius: 6px;
+}
+
+[data-md-color-scheme="neon"] code {
+  background: var(--md-code-bg-color);
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+/* Admonitions (tips, notes, etc.) */
+[data-md-color-scheme="neon"] .admonition,
+[data-md-color-scheme="neon"] details.admonition {
+  background: #0b0b0b;
+  border-left: 4px solid var(--md-accent-fg-color);
+}
+
+/* ------------------------------------------------------------------
+   CYBERPUNK (dark indigo + cyan + yellow with scan-lines)
+   ------------------------------------------------------------------ */
+[data-md-color-scheme="cyberpunk"] {
+  --md-primary-fg-color:           #ffea00;  /* Yellow */
+  --md-primary-fg-color--light:    #fff350;
+  --md-primary-fg-color--dark:     #c7b800;
+  --md-primary-bg-color:           #12121c;  /* Very dark indigo */
+
+  --md-accent-fg-color:            #00e5ff;  /* Cyan */
+  --md-accent-fg-color--light:     #6effff;
+  --md-accent-fg-color--dark:      #00a0b5;
+
+  --md-default-bg-color:           #1a1a2e;
+  --md-default-fg-color:           #e0e0e0;
+
+  --md-code-bg-color:              #0f1024;
+  --md-code-fg-color:              #ffea00;
+
+  --md-typeset-a-color:            var(--md-accent-fg-color);
+}
+
+[data-md-color-scheme="cyberpunk"] .md-header,
+[data-md-color-scheme="cyberpunk"] .md-tabs {
+  background-color: var(--md-primary-bg-color) !important;
+  border-bottom: 1px solid var(--md-accent-fg-color);
+}
+
+[data-md-color-scheme="cyberpunk"] .md-header__title {
+  color: var(--md-primary-fg-color);
+  text-shadow: 0 0 6px var(--md-primary-fg-color), 0 0 12px var(--md-primary-fg-color);
+}
+
+[data-md-color-scheme="cyberpunk"] .md-sidebar--primary {
+  background-color: var(--md-primary-bg-color);
+}
+
+[data-md-color-scheme="cyberpunk"] .md-nav__link--active,
+[data-md-color-scheme="cyberpunk"] .md-nav__link:focus,
+[data-md-color-scheme="cyberpunk"] .md-nav__link:hover {
+  color: var(--md-accent-fg-color);
+}
+
+/* Scan-line overlay */
+[data-md-color-scheme="cyberpunk"] body::before {
+  content: "";
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-size: 100% 3px;
+}
+
+[data-md-color-scheme="cyberpunk"] pre,
+[data-md-color-scheme="cyberpunk"] pre > code {
+  background: var(--md-code-bg-color) !important;
+  color: var(--md-code-fg-color) !important;
+  border: 1px solid var(--md-accent-fg-color--dark);
+  border-radius: 6px;
+}
+
+[data-md-color-scheme="cyberpunk"] code {
+  background: var(--md-code-bg-color);
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+[data-md-color-scheme="cyberpunk"] .admonition,
+[data-md-color-scheme="cyberpunk"] details.admonition {
+  background: #141423;
+  border-left: 4px solid var(--md-accent-fg-color);
+}
+
+/* ------------------------------------------------------------------
+   DRACULA (optional subtle tweaks)
+   ------------------------------------------------------------------ */
+
+[data-md-color-scheme="dracula"] {
+  --md-default-fg-color: #f8f8f2;
+  --md-code-bg-color:    #282a36;
+  --md-code-fg-color:    #50fa7b;
+  --md-typeset-a-color:  #ff79c6;
+}
+
+
+/* =============================
+   End of custom schemes
+   ============================= */
