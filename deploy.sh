@@ -8,7 +8,7 @@ if [ -z "$1" ]; then
 fi
 
 # Activate virtual environment
-source venv/bin/activate
+source .venv/bin/activate
 
 # Stage, commit, push
 git add .
