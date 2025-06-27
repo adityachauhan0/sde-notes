@@ -18,6 +18,7 @@ Jaake padle gaandu:
 - 🌐 [Graphs](DSAyy/graph.md)
 - 🥬 [Trees](DSAyy/trees.md)
 - 🥈 [Two Pointers](DSAyy/TwoPointers.md)
+- 😔 [Linked Lists](DSAyy/LinkedList.md)
 ---
 
 

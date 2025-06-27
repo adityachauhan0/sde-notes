@@ -1,10 +1,11 @@
 {
-  "cssTheme": "Vanilla AMOLED",
+  "cssTheme": "Typewriter",
   "accentColor": "#b98c2d",
   "textFontFamily": "D2CodingLigature Nerd Font",
-  "monospaceFontFamily": "MonoLisa,D2CodingLigature Nerd Font",
-  "interfaceFontFamily": "FiraCode",
+  "monospaceFontFamily": "MonoLisa",
+  "interfaceFontFamily": "MonoLisa",
   "enabledCssSnippets": [
     "caret-animation"
-  ]
+  ],
+  "theme": "obsidian"
 }
