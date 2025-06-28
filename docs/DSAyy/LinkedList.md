@@ -417,3 +417,250 @@ def swapPair(head):
 		prev = first
 	return dummy.next
 ```
+
+## Rotate List
+Given a linked list, rotate it by k places.
+
+Just connect the linked list in a cycle. Then break at the right spot.
+
+Find the length, then move to the new tail ($n-B$ th node)
+
+```python
+class ListNode:
+	def __init__(self, val = 0, nxt = None):
+		self.val = val
+		self.next = nxt
+def rotateLL(head, k):
+	if not head or not head.next or k == 0:
+		return head
+	#find len and tail
+	length = 1
+	tail = head
+	while tail.next:
+		tail = tail.next
+		length += 1
+	#normalize k
+	k = k % length
+	tail.next  = head #make it circular
+	#find new tail (len - k)th node
+	newTail = head
+	for _ in range(length - k - 1):
+		newTail = newTail.next
+	newHead = newTail.next #break at the len-k - 1th node
+	newTail.next = None
+	return newHead# len - kth node is the new head
+```
+
+## Kth node from the middle
+Given a LL, find the value of kth node from the middle towards the head of the linkedlist.
+
+If no such node exists, return -1
+
+### How
+Find length, find the middle. To get the Bth node from middle, move B steps backwards from middle.
+
+```python
+class ListNode:
+	def __init__(self, val = 0, nxt = None):
+		self.val = val
+		self.next = nxt
+def kFromMid(head, k):
+	N = 0 #find len to get the mid
+	p = head
+	while p:
+		N += 1
+		p = p.next
+	#find mid
+	mid = N//2 + 1
+	target = mid - B
+	if target < 1: return -1
+	# go to the target
+	p = head
+	for i in range(1, target):
+		p = p.next
+	return p
+```
+
+## Reverse Alternate K nodes
+Given a singly LL, reverse every alternate B nodes in the list.
+
+3->4->7->8->10->12, output: 4->3->7->8->12->10
+
+### How
+1. reverse first `B` nodes.
+2. skip the next `B` nodes.
+3. Continue reversing and skipping
+
+```python
+class ListNode:
+	def __init__(self,val = 0, nxt = None):
+		self.val = val
+		self.next = nxt
+def revAltK(head,k):
+	if not head or k <= 1: return head
+	dummy = ListNode()
+	dummy.next = head
+	prevGroup = dummy
+	curr = head
+	doReverse = True
+	while curr:
+		#check if there are B nodes ahead
+		node = curr
+		count = 0
+		while node and count < k:
+			node = node.next
+			count += 1
+		if count < B: break
+		if doReverse:
+			prev,p = node, curr
+			for _ in range(k):
+				nxt = p.next
+				p.next = prev
+				prev = p
+				p = nxt
+			prevGroup.next = prev
+			prevGroup = curr
+			curr = node
+		else:
+			for _ in range(k):
+				prevGroup = curr
+				curr = curr.next
+		doReverse = not doReverse
+	return dummy.next
+```
+
+## Reverse LinkedList II
+Given singly LL, reverse nodes from pos `m` to `n` in one pass and in-place.
+
+### How
+1. Traverse to the node just before m (call it `prev`)
+2. Reverse the next $(n - m + 1)$ nodes.
+3. Carefully reconnect: before m, reversed seg, after n
+
+```python
+class ListNode:
+	def __init__(self, val = 0, nxt = None):
+		self.val = val
+		self.next = nxt
+def revII(head, m, n):
+	if not head or m == n: return head
+	dummy = new ListNode()
+	dummy.next = head
+	prev = dummy
+	for _ in range(1,m): #move to node just before m
+		prev = prev.next
+	reverse_start = prev.next
+	curr = reverse_start.next
+	#reverse nodes [m,n]
+	for _ in range(n - m):
+		reverse_start.next = curr.next
+		curr.next = prev.next
+		prev.next = curr
+		curr = reverse_start.next
+	return dummy.next
+```
+
+## Reorder List
+Given a singly LL, re order it to
+$$
+L_0 L_nL_1L_{n-1} ... L_xL_{n-x}
+$$
+1 ->2 -> 3 -> 4, output is 1->4->2->3
+
+### How
+1. Reverse the second half.
+2. Zip first and reversed second half
+
+```python
+class ListNode:
+	def __init__(self, val = 0, nxt = None):
+		self.val = val
+		self.next = nxt
+def reorder(head):
+	if not head or not head.next: return head
+	#find the middle
+	slow, fast = head, head
+	while fast.next and fast.next.next:
+		slow = slow.next
+		fast = fast.next.next
+	#rev the second half
+	prev,curr = None, slow.next
+	while curr:
+		nxt = curr.next
+		curr.next = prev
+		prev = curr
+		curr = nxt
+	slow.next = None
+	#merge the two halves
+	p1,p2 = head, prev
+	while p2:
+		n1,n2 = p1.next, p2.next
+		p1.next = p2
+		p2.next = n1
+		p1,p2 = n1,n2
+	return head
+```
+
+## Add two numbers as Lists
+Given two non-neg numbers as linkedlists, add them. Each list stores digits in reverse order.
+
+### How
+1. Trav both digit by digit
+2. maintain the carry
+
+```python
+class ListNode:
+	def __init__(self,val = 0, nxt = None):
+		self.val = val
+		self.next = nxt
+def addLL(A,B):
+	carry = 0
+	dummy = ListNode()
+	dummy.next = head
+	tail = dummy
+	while A or B or carry:
+		sum = carry
+		if A:
+			sum += A.val
+			A = A.next
+		if B:
+			sum += B.val
+			B = B.next
+		carry = sum//10
+		tail.next = ListNode(sum % 10)
+		tail = tail.next
+	return dummy.next
+```
+
+## List Cycle
+Given a LL, return the node where the cycle begins. If there is no cycle, return null.
+
+### How
+Tortoise Hare.
+1. To find cycle's entry point, move one pointer to head, and advance both pointers one at a time, the node where they meet is the cycle's start.
+
+```python
+class ListNode:
+	def __init__(self, val = 0, nxt =None):
+		self.val = val
+		self.next = None
+def cycle(head):
+	if not head: return None
+	slow,fast = head,head
+	while fast and fast.next:
+		slow = slow.next
+		fast = fast.next.next
+		if slow == fast:
+			#cycle mil gaya
+			ptr = head
+			while ptr != slow:
+				ptr = ptr.next
+				slow = slow.next
+			return ptr
+	return None
+```
+
+
+
+
+
