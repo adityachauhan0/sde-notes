@@ -20,6 +20,7 @@ Jaake padle gaandu:
 - 🥈 [Two Pointers](DSAyy/TwoPointers.md)
 - 😔 [Linked Lists](DSAyy/LinkedList.md)
 - （ ͜.人 ͜.）[Stacks and Queues](DSAyy/stacks_queues.md)
+- Ni༼ つ ◕_◕ ༽つgga [Strings](DSAyy/Strings.md)
 ---
 
 
