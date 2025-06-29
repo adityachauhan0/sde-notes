@@ -1375,10 +1375,21 @@ Also push to minSt if its a new minimum, when you pop, also pop from minSt if it
 </ol>
 <h2 id="hotel-service-nearest-hotel-in-a-grid">Hotel Service (Nearest Hotel in a grid)<a class="headerlink" href="#hotel-service-nearest-hotel-in-a-grid" title="Permanent link">&para;</a></h2>
 <p>Given a matrix of <span class="arithmatex">\(N \times M\)</span> of 0s and 1s. <span class="arithmatex">\(1 == hotel\)</span> and <code>Q</code> queries <code>B</code> (coordinates). Find the shortest distance from each query cell to nearest hotel. (measured in 4D).</p>
-<p>A = 0 0       B = 1 1
-    1 0           2 1
-                1 2
-Output: 1 0 2</p>
+<p>A = </p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>0 0
+1 0
+</code></pre></div></td></tr></table></div>
+
+<p>B = </p>
+<div class="codehilite"><table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>1 1
+2 1
+1 2
+</code></pre></div></td></tr></table></div>
+
+<p>Output: 1 0 2</p>
 <h3 id="how_5">How<a class="headerlink" href="#how_5" title="Permanent link">&para;</a></h3>
 <p>Use multisource BFS
 1. Stack BFS from every hotel cell (<span class="arithmatex">\(A[i][j] = 1\)</span>) simultaneously.
