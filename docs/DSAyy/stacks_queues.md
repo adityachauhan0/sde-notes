@@ -211,9 +211,16 @@ def largestRectArea(A):
 ## Hotel Service (Nearest Hotel in a grid)
 Given a matrix of $N \times M$ of 0s and 1s. $1 == hotel$ and `Q` queries `B` (coordinates). Find the shortest distance from each query cell to nearest hotel. (measured in 4D).
 
-A = 0 0       B = 1 1
-    1 0           2 1
-                1 2
+A = 
+
+	0 0
+	1 0
+
+B = 
+
+	1 1
+	2 1
+	1 2
 Output: 1 0 2
 
 ### How

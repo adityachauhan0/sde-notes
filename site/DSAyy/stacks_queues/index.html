@@ -9,6 +9,8 @@
       
       
       
+        <link rel="prev" href="../LinkedList/">
+      
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -16,7 +18,7 @@
     
     
       
-        <title>Stacks queues - SDE Prep A2Z</title>
+        <title>Stacks and Queues - SDE Prep A2Z</title>
       
     
     
@@ -113,7 +115,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Stacks queues
+              Stacks and Queues
             
           </span>
         </div>
@@ -266,10 +268,12 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../arrays/" class="md-tabs__link">
           
   
@@ -341,26 +345,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   
@@ -373,7 +382,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             DSA
@@ -513,6 +522,343 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Stacks and Queues
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Stacks and Queues
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#valid-parenthesis" class="md-nav__link">
+    <span class="md-ellipsis">
+      Valid Parenthesis
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#reverse-string-using-stack" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reverse String Using Stack
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#balanced-parentheses" class="md-nav__link">
+    <span class="md-ellipsis">
+      Balanced Parentheses
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#simplify-directory-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      Simplify Directory Path
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Simplify Directory Path">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how" class="md-nav__link">
+    <span class="md-ellipsis">
+      How
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#redundant-braces-in-expressions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Redundant Braces in Expressions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Redundant Braces in Expressions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      How
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#min-stack-stack-with-constant-time-minimum" class="md-nav__link">
+    <span class="md-ellipsis">
+      Min Stack: Stack with constant time minimum
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Min Stack: Stack with constant time minimum">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      How
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#maxpprod-maximum-special-product" class="md-nav__link">
+    <span class="md-ellipsis">
+      MAXPPROD: Maximum Special Product
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MAXPPROD: Maximum Special Product">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      How
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nearest-smaller-element" class="md-nav__link">
+    <span class="md-ellipsis">
+      Nearest Smaller Element.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#largest-rectange-in-histogram" class="md-nav__link">
+    <span class="md-ellipsis">
+      Largest Rectange in Histogram.
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Largest Rectange in Histogram.">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      How
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hotel-service-nearest-hotel-in-a-grid" class="md-nav__link">
+    <span class="md-ellipsis">
+      Hotel Service (Nearest Hotel in a grid)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Hotel Service (Nearest Hotel in a grid)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      How
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#first-non-repeating-character-in-stream" class="md-nav__link">
+    <span class="md-ellipsis">
+      First Non-repeating character in stream
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="First Non-repeating character in stream">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      How
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sliding-window-maximum" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sliding Window Maximum
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sliding Window Maximum">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      How
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#evaluate-expression-reverse-polish-notation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Evaluate Expression (Reverse Polish Notation)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Evaluate Expression (Reverse Polish Notation)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      How
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trapping-rain-water-total-this-time" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trapping Rain Water (total this time)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Trapping Rain Water (total this time)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      How
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -841,7 +1187,7 @@
 
 
 
-  <h1>Stacks queues</h1>
+  <h1>Stacks and Queues</h1>
 
 <h2 id="valid-parenthesis">Valid Parenthesis<a class="headerlink" href="#valid-parenthesis" title="Permanent link">&para;</a></h2>
 <p>Given a string containing bracket sequences, determine if the string is valid.
@@ -1215,6 +1561,28 @@ Increment left.</li>
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../LinkedList/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Linked Lists">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Linked Lists
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">

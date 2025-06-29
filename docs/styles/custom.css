@@ -1,182 +1,344 @@
-/* =============================
-   Custom Color Schemes
-   Material for MkDocs - SDE Prep A2Z
-   ============================= */
+/* =============================================================
+   Custom Color Schemes ─ Material for MkDocs
+   Project: SDE Prep A2Z
+   Last update: 2025‑06‑29
+   -------------------------------------------------------------
+   ⚙️   USAGE
+   • Each <scheme> below must have a matching entry under theme.palette
+     in your mkdocs.yml. Example:
 
-/*
-  GENERAL NOTES
-  -------------
-  • Color variables prefixed with --md-* are Material for MkDocs hooks.
-  • We override component styles (header, sidebar, code, etc.) for a
-    coherent look that goes beyond the base palette.
-  • Each scheme is wrapped in a [data-md-color-scheme="<name>"] selector.
-  • Feel free to tweak hex values or add more rules – changes are hot-reloaded
-    when running `mkdocs serve`.
-*/
+         palette:
+           - scheme: neon       # <‑‑ selector
+             toggle:
+               icon: material/lightbulb-on-outline
+               name: Neon Pulse Mode
 
-/* ------------------------------------------------------------------
-   NEON PULSE (dark, glowing lime + magenta)
-   ------------------------------------------------------------------ */
+   • Point extra_css to this file **after** any other custom styles so
+     our variables win the cascade:
+
+         extra_css:
+           - styles/custom-schemes.css  #  <- rename to whatever path
+
+   • Hot‑reload: `mkdocs serve` will pick up changes instantly.
+   -------------------------------------------------------------
+   🗺️   VARIABLE LEGEND
+   ──────────────────────────────────────────────────────────────
+   • --md-*  …  Stock hooks from Material for MkDocs (v9.5+).
+   • --c-*   …  Project‑specific helpers (currently just globals).
+   =============================================================*/
+
+/* -------------------------------------------------------------
+   GLOBAL DEFAULTS / SAFETY NETS
+   ------------------------------------------------------------- */
+:root {
+  --c-code-bg-fallback: #1e1e1e;
+}
+
+/* Hide Material’s built‑in palette button (we use custom schemes) */
+.md-header__button.md-icon[data-md-component="palette"] { display: none; }
+
+/* Generic icon & button colour fix for *all* custom schemes */
+[data-md-color-scheme="neon"] .md-icon,
+[data-md-color-scheme="cyberpunk"] .md-icon,
+[data-md-color-scheme="dracula"] .md-icon {
+  color: var(--md-typeset-color);
+}
+[data-md-color-scheme="neon"] .md-header__button,
+[data-md-color-scheme="cyberpunk"] .md-header__button,
+[data-md-color-scheme="dracula"] .md-header__button { color: var(--md-typeset-color); }
+/* -------------------------------------------------------------
+   NEON PULSE – Lime + Magenta on true-black
+   ------------------------------------------------------------- */
 [data-md-color-scheme="neon"] {
-  /* Core palette */
-  --md-primary-fg-color:           #39ff14;  /* Lime */
-  --md-primary-fg-color--light:    #92ff7c;
-  --md-primary-fg-color--dark:     #00b732;
-  --md-primary-bg-color:           #000000;  /* Black header/sidebar */
+  /* ===== Core palette ====================================== */
+  --md-primary-fg-color:            #39ff14;   /* Lime */
+  --md-primary-fg-color--light:     #9aff7c;
+  --md-primary-fg-color--dark:      #00b732;
+  --md-primary-bg-color:            #000;      /* Header / sidebar */
 
-  --md-accent-fg-color:            #ff00ff;  /* Magenta */
-  --md-accent-fg-color--light:     #ff66ff;
-  --md-accent-fg-color--dark:      #b600b6;
+  --md-accent-fg-color:             #ff00ff;   /* Magenta */
+  --md-accent-fg-color--light:      #ff66ff;
+  --md-accent-fg-color--dark:       #b600b6;
 
-  --md-default-bg-color:           #000000;  /* Page background */
-  --md-default-fg-color:           #d0ffd6;  /* Default text */
+  --md-default-bg-color:            #000;
+  --md-default-fg-color:            #c8ffd1;
+  --md-default-fg-color--light:     #e1ffe7;
+  --md-default-fg-color--dark:      #a0cfad;
+  --md-typeset-color:               var(--md-default-fg-color);
 
-  /* Code & inline code */
-  --md-code-bg-color:              #0e0e0e;
-  --md-code-fg-color:              #39ff14;
+  /* ===== Code ============================================== */
+  --md-code-bg-color:               #0e0e0e;   /* darker pane */
+  --md-code-fg-color:               #39ff14;   /* lime text   */
+  --md-code-hl-color:               #ff00ff33; /* translucent magenta for -hl-line */
+  --md-code-border-color:           #00b732;
 
-  /* Links */
-  --md-typeset-a-color:            var(--md-accent-fg-color);
+  /* ===== UI ================================================ */
+  --md-footer-bg-color:             var(--md-primary-bg-color);
+  --md-footer-fg-color:             var(--md-primary-fg-color);
+  --md-shadow-z2:                   0 0 4px var(--md-accent-fg-color--dark);
+  --md-typeset-table-color:         var(--md-accent-fg-color);
+  --md-typeset-link-color:          var(--md-accent-fg-color);
 }
 
-/* Header & tabs */
+/* ── Layout surfaces ───────────────────────────────────────── */
 [data-md-color-scheme="neon"] .md-header,
-[data-md-color-scheme="neon"] .md-tabs {
-  background-color: var(--md-primary-bg-color) !important;
-  border-bottom: 1px solid var(--md-primary-fg-color);
-}
+[data-md-color-scheme="neon"] .md-tabs           { background: var(--md-primary-bg-color) !important;
+                                                   border-bottom: 1px solid var(--md-primary-fg-color); }
+[data-md-color-scheme="neon"] .md-sidebar--primary { background: var(--md-primary-bg-color); }
 
-[data-md-color-scheme="neon"] .md-header__title {
-  color: var(--md-primary-fg-color);
-  text-shadow: 0 0 6px var(--md-primary-fg-color), 0 0 12px var(--md-primary-fg-color);
-}
+/* ── Header text / icons ───────────────────────────────────── */
+[data-md-color-scheme="neon"] .md-header__title,
+[data-md-color-scheme="neon"] .md-header__button,
+[data-md-color-scheme="neon"] .md-icon          { color: var(--md-primary-fg-color); }
+[data-md-color-scheme="neon"] .md-header__title { text-shadow: 0 0 6px var(--md-primary-fg-color),
+                                                             0 0 12px var(--md-primary-fg-color); }
 
-/* Sidebar navigation */
-[data-md-color-scheme="neon"] .md-sidebar--primary {
-  background-color: var(--md-primary-bg-color);
-}
-
+/* ── Navigation links ──────────────────────────────────────── */
 [data-md-color-scheme="neon"] .md-nav__link--active,
 [data-md-color-scheme="neon"] .md-nav__link:focus,
-[data-md-color-scheme="neon"] .md-nav__link:hover {
-  color: var(--md-accent-fg-color);
-}
+[data-md-color-scheme="neon"] .md-nav__link:hover { color: var(--md-accent-fg-color); }
 
-/* Headings glow */
+/* ── Body text & headings ──────────────────────────────────── */
+[data-md-color-scheme="neon"] .md-typeset        { color: var(--md-typeset-color); }
 [data-md-color-scheme="neon"] h1,
 [data-md-color-scheme="neon"] h2,
-[data-md-color-scheme="neon"] h3 {
-  text-shadow: 0 0 8px var(--md-primary-fg-color), 0 0 16px var(--md-primary-fg-color);
-}
+[data-md-color-scheme="neon"] h3                { text-shadow: 0 0 8px var(--md-primary-fg-color),
+                                                             0 0 16px var(--md-primary-fg-color); }
 
-/* Code blocks */
+/* ── Code blocks & inlines ─────────────────────────────────── */
+[data-md-color-scheme="neon"] code               { background: var(--md-code-bg-color);
+                                                   color: var(--md-code-fg-color);
+                                                   padding: .15em .35em;
+                                                   border-radius: 4px; }
 [data-md-color-scheme="neon"] pre,
-[data-md-color-scheme="neon"] pre > code {
-  background: var(--md-code-bg-color) !important;
-  color: var(--md-code-fg-color) !important;
-  border: 1px solid var(--md-primary-fg-color--dark);
-  border-radius: 6px;
-}
+[data-md-color-scheme="neon"] pre > code         { background: var(--md-code-bg-color) !important;
+                                                   color: var(--md-code-fg-color) !important;
+                                                   border: 1px solid var(--md-code-border-color);
+                                                   border-radius: 6px;
+                                                   line-height: 1.45; }
 
-[data-md-color-scheme="neon"] code {
-  background: var(--md-code-bg-color);
-  padding: 2px 4px;
-  border-radius: 4px;
-}
+/* ★ Force all Pygments token colours to inherit → lime text   */
+[data-md-color-scheme="neon"] .highlight span,
+[data-md-color-scheme="neon"] .codehilite span   { color: inherit !important; }
 
-/* Admonitions (tips, notes, etc.) */
+/* Highlighted line */
+[data-md-color-scheme="neon"] .highlight .hll    { background: var(--md-code-hl-color) !important; }
+
+/* ── Admonitions ───────────────────────────────────────────── */
 [data-md-color-scheme="neon"] .admonition,
-[data-md-color-scheme="neon"] details.admonition {
-  background: #0b0b0b;
-  border-left: 4px solid var(--md-accent-fg-color);
-}
+[data-md-color-scheme="neon"] details.admonition { background: #0b0b0b;
+                                                   border-left: 4px solid var(--md-accent-fg-color);
+                                                   box-shadow: var(--md-shadow-z2); }
 
-/* ------------------------------------------------------------------
-   CYBERPUNK (dark indigo + cyan + yellow with scan-lines)
-   ------------------------------------------------------------------ */
+/* ── Search box ────────────────────────────────────────────── */
+[data-md-color-scheme="neon"] .md-search__input  { background: var(--md-primary-bg-color);
+                                                   color: var(--md-typeset-color);
+                                                   border: 1px solid var(--md-accent-fg-color--dark); }
+[data-md-color-scheme="neon"] .md-search__input:focus
+                                                 { border-color: var(--md-accent-fg-color);
+                                                   box-shadow: 0 0 0 2px var(--md-accent-fg-color--light); }
+
+/* ── Tables & misc accents ─────────────────────────────────── */
+[data-md-color-scheme="neon"] a:hover            { text-decoration-color: var(--md-accent-fg-color); }
+[data-md-color-scheme="neon"] tr:nth-child(even) { background: rgba(57,255,20,.03); }
+
+/* -------------------------------------------------------------
+   CYBERPUNK – Indigo + Cyan + Yellow (CRT scan-lines)
+   ------------------------------------------------------------- */
 [data-md-color-scheme="cyberpunk"] {
-  --md-primary-fg-color:           #ffea00;  /* Yellow */
-  --md-primary-fg-color--light:    #fff350;
-  --md-primary-fg-color--dark:     #c7b800;
-  --md-primary-bg-color:           #12121c;  /* Very dark indigo */
+  /* ===== Core palette ====================================== */
+  --md-primary-fg-color:            #ffea00;
+  --md-primary-fg-color--light:     #fff650;
+  --md-primary-fg-color--dark:      #c7b800;
+  --md-primary-bg-color:            #12121c;
 
-  --md-accent-fg-color:            #00e5ff;  /* Cyan */
-  --md-accent-fg-color--light:     #6effff;
-  --md-accent-fg-color--dark:      #00a0b5;
+  --md-accent-fg-color:             #00e5ff;
+  --md-accent-fg-color--light:      #6effff;
+  --md-accent-fg-color--dark:       #009db6;
 
-  --md-default-bg-color:           #1a1a2e;
-  --md-default-fg-color:           #e0e0e0;
+  --md-default-bg-color:            #1a1a2e;
+  --md-default-fg-color:            #e0e0e0;
+  --md-default-fg-color--light:     #ffffff;
+  --md-default-fg-color--dark:      #b0b0b0;
+  --md-typeset-color:               var(--md-default-fg-color);
 
-  --md-code-bg-color:              #0f1024;
-  --md-code-fg-color:              #ffea00;
+  /* ===== Code ============================================== */
+  --md-code-bg-color:               #0f1024;
+  --md-code-fg-color:               #ffea00;
+  --md-code-hl-color:               #00e5ff33;
+  --md-code-border-color:           #009db6;
 
-  --md-typeset-a-color:            var(--md-accent-fg-color);
+  /* ===== UI ================================================ */
+  --md-footer-bg-color:             var(--md-primary-bg-color);
+  --md-footer-fg-color:             var(--md-accent-fg-color);
+  --md-shadow-z2:                   0 0 4px var(--md-accent-fg-color--dark);
+  --md-typeset-link-color:          var(--md-accent-fg-color);
 }
 
+/* Layout */
 [data-md-color-scheme="cyberpunk"] .md-header,
-[data-md-color-scheme="cyberpunk"] .md-tabs {
-  background-color: var(--md-primary-bg-color) !important;
-  border-bottom: 1px solid var(--md-accent-fg-color);
-}
+[data-md-color-scheme="cyberpunk"] .md-tabs     { background: var(--md-primary-bg-color) !important;
+                                                  border-bottom: 1px solid var(--md-accent-fg-color); }
+[data-md-color-scheme="cyberpunk"] .md-sidebar--primary { background: var(--md-primary-bg-color); }
 
-[data-md-color-scheme="cyberpunk"] .md-header__title {
-  color: var(--md-primary-fg-color);
-  text-shadow: 0 0 6px var(--md-primary-fg-color), 0 0 12px var(--md-primary-fg-color);
-}
+/* Header text / icons */
+[data-md-color-scheme="cyberpunk"] .md-header__title,
+[data-md-color-scheme="cyberpunk"] .md-header__button,
+[data-md-color-scheme="cyberpunk"] .md-icon      { color: var(--md-primary-fg-color); }
+[data-md-color-scheme="cyberpunk"] .md-header__title
+                                                 { text-shadow: 0 0 6px var(--md-primary-fg-color),
+                                                              0 0 12px var(--md-primary-fg-color); }
 
-[data-md-color-scheme="cyberpunk"] .md-sidebar--primary {
-  background-color: var(--md-primary-bg-color);
-}
-
+/* Navigation */
 [data-md-color-scheme="cyberpunk"] .md-nav__link--active,
 [data-md-color-scheme="cyberpunk"] .md-nav__link:focus,
-[data-md-color-scheme="cyberpunk"] .md-nav__link:hover {
-  color: var(--md-accent-fg-color);
-}
+[data-md-color-scheme="cyberpunk"] .md-nav__link:hover
+                                                 { color: var(--md-accent-fg-color); }
 
-/* Scan-line overlay */
-[data-md-color-scheme="cyberpunk"] body::before {
-  content: "";
-  position: fixed;
-  z-index: 9999;
-  inset: 0;
-  pointer-events: none;
-  background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
-  background-size: 100% 3px;
-}
+/* Body text */
+[data-md-color-scheme="cyberpunk"] .md-typeset  { color: var(--md-typeset-color); }
 
+/* CRT scan-lines */
+[data-md-color-scheme="cyberpunk"] body::before { content: "";
+                                                  position: fixed; inset: 0; pointer-events: none;
+                                                  z-index: 9999;
+                                                  background-image: linear-gradient(rgba(255,255,255,.05) 1px,
+                                                                                    transparent 1px);
+                                                  background-size: 100% 3px; }
+
+/* Code */
+[data-md-color-scheme="cyberpunk"] code          { background: var(--md-code-bg-color);
+                                                   color: var(--md-code-fg-color);
+                                                   padding: .15em .35em; border-radius: 4px; }
 [data-md-color-scheme="cyberpunk"] pre,
-[data-md-color-scheme="cyberpunk"] pre > code {
-  background: var(--md-code-bg-color) !important;
-  color: var(--md-code-fg-color) !important;
-  border: 1px solid var(--md-accent-fg-color--dark);
-  border-radius: 6px;
-}
+[data-md-color-scheme="cyberpunk"] pre > code    { background: var(--md-code-bg-color) !important;
+                                                   color: var(--md-code-fg-color) !important;
+                                                   border: 1px solid var(--md-code-border-color);
+                                                   border-radius: 6px; line-height: 1.45; }
 
-[data-md-color-scheme="cyberpunk"] code {
-  background: var(--md-code-bg-color);
-  padding: 2px 4px;
-  border-radius: 4px;
-}
+/* Force Pygments tokens to inherit */
+[data-md-color-scheme="cyberpunk"] .highlight span,
+[data-md-color-scheme="cyberpunk"] .codehilite span
+                                                 { color: inherit !important; }
+[data-md-color-scheme="cyberpunk"] .highlight .hll
+                                                 { background: var(--md-code-hl-color) !important; }
 
+/* Admonitions */
 [data-md-color-scheme="cyberpunk"] .admonition,
-[data-md-color-scheme="cyberpunk"] details.admonition {
-  background: #141423;
-  border-left: 4px solid var(--md-accent-fg-color);
-}
+[data-md-color-scheme="cyberpunk"] details.admonition
+                                                 { background: #141423;
+                                                   border-left: 4px solid var(--md-accent-fg-color);
+                                                   box-shadow: var(--md-shadow-z2); }
 
-/* ------------------------------------------------------------------
-   DRACULA (optional subtle tweaks)
-   ------------------------------------------------------------------ */
+/* Search input */
+[data-md-color-scheme="cyberpunk"] .md-search__input
+                                                 { background: var(--md-primary-bg-color);
+                                                   color: var(--md-typeset-color);
+                                                   border: 1px solid var(--md-accent-fg-color--dark); }
+[data-md-color-scheme="cyberpunk"] .md-search__input:focus
+                                                 { border-color: var(--md-accent-fg-color);
+                                                   box-shadow: 0 0 0 2px var(--md-accent-fg-color--light); }
 
+/* Accent underline & tables */
+[data-md-color-scheme="cyberpunk"] a:hover       { text-decoration-color: var(--md-accent-fg-color); }
+[data-md-color-scheme="cyberpunk"] tr:nth-child(even)
+                                                 { background: rgba(0,229,255,.03); }
+
+/* -------------------------------------------------------------
+   DRACULA – Lavender + Pink on Midnight
+   ------------------------------------------------------------- */
 [data-md-color-scheme="dracula"] {
-  --md-default-fg-color: #f8f8f2;
-  --md-code-bg-color:    #282a36;
-  --md-code-fg-color:    #50fa7b;
-  --md-typeset-a-color:  #ff79c6;
+  /* ===== Core palette ====================================== */
+  --md-primary-fg-color:            #bd93f9;
+  --md-primary-fg-color--light:     #d6b4ff;
+  --md-primary-fg-color--dark:      #8a63c5;
+  --md-primary-bg-color:            #282a36;
+
+  --md-accent-fg-color:             #ff79c6;
+  --md-accent-fg-color--light:      #ff9ad7;
+  --md-accent-fg-color--dark:       #c94f9b;
+
+  --md-default-bg-color:            #282a36;
+  --md-default-fg-color:            #f8f8f2;
+  --md-default-fg-color--light:     #ffffff;
+  --md-default-fg-color--dark:      #bbbbbb;
+  --md-typeset-color:               var(--md-default-fg-color);
+
+  /* ===== Code ============================================== */
+  --md-code-bg-color:               #1e1f29;
+  --md-code-fg-color:               #50fa7b;
+  --md-code-hl-color:               #ff79c633;
+  --md-code-border-color:           #6272a4;
+
+  /* ===== UI ================================================ */
+  --md-footer-bg-color:             var(--md-primary-bg-color);
+  --md-footer-fg-color:             var(--md-primary-fg-color);
+  --md-shadow-z2:                   0 0 4px var(--md-accent-fg-color--dark);
+  --md-typeset-link-color:          var(--md-accent-fg-color);
 }
 
+/* Layout */
+[data-md-color-scheme="dracula"] .md-header,
+[data-md-color-scheme="dracula"] .md-tabs       { background: var(--md-primary-bg-color) !important;
+                                                  border-bottom: 1px solid var(--md-primary-fg-color); }
+[data-md-color-scheme="dracula"] .md-sidebar--primary
+                                                 { background: var(--md-primary-bg-color); }
 
-/* =============================
-   End of custom schemes
-   ============================= */
+/* Header text / icons */
+[data-md-color-scheme="dracula"] .md-header__title,
+[data-md-color-scheme="dracula"] .md-header__button,
+[data-md-color-scheme="dracula"] .md-icon       { color: var(--md-primary-fg-color); }
+[data-md-color-scheme="dracula"] .md-header__title
+                                                 { text-shadow: 0 0 6px var(--md-primary-fg-color),
+                                                              0 0 12px var(--md-primary-fg-color); }
+
+/* Navigation */
+[data-md-color-scheme="dracula"] .md-nav__link--active,
+[data-md-color-scheme="dracula"] .md-nav__link:focus,
+[data-md-color-scheme="dracula"] .md-nav__link:hover
+                                                 { color: var(--md-accent-fg-color); }
+
+/* Body text */
+[data-md-color-scheme="dracula"] .md-typeset    { color: var(--md-typeset-color); }
+
+/* Code */
+[data-md-color-scheme="dracula"] code           { background: var(--md-code-bg-color);
+                                                  color: var(--md-code-fg-color);
+                                                  padding: .15em .35em; border-radius: 4px; }
+[data-md-color-scheme="dracula"] pre,
+[data-md-color-scheme="dracula"] pre > code     { background: var(--md-code-bg-color) !important;
+                                                  color: var(--md-code-fg-color) !important;
+                                                  border: 1px solid var(--md-code-border-color);
+                                                  border-radius: 6px; line-height: 1.45; }
+
+/* Force Pygments tokens */
+[data-md-color-scheme="dracula"] .highlight span,
+[data-md-color-scheme="dracula"] .codehilite span
+                                                 { color: inherit !important; }
+[data-md-color-scheme="dracula"] .highlight .hll
+                                                 { background: var(--md-code-hl-color) !important; }
+
+/* Admonitions */
+[data-md-color-scheme="dracula"] .admonition,
+[data-md-color-scheme="dracula"] details.admonition
+                                                 { background: #1d1e27;
+                                                   border-left: 4px solid var(--md-accent-fg-color);
+                                                   box-shadow: var(--md-shadow-z2); }
+
+/* Search input */
+[data-md-color-scheme="dracula"] .md-search__input
+                                                 { background: var(--md-primary-bg-color);
+                                                   color: var(--md-typeset-color);
+                                                   border: 1px solid var(--md-accent-fg-color--dark); }
+[data-md-color-scheme="dracula"] .md-search__input:focus
+                                                 { border-color: var(--md-accent-fg-color);
+                                                   box-shadow: 0 0 0 2px var(--md-accent-fg-color--light); }
+
+/* Accent underline & tables */
+[data-md-color-scheme="dracula"] a:hover         { text-decoration-color: var(--md-accent-fg-color); }
+[data-md-color-scheme="dracula"] tr:nth-child(even)
+                                                 { background: rgba(253,121,198,.03); }
+
+/* -------------------------------------------------------------
+   End custom dark schemes
+   ------------------------------------------------------------- */
