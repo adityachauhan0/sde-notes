@@ -19,6 +19,7 @@ Jaake padle gaandu:
 - 🥬 [Trees](DSAyy/trees.md)
 - 🥈 [Two Pointers](DSAyy/TwoPointers.md)
 - 😔 [Linked Lists](DSAyy/LinkedList.md)
+- （ ͜.人 ͜.）[Stacks and Queues](DSAyy/stacks_queues.md)
 ---
 
 

@@ -60,6 +60,7 @@ nav:
       - Trees: DSAyy/trees.md
       - Two Pointers: DSAyy/TwoPointers.md
       - Linked Lists: DSAyy/LinkedList.md
+      - Stacks and Queues: DSAyy/stacks_queues.md
 
 markdown_extensions:
   - pymdownx.arithmatex:
