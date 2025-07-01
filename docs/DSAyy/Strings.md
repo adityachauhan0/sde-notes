@@ -195,3 +195,230 @@ def longestCommonPrefix(A):
 				return A[0][:i]
 	return A[0][:minLen]
 ```
+
+## Count and Say
+1. Start with 1
+2. Then say the count and the key of the count.
+- 1211 -> 111221
+- 21 -> 1211
+Given int `n`, generate the nth term, in the count and say sequence.
+So
+1. n = 2, output = 11
+2. n = 5, 111221
+	- 1; 11; 21; 1211; 111221
+	- Each term describes the previous term.
+```python
+def countAndSay(n):
+	res = "1"
+	for seq in range(2,n+1):
+		next = ""
+		i = 0
+		while i < len(res):
+			count = 1 #count the freq of cur el
+			while i + 1 < len(res) and res[i] = res[i+1]:
+				i += 1
+				count += 1
+			next += str(count) + res[i] #add it to the res
+			i += 1
+		res = next
+	return res
+```
+
+## Amazing Subarrays
+Given a string, find the num of amazing substrings.
+
+Subtring is amazing if it starts with a vowel.
+Substrings are continuous.
+
+### How
+For each index i, if $A[i]$ is a vowel, add (n-i) to the answer. Since there are (n-i) substrings starting fron i.
+
+```python
+def amazingSubs(A):
+	MOD = 10003
+	ans = 0
+	for i,c in enumerate(A):
+		if c.lower() in ['a','e','i','o','u']:
+			ans += len(A) - i
+			if ans >= MOD: ans %= MOD
+	return ans % MOD
+```
+
+## Implement StrStr
+Given a string (haystack) and another string (needle), return the index of the first occurence of `B` in `A`, or `-1` if `B` does not occur in `A`.
+
+### How
+Knuth Morris Pratt algorithm.
+Precompute an `LPS` (longest prefix suffix) of the needle in the haystack.
+Slide this pattern over the haystack, when a mismatch occurs, jump using the LPS array to avoid unnecesarry comparisons.
+
+```python
+def strStr(A,B):
+	if len(B) == 0:
+		return -1
+	if len(A) == 0 or len(B) > len(A):
+		return -1
+	lps = buildLPS(B)
+	i = j = 0
+	while i < len(A):
+		if A[i] == B[j]:
+			i += 1
+			j += 1
+			if j == len(B):
+				return i - j
+		else:
+			if j != 0:
+				j = lps[j-1]
+			else:
+				i += 1
+	return -1
+def buildLPS(pat):
+	lps = [0]*len(pat)
+	length = 0 #len of the longest prefix suffix
+	i = 1
+	while i < len(pat):
+		if pat[i] == pat[length]:
+			length += 1
+			lps[i] = length
+			i+= 1
+		else :
+			if length != 0:
+				length = lps[length - 1]
+			else:
+				lps[i] = 0
+				i += 1
+	return lps
+```
+
+## Stringoholics
+Given arr of strings, each made only from `a` and `b`. At each time i, every string is circularly rotated to the left by (`i` % `length`) letters.
+
+After some time, a string returns to its original form.
+
+**Goal**: Find the min time `t` where all strings in A are at their original state simultaneously.
+Output: t mod $10^9 + 7$ 
+
+Example:
+1. A = a, ababa, aba; Output = 4
+2. A = a, aa; Output = 1
+
+### How
+1. For each string , find the first time `t` such that repeated by that time it returns to its starting form.
+2. For each string, its **reset period** p is found via KMP (smallest period of repetition in the string)
+3. For each p, find minimal t such that $\frac{t(t+1)}{2}$ mod p = 0 (the net number of rotations modulo p is 0)
+4. The answer is lcm(all t) (smallest time that aligns)
+
+```python
+from math import gcd
+from functools import reduce
+MOD = 10**9 + 7
+def lcm(a,b):
+	return a* b//gcd(a,b)
+def lcm_list(lst):
+	return reduce(lcm,lst)
+def buildLPS(s):
+	n = len(s)
+	lps = [0]*n
+	length = 0
+	i = 1
+	while i < n:
+		if s[i] == s[length]:
+			length += 1
+			lps[i] = length
+			i += 1
+		else:
+			if length != 0:
+				length = lps[length - 1]
+			else:
+				lps[i] = 0
+				i += 1
+	return lps
+def get_period(s):
+	lps = buildLPS(s)
+	n = len(s)
+	length = lps[-1]
+	if length > 0 and n % (n - length) == 0:
+		return n - length
+	else:
+		return n
+def minimal_t(p):
+	t = 1
+	while (t * (t+1))//2 % p != 0:
+		t += 1
+	return t
+def stringoholics(A):
+	t_list = []
+	for s in A:
+		p = get_period(s)
+		t = minimal_t(p)
+		t_list.append(t)
+	return lcm_list(t_list) % MOD
+```
+
+## Min Characters to Make a string palindrome.
+Given a string, the only allowed operation is to insert chars at the **beginning** of the string. Find the min chars that must be inserted to make A a palindrome.
+
+A = `ABC`, Output = `2`
+
+### How
+Intuition
+- To minimize the insertions, find the **longest palindromic prefix** of A.
+- All the characters after this prefix must be mirrored at the front.
+KMP
+- Let B be reverse of A
+- Build T = A + `#` + reverse(A)
+- Compute the LPS(T)
+- L = lps(end) gives length of the longest palindromic prefix in A
+- answer = n - L, where $n = |A|$ .
+
+```python
+def buildLPS(s):
+	n = len(s)
+	lps = [0]*n
+	length = 0
+	i = 1
+	while i < n:
+		if s[i] == s[length]:
+			length += 1
+			lps[i] = length
+			i += 1
+		else:
+			if length != 0:
+				length = lps[length - 1]
+			else:
+				lps[i] = 0
+				i += 1
+	return lps
+def minCharsToMakePalindrome(A):
+	revA = A[::-1]
+	T = A + '#' + revA
+	lps = buildLPS(T)
+	LPS_len = lps[-1]
+	return len(A) - LPS_len
+```
+
+
+## Convert to Palindrome
+Given a string of lowercase chars, determine if it is possible to make it a palindrome by removing exactly one character.
+
+A = `abcba`, Output = 1
+
+A = `abecbea`, Output = 0
+
+```python
+def isConvertable(A):
+	l,r = 0, len(A) - 1
+	while l < r:
+		if A[l] == A[r]:
+			l += 1
+			r -= 1
+		else:
+			return isPalindrome(A, l+1, r) or isPalindrome(A,l, r-1)
+	return 1
+def isPalindrome(A,i,j):
+	while i < j:
+		if A[i] != A[j]: return False
+		i += 1
+		j -= 1
+	return True
+```
