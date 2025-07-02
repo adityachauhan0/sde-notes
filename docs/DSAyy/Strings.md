@@ -170,7 +170,7 @@ def permuteStrings(A,B):
 	for c in A:
 		freq[ord(c) - ord('a')] += 1
 	for c in B:
-		freq[ord(c) - ord('a')] += 1
+		freq[ord(c) - ord('a')] -= 1
 		if freq[ord(c) - ord('a')] < 0:
 			return 0
 	return 1
