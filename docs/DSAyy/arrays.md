@@ -462,5 +462,281 @@ C: $1.2$
 Output: YES YES OH YESSSS
 
 ```python
+def solve(a):
+	A,B,C = [],[],[]
+	for s in a:
+		x = float(s)
+		if 0 < x < 2.0/3:
+			A.append(x)
+		elif 2.0/3 <= x <= 1.0:
+			B.append(x)
+		elif 1.0 < x < 2.0:
+			C.append(x)
+	A.sort()
+	B.sort()
+	# case1: 3 from A
+	if len(A) >= 3 and  1 < sum(A[-3:]) < 2:
+		return 1
+	# case2: 2 from A and 1 from B
+	if len(A) >= 2 and len(B) >= 1 and A[-1] + A[-2] + B[0] < 2:
+		return 1
+	#case 3: 2 from A and 1 from C
+	if len(A) >= 2 and len(C) >= 1 and A[0] + A[1] + C[0] < 2:
+		return 1
+	#case 4: 2 from B, 1 from A
+	if len(B) >= 2 and len(A) >= 1 and B[0] + B[1] + A[0] < 2:
+		return 1
+	#case 5: 1 from each
+	if A and B and C and 1 < A[0] + B[0] + C[0] < 2:
+		return 1
+	return 0
+```
 
+## Balance Array
+Given an array of int. Count the special elements. Element is special if removing it makes the sum of elements at even indices is equal to sum at odd indices.
+
+Formally:
+$$
+\sum_{\text{even j}} A_j^` = \sum_{\text{odd j}}A_j^`
+$$
+### How
+Simulate parity flipping.
+
+Let
+- leftEven/leftOdd: Sum of even/odd indices to the left of i (before removal)
+- rightEven/rightOdd: Sum of even/odd indices to the right of i (before removal)
+
+**After Removal of $A_i$**: All right side elements swap parity.
+- New even sum = leftEven + rightOdd
+- New odd sum = leftOdd + rightEven
+
+```python
+def countSpecial(A):
+	n = len(A)
+	totalEven, totalOdd = 0,0
+	for i in range(n):
+		if i % 2 == 0:
+			totalEven += A[i]
+		else:
+			totalOdd += A[i]
+	leftEven, leftOdd = 0,0
+	special = 0
+	for i in range(n):
+		if i % 2 == 0:
+			totalEven -= A[i]
+		else:
+			totalOdd -= A[i]
+		#swap
+		newEven = leftEven + totalOdd
+		newOdd = leftOdd + totalEven
+		if newEven == newOdd: count += 1
+		#update
+		if i % 2 == 0:
+			leftEven += A[i]
+		else:
+			leftOdd += A[i]
+	return count
+```
+## Find duplicate in the array.
+Given a read only array of n+1 int between 1 and n, find any repeated number in A in $O(n)$ time and $O(1)$ space.
+
+If no duplicate, return -1
+
+Example: A = 3 4 1 4 2, Output = 4 
+
+### How?
+View A as linked list. 
+- For every $i$, next node is $A[i]$. Since there are only $n+1$ elements and only n values, the pigeonhole principle ensures there is a cycle. The repeated number is the start of the cycle.
+
+- Use tortoise and hare, the moment slow and fast meet, reset slow to $A[0]$.
+
+- When they meet again, that is the position of the duplicate number.
+
+```python
+def find_duplicates(nums):
+	slow,fast = nums[0],nums[0]
+	while True:
+		slow = nums[slow]
+		fast = nums[nums[fast]]
+		if slow == fast:
+			break
+	#find the head of the cycle
+	slow = nums[0]
+	while slow != fast:
+		slow = nums[slow]
+		fast = nums[fast]
+	return slow
+```
+## Max Consecutive Gap (Linear Time Bucketing)
+Given an non-neg int array, find max difference between successive elements in the sorted array. Return $0$ if $n < 2$. Do this is $O(n)$ time and $O(n)$ space.
+
+Note the array is not sorted.
+
+### How
+Insight: If array has n elements, spread min to max, the min possible maximum gap (if numbers are evenly spaced) is:
+$$
+gap = \frac{max- min}{n - 1}
+$$
+Idea: Divide the range $[min,max]$ into $n-1$ buckets of size $\geq$ gap. Place each element in the bucket. The max gap is the difference between the min of the next non-empty bucket and the max of previous.
+
+```python
+import math
+def maximum_gap(nums):
+	n = len(nums)
+	if n < 2: return 0
+	minA = min(nums)
+	maxA = max(nums)
+	if minA == maxA: return 0
+	#step 1 compute the bucket size
+	gap = max(1,math.ceil((maxA - minA)/(n-1)))
+	bucket_count = (maxA - minA) // gap + 1
+	#step 2: Init the buckets
+	buckets = [[math.inf, -math.inf] for _ in range(bucket_count)]
+	#step 3: place each num into bucket
+	for x in nums:
+		idx = (x - minA) // gap
+		buckets[idx][0] = min(bucket[idx][0],x) #min
+		buckets[idx][1] = max(bucket[idx][1],x) #max
+	#step 4: scan buckets to find the maximum gap
+	max_gap = 0
+	prev_max = minA
+	for b_min, b_max in buckets:
+		if b_min == math.inf: #Empty bucket
+			continue
+		max_gap = max(max_gap, b_min - prev_max)
+		prev_max = b_max
+	return max_gap
+```
+# Arrangements
+## Sort Array with Squares!
+Given a sorted array on numbers, return a new array of squares of all elements sorted in non-decreasing order. **Do this in $O(n)$** time.
+
+Ex: A = -6 - 3 -1 2 4 5, Output: 1,4,9,16,25,36
+
+Basic two pointer. Just compare left and right, and compute the output from the end in descending order.
+```python
+def sorted_squares(A):
+	n = len(A)
+	res = [0]*n
+	left,right = 0,n-1
+	idx = n-1
+	while left <= right:
+		if A[left]**2 > A[right]**2:
+			res[idx] = A[left]**2
+			left += 1
+		else:
+			res[idx] = A[right] ** 2
+			right -= 1
+		idx -= 1
+	return res
+```
+## Largest Number from Array
+Given array of non-neg numbers, arrange them to form the **largest possible number**. Return the result as a string.
+
+Example: `3 30 34 5 9`, Output: `9534330`
+
+Largest Number is not the one with the largest number first, but with the largest concatenation first.
+
+Compare function $ab$ vs $ba$
+
+```python
+from functools import cmp_to_key
+def largestNumber(nums):
+	#convert int to str
+	nums = list(map(str,nums))
+	#custom comparator
+	def compare(a,b):
+		return(int(b+a) - int(a + b))
+	nums.sort(key = cmp_to_key(compare))
+	#edge case
+	if nums[0] == "0":
+		return "0"
+	return ''.join(nums)
+```
+## Rotate Matrix (in Place)
+Given $N \times N$ matrix A, rotate it by $90 \degree$ in place.
+
+Ex: 
+1 2  -> 3 1
+
+3 4  -> 4 2
+
+Bas transpose the matrix and  reverse every row.
+
+```python
+def rotate(A):
+	n = len(A)
+	for i in range(n):
+		for j in range(n):
+			A[i][j], A[j][i] = A[j][i],A[i][j]
+	for i in range(n):
+		reverse(A[i])
+```
+
+## Next Permutation (In-place, Lexicographically Next)
+Given an int array, give the **next lexicographically next permutation**.
+
+If not possible, rearrange as lowest possible order ever (next_permutation literally)
+
+A = 1 3 5 4 2 -> 1 4 2 3 5
+
+### How
+1. Find the first decreasing element from the right.
+2. If such element exists at i, Find the largest index j (farthest), such that it is greater than this element. Fir swap karde inhe.
+3. Reverse the subarray from $A[i+1]$ to the end.
+
+```python
+def next_permutation(A):
+	n = len(A)
+	i = n-2
+	while i > 0 and A[i] >= A[i+1]:
+		i -= 1
+	if i >= 0:
+		j = n-1
+		while A[j] <= A[i]:
+			j -= 1
+		A[i],A[j] = A[j],A[i]
+	A[i+1:] = reversed(A[i+1:])
+	return A
+```
+## Find Permutation Given D/I String
+Given int n and a string s of length n-1, consisting of D (Decrease), and I (increase), construct any permutation of 1..n so that
+- $s[i] = I ? perm[i] < perm[i+1]$
+- $s[i] = D ?$ $perm[i] > perm[i+1$]
+Return in $O(n)$ time.
+
+Ex: s = ID, output = 1 3 2
+### How?
+Greedy nigga. Keep two pointers low = 1, and high = n-1. For each character in s: If I, put the smallest unused number, If D, put the largest unused number. 
+
+In the end there would be one number left, put that in the last position.
+
+```python
+def findPerm(S):
+	n = len(S) + 1
+	low,high = 1,n
+	ans = []
+	for c in S:
+		if c == 'I':
+			ans.append(low)
+			low += 1
+		else:
+			ans.append(high)
+			high -= 1
+	ans.append(low)
+	return ans
+```
+
+## Occurence of Each Number
+Given an array, output the number of times each unique number occurs in A (sorted by their values themselves). Return the list of occurences.
+
+A = 4 3 3, Output =  2 1
+
+```python
+def occ(A):
+	freq = {}
+	for x in A:
+		freq[x] = freq.get(x,0) + 1
+	keys = sorted(freq.keys())
+	return [freq[k] for k in keys]
 ```
