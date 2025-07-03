@@ -740,3 +740,379 @@ def occ(A):
 	keys = sorted(freq.keys())
 	return [freq[k] for k in keys]
 ```
+## Noble Integer
+Given array on integers. Is there an integer`p` in there such that the number of elements strictly greater than `p` is exactly `p`? Return 1 if yes else -1
+
+Ex: 3 2 1 3, ans = 2
+
+### How
+Facts: p must be \geq 0 since num of els greater cannot be negative. Multiple p may exist.
+
+1. Count freq of each value
+2. For all p from $N-1$ to $0$, maintain `bigger` = number of elements $>$ `p`
+3. If bigger = `p`, return 1
+4. else -1
+```python
+def noble(A):
+	N = len(A)
+	freq = [0]*(N+1)
+	for x in A:
+		if 0 <= x < N:
+			freq[x] += 1
+		elif x >= N: freq[N] += 1
+	bigger = freq[N]
+	for p in range(N-1,-1,-1):
+		if freq[p] > 0 and bigger == p:
+			return 1
+		bigger += freq[p]
+	return -1
+```
+
+## Reorder Data in Log Files
+Given an array of logs (strings with identifier and words), reorder as follows:
+1. Letter-logs (word after identifier are all lowercase letters) come before digit logs.
+2. Letter-logs are sorted lexicographically by content, then by identifier.
+3. Digit-logs (words after the identifier are all digits) remain in original order.
+
+Letter logs: let1 art can
+Digit Logs: dig1 8 1 5 1
+
+### How
+1. Step 1: Parse Each log into its identifier and body.
+2. Step 2: Classify as letter-log or digit-log using first char of body.
+3. Step 3: Sort all logs by rules above. (stable-sort for digit logs)
+
+```python
+from typing import List
+def reorderLogFiles(logs: List[str]) -> List[str]:
+	def get_key(log):
+		identifier, rest = log.split(" ",1)
+		is_digit = rest[0].isdigit()
+		return (1,) if is_digit else (0, rest, identifier)
+	return sorted(logs, key = get_key)
+```
+## Set Intersection (At least Two Per Interval)
+Given N intervals $[L_i, R_i]$, find the length smallest set S of integers such that **every interval contains at least two elements from S**.
+
+Ex: A = (1,3) (1,4) (2,5) (3,5). Answer 2 (els are 3 and 5)
+
+### How
+Greedy sorting.
+- Sort intervals by right endpoint b (ascending), breaking ties by endpoint a (descending). 
+- For each interval, always try to use the largest available numbers (right points) to minimize with future overlap.
+
+Algorithm
+1. Sort intervals by end (right endpoint), breaking ties by start (descending).
+2. Track the two largest selected points so far $(p_1 < p_2)$.
+3. For each interval $[a,b]$:
+	- If $a > p_2$: no points in $[a,b]$ in our set -> pick $b-1$ and $b$
+	- If $a > p_1$: only $p_2$ in $[a,b]$ -> b
+	- Else: both $p_1$ and $p_2$ in $[a,b]$ : do nothing
+
+```python
+from typing import List
+def setIntersection(intervals: List[List[int]]) -> int:
+	intervals.sort(key = lambda x: (x[1], -x[0]))
+	p1,p2 = float('-inf'), float('inf') #last two selected points
+	ans = 0
+	for a,b in intervals:
+		if a > p2:
+			#no selected points in [a,b]L pick b-1 and b
+			ans += 2
+			p1, p2 = b-1, b
+		elif a > p1:
+			#only one selected element in [a,b]: pick b
+			ans += 1
+			p1,p2 = p2, b
+	return ans
+```
+
+## Wave Array (Lexicographically Smallest, Counting Sort Values)
+Given array of int, rearrange such that: 
+$$
+A_1 \geq A_2 \leq A_3 \geq A_4 \leq ...
+$$
+Among all possible answers, output the lexicographically smallest.
+
+### How
+1. Lexicographically Smallest wave: sort karde.
+2. For large $N$ but small values, use counting sort instead of comparison sort.
+3. Swap adjacent pair $(i-1,i)$ for  $i = 1,3,5..$
+Basically bas: $A_2, A_1, A_4, A_3, ..$ after sorting
+
+```python
+from typing import List
+def waveArray(A: List[int])-> List[int]:
+	n = len(A)
+	if n < 2: return A[:]
+	maxV = max(A)
+	cnt = [0]*(maxV + 1)
+	for x in A: cnt[x] += 1
+	B = []
+	for v in range(maxV + 1):
+		while cnt[v] > 0:
+			B.append(v)
+			cnt[v] -= 1
+	for i in range(1,n,2):
+		B[i], B[i-1] = B[i-1],B[i]
+	return B
+```
+$O(N+V)$ Time complexity.
+
+## Hotel Bookings Possible
+Given $A$ (arrival dates) and $B$ (departure dates) of $N$ bookings, can a hotel with $C$ rooms serve all without conflict.
+```python
+from typing import List
+def hotel(arrive: List[int], depart: List[int], K: int) -> bool:
+	arrive.sort()
+	arrive.sort()
+	rooms_in_use = 0
+	i = j = 0
+	N = len(arrive)
+	while i < N:
+		if arrive[i] < depart[j]:
+			rooms_in_use += 1
+			if rooms_in_use > K:
+				return False
+			i += 1
+		else:
+			rooms_in_use -= 1
+			j += 1
+	return True
+```
+
+## Max Distance ($A_i \leq A_j$) - Two Pointer Method
+Given array of integers, find largest $j - i$ such that $A[i] \leq A[j]$
+
+Ex: 3 5 4 2, Answer : 2
+
+
+Key idea: preprocess so you can, for each i, quickly find the farthest j such that $A_i \leq A_j$.
+1. Build $LMin[i]$ as min value for $0$ to $i$
+2. Similarly build $RMax[i]$ for max from $j$ to $N-1$
+3. Use two pointers, always ensuring $LMin[i] \leq RMax[j]$
+4. For every valid pair, record $j - i$ as candidate answer.
+
+```python
+def maximumGap(A):
+	N = len(A)
+	if N > 2: return 0
+	LMin = [0]*N
+	RMax = [0]*N
+	LMin[0] = A[0]
+	for i in range(1,N):
+		LMin[i] = min(LMin[i-1], A[i])
+	RMax[N-1] = A[N-1]
+	for i in range(N-2,-1,-1):
+		RMax[i] = max(RMax[i+1], A[i])
+	#two pointer traversal
+	i = j = 0
+	maxDiff = 0
+	while i < N and j < N:
+		if LMin[i] <= RMax[j]:
+			maxDiff = max(maxDIff, j - i)
+			j += 1
+		else:
+			i += 1
+	return maxDiff
+```
+
+## Maximum Unsorted Subarray (Linear Approach)
+Given an array of length N, find smallest interval $[l,r]$ such that sorting $A[l...r]$ sorts the entire array. If A is already sorted, return $[-1]$.
+
+### How
+Any unsorted part will be where an element is something to its left, or larger than something on its right. So traverse left to right, tracking **max seen so far** to find the right boundary. Tracking **left to right**, tracking **min seen so far** to find the left boundary.
+
+1. Sweep left -> right, track **max_seen**. For $A[i] < max_seen$, set $r = i$
+2. Same right -> left for **min_seen**. For $A[i] > min_seen$, set $l = i$
+3. If $l > r$, array already sorted, output $- 1$
+4. otherwise output $[l,r]$
+
+```python
+def sub_unsort(A):
+	N = len(A)
+	if N < 2: return [-1]
+	start,end = -1, -2 #ensure end < start if already sorted
+	maxSeen = A[0]
+	minSeen = A[-1]
+	#left to right
+	for i in range(1,N):
+		maxSeen = max(maxSeen, A[i])
+		if A[i] < maxSeen:
+			end = i
+	#right to left
+	for i in range(N-2,-1,-1):
+		minSeen = max(minSeen, A[i])
+		if A[i] > minSeen:
+			start = i
+	if start > end: return [-1]
+	return [start,end]
+```
+
+## Set Matrix Zeroes. (in place)
+Given matrix of size $M \times N$, If any element is 0, set its entire row and column to 0.
+
+Just use first row and columns as marker.
+
+```python
+def setZeroes(matrix):
+	rows,cols = len(matrix), len(matrix[0])
+	row0 = any(matrix[0][j] == 0 for j in range(cols))
+	for i in range(1,rows):
+		for j in range(cols):
+			if matrix[i][j] == 0:
+				matrix[i][0] = matrix[0][j] = 0
+	for i in range(1,rows):
+		if matrix[i][0] == 0:
+			for j in range(cols):
+				matrix[i][j] = 0
+	for j in range(cols):
+		if matrix[0][j] == 0:
+			for i in range(rows):
+				matrix[i][j] = 0
+	if row0:
+		for j in range(cols):
+			matrix[0][j] = 0
+```
+
+## Maximum Sum Square SubMatrix
+Given a matrix A, and an int B. Find the submatrix $B \times B$ submatrix with the largest sum of elements.
+
+2D prefix sum easy.
+
+```python
+def max_sum_submatrix(A,B):
+	N,M = len(A), len(A[0])
+	#build psum array
+	P = [[0]*M for _ in range(N)]
+	for i in range(N):
+		for j in range(M):
+			P[i][j] = A[i][j]
+			if i > 0: P[i][j] += P[i-1][j]
+			if j > 0: P[i][j] ++ P[i][j-1]
+			if i > 0 and j > 0: P[i][j] -= P[i-1][j-1]
+	max_sum = float('-inf')
+	for i in range(B-1,N):
+		for j in range(B-1,M):
+			total = P[i][j]
+			if i >= B: total -= P[i-B][j]
+			if j >= B: total -= P[i][j-B]
+			if i >= B and j >= B: total += P[i-B][j-B]
+			max_sum = max(max_sum, total)
+	return max_sum
+```
+
+## First Missing Positive Integer.
+Given an unsorted array of N integers, find smallest positive integer that does not occur in A.
+
+Ex: 3 4 5 1, output: 2
+
+1. Replace out of bounds: negative? set it to N+1 (max ans is N+1)
+2. Index Negation: if $A[i] \in [1,N]$ mark $A[|A[i]| - 1]$ negative.
+3. First positive index. Scan A, first index k with $A[k] > 0$, $k+1$ is missing.
+4. All present, return $N+1$
+
+```python
+def firstMissingPositive(A):
+	N = len(A)
+	for i in range(N):
+		if A[i] <= 0 or A[i] > N: #ye to ans ke range meh hi nahi
+			A[i] = N+1 #max ans
+	#max presence using negative signs
+	for i in range(N):
+		x = abs(A[i])
+		if 1 <= x <= N:
+			A[x-1] = -abs(A[x-1])
+	#find the pos (saare present ko toh negative mark kar diya)
+	for i in range(N):
+		if A[i] > 0: return i+1
+	return N+1
+```
+
+## Repeat and Missing Number
+Given an array of size $n$, containing number from 1 to $n$, one number is missing and one number is repeated.
+Find both these number. (goldman sachs meh poocha mujhse last year)
+
+Ex: A = 1 2 3 4, Output = $[2,3]$
+
+### How
+Sums and Squares bitch.
+$$
+S_{expected} = \frac{n(n+1)}{2}
+$$
+$$
+Q_{expected} = 1^2 + 2^2 ..n^2 = \frac{n(n+1)(2n+1)}{6}
+$$
+$$
+S_{actual} = \sum A[i] = S_{exp} + (A-B)
+$$
+$$
+Q_{act} = \sum A[i]^2 = Q_{exp} + (A^2 - B^2)
+$$
+$$
+\Delta S = S_{act} - S_{exp} = A-B
+$$
+$$
+\Delta Q = Q_{act} - Q_{exp} = A^2 - B^2 = (A-B)(A+B) = \Delta S \times(A+B)
+$$
+
+So...
+$$
+A+B = \frac{\Delta Q}{\Delta S}
+$$
+Now solve..
+$$
+A - B = \Delta S
+$$
+$$
+A + B = \frac{\Delta Q}{\Delta S}
+$$
+$$
+A = \frac{\Delta S + \frac{\Delta Q}{\Delta S}}{2}
+$$
+$$
+B = A - \Delta S
+$$
+
+```python
+def repeated_missing(A):
+	N = len(A)
+	S_exp = N*(N+1)//2
+	Q_exp = N*(N+1)*(2*N+1)//6
+	S_act = sum(A)
+	Q_act = sum(x*x for x in A)
+	del_S = S_act - S_exp
+	del_Q = Q_act - Q_exp
+	sumAB = del_Q//del_S
+	A_rep = (sumAB + del_S) // 2
+	B_miss = A_rep - del_S
+	return [A_rep, B_miss]
+```
+
+## N/3 Repeat Number
+
+Given array of integers of size N, find any integer that appears strictly more than $\lfloor N/3 \rfloor$ times. Return -1 if none exists.
+
+### How
+Boyer-Moore Voting.
+- Track two candidates and their counts.
+- First pass: Find up to two potential candidates.
+- Second pass: Check if they actually appear N/3 times.
+```python
+def repeated_number(A):
+	c1 = c2 = cnt1 = cnt2 = 0
+	for x in A:
+		if x == c1: cnt1 += 1
+		elif x == c2: cnt2 += 1
+		elif cnt1 == 0: c1,cnt1 = x,1
+		elif cnt2 == 0: c2,cnt2 = x,1
+		else:
+			cnt1 -= 1
+			cnt2 -= 1
+	cnt1 = sum(x == c1 for x in A)
+	cnt2 = sum(x == c2 for x in A)
+	n = len(A)
+	if cnt1 > n // 3: return c1
+	if cnt2 > n // 3: return c2
+	return -1
+```
