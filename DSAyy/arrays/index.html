@@ -1862,6 +1862,338 @@ Return in <span class="arithmatex">\(O(n)\)</span> time.</p>
     <span class="n">keys</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">freq</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
     <span class="k">return</span> <span class="p">[</span><span class="n">freq</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">]</span>
 </code></pre></div>
+<h2 id="noble-integer">Noble Integer<a class="headerlink" href="#noble-integer" title="Permanent link">&para;</a></h2>
+<p>Given array on integers. Is there an integer<code>p</code> in there such that the number of elements strictly greater than <code>p</code> is exactly <code>p</code>? Return 1 if yes else -1</p>
+<p>Ex: 3 2 1 3, ans = 2</p>
+<h3 id="how_10">How<a class="headerlink" href="#how_10" title="Permanent link">&para;</a></h3>
+<p>Facts: p must be \geq 0 since num of els greater cannot be negative. Multiple p may exist.</p>
+<ol>
+<li>Count freq of each value</li>
+<li>For all p from <span class="arithmatex">\(N-1\)</span> to <span class="arithmatex">\(0\)</span>, maintain <code>bigger</code> = number of elements <span class="arithmatex">\(&gt;\)</span> <code>p</code></li>
+<li>If bigger = <code>p</code>, return 1</li>
+<li>else -1
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">noble</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">freq</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">A</span><span class="p">:</span>
+        <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">:</span>
+            <span class="n">freq</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">elif</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="n">N</span><span class="p">:</span> <span class="n">freq</span><span class="p">[</span><span class="n">N</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">bigger</span> <span class="o">=</span> <span class="n">freq</span><span class="p">[</span><span class="n">N</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">freq</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">bigger</span> <span class="o">==</span> <span class="n">p</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">1</span>
+        <span class="n">bigger</span> <span class="o">+=</span> <span class="n">freq</span><span class="p">[</span><span class="n">p</span><span class="p">]</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</code></pre></div></li>
+</ol>
+<h2 id="reorder-data-in-log-files">Reorder Data in Log Files<a class="headerlink" href="#reorder-data-in-log-files" title="Permanent link">&para;</a></h2>
+<p>Given an array of logs (strings with identifier and words), reorder as follows:
+1. Letter-logs (word after identifier are all lowercase letters) come before digit logs.
+2. Letter-logs are sorted lexicographically by content, then by identifier.
+3. Digit-logs (words after the identifier are all digits) remain in original order.</p>
+<p>Letter logs: let1 art can
+Digit Logs: dig1 8 1 5 1</p>
+<h3 id="how_11">How<a class="headerlink" href="#how_11" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Step 1: Parse Each log into its identifier and body.</li>
+<li>Step 2: Classify as letter-log or digit-log using first char of body.</li>
+<li>Step 3: Sort all logs by rules above. (stable-sort for digit logs)</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">reorderLogFiles</span><span class="p">(</span><span class="n">logs</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_key</span><span class="p">(</span><span class="n">log</span><span class="p">):</span>
+        <span class="n">identifier</span><span class="p">,</span> <span class="n">rest</span> <span class="o">=</span> <span class="n">log</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">is_digit</span> <span class="o">=</span> <span class="n">rest</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">isdigit</span><span class="p">()</span>
+        <span class="k">return</span> <span class="p">(</span><span class="mi">1</span><span class="p">,)</span> <span class="k">if</span> <span class="n">is_digit</span> <span class="k">else</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">rest</span><span class="p">,</span> <span class="n">identifier</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">logs</span><span class="p">,</span> <span class="n">key</span> <span class="o">=</span> <span class="n">get_key</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="set-intersection-at-least-two-per-interval">Set Intersection (At least Two Per Interval)<a class="headerlink" href="#set-intersection-at-least-two-per-interval" title="Permanent link">&para;</a></h2>
+<p>Given N intervals <span class="arithmatex">\([L_i, R_i]\)</span>, find the length smallest set S of integers such that <strong>every interval contains at least two elements from S</strong>.</p>
+<p>Ex: A = (1,3) (1,4) (2,5) (3,5). Answer 2 (els are 3 and 5)</p>
+<h3 id="how_12">How<a class="headerlink" href="#how_12" title="Permanent link">&para;</a></h3>
+<p>Greedy sorting.
+- Sort intervals by right endpoint b (ascending), breaking ties by endpoint a (descending). 
+- For each interval, always try to use the largest available numbers (right points) to minimize with future overlap.</p>
+<p>Algorithm
+1. Sort intervals by end (right endpoint), breaking ties by start (descending).
+2. Track the two largest selected points so far <span class="arithmatex">\((p_1 &lt; p_2)\)</span>.
+3. For each interval <span class="arithmatex">\([a,b]\)</span>:
+    - If <span class="arithmatex">\(a &gt; p_2\)</span>: no points in <span class="arithmatex">\([a,b]\)</span> in our set -&gt; pick <span class="arithmatex">\(b-1\)</span> and <span class="arithmatex">\(b\)</span>
+    - If <span class="arithmatex">\(a &gt; p_1\)</span>: only <span class="arithmatex">\(p_2\)</span> in <span class="arithmatex">\([a,b]\)</span> -&gt; b
+    - Else: both <span class="arithmatex">\(p_1\)</span> and <span class="arithmatex">\(p_2\)</span> in <span class="arithmatex">\([a,b]\)</span> : do nothing</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">setIntersection</span><span class="p">(</span><span class="n">intervals</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="n">intervals</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+    <span class="n">p1</span><span class="p">,</span><span class="n">p2</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;-inf&#39;</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">)</span> <span class="c1">#last two selected points</span>
+    <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span> <span class="ow">in</span> <span class="n">intervals</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">p2</span><span class="p">:</span>
+            <span class="c1">#no selected points in [a,b]L pick b-1 and b</span>
+            <span class="n">ans</span> <span class="o">+=</span> <span class="mi">2</span>
+            <span class="n">p1</span><span class="p">,</span> <span class="n">p2</span> <span class="o">=</span> <span class="n">b</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span>
+        <span class="k">elif</span> <span class="n">a</span> <span class="o">&gt;</span> <span class="n">p1</span><span class="p">:</span>
+            <span class="c1">#only one selected element in [a,b]: pick b</span>
+            <span class="n">ans</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">p1</span><span class="p">,</span><span class="n">p2</span> <span class="o">=</span> <span class="n">p2</span><span class="p">,</span> <span class="n">b</span>
+    <span class="k">return</span> <span class="n">ans</span>
+</code></pre></div>
+<h2 id="wave-array-lexicographically-smallest-counting-sort-values">Wave Array (Lexicographically Smallest, Counting Sort Values)<a class="headerlink" href="#wave-array-lexicographically-smallest-counting-sort-values" title="Permanent link">&para;</a></h2>
+<p>Given array of int, rearrange such that: 
+$$
+A_1 \geq A_2 \leq A_3 \geq A_4 \leq ...
+$$
+Among all possible answers, output the lexicographically smallest.</p>
+<h3 id="how_13">How<a class="headerlink" href="#how_13" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Lexicographically Smallest wave: sort karde.</li>
+<li>For large <span class="arithmatex">\(N\)</span> but small values, use counting sort instead of comparison sort.</li>
+<li>Swap adjacent pair <span class="arithmatex">\((i-1,i)\)</span> for  <span class="arithmatex">\(i = 1,3,5..\)</span>
+Basically bas: <span class="arithmatex">\(A_2, A_1, A_4, A_3, ..\)</span> after sorting</li>
+</ol>
+<p><div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">waveArray</span><span class="p">(</span><span class="n">A</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">])</span><span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span> <span class="k">return</span> <span class="n">A</span><span class="p">[:]</span>
+    <span class="n">maxV</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">cnt</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">maxV</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">A</span><span class="p">:</span> <span class="n">cnt</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">B</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">maxV</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">while</span> <span class="n">cnt</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">B</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+            <span class="n">cnt</span><span class="p">[</span><span class="n">v</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">,</span><span class="mi">2</span><span class="p">):</span>
+        <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">B</span>
+</code></pre></div>
+<span class="arithmatex">\(O(N+V)\)</span> Time complexity.</p>
+<h2 id="hotel-bookings-possible">Hotel Bookings Possible<a class="headerlink" href="#hotel-bookings-possible" title="Permanent link">&para;</a></h2>
+<p>Given <span class="arithmatex">\(A\)</span> (arrival dates) and <span class="arithmatex">\(B\)</span> (departure dates) of <span class="arithmatex">\(N\)</span> bookings, can a hotel with <span class="arithmatex">\(C\)</span> rooms serve all without conflict.
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">hotel</span><span class="p">(</span><span class="n">arrive</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">depart</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">K</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="n">arrive</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+    <span class="n">arrive</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+    <span class="n">rooms_in_use</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">arrive</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">arrive</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">depart</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+            <span class="n">rooms_in_use</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">rooms_in_use</span> <span class="o">&gt;</span> <span class="n">K</span><span class="p">:</span>
+                <span class="k">return</span> <span class="kc">False</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">rooms_in_use</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="kc">True</span>
+</code></pre></div></p>
+<h2 id="max-distance-a_i-leq-a_j-two-pointer-method">Max Distance (<span class="arithmatex">\(A_i \leq A_j\)</span>) - Two Pointer Method<a class="headerlink" href="#max-distance-a_i-leq-a_j-two-pointer-method" title="Permanent link">&para;</a></h2>
+<p>Given array of integers, find largest <span class="arithmatex">\(j - i\)</span> such that <span class="arithmatex">\(A[i] \leq A[j]\)</span></p>
+<p>Ex: 3 5 4 2, Answer : 2</p>
+<p>Key idea: preprocess so you can, for each i, quickly find the farthest j such that <span class="arithmatex">\(A_i \leq A_j\)</span>.
+1. Build <span class="arithmatex">\(LMin[i]\)</span> as min value for <span class="arithmatex">\(0\)</span> to <span class="arithmatex">\(i\)</span>
+2. Similarly build <span class="arithmatex">\(RMax[i]\)</span> for max from <span class="arithmatex">\(j\)</span> to <span class="arithmatex">\(N-1\)</span>
+3. Use two pointers, always ensuring <span class="arithmatex">\(LMin[i] \leq RMax[j]\)</span>
+4. For every valid pair, record <span class="arithmatex">\(j - i\)</span> as candidate answer.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">maximumGap</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">N</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span> <span class="k">return</span> <span class="mi">0</span>
+    <span class="n">LMin</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">N</span>
+    <span class="n">RMax</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">N</span>
+    <span class="n">LMin</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">):</span>
+        <span class="n">LMin</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">LMin</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">RMax</span><span class="p">[</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">N</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">RMax</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">RMax</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="c1">#two pointer traversal</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">maxDiff</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">N</span> <span class="ow">and</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">N</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">LMin</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">RMax</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+            <span class="n">maxDiff</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">maxDIff</span><span class="p">,</span> <span class="n">j</span> <span class="o">-</span> <span class="n">i</span><span class="p">)</span>
+            <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">maxDiff</span>
+</code></pre></div>
+<h2 id="maximum-unsorted-subarray-linear-approach">Maximum Unsorted Subarray (Linear Approach)<a class="headerlink" href="#maximum-unsorted-subarray-linear-approach" title="Permanent link">&para;</a></h2>
+<p>Given an array of length N, find smallest interval <span class="arithmatex">\([l,r]\)</span> such that sorting <span class="arithmatex">\(A[l...r]\)</span> sorts the entire array. If A is already sorted, return <span class="arithmatex">\([-1]\)</span>.</p>
+<h3 id="how_14">How<a class="headerlink" href="#how_14" title="Permanent link">&para;</a></h3>
+<p>Any unsorted part will be where an element is something to its left, or larger than something on its right. So traverse left to right, tracking <strong>max seen so far</strong> to find the right boundary. Tracking <strong>left to right</strong>, tracking <strong>min seen so far</strong> to find the left boundary.</p>
+<ol>
+<li>Sweep left -&gt; right, track <strong>max_seen</strong>. For <span class="arithmatex">\(A[i] &lt; max_seen\)</span>, set <span class="arithmatex">\(r = i\)</span></li>
+<li>Same right -&gt; left for <strong>min_seen</strong>. For <span class="arithmatex">\(A[i] &gt; min_seen\)</span>, set <span class="arithmatex">\(l = i\)</span></li>
+<li>If <span class="arithmatex">\(l &gt; r\)</span>, array already sorted, output <span class="arithmatex">\(- 1\)</span></li>
+<li>otherwise output <span class="arithmatex">\([l,r]\)</span></li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">sub_unsort</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">N</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span> <span class="k">return</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">start</span><span class="p">,</span><span class="n">end</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span> <span class="c1">#ensure end &lt; start if already sorted</span>
+    <span class="n">maxSeen</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="n">minSeen</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="c1">#left to right</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">):</span>
+        <span class="n">maxSeen</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">maxSeen</span><span class="p">,</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">maxSeen</span><span class="p">:</span>
+            <span class="n">end</span> <span class="o">=</span> <span class="n">i</span>
+    <span class="c1">#right to left</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">minSeen</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">minSeen</span><span class="p">,</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">minSeen</span><span class="p">:</span>
+            <span class="n">start</span> <span class="o">=</span> <span class="n">i</span>
+    <span class="k">if</span> <span class="n">start</span> <span class="o">&gt;</span> <span class="n">end</span><span class="p">:</span> <span class="k">return</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">start</span><span class="p">,</span><span class="n">end</span><span class="p">]</span>
+</code></pre></div>
+<h2 id="set-matrix-zeroes-in-place">Set Matrix Zeroes. (in place)<a class="headerlink" href="#set-matrix-zeroes-in-place" title="Permanent link">&para;</a></h2>
+<p>Given matrix of size <span class="arithmatex">\(M \times N\)</span>, If any element is 0, set its entire row and column to 0.</p>
+<p>Just use first row and columns as marker.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">setZeroes</span><span class="p">(</span><span class="n">matrix</span><span class="p">):</span>
+    <span class="n">rows</span><span class="p">,</span><span class="n">cols</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">matrix</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">row0</span> <span class="o">=</span> <span class="nb">any</span><span class="p">(</span><span class="n">matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cols</span><span class="p">))</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">rows</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cols</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">rows</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cols</span><span class="p">):</span>
+                <span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cols</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rows</span><span class="p">):</span>
+                <span class="n">matrix</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">row0</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cols</span><span class="p">):</span>
+            <span class="n">matrix</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+</code></pre></div>
+<h2 id="maximum-sum-square-submatrix">Maximum Sum Square SubMatrix<a class="headerlink" href="#maximum-sum-square-submatrix" title="Permanent link">&para;</a></h2>
+<p>Given a matrix A, and an int B. Find the submatrix <span class="arithmatex">\(B \times B\)</span> submatrix with the largest sum of elements.</p>
+<p>2D prefix sum easy.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">max_sum_submatrix</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">):</span>
+    <span class="n">N</span><span class="p">,</span><span class="n">M</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="c1">#build psum array</span>
+    <span class="n">P</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">M</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
+            <span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span> <span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span> <span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">++</span> <span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span> <span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">-=</span> <span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="n">max_sum</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;-inf&#39;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">B</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">B</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">M</span><span class="p">):</span>
+            <span class="n">total</span> <span class="o">=</span> <span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="n">B</span><span class="p">:</span> <span class="n">total</span> <span class="o">-=</span> <span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="n">B</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="n">B</span><span class="p">:</span> <span class="n">total</span> <span class="o">-=</span> <span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="n">B</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="n">B</span> <span class="ow">and</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="n">B</span><span class="p">:</span> <span class="n">total</span> <span class="o">+=</span> <span class="n">P</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="n">B</span><span class="p">][</span><span class="n">j</span><span class="o">-</span><span class="n">B</span><span class="p">]</span>
+            <span class="n">max_sum</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_sum</span><span class="p">,</span> <span class="n">total</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">max_sum</span>
+</code></pre></div>
+<h2 id="first-missing-positive-integer">First Missing Positive Integer.<a class="headerlink" href="#first-missing-positive-integer" title="Permanent link">&para;</a></h2>
+<p>Given an unsorted array of N integers, find smallest positive integer that does not occur in A.</p>
+<p>Ex: 3 4 5 1, output: 2</p>
+<ol>
+<li>Replace out of bounds: negative? set it to N+1 (max ans is N+1)</li>
+<li>Index Negation: if <span class="arithmatex">\(A[i] \in [1,N]\)</span> mark <span class="arithmatex">\(A[|A[i]| - 1]\)</span> negative.</li>
+<li>First positive index. Scan A, first index k with <span class="arithmatex">\(A[k] &gt; 0\)</span>, <span class="arithmatex">\(k+1\)</span> is missing.</li>
+<li>All present, return <span class="arithmatex">\(N+1\)</span></li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">firstMissingPositive</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">N</span><span class="p">:</span> <span class="c1">#ye to ans ke range meh hi nahi</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span> <span class="c1">#max ans</span>
+    <span class="c1">#max presence using negative signs</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="k">if</span> <span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="n">N</span><span class="p">:</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="nb">abs</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+    <span class="c1">#find the pos (saare present ko toh negative mark kar diya)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span> <span class="k">return</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span>
+    <span class="k">return</span> <span class="n">N</span><span class="o">+</span><span class="mi">1</span>
+</code></pre></div>
+<h2 id="repeat-and-missing-number">Repeat and Missing Number<a class="headerlink" href="#repeat-and-missing-number" title="Permanent link">&para;</a></h2>
+<p>Given an array of size <span class="arithmatex">\(n\)</span>, containing number from 1 to <span class="arithmatex">\(n\)</span>, one number is missing and one number is repeated.
+Find both these number. (goldman sachs meh poocha mujhse last year)</p>
+<p>Ex: A = 1 2 3 4, Output = <span class="arithmatex">\([2,3]\)</span></p>
+<h3 id="how_15">How<a class="headerlink" href="#how_15" title="Permanent link">&para;</a></h3>
+<p>Sums and Squares bitch.
+$$
+S_{expected} = \frac{n(n+1)}{2}
+$$
+$$
+Q_{expected} = 1^2 + 2^2 ..n^2 = \frac{n(n+1)(2n+1)}{6}
+$$
+$$
+S_{actual} = \sum A[i] = S_{exp} + (A-B)
+$$
+$$
+Q_{act} = \sum A[i]^2 = Q_{exp} + (A^2 - B^2)
+$$
+$$
+\Delta S = S_{act} - S_{exp} = A-B
+$$
+$$
+\Delta Q = Q_{act} - Q_{exp} = A^2 - B^2 = (A-B)(A+B) = \Delta S \times(A+B)
+$$</p>
+<p>So...
+$$
+A+B = \frac{\Delta Q}{\Delta S}
+$$
+Now solve..
+$$
+A - B = \Delta S
+$$
+$$
+A + B = \frac{\Delta Q}{\Delta S}
+$$
+$$
+A = \frac{\Delta S + \frac{\Delta Q}{\Delta S}}{2}
+$$
+$$
+B = A - \Delta S
+$$</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">repeated_missing</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">N</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">S_exp</span> <span class="o">=</span> <span class="n">N</span><span class="o">*</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span>
+    <span class="n">Q_exp</span> <span class="o">=</span> <span class="n">N</span><span class="o">*</span><span class="p">(</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">N</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">//</span><span class="mi">6</span>
+    <span class="n">S_act</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">Q_act</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">A</span><span class="p">)</span>
+    <span class="n">del_S</span> <span class="o">=</span> <span class="n">S_act</span> <span class="o">-</span> <span class="n">S_exp</span>
+    <span class="n">del_Q</span> <span class="o">=</span> <span class="n">Q_act</span> <span class="o">-</span> <span class="n">Q_exp</span>
+    <span class="n">sumAB</span> <span class="o">=</span> <span class="n">del_Q</span><span class="o">//</span><span class="n">del_S</span>
+    <span class="n">A_rep</span> <span class="o">=</span> <span class="p">(</span><span class="n">sumAB</span> <span class="o">+</span> <span class="n">del_S</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+    <span class="n">B_miss</span> <span class="o">=</span> <span class="n">A_rep</span> <span class="o">-</span> <span class="n">del_S</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">A_rep</span><span class="p">,</span> <span class="n">B_miss</span><span class="p">]</span>
+</code></pre></div>
+<h2 id="n3-repeat-number">N/3 Repeat Number<a class="headerlink" href="#n3-repeat-number" title="Permanent link">&para;</a></h2>
+<p>Given array of integers of size N, find any integer that appears strictly more than <span class="arithmatex">\(\lfloor N/3 \rfloor\)</span> times. Return -1 if none exists.</p>
+<h3 id="how_16">How<a class="headerlink" href="#how_16" title="Permanent link">&para;</a></h3>
+<p>Boyer-Moore Voting.
+- Track two candidates and their counts.
+- First pass: Find up to two potential candidates.
+- Second pass: Check if they actually appear N/3 times.
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">repeated_number</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">c1</span> <span class="o">=</span> <span class="n">c2</span> <span class="o">=</span> <span class="n">cnt1</span> <span class="o">=</span> <span class="n">cnt2</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">A</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="n">c1</span><span class="p">:</span> <span class="n">cnt1</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">elif</span> <span class="n">x</span> <span class="o">==</span> <span class="n">c2</span><span class="p">:</span> <span class="n">cnt2</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">elif</span> <span class="n">cnt1</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="n">c1</span><span class="p">,</span><span class="n">cnt1</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span><span class="mi">1</span>
+        <span class="k">elif</span> <span class="n">cnt2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span> <span class="n">c2</span><span class="p">,</span><span class="n">cnt2</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span><span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">cnt1</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="n">cnt2</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="n">cnt1</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">c1</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">A</span><span class="p">)</span>
+    <span class="n">cnt2</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">x</span> <span class="o">==</span> <span class="n">c2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">A</span><span class="p">)</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">cnt1</span> <span class="o">&gt;</span> <span class="n">n</span> <span class="o">//</span> <span class="mi">3</span><span class="p">:</span> <span class="k">return</span> <span class="n">c1</span>
+    <span class="k">if</span> <span class="n">cnt2</span> <span class="o">&gt;</span> <span class="n">n</span> <span class="o">//</span> <span class="mi">3</span><span class="p">:</span> <span class="k">return</span> <span class="n">c2</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</code></pre></div></p>
 
 
 
