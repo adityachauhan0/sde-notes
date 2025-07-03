@@ -1620,7 +1620,247 @@ But for  <span class="arithmatex">\(a + b + c\)</span> to land between 1 and 2, 
 B: <span class="arithmatex">\(0.7 \space 0.8\)</span>
 C: <span class="arithmatex">\(1.2\)</span>
 Output: YES YES OH YESSSS</p>
-<div class="highlight"><pre><span></span><code>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">solve</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">C</span> <span class="o">=</span> <span class="p">[],[],[]</span>
+    <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        <span class="k">if</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mf">2.0</span><span class="o">/</span><span class="mi">3</span><span class="p">:</span>
+            <span class="n">A</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="mf">2.0</span><span class="o">/</span><span class="mi">3</span> <span class="o">&lt;=</span> <span class="n">x</span> <span class="o">&lt;=</span> <span class="mf">1.0</span><span class="p">:</span>
+            <span class="n">B</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="mf">1.0</span> <span class="o">&lt;</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mf">2.0</span><span class="p">:</span>
+            <span class="n">C</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="n">A</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+    <span class="n">B</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+    <span class="c1"># case1: 3 from A</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">3</span> <span class="ow">and</span>  <span class="mi">1</span> <span class="o">&lt;</span> <span class="nb">sum</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="o">-</span><span class="mi">3</span><span class="p">:])</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="c1"># case2: 2 from A and 1 from B</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">B</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">A</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">A</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="c1">#case 3: 2 from A and 1 from C</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">C</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">A</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">C</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="c1">#case 4: 2 from B, 1 from A</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">B</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">B</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="c1">#case 5: 1 from each</span>
+    <span class="k">if</span> <span class="n">A</span> <span class="ow">and</span> <span class="n">B</span> <span class="ow">and</span> <span class="n">C</span> <span class="ow">and</span> <span class="mi">1</span> <span class="o">&lt;</span> <span class="n">A</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">B</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">C</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="mi">0</span>
+</code></pre></div>
+<h2 id="balance-array">Balance Array<a class="headerlink" href="#balance-array" title="Permanent link">&para;</a></h2>
+<p>Given an array of int. Count the special elements. Element is special if removing it makes the sum of elements at even indices is equal to sum at odd indices.</p>
+<p>Formally:
+$$
+\sum_{\text{even j}} A_j^<code>= \sum_{\text{odd j}}A_j^</code>
+$$</p>
+<h3 id="how_5">How<a class="headerlink" href="#how_5" title="Permanent link">&para;</a></h3>
+<p>Simulate parity flipping.</p>
+<p>Let
+- leftEven/leftOdd: Sum of even/odd indices to the left of i (before removal)
+- rightEven/rightOdd: Sum of even/odd indices to the right of i (before removal)</p>
+<p><strong>After Removal of <span class="arithmatex">\(A_i\)</span></strong>: All right side elements swap parity.
+- New even sum = leftEven + rightOdd
+- New odd sum = leftOdd + rightEven</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">countSpecial</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">totalEven</span><span class="p">,</span> <span class="n">totalOdd</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">totalEven</span> <span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">totalOdd</span> <span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">leftEven</span><span class="p">,</span> <span class="n">leftOdd</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span>
+    <span class="n">special</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">totalEven</span> <span class="o">-=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">totalOdd</span> <span class="o">-=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="c1">#swap</span>
+        <span class="n">newEven</span> <span class="o">=</span> <span class="n">leftEven</span> <span class="o">+</span> <span class="n">totalOdd</span>
+        <span class="n">newOdd</span> <span class="o">=</span> <span class="n">leftOdd</span> <span class="o">+</span> <span class="n">totalEven</span>
+        <span class="k">if</span> <span class="n">newEven</span> <span class="o">==</span> <span class="n">newOdd</span><span class="p">:</span> <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="c1">#update</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">leftEven</span> <span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">leftOdd</span> <span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">count</span>
+</code></pre></div>
+<h2 id="find-duplicate-in-the-array">Find duplicate in the array.<a class="headerlink" href="#find-duplicate-in-the-array" title="Permanent link">&para;</a></h2>
+<p>Given a read only array of n+1 int between 1 and n, find any repeated number in A in <span class="arithmatex">\(O(n)\)</span> time and <span class="arithmatex">\(O(1)\)</span> space.</p>
+<p>If no duplicate, return -1</p>
+<p>Example: A = 3 4 1 4 2, Output = 4 </p>
+<h3 id="how_6">How?<a class="headerlink" href="#how_6" title="Permanent link">&para;</a></h3>
+<p>View A as linked list. 
+- For every <span class="arithmatex">\(i\)</span>, next node is <span class="arithmatex">\(A[i]\)</span>. Since there are only <span class="arithmatex">\(n+1\)</span> elements and only n values, the pigeonhole principle ensures there is a cycle. The repeated number is the start of the cycle.</p>
+<ul>
+<li>
+<p>Use tortoise and hare, the moment slow and fast meet, reset slow to <span class="arithmatex">\(A[0]\)</span>.</p>
+</li>
+<li>
+<p>When they meet again, that is the position of the duplicate number.</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">find_duplicates</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
+    <span class="n">slow</span><span class="p">,</span><span class="n">fast</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">slow</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">slow</span><span class="p">]</span>
+        <span class="n">fast</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">nums</span><span class="p">[</span><span class="n">fast</span><span class="p">]]</span>
+        <span class="k">if</span> <span class="n">slow</span> <span class="o">==</span> <span class="n">fast</span><span class="p">:</span>
+            <span class="k">break</span>
+    <span class="c1">#find the head of the cycle</span>
+    <span class="n">slow</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">while</span> <span class="n">slow</span> <span class="o">!=</span> <span class="n">fast</span><span class="p">:</span>
+        <span class="n">slow</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">slow</span><span class="p">]</span>
+        <span class="n">fast</span> <span class="o">=</span> <span class="n">nums</span><span class="p">[</span><span class="n">fast</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">slow</span>
+</code></pre></div>
+<h2 id="max-consecutive-gap-linear-time-bucketing">Max Consecutive Gap (Linear Time Bucketing)<a class="headerlink" href="#max-consecutive-gap-linear-time-bucketing" title="Permanent link">&para;</a></h2>
+<p>Given an non-neg int array, find max difference between successive elements in the sorted array. Return <span class="arithmatex">\(0\)</span> if <span class="arithmatex">\(n &lt; 2\)</span>. Do this is <span class="arithmatex">\(O(n)\)</span> time and <span class="arithmatex">\(O(n)\)</span> space.</p>
+<p>Note the array is not sorted.</p>
+<h3 id="how_7">How<a class="headerlink" href="#how_7" title="Permanent link">&para;</a></h3>
+<p>Insight: If array has n elements, spread min to max, the min possible maximum gap (if numbers are evenly spaced) is:
+$$
+gap = \frac{max- min}{n - 1}
+$$
+Idea: Divide the range <span class="arithmatex">\([min,max]\)</span> into <span class="arithmatex">\(n-1\)</span> buckets of size <span class="arithmatex">\(\geq\)</span> gap. Place each element in the bucket. The max gap is the difference between the min of the next non-empty bucket and the max of previous.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">maximum_gap</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span> <span class="k">return</span> <span class="mi">0</span>
+    <span class="n">minA</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+    <span class="n">maxA</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">minA</span> <span class="o">==</span> <span class="n">maxA</span><span class="p">:</span> <span class="k">return</span> <span class="mi">0</span>
+    <span class="c1">#step 1 compute the bucket size</span>
+    <span class="n">gap</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">((</span><span class="n">maxA</span> <span class="o">-</span> <span class="n">minA</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)))</span>
+    <span class="n">bucket_count</span> <span class="o">=</span> <span class="p">(</span><span class="n">maxA</span> <span class="o">-</span> <span class="n">minA</span><span class="p">)</span> <span class="o">//</span> <span class="n">gap</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="c1">#step 2: Init the buckets</span>
+    <span class="n">buckets</span> <span class="o">=</span> <span class="p">[[</span><span class="n">math</span><span class="o">.</span><span class="n">inf</span><span class="p">,</span> <span class="o">-</span><span class="n">math</span><span class="o">.</span><span class="n">inf</span><span class="p">]</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">bucket_count</span><span class="p">)]</span>
+    <span class="c1">#step 3: place each num into bucket</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">nums</span><span class="p">:</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="n">minA</span><span class="p">)</span> <span class="o">//</span> <span class="n">gap</span>
+        <span class="n">buckets</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">bucket</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span><span class="n">x</span><span class="p">)</span> <span class="c1">#min</span>
+        <span class="n">buckets</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">bucket</span><span class="p">[</span><span class="n">idx</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span><span class="n">x</span><span class="p">)</span> <span class="c1">#max</span>
+    <span class="c1">#step 4: scan buckets to find the maximum gap</span>
+    <span class="n">max_gap</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">prev_max</span> <span class="o">=</span> <span class="n">minA</span>
+    <span class="k">for</span> <span class="n">b_min</span><span class="p">,</span> <span class="n">b_max</span> <span class="ow">in</span> <span class="n">buckets</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">b_min</span> <span class="o">==</span> <span class="n">math</span><span class="o">.</span><span class="n">inf</span><span class="p">:</span> <span class="c1">#Empty bucket</span>
+            <span class="k">continue</span>
+        <span class="n">max_gap</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_gap</span><span class="p">,</span> <span class="n">b_min</span> <span class="o">-</span> <span class="n">prev_max</span><span class="p">)</span>
+        <span class="n">prev_max</span> <span class="o">=</span> <span class="n">b_max</span>
+    <span class="k">return</span> <span class="n">max_gap</span>
+</code></pre></div>
+<h1 id="arrangements">Arrangements<a class="headerlink" href="#arrangements" title="Permanent link">&para;</a></h1>
+<h2 id="sort-array-with-squares">Sort Array with Squares!<a class="headerlink" href="#sort-array-with-squares" title="Permanent link">&para;</a></h2>
+<p>Given a sorted array on numbers, return a new array of squares of all elements sorted in non-decreasing order. <strong>Do this in <span class="arithmatex">\(O(n)\)</span></strong> time.</p>
+<p>Ex: A = -6 - 3 -1 2 4 5, Output: 1,4,9,16,25,36</p>
+<p>Basic two pointer. Just compare left and right, and compute the output from the end in descending order.
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">sorted_squares</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">n</span>
+    <span class="n">left</span><span class="p">,</span><span class="n">right</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span>
+    <span class="n">idx</span> <span class="o">=</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span>
+    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;=</span> <span class="n">right</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">A</span><span class="p">[</span><span class="n">left</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span> <span class="o">&gt;</span> <span class="n">A</span><span class="p">[</span><span class="n">right</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">:</span>
+            <span class="n">res</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">left</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span>
+            <span class="n">left</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">res</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">right</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span>
+            <span class="n">right</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="n">idx</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">res</span>
+</code></pre></div></p>
+<h2 id="largest-number-from-array">Largest Number from Array<a class="headerlink" href="#largest-number-from-array" title="Permanent link">&para;</a></h2>
+<p>Given array of non-neg numbers, arrange them to form the <strong>largest possible number</strong>. Return the result as a string.</p>
+<p>Example: <code>3 30 34 5 9</code>, Output: <code>9534330</code></p>
+<p>Largest Number is not the one with the largest number first, but with the largest concatenation first.</p>
+<p>Compare function <span class="arithmatex">\(ab\)</span> vs <span class="arithmatex">\(ba\)</span></p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">functools</span><span class="w"> </span><span class="kn">import</span> <span class="n">cmp_to_key</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">largestNumber</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
+    <span class="c1">#convert int to str</span>
+    <span class="n">nums</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span><span class="n">nums</span><span class="p">))</span>
+    <span class="c1">#custom comparator</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">compare</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">):</span>
+        <span class="k">return</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="o">+</span><span class="n">a</span><span class="p">)</span> <span class="o">-</span> <span class="nb">int</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">))</span>
+    <span class="n">nums</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span> <span class="o">=</span> <span class="n">cmp_to_key</span><span class="p">(</span><span class="n">compare</span><span class="p">))</span>
+    <span class="c1">#edge case</span>
+    <span class="k">if</span> <span class="n">nums</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;0&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;0&quot;</span>
+    <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">nums</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="rotate-matrix-in-place">Rotate Matrix (in Place)<a class="headerlink" href="#rotate-matrix-in-place" title="Permanent link">&para;</a></h2>
+<p>Given <span class="arithmatex">\(N \times N\)</span> matrix A, rotate it by <span class="arithmatex">\(90 \degree\)</span> in place.</p>
+<p>Ex: 
+1 2  -&gt; 3 1</p>
+<p>3 4  -&gt; 4 2</p>
+<p>Bas transpose the matrix and  reverse every row.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">rotate</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="n">i</span><span class="p">],</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">reverse</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</code></pre></div>
+<h2 id="next-permutation-in-place-lexicographically-next">Next Permutation (In-place, Lexicographically Next)<a class="headerlink" href="#next-permutation-in-place-lexicographically-next" title="Permanent link">&para;</a></h2>
+<p>Given an int array, give the <strong>next lexicographically next permutation</strong>.</p>
+<p>If not possible, rearrange as lowest possible order ever (next_permutation literally)</p>
+<p>A = 1 3 5 4 2 -&gt; 1 4 2 3 5</p>
+<h3 id="how_8">How<a class="headerlink" href="#how_8" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Find the first decreasing element from the right.</li>
+<li>If such element exists at i, Find the largest index j (farthest), such that it is greater than this element. Fir swap karde inhe.</li>
+<li>Reverse the subarray from <span class="arithmatex">\(A[i+1]\)</span> to the end.</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">next_permutation</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="n">n</span><span class="o">-</span><span class="mi">2</span>
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]:</span>
+        <span class="n">i</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span>
+        <span class="k">while</span> <span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+            <span class="n">j</span> <span class="o">-=</span> <span class="mi">1</span>
+        <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">:]</span> <span class="o">=</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">:])</span>
+    <span class="k">return</span> <span class="n">A</span>
+</code></pre></div>
+<h2 id="find-permutation-given-di-string">Find Permutation Given D/I String<a class="headerlink" href="#find-permutation-given-di-string" title="Permanent link">&para;</a></h2>
+<p>Given int n and a string s of length n-1, consisting of D (Decrease), and I (increase), construct any permutation of 1..n so that
+- <span class="arithmatex">\(s[i] = I ? perm[i] &lt; perm[i+1]\)</span>
+- <span class="arithmatex">\(s[i] = D ?\)</span> <span class="arithmatex">\(perm[i] &gt; perm[i+1\)</span>]
+Return in <span class="arithmatex">\(O(n)\)</span> time.</p>
+<p>Ex: s = ID, output = 1 3 2</p>
+<h3 id="how_9">How?<a class="headerlink" href="#how_9" title="Permanent link">&para;</a></h3>
+<p>Greedy nigga. Keep two pointers low = 1, and high = n-1. For each character in s: If I, put the smallest unused number, If D, put the largest unused number. </p>
+<p>In the end there would be one number left, put that in the last position.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">findPerm</span><span class="p">(</span><span class="n">S</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">S</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">low</span><span class="p">,</span><span class="n">high</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span><span class="n">n</span>
+    <span class="n">ans</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">S</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="s1">&#39;I&#39;</span><span class="p">:</span>
+            <span class="n">ans</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">low</span><span class="p">)</span>
+            <span class="n">low</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">ans</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">high</span><span class="p">)</span>
+            <span class="n">high</span> <span class="o">-=</span> <span class="mi">1</span>
+    <span class="n">ans</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">low</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">ans</span>
+</code></pre></div>
+<h2 id="occurence-of-each-number">Occurence of Each Number<a class="headerlink" href="#occurence-of-each-number" title="Permanent link">&para;</a></h2>
+<p>Given an array, output the number of times each unique number occurs in A (sorted by their values themselves). Return the list of occurences.</p>
+<p>A = 4 3 3, Output =  2 1</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">occ</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">freq</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">A</span><span class="p">:</span>
+        <span class="n">freq</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">=</span> <span class="n">freq</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="n">keys</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">freq</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">freq</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">]</span>
 </code></pre></div>
 
 
