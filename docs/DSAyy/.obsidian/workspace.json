@@ -20,8 +20,23 @@
               "icon": "lucide-file",
               "title": "arrays"
             }
+          },
+          {
+            "id": "3feb8b438eecba23",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Maths.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Maths"
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -170,10 +185,11 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "97bc7bffca1c4509",
+  "active": "3feb8b438eecba23",
   "lastOpenFiles": [
-    "Strings.md",
     "arrays.md",
+    "Maths.md",
+    "Strings.md",
     "Pasted image 20250702235235.png",
     "TwoPointers.md",
     "stacks_queues.md",
