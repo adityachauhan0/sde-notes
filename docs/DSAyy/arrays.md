@@ -4,11 +4,13 @@
 
 Matrix A: Size M x N, return all elements in the spiral order. (clockwise starting from top-left)
 
-$$
-\begin{bmatrix}
-1 & 2 & 3 \\ 4 & 5 & 6 \\ 7 & 8 & 9
-\end{bmatrix}
-$$
+Matrix A:
+
+| 1 | 2 | 3 |
+|:-:|:-:|:-:|
+| 4 | 5 | 6 |
+| 7 | 8 | 9 |
+
 the output would be $1,2,3,6,9,8,7,4,5$
 
 ### How to do this
@@ -409,6 +411,327 @@ def max_triangle_area(grid):
 				best_area = max(best_area, area)
 	return best_area
 ```
+
+
+## Flip
+
+Given a binary string. In one single operation, you can choose `L` and `R` and flip the bits in that range. Aim is to perform atmost one operation such that the final string number of 1s is maximised.
+
+Return an array of range `[L,R]` (possibly empty), such that final number of `1s` in the string is maximised.
+
+If many exists, return lexicographically smallest.
+
+Example: 010, output `[1,1]`
+
+### How
+Instead of counting directly, make it a max subarray kadane problem where:
+
+- `0` contributes +1 (because flipping it gives a 1)
+
+- `1` contributes -1 (because we dont want 0 when flipped)
+```python
+def flip(A: str):
+	n = len(A)
+	best_sum = 0
+	best_l, best_r = -1,-1
+	curr_sum = 0
+	start = 0
+	for i in range(n):
+		val = 1 if A[i] == '0' else -1
+		curr_sum += val
+		if curr_sum > best_sum:
+			best_sum = curr_sum
+			best_l = start
+			best_r = i
+		elif curr_sum == best_sum and best_sum > 0:
+			if start < best_l or (start == best_l and i < best_r):
+				best_l = start
+				best_r = i
+		if curr_sum < 0:
+			curr_sum = 0
+			start = i+1
+	if best_sum == 0:
+		return []
+	return [best_l + 1, best_r + 1]
+```
+
+
+## Merge Intervals
+
+Given a set of non-overlapping intervals, and a new interval. Insert it into the set of intervals (merge if necessary).
+
+Assume that they were sorted initially based on the start times.
+
+Ex: 1,3 6,9, newInt = 2,5; output = 1,5 6,9
+
+### How
+Bruteforce
+```python
+from typing import List
+class Interval:
+	def __init__(self, start = 0, end = 0):
+		self.start = start
+		self.end = end
+	def __repr__(self):
+		return f"[{self.start}, {self.end}]"
+def insert(intervalsL: List[Interval], newInterval: Interval) -> List[Interval]:
+	res = []
+	placed = False
+	for cur in intervals:
+		if cur.end < newInterval.start:
+			res.append(cur)
+		elif curr.start > newInterval.end:
+			if not placed:
+				res.append(newInterval)
+				placed = True
+			res.append(cur)
+		else:
+			newInterval.start = min(newInterval.start, cur.start)
+			newInterval.end = max(newInterval.end, cur.end)
+	if not placed:
+		res.append(newInterval)
+	return res
+```
+
+## Merge Overlapping Intervals
+Given a collection of intervals, merge all overlapping intervals.
+
+Ex: 1,3 2,6 8,10 15,18 ; Output = 1,6 8,10 15,18
+
+### How
+
+- Okay so we sort the intervals by starting time.
+
+- Iterate through the sorted list, if the current interval ovelaps with last added interval, we just update the end.
+
+- Return the merged list.
+
+```python
+from typing import List
+class Interval:
+	def __init__(self, start = 0, end = 0):
+		self.start = start
+		self.end = end
+	def __repr__(self):
+		return f"[{self.start}, {self.end}]"
+def merge(intervals: List[Interval]) -> List[Interval]:
+	if not intervals:
+		return []
+	intervals.sort(key = lambda x: x.start)
+	merged = [intervals[0]]
+	for i in range(1,len(intervals)):
+		last = merged[-1]
+		current = intervals[i]
+		if last.end >= current.start:
+			last.end = max(last.end, current.start)
+		else:
+			merged.append(current)
+	return merged
+```
+
+## Perfect Peak of the array.
+Given an integer array, check whether there is an element that is strictly greater than all on the left and smaller than all on the right.
+
+Ex: 5 1 4 3 6 8 10 7 9, Output = 1
+
+Basically we are finding a pothole that is the deepest.
+
+```python
+from typing import List
+def perfect_peak(A: List[int]) -> int:
+	n = len(A)
+	if n < 3:
+		return 0
+	right_min = [0]*n
+	right_min[-1] = A[-1]
+	for i in range(n-2,-1,-1):
+		right_min = A[i] if A[i] < right_min[i+1] else right_min[i+1]
+	left_max = A[0]
+	for i in range(1,n-1):
+		if left_max < A[i] < right_min[i+1]:
+			return 1
+		if A[i] > left_max:
+			left_max = A[i]
+	return 0
+```
+
+## Move Zeroes
+Given an int array, move all 0's to the end while maintaining the relative order of the non-zero elements.
+
+A = 0 1 0 3 12, Output: 1 3 12 0 0
+
+```python
+def moveZeroes(A):
+	n = len(A)
+	j = 0 #where next non-zero should go
+	for i in range(n):
+		if A[i] != 0:
+			A[i],A[j] = A[j], A[i]
+			j += 1
+	return A
+```
+
+## Make equal elements array.
+Given an array of pos int, and an element x. Find whether whether all the elements can be made equal to x, by following the below operations:
+
+- Add x to any element in array.
+- subtract x from any element in array.
+- Do nothing.
+
+### How
+Think of it like a chain reaction, can we reach the end with our only options being $A[i] \pm B$. If we can reach the end, then yes it can be made equal.
+
+```python
+from typing import List
+def makeEqual(A: List[int], B: int) -> int:
+	N = len(A)
+	if N == 0:
+		return 0 #we have no elements to make equal
+	C = [A[0], A[0] + B, A[0] - B] #possible target values
+	#filter possible targets
+	for i in range(1,N):
+		c_next = []
+		for t in c:
+			diff = abs(A[i] - t)
+			if diff == 0 or diff == B:
+				c_next.append(t)
+		c = c_next
+		if not c:
+			return 0
+	return 1
+```
+
+## Segregate 0s and 1s in an array.
+
+Given array of 0, 1 and 2. Segregate 0 to the left, 1 to the right.
+### How
+Dutch national flag 2 pointer approach.
+
+```python
+from typing import List
+def segs(A: List[int]) -> List[int]:
+	n = len(A)
+	low = 0, high = n-1
+	while low < high:
+		if A[low] == 0:
+			low += 1
+		else:
+			A[low], A[high] = A[high], A[low]
+			high -= 1
+	return A
+```
+
+## Array Sum
+Given two numbers, in the form of arrays. Perform addition and return in terms of array of digits.
+
+```python
+def typing import List
+def add(A: List[int], B: List[int]) -> List[int]:
+	R = []
+	i = len(A) - 1
+	j = len(B) - 1
+	carry = 0
+	while i >= 0 or j >= 0:
+		sm = carry
+		if i >= 0:
+			sm += A[i]
+			i -= 1
+		if j >= 0:
+			sm += A[j]
+			j -= 1
+		carry = sm // 10
+		sm = sm % 10
+		R.append(sm)
+	if carry != 0: R.append(carry)
+	return reversed(R)
+```
+
+## Kth Row in Pascal's Triangle
+Given an index k, return the kth row of pascal triangle.
+
+Input: k = 3; output = 1 3 3 1
+
+### How
+
+$$
+C(A,r) = C(A,r-1) \times \frac{A-(r-1)}{r}
+$$
+```python
+from typing import List
+def getRow(A: int) -> List[int]:
+	row = [0]*(A + 1)
+	row[0] = 1
+	for r in range(1,A+1):
+		prev = row[r-1]
+		numer = prev*(A-(r-1))
+		row[r] = numer // r
+	return row
+```
+
+## Spiral Order II
+Given an int A, generate a square matrix filled with elements from 1 to $A^2$ in spiral order. And return the generated square matrix.
+
+Ex:
+Inp = 2
+
+Output: 
+```
+1 2
+4 3
+```
+
+brute force just keep a pointer and update the boundaries.
+```python
+from typing from List
+def generateMatrix(N: int) -> List[List[int]]:
+	num = 1;
+	A = [[0]*N for _ in range(N)]
+	l,r = 0, N-1
+	u,d = 0, N-1
+	while l <= r and u <= d:
+		#fill top
+		for i in range(l,r+1):
+			A[u][i] = num
+			num += 1
+		u += 1
+		#fill right
+		for i in range(u,d+1):
+			A[i][r] = num
+			num += 1
+		r -= 1
+		#fill bottom
+		if u <= d:
+			for i in range(r,l-1,-1):
+				A[d][i] = num
+				num += 1
+			d -= 1
+		if l <= r:
+			for i in range(d,u-1,-1):
+				A[i][l] = num
+				num += 1
+			l += 1
+	return A
+```
+
+## Pascal's Triangle
+
+Given the number of rows `numRows`, generate first `numRows` rows of pascal triangle.
+
+```python
+from typing import List
+def pascalRows(A: int) -> List[List[int]]:
+	res = []
+	if A <= 0: return res
+	res.append([1])
+	for i in range(1,A):
+		row = [0]*(i+1)
+		row[0] = row[i] = 1
+		for j in range(1,i):
+			row[j] = res[i-1][j] + res[i-1][j-1]
+		res.append(row)
+	return res
+```
+
 
 ## Anti Diagonals of a square matrix.
 Given a square matrix, return all its **anti-diagonals**. Each anti diagonal contains elements where sum of row and column is constant.

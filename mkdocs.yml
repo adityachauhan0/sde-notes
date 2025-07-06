@@ -7,6 +7,7 @@ theme:
     - navigation.top
     - content.code.copy
     - content.code.annotate
+    - content.math
     - navigation.footer
     - navigation.sections
     - navigation.instant  # no full page reloads (smooth UX)
@@ -87,9 +88,6 @@ plugins:
   - glightbox
 
 
-extra_javascript:
-  - https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML
-
 extra:
   social:
     - icon: fontawesome/brands/github
@@ -101,3 +99,13 @@ extra:
 
 extra_css:
   - styles/custom.css
+extra_css:
+  - https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css
+
+extra_javascript:
+  # 1) KaTeX core
+  - https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.js
+  # 2) KaTeX auto-render extension
+  - https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/contrib/auto-render.min.js
+  # 3) Our PJAX-aware render hook
+  - javascripts/katex-render.js
