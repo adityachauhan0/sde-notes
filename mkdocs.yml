@@ -63,6 +63,7 @@ nav:
       - Linked Lists: DSAyy/LinkedList.md
       - Stacks and Queues: DSAyy/stacks_queues.md
       - Strings: DSAyy/Strings.md
+      - Maths: DSAyy/Maths.md
 
 markdown_extensions:
   - pymdownx.arithmatex:

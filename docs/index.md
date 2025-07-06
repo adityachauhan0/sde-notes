@@ -21,6 +21,7 @@ Jaake padle gaandu:
 - 😔 [Linked Lists](DSAyy/LinkedList.md)
 - （ ͜.人 ͜.）[Stacks and Queues](DSAyy/stacks_queues.md)
 - Ni༼ つ ◕_◕ ༽つgga [Strings](DSAyy/Strings.md)
+- ( ＾◡＾)っ✂╰⋃╯ [Maths](DSAyy/Maths.md)
 ---
 
 
