@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Maths.md",
+                "file": "bit_manipulation.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Maths"
+              "title": "bit_manipulation"
             }
           }
         ]
@@ -172,9 +172,11 @@
   },
   "active": "7a75b8f6c395ffdb",
   "lastOpenFiles": [
+    "Maths.md",
+    "bit_manipulation.md",
+    "Untitled",
     "TwoPointers.md",
     "trees.md",
-    "Maths.md",
     "arrays.md",
     "Strings.md",
     "Pasted image 20250702235235.png",

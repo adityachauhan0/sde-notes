@@ -64,6 +64,7 @@ nav:
       - Stacks and Queues: DSAyy/stacks_queues.md
       - Strings: DSAyy/Strings.md
       - Maths: DSAyy/Maths.md
+      - Bit Manipulation: DSAyy/bit_manipulation.md
 
 markdown_extensions:
   - pymdownx.arithmatex:
