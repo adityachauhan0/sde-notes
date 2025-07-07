@@ -50,7 +50,9 @@ theme:
         icon: material/robot
         name: Cyberpunk Mode
 
-
+  font:
+    text: "D2Coding Ligature"
+    code: "JetBrainsMono Nerd Font"
 
 nav:
   - Home: index.md
@@ -101,9 +103,8 @@ extra:
 
 extra_css:
   - styles/custom.css
-extra_css:
   - https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css
-
+  - styles/fonts.css   # Custom font declarations
 extra_javascript:
   # 1) KaTeX core
   - https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.js

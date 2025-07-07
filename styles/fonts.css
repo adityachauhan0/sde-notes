@@ -1,0 +1,24 @@
+/* D2Coding Ligature (regular & bold) */
+@font-face {
+  font-family: "D2Coding Ligature";
+  src: url("../fonts/D2CodingLigature.woff2") format("woff2"),
+       url("../fonts/D2CodingLigature.woff")  format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* JetBrains Mono Nerd (regular & bold) */
+@font-face {
+  font-family: "JetBrainsMono Nerd Font";
+  src: url("../fonts/JetBrainsMonoNerdFont.woff2") format("woff2"),
+       url("../fonts/JetBrainsMonoNerdFont.woff")  format("woff");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Ensure code blocks pick up ligatures */
+code, pre, kbd, samp {
+  font-family: "JetBrainsMono Nerd Font", monospace;
+}
