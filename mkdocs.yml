@@ -68,6 +68,7 @@ nav:
       - Maths: DSAyy/Maths.md
       - Bit Manipulation: DSAyy/bit_manipulation.md
       - Greedy: DSAyy/Greedy.md
+      - Hashing: DSAyy/hashing.md
 
 markdown_extensions:
   - pymdownx.arithmatex:

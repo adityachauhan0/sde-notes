@@ -24,6 +24,7 @@ Jaake padle gaandu:
 - ( ＾◡＾)っ✂╰⋃╯ [Maths](DSAyy/Maths.md)
 - (‿∣‿) slap 🤤 [Bit Manipulation](DSAyy/bit_manipulation.md)
 - ╭∩╮( •̀_•́ )╭∩╮[Greedy](DSAyy/Greedy.md)
+- ● █▀█▄ Ɑ͞ ̶͞ ̶͞ ̶͞ لں͞[Hashing](DSAyy/hashing.md)
 ---
 
 
