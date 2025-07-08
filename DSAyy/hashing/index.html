@@ -1,0 +1,2115 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../Greedy/">
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Hashing - SDE Prep A2Z</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=D2Coding+Ligature:300,300i,400,400i,700,700i%7CJetBrainsMono+Nerd+Font:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"D2Coding Ligature";--md-code-font:"JetBrainsMono Nerd Font"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../styles/custom.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css">
+    
+      <link rel="stylesheet" href="../../styles/fonts.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#colorful-numbers" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="SDE Prep A2Z" class="md-header__button md-logo" aria-label="SDE Prep A2Z" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SDE Prep A2Z
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Hashing
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="dracula" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dracula Mode"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Dracula Mode" for="__palette_3" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a9 9 0 0 0-9 9v11l3-3 3 3 3-3 3 3 3-3 3 3V11a9 9 0 0 0-9-9M9 8a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m6 0a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="neon" data-md-color-primary="lime" data-md-color-accent="pink"  aria-label="Neon Pulse Mode"  type="radio" name="__palette" id="__palette_3">
+    
+      <label class="md-header__button md-icon" title="Neon Pulse Mode" for="__palette_4" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11h3v2h-3zM1 11h3v2H1zM13 1v3h-2V1zM4.92 3.5l2.13 2.14-1.42 1.41L3.5 4.93zm12.03 2.13 2.12-2.13 1.43 1.43-2.13 2.12zM12 6a6 6 0 0 1 6 6c0 2.22-1.21 4.16-3 5.2V19a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-1.8c-1.79-1.04-3-2.98-3-5.2a6 6 0 0 1 6-6m2 15v1a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-1zm-3-3h2v-2.13c1.73-.44 3-2.01 3-3.87a4 4 0 0 0-4-4 4 4 0 0 0-4 4c0 1.86 1.27 3.43 3 3.87z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="cyberpunk" data-md-color-primary="yellow" data-md-color-accent="light-blue"  aria-label="Cyberpunk Mode"  type="radio" name="__palette" id="__palette_4">
+    
+      <label class="md-header__button md-icon" title="Cyberpunk Mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2M7.5 13A2.5 2.5 0 0 0 5 15.5 2.5 2.5 0 0 0 7.5 18a2.5 2.5 0 0 0 2.5-2.5A2.5 2.5 0 0 0 7.5 13m9 0a2.5 2.5 0 0 0-2.5 2.5 2.5 2.5 0 0 0 2.5 2.5 2.5 2.5 0 0 0 2.5-2.5 2.5 2.5 0 0 0-2.5-2.5"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../arrays/" class="md-tabs__link">
+          
+  
+  
+  DSA
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="SDE Prep A2Z" class="md-nav__button md-logo" aria-label="SDE Prep A2Z" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SDE Prep A2Z
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    DSA
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            DSA
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../arrays/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Arrays
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Dynamic Programming
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../graph/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Graphs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trees/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Trees
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../TwoPointers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Two Pointers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LinkedList/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Linked Lists
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stacks_queues/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Stacks and Queues
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Strings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Strings
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Maths/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Maths
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bit_manipulation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Bit Manipulation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Greedy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Greedy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Hashing
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Hashing
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#colorful-numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Colorful Numbers
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Colorful Numbers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how" class="md-nav__link">
+    <span class="md-ellipsis">
+      How??
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#largest-continuous-sequence-zero-sum" class="md-nav__link">
+    <span class="md-ellipsis">
+      Largest Continuous Sequence Zero Sum
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Largest Continuous Sequence Zero Sum">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      How
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#longest-subarray-length" class="md-nav__link">
+    <span class="md-ellipsis">
+      Longest Subarray Length
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Longest Subarray Length">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      How
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#first-repeating-element" class="md-nav__link">
+    <span class="md-ellipsis">
+      First Repeating Element.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#two-sum" class="md-nav__link">
+    <span class="md-ellipsis">
+      Two Sum
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-sum" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 Sum
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#valid-sudoku" class="md-nav__link">
+    <span class="md-ellipsis">
+      Valid Sudoku
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Valid Sudoku">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      How
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diffk-ii" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diffk II
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Diffk II">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      How
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pairs-with-given-xor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pairs with given XOR.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anagrams" class="md-nav__link">
+    <span class="md-ellipsis">
+      Anagrams
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Anagrams">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      How
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#equal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Equal
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#copy-list-with-random-pointer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Copy List with Random Pointer
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-palindrome-possible" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check palindrome possible
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fraction-to-recurring-decimal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fraction to Recurring Decimal
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#points-on-the-straight-line" class="md-nav__link">
+    <span class="md-ellipsis">
+      Points on the Straight Line
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Points on the Straight Line">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      How
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#an-increment-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      An Increment Problem
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#subarray-with-given-xor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subarray with Given XOR
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Subarray with Given XOR">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      How
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#two-out-of-three" class="md-nav__link">
+    <span class="md-ellipsis">
+      Two out of Three
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Two out of Three">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      How
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#substring-concatenation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Substring Concatenation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Substring Concatenation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      How
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#subarray-with-exactly-b-odd-numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subarray with exactly B odd numbers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minimum-window-substring" class="md-nav__link">
+    <span class="md-ellipsis">
+      Minimum Window Substring
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Minimum Window Substring">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      How
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#longest-substring-without-repeating-characters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Longest Substring without repeating characters.
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#colorful-numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Colorful Numbers
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Colorful Numbers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how" class="md-nav__link">
+    <span class="md-ellipsis">
+      How??
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#largest-continuous-sequence-zero-sum" class="md-nav__link">
+    <span class="md-ellipsis">
+      Largest Continuous Sequence Zero Sum
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Largest Continuous Sequence Zero Sum">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      How
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#longest-subarray-length" class="md-nav__link">
+    <span class="md-ellipsis">
+      Longest Subarray Length
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Longest Subarray Length">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      How
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#first-repeating-element" class="md-nav__link">
+    <span class="md-ellipsis">
+      First Repeating Element.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#two-sum" class="md-nav__link">
+    <span class="md-ellipsis">
+      Two Sum
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-sum" class="md-nav__link">
+    <span class="md-ellipsis">
+      4 Sum
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#valid-sudoku" class="md-nav__link">
+    <span class="md-ellipsis">
+      Valid Sudoku
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Valid Sudoku">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      How
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#diffk-ii" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diffk II
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Diffk II">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      How
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pairs-with-given-xor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pairs with given XOR.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anagrams" class="md-nav__link">
+    <span class="md-ellipsis">
+      Anagrams
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Anagrams">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      How
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#equal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Equal
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#copy-list-with-random-pointer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Copy List with Random Pointer
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#check-palindrome-possible" class="md-nav__link">
+    <span class="md-ellipsis">
+      Check palindrome possible
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fraction-to-recurring-decimal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fraction to Recurring Decimal
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#points-on-the-straight-line" class="md-nav__link">
+    <span class="md-ellipsis">
+      Points on the Straight Line
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Points on the Straight Line">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      How
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#an-increment-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      An Increment Problem
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#subarray-with-given-xor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subarray with Given XOR
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Subarray with Given XOR">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      How
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#two-out-of-three" class="md-nav__link">
+    <span class="md-ellipsis">
+      Two out of Three
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Two out of Three">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      How
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#substring-concatenation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Substring Concatenation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Substring Concatenation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      How
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#subarray-with-exactly-b-odd-numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Subarray with exactly B odd numbers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#minimum-window-substring" class="md-nav__link">
+    <span class="md-ellipsis">
+      Minimum Window Substring
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Minimum Window Substring">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      How
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#longest-substring-without-repeating-characters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Longest Substring without repeating characters.
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+  <h1>Hashing</h1>
+
+<h2 id="colorful-numbers">Colorful Numbers<a class="headerlink" href="#colorful-numbers" title="Permanent link">&para;</a></h2>
+<p>Given an int A, determine whether its colorful or not.</p>
+<p>Number if colorful if product of digits of every contiguous subsequence is unique.</p>
+<h3 id="how">How??<a class="headerlink" href="#how" title="Permanent link">&para;</a></h3>
+<p>Slide a window of size k over the digits and multiply as you go. If two windows ever yield the same product, the number is not colorful.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">is_colorful</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">digits</span> <span class="o">=</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="nb">str</span><span class="p">(</span><span class="n">A</span><span class="p">)]</span>
+    <span class="n">seen</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">digits</span><span class="p">)):</span>
+        <span class="n">prod</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">digits</span><span class="p">)):</span>
+            <span class="n">prod</span> <span class="o">*=</span> <span class="n">digits</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">prod</span> <span class="ow">in</span> <span class="n">seen</span><span class="p">:</span>
+                <span class="k">return</span> <span class="mi">0</span>
+            <span class="n">seen</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">prod</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">1</span>
+</code></pre></div>
+<h2 id="largest-continuous-sequence-zero-sum">Largest Continuous Sequence Zero Sum<a class="headerlink" href="#largest-continuous-sequence-zero-sum" title="Permanent link">&para;</a></h2>
+<p>Given an <span class="arithmatex">\(int\)</span> array, find the longest contiguous subarray whose elements sum to zero. If multiple exist, return the one that appears first.</p>
+<h3 id="how_1">How<a class="headerlink" href="#how_1" title="Permanent link">&para;</a></h3>
+<p>Compute the prefix sum, and store the first index where each sum occurs in a hash map. Whenever the same sum reappears at index <span class="arithmatex">\(j\)</span>, the subarr <span class="arithmatex">\((firstIdx  + 1) .. j\)</span> sums to zero.</p>
+<p>Track the maximum length.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">longest_zero_sum_subarray</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">first_occ</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">}</span>
+    <span class="n">total</span><span class="p">,</span> <span class="n">best_len</span><span class="p">,</span> <span class="n">best_start</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)):</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">total</span> <span class="ow">in</span> <span class="n">first_occ</span><span class="p">:</span>
+            <span class="n">length</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="n">first_occ</span><span class="p">[</span><span class="n">total</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">length</span> <span class="o">&gt;</span> <span class="n">best_len</span><span class="p">:</span>
+                <span class="n">best_len</span> <span class="o">=</span> <span class="n">length</span>
+                <span class="n">best_start</span> <span class="o">=</span> <span class="n">first_occ</span><span class="p">[</span><span class="n">total</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">first_occ</span><span class="p">[</span><span class="n">total</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
+    <span class="k">return</span> <span class="n">A</span><span class="p">[</span><span class="n">best_start</span><span class="p">:</span><span class="n">best_start</span> <span class="o">+</span> <span class="n">best_len</span><span class="p">]</span>
+</code></pre></div>
+<h2 id="longest-subarray-length">Longest Subarray Length<a class="headerlink" href="#longest-subarray-length" title="Permanent link">&para;</a></h2>
+<p>Given a binary array, find the length of the longest contiguous subarray in which the number of 1's is exactly one more than number of 0's.</p>
+<h3 id="how_2">How<a class="headerlink" href="#how_2" title="Permanent link">&para;</a></h3>
+<p>Treat each 1 as +1, and each 0 as -1. Compute the prefix sum.</p>
+<p>Subarray <span class="arithmatex">\([j+1...i]\)</span> has <span class="arithmatex">\(cnt(1) - cnt(0) = 1\)</span> when <span class="arithmatex">\(S[i] - S[j] = 1\)</span>, or <span class="arithmatex">\(S[j] = S[i] - 1\)</span></p>
+<p>Store in a hash_map the earliest index where each prefix sum occurs. At every index, look for <span class="arithmatex">\(S[i] - 1\)</span> to extend the longest valid segment ending at i.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">longest_subarray_len</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">first_occ</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">}</span>
+    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">max_len</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)):</span>
+        <span class="n">total</span> <span class="o">+=</span> <span class="mi">1</span> <span class="k">if</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">total</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">in</span> <span class="n">first_occ</span><span class="p">:</span>
+            <span class="n">max_len</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">max_len</span><span class="p">,</span> <span class="n">i</span> <span class="o">-</span> <span class="n">first_occ</span><span class="p">[</span><span class="n">total</span> <span class="o">-</span> <span class="mi">1</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">total</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">first_occ</span><span class="p">:</span>
+            <span class="n">first_occ</span><span class="p">[</span><span class="n">total</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
+    <span class="k">return</span> <span class="n">max_len</span>
+</code></pre></div>
+<h2 id="first-repeating-element">First Repeating Element.<a class="headerlink" href="#first-repeating-element" title="Permanent link">&para;</a></h2>
+<p>Find the first repeating element in an array.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">first_repeating</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">seen</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="n">candidate</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1">#will hold the left-most repeating value</span>
+    <span class="c1">#scan right to left</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">seen</span><span class="p">:</span>
+            <span class="n">candidate</span> <span class="o">=</span><span class="n">x</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">seen</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">candidate</span> <span class="k">if</span> <span class="n">candidate</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span>
+</code></pre></div>
+<h2 id="two-sum">Two Sum<a class="headerlink" href="#two-sum" title="Permanent link">&para;</a></h2>
+<p>Given an int array, and a target B, find two distinct elements whose sum is <span class="arithmatex">\(B\)</span>. Return their 1-based indexes, <span class="arithmatex">\(i &lt; j\)</span>.  If multiple exists, choose the pair with the smallest <span class="arithmatex">\(j\)</span>: if tied, smallest i. 
+Nahi mila toh return empty list.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">two_sum</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">):</span>
+    <span class="n">first_pos</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)):</span>
+        <span class="n">want</span> <span class="o">=</span> <span class="n">B</span> <span class="o">-</span> <span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">want</span> <span class="ow">in</span> <span class="n">first_pos</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="n">first_pos</span><span class="p">[</span><span class="n">want</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">first_pos</span><span class="p">:</span>
+            <span class="n">first_pos</span><span class="p">[</span><span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">]]</span> <span class="o">=</span> <span class="n">j</span>
+    <span class="k">return</span> <span class="p">[]</span>
+</code></pre></div>
+<h2 id="4-sum">4 Sum<a class="headerlink" href="#4-sum" title="Permanent link">&para;</a></h2>
+<p>Given an int array, and a target B. Find all unique quadruplets <span class="arithmatex">\((a,b,c,d)\)</span> in A such that <span class="arithmatex">\(a + b + c + d = B\)</span>, where <span class="arithmatex">\(a \leq b \leq c \leq d\)</span>.</p>
+<p>Return the list in lex order without duplicates.</p>
+<p>Sort arr, two nested loops, remaining use two pointer.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">fourSum</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">):</span>
+    <span class="n">A</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">3</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+            <span class="k">continue</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">j</span> <span class="o">&gt;</span> <span class="n">i</span><span class="o">+</span><span class="mi">1</span> <span class="ow">and</span> <span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">==</span> <span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+                <span class="k">continue</span>
+            <span class="n">left</span><span class="p">,</span><span class="n">right</span> <span class="o">=</span> <span class="n">j</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span>
+            <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span><span class="p">:</span>
+                <span class="n">total</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+</span> <span class="n">A</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">+</span> <span class="n">A</span><span class="p">[</span><span class="n">right</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">total</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+                    <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">],</span><span class="n">A</span><span class="p">[</span><span class="n">left</span><span class="p">],</span> <span class="n">A</span><span class="p">[</span><span class="n">right</span><span class="p">])</span>
+                    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span> <span class="ow">and</span> <span class="n">A</span><span class="p">[</span><span class="n">left</span><span class="p">]</span> <span class="o">==</span> <span class="n">A</span><span class="p">[</span><span class="n">left</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]:</span>
+                        <span class="n">left</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="k">while</span> <span class="n">left</span> <span class="o">&lt;</span> <span class="n">right</span> <span class="ow">and</span> <span class="n">A</span><span class="p">[</span><span class="n">right</span><span class="p">]</span> <span class="o">==</span> <span class="n">A</span><span class="p">[</span><span class="n">right</span><span class="o">-</span><span class="mi">1</span><span class="p">]:</span>
+                        <span class="n">right</span> <span class="o">-=</span> <span class="mi">1</span>
+                    <span class="n">left</span> <span class="o">+=</span> <span class="mi">1</span>
+                    <span class="n">right</span> <span class="o">-=</span><span class="mi">1</span>
+                <span class="k">elif</span> <span class="n">total</span> <span class="o">&lt;</span> <span class="n">target</span><span class="p">:</span>
+                    <span class="n">left</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span> <span class="n">right</span> <span class="o">-=</span><span class="mi">1</span>
+    <span class="k">return</span> <span class="n">res</span>
+</code></pre></div>
+<h2 id="valid-sudoku">Valid Sudoku<a class="headerlink" href="#valid-sudoku" title="Permanent link">&para;</a></h2>
+<p>Given a 9 \times 9 sudoku board filled with digits from <code>1</code> to <code>9</code>, and empty cells as <code>.</code>. Determine if the filled cells form a valid sudoku.</p>
+<p>Just no row and col duplicates, and each <span class="arithmatex">\(3 \times 3\)</span> sub box has no duplicate digits.</p>
+<h3 id="how_3">How<a class="headerlink" href="#how_3" title="Permanent link">&para;</a></h3>
+<p><span class="arithmatex">\(3 \times 3\)</span> boxes can be tracked using bitmasks. Same for rows and cols.</p>
+<p>Boxes can be indexed as <span class="arithmatex">\(b = 3 \times (i/3) + (j/3)\)</span>.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">is_valid_sudoku</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">rows</span><span class="p">,</span><span class="n">cols</span><span class="p">,</span><span class="n">boxes</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">9</span><span class="p">,[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">9</span><span class="p">,[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">9</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">9</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">9</span><span class="p">):</span>
+            <span class="n">c</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">c</span> <span class="o">==</span> <span class="s1">&#39;.&#39;</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">-</span><span class="mi">1</span> <span class="c1">#convert 1-9 to 0-8</span>
+            <span class="n">mask</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="n">d</span>
+            <span class="n">b</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="p">(</span><span class="n">i</span><span class="o">//</span><span class="mi">3</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">j</span><span class="o">//</span><span class="mi">3</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">rows</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&amp;</span> <span class="n">mask</span> <span class="ow">or</span> <span class="n">cols</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">&amp;</span> <span class="n">mask</span> <span class="ow">or</span> <span class="n">boxes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&amp;</span> <span class="n">mask</span><span class="p">:</span>
+                <span class="k">return</span> <span class="mi">0</span>
+            <span class="n">rows</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">|=</span> <span class="n">mask</span>
+            <span class="n">cols</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">|=</span> <span class="n">mask</span>
+            <span class="n">boxes</span><span class="p">[</span><span class="n">b</span><span class="p">]</span> <span class="o">|=</span> <span class="n">mask</span>
+    <span class="k">return</span> <span class="n">mask</span>
+</code></pre></div>
+<h2 id="diffk-ii">Diffk II<a class="headerlink" href="#diffk-ii" title="Permanent link">&para;</a></h2>
+<p>Given an int arr, and a int B, find if there are two distinct indices i and j, such that <span class="arithmatex">\(A[i] - A[j] = B\)</span>.</p>
+<p>Return 1 if such a pair exists, otherwise 0.</p>
+<h3 id="how_4">How<a class="headerlink" href="#how_4" title="Permanent link">&para;</a></h3>
+<p>For every x in A:
+ Just check in the hashset if you have seen <span class="arithmatex">\(x+B\)</span> or <span class="arithmatex">\(x-B\)</span></p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">diffk</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">):</span>
+    <span class="n">seen</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">A</span><span class="p">:</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">B</span><span class="p">)</span> <span class="ow">in</span> <span class="n">seen</span> <span class="ow">or</span> <span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">B</span><span class="p">)</span> <span class="ow">in</span> <span class="n">seen</span><span class="p">:</span>
+            <span class="k">return</span> <span class="mi">1</span>
+        <span class="n">seen</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="mi">0</span>
+</code></pre></div>
+<h2 id="pairs-with-given-xor">Pairs with given XOR.<a class="headerlink" href="#pairs-with-given-xor" title="Permanent link">&para;</a></h2>
+<p>Given an int arr, and int B, count the unique pairs <span class="arithmatex">\((x,y)\)</span> in A such that <span class="arithmatex">\(x \oplus y = B\)</span> </p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">count_pairs_xor</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">):</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">A</span><span class="p">:</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">^</span><span class="n">B</span>
+        <span class="k">if</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">S</span> <span class="ow">and</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">y</span><span class="p">:</span>
+            <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">count</span>
+</code></pre></div>
+<h2 id="anagrams">Anagrams<a class="headerlink" href="#anagrams" title="Permanent link">&para;</a></h2>
+<p>Given an array of lowercase strings, return all groups of anagrams. Represent the group by a list of 1-based indices in A. Within each group, maintain the original relative order of strings. Group themselves should be ordered by the first occurence of any member.</p>
+<h3 id="how_5">How<a class="headerlink" href="#how_5" title="Permanent link">&para;</a></h3>
+<p>Two strings are anagrams iff they ahve identical character counts.</p>
+<p>For each string, compute a signature encoding of its letter frequencies. Use hashmap from signature to list of idx. </p>
+<p>Track the order in which distinct signatures first appear to output groups in correct order.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">group_anagrams</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span>
+    <span class="n">groups</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+    <span class="n">keys</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">word</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">26</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">word</span><span class="p">:</span>
+            <span class="n">count</span><span class="p">[</span><span class="nb">ord</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">-</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">sig</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">count</span><span class="p">)</span> <span class="c1">#use tuple of count as signature</span>
+        <span class="k">if</span> <span class="n">sig</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">groups</span><span class="p">:</span>
+            <span class="n">keys</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sig</span><span class="p">)</span>
+        <span class="n">groups</span><span class="p">[</span><span class="n">sig</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="c1">#store 1-based</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">sig</span> <span class="ow">in</span> <span class="n">keys</span><span class="p">:</span>
+        <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">groups</span><span class="p">[</span><span class="n">sig</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">result</span>
+</code></pre></div>
+<h2 id="equal">Equal<a class="headerlink" href="#equal" title="Permanent link">&para;</a></h2>
+<p>Given an int array, find indices a,b,c,d such that: 
+$$
+    A[a] + A[b] = A[c] + A[d]
+$$
+and <span class="arithmatex">\(a &lt; b\space c &lt; d\space a &lt; c \space b \neq c,\space b \neq d\)</span>
+Return the lexicographically smallest one.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">find_equal_quadruple</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">first_pair</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">best</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">s</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">first_pair</span><span class="p">:</span>
+                <span class="n">first_pair</span><span class="p">[</span><span class="n">s</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">p</span><span class="p">,</span><span class="n">q</span> <span class="o">=</span> <span class="n">first_pair</span><span class="p">[</span><span class="n">s</span><span class="p">]</span>
+                <span class="k">if</span> <span class="n">p</span> <span class="o">&lt;</span> <span class="n">i</span> <span class="ow">and</span> <span class="n">q</span> <span class="o">!=</span> <span class="n">i</span> <span class="ow">and</span> <span class="n">q</span> <span class="o">!=</span> <span class="n">j</span><span class="p">:</span>
+                    <span class="n">cand</span> <span class="o">=</span> <span class="p">[</span><span class="n">p</span><span class="p">,</span><span class="n">q</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">]</span>
+                    <span class="k">if</span> <span class="ow">not</span> <span class="n">best</span> <span class="ow">or</span> <span class="n">cand</span> <span class="o">&lt;</span> <span class="n">best</span><span class="p">:</span>
+                        <span class="n">best</span> <span class="o">=</span> <span class="n">cand</span>
+    <span class="k">return</span> <span class="n">best</span>
+</code></pre></div>
+<h2 id="copy-list-with-random-pointer">Copy List with Random Pointer<a class="headerlink" href="#copy-list-with-random-pointer" title="Permanent link">&para;</a></h2>
+<p>A singly LL with an extra random pointer (may be null or any node). Return a deep copy of the list. </p>
+<div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">Node</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">label</span><span class="p">,</span><span class="nb">next</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">random</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="n">label</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="nb">next</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">random</span> <span class="o">=</span> <span class="n">random</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">copy_random_list</span><span class="p">(</span><span class="n">head</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">head</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="c1">#interleave copied nodes with og nodes</span>
+    <span class="n">cur</span> <span class="o">=</span> <span class="n">head</span>
+    <span class="k">while</span> <span class="n">cur</span><span class="p">:</span>
+        <span class="n">copy</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="n">cur</span><span class="o">.</span><span class="n">label</span><span class="p">)</span>
+        <span class="n">copy</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">next</span>
+        <span class="n">cur</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">copy</span>
+        <span class="n">cur</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">next</span>
+    <span class="c1">#assign random pointers</span>
+    <span class="n">cur</span> <span class="o">=</span> <span class="n">head</span>
+    <span class="k">while</span> <span class="n">cur</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">cur</span><span class="o">.</span><span class="n">random</span><span class="p">:</span>
+            <span class="n">cur</span><span class="o">.</span><span class="n">next</span><span class="o">.</span><span class="n">random</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">next</span>
+        <span class="n">cur</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">next</span><span class="o">.</span><span class="n">next</span>
+    <span class="c1">#separate og and copied nodes</span>
+    <span class="n">pseudo_head</span> <span class="o">=</span> <span class="n">Node</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">copy_iter</span> <span class="o">=</span> <span class="n">pseudo_head</span>
+    <span class="n">cur</span> <span class="o">=</span> <span class="n">head</span>
+
+    <span class="k">while</span> <span class="n">cur</span><span class="p">:</span>
+        <span class="n">copy</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">next</span>
+        <span class="n">cur</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">copy</span><span class="o">.</span><span class="n">next</span>
+        <span class="n">copy_iter</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">copy</span>
+        <span class="n">copy_iter</span> <span class="o">=</span> <span class="n">copy</span>
+        <span class="n">cur</span> <span class="o">=</span> <span class="n">cur</span><span class="o">.</span><span class="n">next</span>
+    <span class="k">return</span> <span class="n">pseudo_head</span><span class="o">.</span><span class="n">next</span>
+</code></pre></div>
+<h2 id="check-palindrome-possible">Check palindrome possible<a class="headerlink" href="#check-palindrome-possible" title="Permanent link">&para;</a></h2>
+<p>Given a lowercase string, check if it can be rearranged to form a palindrome.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">can_form_palindrome</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">freq</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">26</span>
+    <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">A</span><span class="p">:</span>
+        <span class="n">freq</span><span class="p">[</span><span class="nb">ord</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">-</span> <span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">odd_count</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">count</span> <span class="ow">in</span> <span class="n">freq</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">count</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">odd_count</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">odd_count</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">return</span> <span class="mi">1</span>
+</code></pre></div>
+<h2 id="fraction-to-recurring-decimal">Fraction to Recurring Decimal<a class="headerlink" href="#fraction-to-recurring-decimal" title="Permanent link">&para;</a></h2>
+<p>Given two integers A and B (numerator and denominator), return their fraction in string form. If the decimal part is repeating, enclose the repeating sequence in parenthesis.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">fraction_to_decimal</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">A</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;0&quot;</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">sign</span> <span class="o">=</span> <span class="s2">&quot;-&quot;</span> <span class="k">if</span> <span class="p">(</span><span class="n">A</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">^</span> <span class="p">(</span><span class="n">B</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">num</span><span class="p">,</span><span class="n">den</span> <span class="o">=</span> <span class="nb">abs</span><span class="p">(</span><span class="n">A</span><span class="p">),</span><span class="nb">abs</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+    <span class="n">q</span> <span class="o">=</span> <span class="n">num</span> <span class="o">//</span> <span class="n">den</span>
+    <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">q</span><span class="p">))</span>
+    <span class="n">rem</span> <span class="o">=</span> <span class="n">num</span> <span class="o">%</span> <span class="n">den</span>
+    <span class="k">if</span> <span class="n">rem</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">sign</span> <span class="o">+</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+    <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
+    <span class="n">seen</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">while</span> <span class="n">rem</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+         <span class="k">if</span> <span class="n">rem</span> <span class="ow">in</span> <span class="n">seen</span><span class="p">:</span>
+             <span class="n">pos</span> <span class="o">=</span> <span class="n">seen</span><span class="p">[</span><span class="n">rem</span><span class="p">]</span>
+             <span class="n">rem</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="s2">&quot;(&quot;</span><span class="p">)</span>
+             <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;)&quot;</span><span class="p">)</span>
+             <span class="k">break</span>
+        <span class="n">seen</span><span class="p">[</span><span class="n">rem</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+        <span class="n">rem</span> <span class="o">*=</span> <span class="mi">10</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="n">rem</span> <span class="o">//</span> <span class="n">den</span>
+        <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">d</span><span class="p">))</span>
+        <span class="n">rem</span> <span class="o">%=</span> <span class="n">den</span>
+    <span class="k">return</span> <span class="n">sign</span> <span class="o">+</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</code></pre></div>
+<h2 id="points-on-the-straight-line">Points on the Straight Line<a class="headerlink" href="#points-on-the-straight-line" title="Permanent link">&para;</a></h2>
+<p>Given N points <span class="arithmatex">\((A[i], B[i])\)</span> on the 2D plane, find maximum points that lie on the same straight line.</p>
+<h3 id="how_6">How<a class="headerlink" href="#how_6" title="Permanent link">&para;</a></h3>
+<p>The trick is to generate a unique slope key.</p>
+<p>For two points (<span class="arithmatex">\(x_i,y_i\)</span>) and (<span class="arithmatex">\(x_j,y_j\)</span>), let <span class="arithmatex">\(dx = x_j - x_i\)</span> and <span class="arithmatex">\(dy = y_j - y_i\)</span>.</p>
+<p>If both dx and dy are zero, they coincide, otherwise compute <span class="arithmatex">\(g = gcd(dy,dx)\)</span>, and <span class="arithmatex">\(dy<code>= \frac{dy}{y}$ and $dx</code> = \frac{dx}{y}\)</span> .
+Normalize the sign so that <span class="arithmatex">\(dx`\)</span> is <span class="arithmatex">\(\geq 0\)</span> . Represent vertical lines as (1,0) and horizontal lines as (0,1). </p>
+<p>Now we use <span class="arithmatex">\(dy<code>, dx</code>\)</span> pair as unique slope key.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">math</span><span class="w"> </span><span class="kn">import</span> <span class="n">gcd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">max_points_on_line</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span> <span class="k">return</span> <span class="n">n</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">slope_count</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+        <span class="n">duplicates</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">local_max</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">):</span>
+            <span class="n">dx</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">dy</span> <span class="o">=</span> <span class="n">B</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">-</span> <span class="n">B</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">dx</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">and</span> <span class="n">dy</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">duplicates</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">g</span> <span class="o">=</span> <span class="n">gcd</span><span class="p">(</span><span class="n">dx</span><span class="p">,</span><span class="n">dy</span><span class="p">)</span>
+                <span class="n">dy</span> <span class="o">//=</span> <span class="n">g</span>
+                <span class="n">dx</span> <span class="o">//=</span> <span class="n">g</span>
+                <span class="k">if</span> <span class="n">dx</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">dx</span> <span class="o">=</span> <span class="o">-</span><span class="n">dx</span>
+                    <span class="n">dy</span> <span class="o">=</span> <span class="o">-</span><span class="n">dy</span>
+                <span class="k">if</span> <span class="n">dx</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">dy</span> <span class="o">=</span> <span class="mi">1</span>
+                <span class="k">if</span> <span class="n">dy</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                    <span class="n">dx</span> <span class="o">=</span> <span class="mi">1</span>
+                <span class="n">slope_count</span><span class="p">[(</span><span class="n">dy</span><span class="p">,</span><span class="n">dx</span><span class="p">)]</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="n">local_max</span><span class="p">(</span><span class="n">local_max</span><span class="p">,</span> <span class="n">slope_count</span><span class="p">[(</span><span class="n">dy</span><span class="p">,</span><span class="n">dx</span><span class="p">)])</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">local_max</span> <span class="o">+</span> <span class="n">duplicates</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span>
+</code></pre></div>
+<h2 id="an-increment-problem">An Increment Problem<a class="headerlink" href="#an-increment-problem" title="Permanent link">&para;</a></h2>
+<p>Given a stream of integers, for each incoming element <span class="arithmatex">\(x\)</span>, if it has appeared before, increment the first occ by <span class="arithmatex">\(1\)</span>, then append the new <span class="arithmatex">\(x\)</span> to the end. Return the final stream after processing all arrivals.</p>
+<p>Maintain :</p>
+<ul>
+<li>
+<p>a dynamic arr for stream.</p>
+</li>
+<li>
+<p>For each val <span class="arithmatex">\(v\)</span>, a min-heap of indices in stream where <span class="arithmatex">\(v\)</span> currently resides.
+When x arrives:</p>
+</li>
+<li>
+<p>If heap for <span class="arithmatex">\(x\)</span> is nonempty, pop the smallest index <span class="arithmatex">\(j\)</span>, increment the stream there, and push <span class="arithmatex">\(j\)</span> into the heap for <span class="arithmatex">\(x+1\)</span></p>
+</li>
+<li>
+<p>Append <span class="arithmatex">\(x\)</span> to the end at index <span class="arithmatex">\(k\)</span>, and push <span class="arithmatex">\(k\)</span> into heap for <span class="arithmatex">\(x\)</span>.</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">heapq</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">process_increment_stream</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="n">stream</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">idx_heap</span> <span class="o">=</span> <span class="n">default_dict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">A</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">idx_heap</span><span class="p">[</span><span class="n">x</span><span class="p">]:</span>
+            <span class="n">j</span> <span class="o">=</span> <span class="n">heapq</span><span class="o">.</span><span class="n">heappop</span><span class="p">(</span><span class="n">idx_heap</span><span class="p">[</span><span class="n">x</span><span class="p">])</span>
+            <span class="n">stream</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">heapq</span><span class="o">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">idx_heap</span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span><span class="p">],</span><span class="n">j</span><span class="p">)</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">stream</span><span class="p">)</span>
+        <span class="n">stream</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">heapq</span><span class="o">.</span><span class="n">heappush</span><span class="p">(</span><span class="n">idx_heap</span><span class="p">[</span><span class="n">x</span><span class="p">],</span><span class="n">k</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">stream</span>
+</code></pre></div>
+<h2 id="subarray-with-given-xor">Subarray with Given XOR<a class="headerlink" href="#subarray-with-given-xor" title="Permanent link">&para;</a></h2>
+<p>Given int array <span class="arithmatex">\(A\)</span> and an int <span class="arithmatex">\(B\)</span>, count the subarrays whose bitwise xor of elements equals <span class="arithmatex">\(B\)</span>.</p>
+<h3 id="how_7">How<a class="headerlink" href="#how_7" title="Permanent link">&para;</a></h3>
+<p>Bhai prefix sum toh xor ka bhi hota.
+$$
+xor(A[L..R]) = prefix[R] \oplus prefix[L]
+$$</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">count_subarrays_with_xor</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">):</span>
+    <span class="n">freq</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">freq</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">prefix</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">A</span><span class="p">:</span>
+        <span class="n">prefix</span> <span class="o">^=</span> <span class="n">x</span>
+        <span class="n">need</span> <span class="o">=</span> <span class="n">prefix</span> <span class="o">^</span> <span class="n">B</span>
+        <span class="n">ans</span> <span class="o">+=</span> <span class="n">freq</span><span class="p">[</span><span class="n">need</span><span class="p">]</span>
+        <span class="n">freq</span><span class="p">[</span><span class="n">prefix</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">ans</span>
+</code></pre></div>
+<h2 id="two-out-of-three">Two out of Three<a class="headerlink" href="#two-out-of-three" title="Permanent link">&para;</a></h2>
+<p>Given three int arrays, A B and C, return a sorted list of all numbers that appear in atleast two of the arrays. Arrays may contain duplicates internally, but each value is counted at mmost once per array.</p>
+<h3 id="how_8">How<a class="headerlink" href="#how_8" title="Permanent link">&para;</a></h3>
+<p>Use a small integer mask per value to record which of the tree arrays it appears in. bit 0 for A, 1 for B and samajh le. Scan every array once, OR-ing appropriate bit into <span class="arithmatex">\(mask[x]\)</span>. Finally any value whose mask has atleast two bits set belongs to the answer.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">two_out_of_three</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">C</span><span class="p">):</span>
+    <span class="n">max_val</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">A</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">B</span><span class="p">),</span> <span class="nb">max</span><span class="p">(</span><span class="n">C</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="n">mask</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="p">(</span><span class="n">max_val</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+        <span class="n">mask</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">|=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">B</span><span class="p">):</span>
+        <span class="n">mask</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">|=</span> <span class="mi">2</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">set</span><span class="p">(</span><span class="n">C</span><span class="p">):</span>
+        <span class="n">mask</span><span class="p">[</span><span class="n">x</span><span class="p">]</span> <span class="o">|=</span> <span class="mi">4</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">max_val</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">bin</span><span class="p">(</span><span class="n">mask</span><span class="p">[</span><span class="n">x</span><span class="p">])</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="s1">&#39;1&#39;</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span>
+</code></pre></div>
+<h2 id="substring-concatenation">Substring Concatenation<a class="headerlink" href="#substring-concatenation" title="Permanent link">&para;</a></h2>
+<p>Given a string S of length n, and list L of m words, each of length k. Find all starting indices in S where a substring is formed by adding each word in L exactly once without any gaps. Return the list of indices in any order.</p>
+<ul>
+<li>
+<p>This algorithm finds all starting indices in <code>S</code> where a concatenation of all words in <code>L</code> occurs <strong>exactly once</strong> and <strong>without any intervening characters</strong>.</p>
+</li>
+<li>
+<p>Uses a <strong>sliding window</strong> technique with an offset loop to handle all alignment positions modulo <code>k</code>.</p>
+</li>
+<li>
+<p><code>target</code> counts how many times each word is expected.</p>
+</li>
+<li>
+<p><code>window</code> tracks how many times each word appears in the current sliding window.</p>
+</li>
+</ul>
+<h3 id="how_9">How<a class="headerlink" href="#how_9" title="Permanent link">&para;</a></h3>
+<p>Simple sliding window.</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span><span class="p">,</span> <span class="n">Counter</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">find_substring_concatenation</span><span class="p">(</span><span class="n">S</span><span class="p">,</span><span class="n">L</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">S</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">L</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">L</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="p">[]</span>
+    <span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">S</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">L</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">L</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">target</span> <span class="o">=</span> <span class="n">counter</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+        <span class="n">window</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">left</span> <span class="o">=</span> <span class="n">r</span>
+        <span class="k">for</span> <span class="n">right</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="n">n</span><span class="o">-</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span><span class="n">k</span><span class="p">):</span>
+            <span class="n">w</span> <span class="o">=</span> <span class="n">S</span><span class="p">[</span><span class="n">right</span><span class="p">:</span><span class="n">right</span><span class="o">+</span><span class="n">k</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">w</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">target</span><span class="p">:</span>
+                <span class="n">window</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+                <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="n">left</span> <span class="o">=</span> <span class="n">right</span> <span class="o">+</span> <span class="n">k</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">window</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">if</span> <span class="n">window</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">target</span><span class="p">[</span><span class="n">w</span><span class="p">]:</span>
+                    <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="k">while</span> <span class="n">window</span><span class="p">[</span><span class="n">w</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">target</span><span class="p">[</span><span class="n">w</span><span class="p">]:</span>
+                        <span class="n">w_left</span> <span class="o">=</span> <span class="n">S</span><span class="p">[</span><span class="n">left</span><span class="p">:</span><span class="n">left</span> <span class="o">+</span> <span class="n">k</span><span class="p">]</span>
+                        <span class="n">window</span><span class="p">[</span><span class="n">w_left</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
+                        <span class="k">if</span> <span class="n">window</span><span class="p">[</span><span class="n">w_left</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">target</span><span class="p">[</span><span class="n">w_left</span><span class="p">]:</span>
+                            <span class="n">count</span> <span class="o">-=</span> <span class="mi">1</span>
+                        <span class="n">left</span> <span class="o">+=</span> <span class="n">k</span>
+                <span class="k">if</span> <span class="n">count</span> <span class="o">==</span> <span class="n">m</span><span class="p">:</span>
+                    <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">left</span><span class="p">)</span>
+                    <span class="n">w_left</span> <span class="o">=</span> <span class="n">S</span><span class="p">[</span><span class="n">left</span><span class="p">:</span><span class="n">left</span> <span class="o">+</span> <span class="n">k</span><span class="p">]</span>
+                    <span class="n">window</span><span class="p">[</span><span class="n">w_left</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
+                    <span class="n">count</span> <span class="o">-=</span> <span class="mi">1</span>
+                    <span class="n">left</span> <span class="o">+=</span> <span class="n">k</span>
+    <span class="k">return</span> <span class="n">result</span>
+</code></pre></div>
+<h2 id="subarray-with-exactly-b-odd-numbers">Subarray with exactly B odd numbers<a class="headerlink" href="#subarray-with-exactly-b-odd-numbers" title="Permanent link">&para;</a></h2>
+<p>Given an int array, and an int B, count how many subarrays contain exactly B odd numbers.</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">count_subarrays_with_b_odds</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="n">B</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+    <span class="n">odd_pos</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">x</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="k">if</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="c1">#special case: B == 0, count all even only subarrays</span>
+    <span class="k">if</span> <span class="n">B</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">length</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">A</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="n">length</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">ans</span> <span class="o">+=</span> <span class="n">length</span><span class="o">*</span><span class="p">(</span><span class="n">length</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span>
+                <span class="n">length</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">ans</span> <span class="o">+=</span> <span class="n">length</span><span class="o">*</span><span class="p">(</span><span class="n">length</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
+        <span class="k">return</span> <span class="n">ans</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">odd_pos</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">m</span> <span class="o">&lt;</span> <span class="n">B</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="n">ans</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">m</span><span class="o">-</span><span class="n">B</span><span class="o">+</span><span class="mi">2</span><span class="p">):</span>
+        <span class="n">L</span> <span class="o">=</span> <span class="n">odd_pos</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="n">odd_pos</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">R</span> <span class="o">=</span> <span class="n">odd_pos</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">B</span><span class="p">]</span> <span class="o">-</span> <span class="n">odd_pos</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="n">B</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">ans</span> <span class="o">+=</span> <span class="n">L</span><span class="o">*</span><span class="n">R</span>
+    <span class="k">return</span> <span class="n">ans</span>
+</code></pre></div>
+<h2 id="minimum-window-substring">Minimum Window Substring<a class="headerlink" href="#minimum-window-substring" title="Permanent link">&para;</a></h2>
+<p>Given a string S of length n and a pattern T of length m. Find the smallest substring (window) of S that contains all characters of T.
+If no such window, return empty string. If multiple exists, return the one with smallest starting index.</p>
+<h3 id="how_10">How<a class="headerlink" href="#how_10" title="Permanent link">&para;</a></h3>
+<p>Sliding Sliding maa chod dunga google ki.
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">Counter</span><span class="p">,</span> <span class="n">defaultdict</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">min_window_substring</span><span class="p">(</span><span class="n">S</span><span class="p">,</span><span class="n">T</span><span class="p">):</span>
+    <span class="n">n</span><span class="p">,</span><span class="n">m</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">S</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="n">m</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;&quot;</span>
+    <span class="n">need</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+    <span class="n">have</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">required</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">need</span><span class="p">)</span>
+    <span class="n">formed</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">l</span> <span class="o">=</span> <span class="n">r</span> <span class="o">=</span><span class="mi">0</span>
+    <span class="n">min_len</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">)</span>
+    <span class="n">min_l</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">r</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="n">S</span><span class="p">[</span><span class="n">r</span><span class="p">]</span>
+        <span class="n">have</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">need</span> <span class="ow">and</span> <span class="n">have</span><span class="p">[</span><span class="n">c</span><span class="p">]</span> <span class="o">==</span> <span class="n">need</span><span class="p">[</span><span class="n">c</span><span class="p">]:</span>
+            <span class="n">formed</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">while</span> <span class="n">l</span> <span class="o">&lt;=</span> <span class="n">r</span> <span class="ow">and</span> <span class="n">formed</span> <span class="o">==</span> <span class="n">required</span><span class="p">:</span>
+            <span class="n">window</span> <span class="o">=</span> <span class="n">r</span> <span class="o">-</span> <span class="n">l</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">window_len</span> <span class="o">&lt;</span> <span class="n">min_len</span><span class="p">:</span>
+                <span class="n">min_len</span> <span class="o">=</span> <span class="n">window_len</span>
+                <span class="n">min_l</span> <span class="o">=</span> <span class="n">l</span>
+            <span class="n">d</span> <span class="o">=</span> <span class="n">S</span><span class="p">[</span><span class="n">l</span><span class="p">]</span>
+            <span class="n">have</span><span class="p">[</span><span class="n">d</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">need</span> <span class="ow">and</span> <span class="n">have</span><span class="p">[</span><span class="n">d</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">need</span><span class="p">[</span><span class="n">d</span><span class="p">]:</span>
+                <span class="n">formed</span> <span class="o">-=</span> <span class="mi">1</span>
+            <span class="n">l</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="n">r</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="s2">&quot;&quot;</span> <span class="k">if</span> <span class="n">min_len</span> <span class="o">==</span> <span class="nb">float</span><span class="p">(</span><span class="s1">&#39;inf&#39;</span><span class="p">)</span> <span class="k">else</span> <span class="n">S</span><span class="p">[</span><span class="n">min_l</span><span class="p">:</span><span class="n">min_l</span> <span class="o">+</span> <span class="n">min_len</span><span class="p">]</span>
+</code></pre></div></p>
+<h2 id="longest-substring-without-repeating-characters">Longest Substring without repeating characters.<a class="headerlink" href="#longest-substring-without-repeating-characters" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">longest_unique_substring</span><span class="p">(</span><span class="n">S</span><span class="p">):</span>
+    <span class="n">last</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">256</span> <span class="c1">#assuming ASCII</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">best</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">c</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">S</span><span class="p">):</span>
+        <span class="n">ascii_c</span> <span class="o">=</span> <span class="nb">ord</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">last</span><span class="p">[</span><span class="n">ascii_c</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">best</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">best</span><span class="p">,</span> <span class="n">i</span> <span class="o">-</span> <span class="n">start</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">last</span><span class="p">[</span><span class="n">ascii_c</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span>
+    <span class="k">return</span> <span class="n">best</span>
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../Greedy/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Greedy">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Greedy
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/your/repo" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.top", "content.code.copy", "content.code.annotate", "content.math", "navigation.footer", "navigation.sections", "navigation.instant", "navigation.tracking", "search.highlight", "search.share", "search.suggest"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/contrib/auto-render.min.js"></script>
+      
+        <script src="../../javascripts/katex-render.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>
