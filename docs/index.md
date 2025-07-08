@@ -23,6 +23,7 @@ Jaake padle gaandu:
 - Ni༼ つ ◕_◕ ༽つgga [Strings](DSAyy/Strings.md)
 - ( ＾◡＾)っ✂╰⋃╯ [Maths](DSAyy/Maths.md)
 - (‿∣‿) slap 🤤 [Bit Manipulation](DSAyy/bit_manipulation.md)
+- ╭∩╮( •̀_•́ )╭∩╮[Greedy](DSAyy/Greedy.md)
 ---
 
 
