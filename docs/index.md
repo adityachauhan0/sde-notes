@@ -25,6 +25,10 @@ Jaake padle gaandu:
 - (‿∣‿) slap 🤤 [Bit Manipulation](DSAyy/bit_manipulation.md)
 - ╭∩╮( •̀_•́ )╭∩╮[Greedy](DSAyy/Greedy.md)
 - ● █▀█▄ Ɑ͞ ̶͞ ̶͞ ̶͞ لں͞[Hashing](DSAyy/hashing.md)
+- 𝖂𝖍𝖆𝖙 𝖙𝖍𝖊 𝖘𝖎𝖌𝖒𝖆 [Binary Search](DSAyy/binary_search.md)
+- 𝖘𝖍𝖚𝖙 𝖚𝖕 𝖋𝖆𝖌𝖌𝖔𝖙 [Heaps and Maps](DSAyy/heaps_and_maps.md)
+- 𝐍ιووεr 🙆🏾👨🏿‍🦱 [BackTracking](DSAyy/backtracking.md)
+
 ---
 
 

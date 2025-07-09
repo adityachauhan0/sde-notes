@@ -543,3 +543,1173 @@ grayCode(3)
 
 ---
 
+# Kth Permutation Sequence
+
+## Problem Statement
+
+Given integers $n$ and $k$, return the $k^{\text{th}}$ permutation sequence of the numbers $[1, 2, 3, \dots, n]$ in **lexicographic order**.
+
+### Example
+
+```python
+Input: n = 3, k = 4
+Output: "231"
+````
+
+Permutations in order:
+
+1. 123
+    
+2. 132
+    
+3. 213
+    
+4. 231
+    
+5. 312
+    
+6. 321
+    
+
+---
+
+## Key Insight
+
+Instead of generating all permutations, we can compute the $k^{\text{th}}$ directly using the **factorial number system**.
+
+- There are $(n-1)!$ permutations for each fixed first digit.
+    
+- At each step, choose the digit at index:
+    
+    index=⌊k−1(n−1)!⌋\text{index} = \left\lfloor \frac{k-1}{(n-1)!} \right\rfloor
+- Remove the chosen digit and recurse with updated $k$ and $n$.
+    
+
+---
+
+## Python Code
+
+```python
+def getPermutation(n, k):
+    import math
+    nums = [str(i) for i in range(1, n + 1)]
+    fact = [1] * (n + 1)
+    for i in range(1, n + 1):
+        fact[i] = fact[i - 1] * i
+
+    k -= 1  # Convert to 0-based index
+    res = []
+    for i in range(n, 0, -1):
+        f = fact[i - 1]
+        idx = k // f
+        res.append(nums[idx])
+        nums.pop(idx)
+        k %= f
+
+    return ''.join(res)
+```
+
+---
+
+## Example
+
+```python
+getPermutation(4, 9)
+# Output: "2314"
+```
+
+---
+
+## Time & Space Complexity
+
+- **Time:** $O(n^2)$ — due to list `.pop()` being $O(n)$
+    
+- **Space:** $O(n)$ for factorials, result, and remaining numbers
+    
+
+---
+
+# Maximal String (Lexicographically Largest by Swapping)
+
+## Problem Statement
+
+Given a string $s$ of digits and an integer $k$, return the **lexicographically largest string** possible by performing **at most $k$ swaps** of characters.
+
+Each swap can be between any two characters in the string.
+
+### Example
+
+```python
+Input: s = "254", k = 1
+Output: "524"
+
+Input: s = "254", k = 2
+Output: "542"
+````
+
+---
+
+## Key Insight
+
+Use **backtracking** to try swapping the current character with all greater digits on the right.
+
+- At each index, find the **maximum digit** in the remaining substring.
+    
+- If a better digit exists, swap it with the current character.
+    
+- Try all such swaps and recurse with $k-1$.
+    
+- Always track the current **best (maximum) string** seen so far.
+    
+
+---
+
+## Python Code
+
+```python
+def maximalString(s, k):
+    best = [s]
+
+    def backtrack(s_list, k, idx):
+        current = ''.join(s_list)
+        if current > best[0]:
+            best[0] = current
+        if k == 0 or idx == len(s_list):
+            return
+
+        max_digit = max(s_list[idx:])
+        if max_digit != s_list[idx]:
+            for i in range(len(s_list) - 1, idx - 1, -1):
+                if s_list[i] == max_digit:
+                    s_list[idx], s_list[i] = s_list[i], s_list[idx]
+                    backtrack(s_list, k - 1, idx + 1)
+                    s_list[idx], s_list[i] = s_list[i], s_list[idx]
+        else:
+            backtrack(s_list, k, idx + 1)
+
+    backtrack(list(s), k, 0)
+    return best[0]
+```
+
+---
+
+## Example
+
+```python
+maximalString("129814999", 4)
+# Output: "999984211"
+```
+
+---
+
+## Time & Space Complexity
+
+- **Time:** $O((n!)^k)$ in worst case (but small $n \leq 9$ and $k \leq 5$ makes it feasible)
+    
+- **Space:** $O(n)$ for recursion stack and list manipulation
+    
+
+---
+
+# Subsets II (All Subsets With Duplicates)
+
+## Problem Statement
+
+Given an integer array $A$ that **may contain duplicates**, return all possible subsets (the power set).
+
+- Each subset must be in **non-descending order**
+- The solution set must **not contain duplicate subsets**
+- The output should be **lexicographically sorted**
+
+### Example
+
+```python
+Input: A = [1, 2, 2]
+Output:
+[
+ [],
+ [1],
+ [1, 2],
+ [1, 2, 2],
+ [2],
+ [2, 2]
+]
+````
+
+---
+
+## Key Insight
+
+Use **backtracking** to generate all subsets.
+
+- Sort the array to bring duplicates together.
+    
+- At each recursive level, **skip duplicates** to avoid repeated subsets.
+    
+- Always proceed forward (i.e., no reuse of earlier elements).
+    
+
+---
+
+## Python Code
+
+```python
+def subsetsWithDup(nums):
+    res = []
+    nums.sort()
+
+    def backtrack(start, path):
+        res.append(path[:])
+        for i in range(start, len(nums)):
+            if i > start and nums[i] == nums[i - 1]:
+                continue
+            path.append(nums[i])
+            backtrack(i + 1, path)
+            path.pop()
+
+    backtrack(0, [])
+    return res
+```
+
+---
+
+## Example
+
+```python
+subsetsWithDup([1, 2, 2])
+# Output: [[], [1], [1, 2], [1, 2, 2], [2], [2, 2]]
+```
+
+---
+
+## Time & Space Complexity
+
+- **Time:** $O(2^n)$ subsets generated, with pruning from duplicate skipping
+    
+- **Space:** $O(n)$ recursion stack + output size
+    
+
+---
+
+# Combinations (k-Combinations from 1 to n)
+
+## Problem Statement
+
+Given two integers $n$ and $k$, return all possible combinations of $k$ numbers chosen from the range $1$ to $n$.
+
+- Each combination must be in **ascending order**
+- The result should be **lexicographically sorted**
+
+### Example
+
+```python
+Input: n = 4, k = 2
+Output:
+[
+ [1, 2],
+ [1, 3],
+ [1, 4],
+ [2, 3],
+ [2, 4],
+ [3, 4]
+]
+````
+
+---
+
+## Key Insight
+
+This is a **combinatorial backtracking** problem.
+
+- At each step, select the next number from the remaining range
+    
+- Use a growing list `path` to store the current combination
+    
+- Stop recursion when `k` elements are chosen
+    
+- To prune unnecessary calls, limit upper bound of loop:
+    
+    end=n−remaining+1\text{end} = n - \text{remaining} + 1
+
+---
+
+## Python Code
+
+```python
+def combine(n, k):
+    res = []
+
+    def backtrack(start, path):
+        if len(path) == k:
+            res.append(path[:])
+            return
+        for i in range(start, n - (k - len(path)) + 2):
+            path.append(i)
+            backtrack(i + 1, path)
+            path.pop()
+
+    backtrack(1, [])
+    return res
+```
+
+---
+
+## Example
+
+```python
+combine(3, 2)
+# Output: [[1, 2], [1, 3], [2, 3]]
+```
+
+---
+
+## Time & Space Complexity
+
+- **Time:** $O\left(\binom{n}{k} \cdot k\right)$ — total combinations × length of each
+    
+- **Space:** $O(k)$ for recursion stack; output space is also $O\left(\binom{n}{k} \cdot k\right)$
+    
+
+---
+
+# Combination Sum II (Each Number Used At Most Once)
+
+## Problem Statement
+
+Given a list of integers $A$ (which may contain duplicates) and a target sum $B$,  
+return all **unique combinations** where each number is used **at most once**, and the sum is exactly $B$.
+
+- Each combination must be in **non-descending order**
+- The result must be **lexicographically sorted**
+- The solution set must **not contain duplicate combinations**
+
+### Example
+
+```python
+Input: A = [10, 1, 2, 7, 6, 1, 5], B = 8
+Output:
+[
+ [1, 1, 6],
+ [1, 2, 5],
+ [1, 7],
+ [2, 6]
+]
+````
+
+---
+
+## Key Insight
+
+- Sort the input to bring duplicates together
+    
+- Use **backtracking** to explore all subsets that sum to $B$
+    
+- At each step:
+    
+    - Skip duplicates by checking if `A[i] == A[i-1]` and `i > start`
+        
+    - Do not reuse the same number — move to `i + 1` after including `A[i]`
+        
+
+---
+
+## Python Code
+
+```python
+def combinationSum2(candidates, target):
+    res = []
+    candidates.sort()
+
+    def backtrack(start, path, total):
+        if total == target:
+            res.append(path[:])
+            return
+        if total > target:
+            return
+        for i in range(start, len(candidates)):
+            if i > start and candidates[i] == candidates[i - 1]:
+                continue
+            if candidates[i] > target:
+                break
+            path.append(candidates[i])
+            backtrack(i + 1, path, total + candidates[i])
+            path.pop()
+
+    backtrack(0, [], 0)
+    return res
+```
+
+---
+
+## Example
+
+```python
+combinationSum2([1, 1, 2, 5, 6, 7, 10], 8)
+# Output: [[1, 1, 6], [1, 2, 5], [1, 7], [2, 6]]
+```
+
+---
+
+## Time & Space Complexity
+
+- **Time:** Exponential in number of elements — pruned by early stopping and skipping duplicates
+    
+- **Space:** $O(k)$ recursion stack; output depends on number of valid combinations
+    
+
+---
+
+# Combination Sum (Each Number Can Be Used Unlimited Times)
+
+## Problem Statement
+
+Given a list of **positive integers** $A$ and a target sum $B$,  
+return all **unique combinations** in which elements from $A$ (with **unlimited** usage) sum to $B$.
+
+- Each combination must be in **non-descending order**
+- The result must be **lexicographically sorted**
+- The solution set must **not contain duplicate combinations**
+
+### Example
+
+```python
+Input: A = [2, 3, 6, 7], B = 7
+Output:
+[
+ [2, 2, 3],
+ [7]
+]
+````
+
+---
+
+## Key Insight
+
+This is a **classic unbounded knapsack** problem.
+
+- Sort and deduplicate the input
+    
+- Use **backtracking** to explore all combinations
+    
+- At each step:
+    
+    - Reuse the same number by passing the same index `i`
+        
+    - Stop if the remaining target is zero
+        
+    - Break if the current number exceeds the remaining target
+        
+
+---
+
+## Python Code
+
+```python
+def combinationSum(candidates, target):
+    res = []
+    candidates = sorted(set(candidates))
+
+    def backtrack(start, path, total):
+        if total == target:
+            res.append(path[:])
+            return
+        if total > target:
+            return
+        for i in range(start, len(candidates)):
+            if candidates[i] > target - total:
+                break
+            path.append(candidates[i])
+            backtrack(i, path, total + candidates[i])  # reuse same i
+            path.pop()
+
+    backtrack(0, [], 0)
+    return res
+```
+
+---
+
+## Example
+
+```python
+combinationSum([2, 3], 6)
+# Output: [[2, 2, 2], [3, 3]]
+```
+
+---
+
+## Time & Space Complexity
+
+- **Time:** Exponential in worst-case (many combinations)
+    
+- **Space:** $O(B)$ recursion stack; output depends on number of solutions
+    
+
+---
+
+# All Possible Subsets (Power Set via Backtracking)
+
+## Problem Statement
+
+Given a list of **distinct integers** $A$, return all possible **subsets** (the power set).
+
+- Each subset must be in **non-descending order**
+- The solution set must be **lexicographically sorted**
+
+### Example
+
+```python
+Input: A = [1, 2, 3]
+Output:
+[
+ [],
+ [1],
+ [1, 2],
+ [1, 2, 3],
+ [1, 3],
+ [2],
+ [2, 3],
+ [3]
+]
+````
+
+---
+
+## Key Insight
+
+This is a classic **power set** problem.
+
+Use **backtracking** to generate all subsets:
+
+- At each step, we can either **include** the current number or **skip** it
+    
+- By iterating from left to right, and always moving forward, subsets are guaranteed to be sorted
+    
+- Sorting the array first ensures lexicographic output
+    
+
+---
+
+## Python Code
+
+```python
+def subsets(nums):
+    res = []
+    nums.sort()
+
+    def backtrack(start, path):
+        res.append(path[:])
+        for i in range(start, len(nums)):
+            path.append(nums[i])
+            backtrack(i + 1, path)
+            path.pop()
+
+    backtrack(0, [])
+    return res
+```
+
+---
+
+## Example
+
+```python
+subsets([1, 2])
+# Output: [[], [1], [1, 2], [2]]
+```
+
+---
+
+## Time & Space Complexity
+
+- **Time:** $O(2^n \cdot n)$ — $2^n$ subsets, each up to $n$ in length
+    
+- **Space:** $O(n)$ recursion stack; output takes $O(2^n \cdot n)$
+    
+
+---
+
+# Word Break (Dictionary Segmentation Using Backtracking)
+
+## Problem Statement
+
+Given a string $s$ and a set of words `wordDict`, return all possible **sentences** where spaces are inserted to form a valid sequence of dictionary words.
+
+Each word in the sentence must appear in the given dictionary.
+
+### Example
+
+```python
+Input: 
+s = "catsanddog", 
+wordDict = ["cat", "cats", "and", "sand", "dog"]
+
+Output:
+[
+ "cat sand dog",
+ "cats and dog"
+]
+````
+
+---
+
+## Key Insight
+
+This is a **backtracking** problem with **memoization** to avoid recomputing subproblems.
+
+- Try all prefixes of the string
+    
+- If a prefix is in the dictionary, recursively process the suffix
+    
+- Use a memoization dictionary `dp[start]` to store valid sentence endings for substring `s[start:]`
+    
+
+---
+
+## Python Code
+
+```python
+def wordBreak(s, wordDict):
+    wordSet = set(wordDict)
+    dp = {}
+
+    def backtrack(start):
+        if start in dp:
+            return dp[start]
+        if start == len(s):
+            return [""]
+
+        sentences = []
+        for end in range(start + 1, len(s) + 1):
+            word = s[start:end]
+            if word in wordSet:
+                rest = backtrack(end)
+                for r in rest:
+                    sentence = word + (" " + r if r else "")
+                    sentences.append(sentence)
+
+        dp[start] = sentences
+        return sentences
+
+    return backtrack(0)
+```
+
+---
+
+## Example
+
+```python
+wordBreak("pineapplepenapple", [
+ "apple", "pen", "applepen", "pine", "pineapple"
+])
+# Output:
+# ["pine apple pen apple", "pineapple pen apple", "pine applepen apple"]
+```
+
+---
+
+## Time & Space Complexity
+
+- **Time:** Exponential in worst-case, but **pruned by memoization**
+    
+- **Space:** $O(n^2)$ for memo and recursive call stack
+    
+
+---
+
+# Restore IP Addresses
+
+## Problem Statement
+
+Given a string $s$ containing only digits, return all possible valid **IP address combinations** that can be formed by inserting dots into $s$.
+
+A valid IP address consists of exactly **four integers** (each between 0 and 255), separated by dots.  
+- No segment can have **leading zeros** (e.g. "01" is invalid, "0" is valid).
+
+### Example
+
+```python
+Input: s = "25525511135"
+Output: ["255.255.11.135", "255.255.111.35"]
+````
+
+---
+
+## Key Insight
+
+Use **backtracking** to explore all possible ways to insert 3 dots (dividing string into 4 parts):
+
+At each recursive step:
+
+- Try placing a dot after 1 to 3 digits
+    
+- Check if the segment is valid (≤ 255, no leading zeros)
+    
+- If valid, recurse with the next segment
+    
+
+Stop early if more than 4 segments or the string is exhausted.
+
+---
+
+## Python Code
+
+```python
+def restoreIpAddresses(s):
+    res = []
+
+    def backtrack(start, path):
+        if len(path) == 4:
+            if start == len(s):
+                res.append('.'.join(path))
+            return
+        for end in range(start + 1, min(len(s), start + 4)):
+            part = s[start:end]
+            if (part.startswith('0') and len(part) > 1) or int(part) > 255:
+                continue
+            backtrack(end, path + [part])
+
+    backtrack(0, [])
+    return res
+```
+
+---
+
+## Example
+
+```python
+restoreIpAddresses("0000")
+# Output: ["0.0.0.0"]
+```
+
+---
+
+## Time & Space Complexity
+
+- **Time:** $O(1)$ — worst-case bounded since only 3 dots → $O(3^4)$
+    
+- **Space:** $O(1)$ recursion depth, result space depends on number of valid IPs
+    
+
+---
+
+# Rat in a Maze (Find All Paths)
+
+## Problem Statement
+
+Given an $n \times n$ maze represented by a binary matrix,  
+find all paths from the top-left cell $(0, 0)$ to the bottom-right cell $(n-1, n-1)$.
+
+- A cell with `1` is traversable, `0` is blocked.
+- Valid moves are **down (`D`)**, **left (`L`)**, **right (`R`)**, and **up (`U`)**.
+- The rat **cannot visit the same cell more than once** in the same path.
+- Return all paths in **lexicographic order**.
+
+### Example
+
+```python
+Input:
+maze = [
+ [1, 0, 0, 0],
+ [1, 1, 0, 1],
+ [1, 1, 0, 0],
+ [0, 1, 1, 1]
+]
+
+Output: ["DDRDRR", "DRDDRR"]
+````
+
+---
+
+## Key Insight
+
+This is a classic **backtracking** problem with visited tracking.
+
+- Try all four directions in fixed lexicographic order
+    
+- Only move to valid, unvisited, open cells
+    
+- Mark cells as visited during recursion and unmark (backtrack) afterward
+    
+
+---
+
+## Python Code
+
+```python
+def findPaths(maze, n):
+    res = []
+    visited = [[False]*n for _ in range(n)]
+    directions = [('D', 1, 0), ('L', 0, -1), ('R', 0, 1), ('U', -1, 0)]
+
+    def is_valid(r, c):
+        return 0 <= r < n and 0 <= c < n and maze[r][c] == 1 and not visited[r][c]
+
+    def backtrack(r, c, path):
+        if r == n - 1 and c == n - 1:
+            res.append(path)
+            return
+        visited[r][c] = True
+        for dir_char, dr, dc in directions:
+            nr, nc = r + dr, c + dc
+            if is_valid(nr, nc):
+                backtrack(nr, nc, path + dir_char)
+        visited[r][c] = False
+
+    if maze[0][0] == 1:
+        backtrack(0, 0, "")
+    return res
+```
+
+---
+
+## Example
+
+```python
+findPaths([
+ [1, 0, 0, 0],
+ [1, 1, 0, 1],
+ [1, 1, 0, 0],
+ [0, 1, 1, 1]
+], 4)
+# Output: ["DDRDRR", "DRDDRR"]
+```
+
+---
+
+## Time & Space Complexity
+
+- **Time:** $O(4^{n^2})$ worst case (exponential paths), pruned by visited matrix
+    
+- **Space:** $O(n^2)$ for recursion stack and visited matrix
+    
+
+---
+
+# Word Search (Existence of a Word in a Grid)
+
+## Problem Statement
+
+Given a 2D board of characters and a word, return **true** if the word exists in the board.
+
+- The word can be constructed from letters of sequentially adjacent cells.
+- Adjacent cells are **horizontally or vertically** neighboring.
+- The same letter cell may **not** be used more than once.
+
+### Example
+
+```python
+Input:
+board = [
+ ['A','B','C','E'],
+ ['S','F','C','S'],
+ ['A','D','E','E']
+], word = "ABCCED"
+
+Output: True
+````
+
+---
+
+## Key Insight
+
+Use **backtracking DFS** to explore all valid paths from each cell.
+
+- Start DFS from every cell that matches the first letter
+    
+- At each step, check adjacent unvisited cells for the next character
+    
+- Temporarily mark the visited cells to avoid revisiting
+    
+- Restore the cell (backtrack) after recursion
+    
+
+---
+
+## Python Code
+
+```python
+def exist(board, word):
+    rows, cols = len(board), len(board[0])
+
+    def dfs(r, c, i):
+        if i == len(word):
+            return True
+        if r < 0 or r >= rows or c < 0 or c >= cols or board[r][c] != word[i]:
+            return False
+
+        temp = board[r][c]
+        board[r][c] = "#"
+
+        found = (
+            dfs(r + 1, c, i + 1) or
+            dfs(r - 1, c, i + 1) or
+            dfs(r, c + 1, i + 1) or
+            dfs(r, c - 1, i + 1)
+        )
+
+        board[r][c] = temp
+        return found
+
+    for r in range(rows):
+        for c in range(cols):
+            if board[r][c] == word[0] and dfs(r, c, 0):
+                return True
+
+    return False
+```
+
+---
+
+## Example
+
+```python
+exist([
+ ['A','B','C','E'],
+ ['S','F','C','S'],
+ ['A','D','E','E']
+], "SEE")
+# Output: True
+```
+
+---
+
+## Time & Space Complexity
+
+- **Time:** $O(m \cdot n \cdot 4^L)$ where $L$ is the length of the word
+    
+- **Space:** $O(L)$ recursion depth; $O(1)$ extra space (in-place visited marking)
+    
+
+---
+
+Here is the **first problem** from the Backtracking PDF formatted in clean markdown:
+
+---
+
+## Problem: Reverse Linked List (Recursion)
+
+### Problem Statement
+Reverse a singly linked list using recursion.
+
+Given the head of a singly linked list, reverse the list and return the new head.
+
+### Constraints
+- Number of nodes: $1 \leq N \leq 10^5$
+
+---
+
+### Recursive Insight
+
+The idea is to recursively reverse the rest of the list, and then put the current node at the end.
+
+### Recursive Relation
+
+If `head` is the current node:
+
+- Reverse rest of the list: `rev = reverse(head.next)`
+- Then, `head.next.next = head` and `head.next = None`
+
+---
+
+### Python Code
+
+```python
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+def reverseList(head: ListNode) -> ListNode:
+    if not head or not head.next:
+        return head
+    new_head = reverseList(head.next)
+    head.next.next = head
+    head.next = None
+    return new_head
+````
+
+---
+
+### Example
+
+Given:
+
+```
+1 → 2 → 3 → 4 → 5 → None
+```
+
+After reversing:
+
+```
+5 → 4 → 3 → 2 → 1 → None
+```
+
+---
+
+### Time Complexity
+
+- $O(N)$ where $N$ is the number of nodes.
+    
+
+### Space Complexity
+
+- $O(N)$ recursive call stack.
+    
+
+## Problem: Modular Expression — Compute $A^B \mod C$
+
+### Problem Statement
+Given three integers $A$, $B$, and $C$, compute:
+
+$$
+(A^B) \mod C
+$$
+
+Efficiently compute this even for very large $B$ (up to $10^9$).
+
+---
+
+### Constraints
+- $-10^9 \leq A \leq 10^9$
+- $0 \leq B \leq 10^9$
+- $1 \leq C \leq 10^9$
+
+If the result is negative, return a non-negative number in range $[0, C-1]$.
+
+---
+
+### Mathematical Insight: Binary Exponentiation
+
+We use binary exponentiation (also known as exponentiation by squaring), which reduces the time complexity from $O(B)$ to $O(\log B)$.
+
+---
+
+### Binary Exponentiation Logic
+
+To compute $x^n$:
+
+$$
+x^n = 
+\begin{cases}
+(x^{n/2})^2 & \text{if } n \text{ is even} \\
+x \cdot (x^{(n-1)/2})^2 & \text{if } n \text{ is odd}
+\end{cases}
+$$
+
+At each step, take result modulo $C$ to avoid overflow.
+
+---
+
+### Python Code
+
+```python
+def mod_pow(x: int, n: int, d: int) -> int:
+    base = x % d
+    if base < 0:
+        base += d
+
+    result = 1
+    while n > 0:
+        if n % 2 == 1:
+            result = (result * base) % d
+        base = (base * base) % d
+        n //= 2
+
+    return result % d
+```
+
+
+## Problem: Letter Phone (Digit-to-Letter Combinations)
+
+### Problem Statement
+
+Given a string of digits (from `0–9`), return all possible letter combinations that the number could represent using a telephone keypad.
+
+### Digit to Letter Mapping:
+
+```
+
+0 → 0 1 → 1  
+2 → abc 3 → def  
+4 → ghi 5 → jkl  
+6 → mno 7 → pqrs  
+8 → tuv 9 → wxyz
+
+````
+
+---
+
+### Example
+
+#### Input:
+```python
+A = "23"
+````
+
+#### Output:
+
+```python
+["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"]
+```
+
+---
+
+### Approach
+
+This is a **Cartesian product** problem using **backtracking**.
+
+- At each index, try all characters mapped from the current digit.
+    
+- Recurse to the next index.
+    
+- Append the full path to the result when complete.
+    
+
+---
+
+### Python Code
+
+```python
+def letterCombinations(A):
+    if not A:
+        return []
+
+    digit_map = [
+        "0", "1", "abc", "def", "ghi",
+        "jkl", "mno", "pqrs", "tuv", "wxyz"
+    ]
+
+    result = []
+
+    def backtrack(index, path):
+        if index == len(A):
+            result.append(''.join(path))
+            return
+        for char in digit_map[int(A[index])]:
+            path.append(char)
+            backtrack(index + 1, path)
+            path.pop()
+
+    backtrack(0, [])
+    return result
+```
+
+---
+
+### Example Usage
+
+```python
+letterCombinations("23")
+# Output: ['ad', 'ae', 'af', 'bd', 'be', 'bf', 'cd', 'ce', 'cf']
+```
+
+---
+
+### Time Complexity
+
+- $O(4^n)$ — where $n$ is the length of the digit string (since max 4 letters per digit)
+    
+
+### Space Complexity
+
+- $O(n)$ — recursion stack and temporary path
+
