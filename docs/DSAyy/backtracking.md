@@ -172,9 +172,7 @@ Output:
  [3, 1, 2],
  [3, 2, 1]
 ]
-````
-
----
+```
 
 ## Key Insight
 
@@ -233,9 +231,7 @@ Output: [
  "()(())",
  "()()()"
 ]
-````
-
----
+```
 
 ## Crazy insight
 
@@ -252,8 +248,6 @@ We use **backtracking** to build the string:
     
 - Add `)` only if it doesn't exceed `(` used so far
     
-
----
 
 ## Python Code
 
@@ -273,8 +267,6 @@ def generateParenthesis(n):
     backtrack(0, 0, "")
     return res
 ```
-
----
 
 ## Example
 
@@ -310,9 +302,9 @@ Output: [
  ["a", "a", "b"],
  ["aa", "b"]
 ]
-````
+```
 
----
+
 
 ## Key Insight
 
@@ -328,8 +320,6 @@ At each index:
     
 
 To speed up palindrome checks, precompute a **2D table** `is_pal[i][j]` that tells whether `s[i:j+1]` is a palindrome.
-
----
 
 ## Python Code
 
@@ -358,8 +348,6 @@ def partition(s):
     backtrack(0, [])
     return res
 ```
-
----
 
 ## Example
 
@@ -395,14 +383,14 @@ Given a string of digits from 0–9, return all possible letter combinations bas
 8 → tuv 9 → wxyz  
 0 → 0 1 → 1
 
-````
+```
 
 ### Example
 
 ```python
 Input: digits = "23"
 Output: ["ad", "ae", "af", "bd", "be", "bf", "cd", "ce", "cf"]
-````
+```
 
 ---
 
@@ -481,7 +469,7 @@ In Gray code, two successive values differ in only **one bit**.
 ```python
 Input: n = 2
 Output: [0, 1, 3, 2]
-````
+```
 
 Explanation:
 
@@ -554,7 +542,7 @@ Given integers $n$ and $k$, return the $k^{\text{th}}$ permutation sequence of t
 ```python
 Input: n = 3, k = 4
 Output: "231"
-````
+```
 
 Permutations in order:
 
@@ -645,7 +633,7 @@ Output: "524"
 
 Input: s = "254", k = 2
 Output: "542"
-````
+```
 
 ---
 
@@ -734,7 +722,7 @@ Output:
  [2],
  [2, 2]
 ]
-````
+```
 
 ---
 
@@ -813,7 +801,7 @@ Output:
  [2, 4],
  [3, 4]
 ]
-````
+```
 
 ---
 
@@ -894,7 +882,7 @@ Output:
  [1, 7],
  [2, 6]
 ]
-````
+```
 
 ---
 
@@ -979,7 +967,7 @@ Output:
  [2, 2, 3],
  [7]
 ]
-````
+```
 
 ---
 
@@ -1070,7 +1058,7 @@ Output:
  [2, 3],
  [3]
 ]
-````
+```
 
 ---
 
@@ -1147,7 +1135,7 @@ Output:
  "cat sand dog",
  "cats and dog"
 ]
-````
+```
 
 ---
 
@@ -1229,7 +1217,7 @@ A valid IP address consists of exactly **four integers** (each between 0 and 255
 ```python
 Input: s = "25525511135"
 Output: ["255.255.11.135", "255.255.111.35"]
-````
+```
 
 ---
 
@@ -1315,7 +1303,7 @@ maze = [
 ]
 
 Output: ["DDRDRR", "DRDDRR"]
-````
+```
 
 ---
 
@@ -1405,7 +1393,7 @@ board = [
 ], word = "ABCCED"
 
 Output: True
-````
+```
 
 ---
 
@@ -1525,7 +1513,7 @@ def reverseList(head: ListNode) -> ListNode:
     head.next.next = head
     head.next = None
     return new_head
-````
+```
 
 ---
 
@@ -1634,7 +1622,7 @@ Given a string of digits (from `0–9`), return all possible letter combinations
 6 → mno 7 → pqrs  
 8 → tuv 9 → wxyz
 
-````
+```
 
 ---
 
@@ -1643,7 +1631,7 @@ Given a string of digits (from `0–9`), return all possible letter combinations
 #### Input:
 ```python
 A = "23"
-````
+```
 
 #### Output:
 

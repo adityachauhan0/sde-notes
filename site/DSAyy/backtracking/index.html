@@ -9,6 +9,10 @@
       
       
       
+        <link rel="prev" href="../hashing/">
+      
+      
+        <link rel="next" href="../heaps_and_maps/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -16,7 +20,7 @@
     
     
       
-        <title>N-Queens Problem - SDE Prep A2Z</title>
+        <title>Backtracking - SDE Prep A2Z</title>
       
     
     
@@ -117,7 +121,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              N-Queens Problem
+              Backtracking
             
           </span>
         </div>
@@ -270,10 +274,12 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../arrays/" class="md-tabs__link">
           
   
@@ -345,26 +351,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   
@@ -377,7 +388,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             DSA
@@ -650,6 +661,159 @@
   
   <span class="md-ellipsis">
     Hashing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Backtracking
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Backtracking
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#problem-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problem Statement
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Problem Statement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constraints:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#key-insight" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Insight
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#python-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Python Code
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../heaps_and_maps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Heaps and Maps
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../binary_search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Binary Search
     
   </span>
   
@@ -1223,6 +1387,1035 @@ def letterCombinations(digits):
 </li>
 </ul>
 <hr />
+<h1 id="kth-permutation-sequence">Kth Permutation Sequence<a class="headerlink" href="#kth-permutation-sequence" title="Permanent link">&para;</a></h1>
+<h2 id="problem-statement_7">Problem Statement<a class="headerlink" href="#problem-statement_7" title="Permanent link">&para;</a></h2>
+<p>Given integers <span class="arithmatex">\(n\)</span> and <span class="arithmatex">\(k\)</span>, return the <span class="arithmatex">\(k^{\text{th}}\)</span> permutation sequence of the numbers <span class="arithmatex">\([1, 2, 3, \dots, n]\)</span> in <strong>lexicographic order</strong>.</p>
+<h3 id="example_8">Example<a class="headerlink" href="#example_8" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">Input</span><span class="p">:</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="n">Output</span><span class="p">:</span> <span class="s2">&quot;231&quot;</span>
+<span class="err">````</span>
+
+<span class="n">Permutations</span> <span class="ow">in</span> <span class="n">order</span><span class="p">:</span>
+
+<span class="mf">1.</span> <span class="mi">123</span>
+
+<span class="mf">2.</span> <span class="mi">132</span>
+
+<span class="mf">3.</span> <span class="mi">213</span>
+
+<span class="mf">4.</span> <span class="mi">231</span>
+
+<span class="mf">5.</span> <span class="mi">312</span>
+
+<span class="mf">6.</span> <span class="mi">321</span>
+
+
+<span class="o">---</span>
+
+<span class="c1">## Key Insight</span>
+
+<span class="n">Instead</span> <span class="n">of</span> <span class="n">generating</span> <span class="nb">all</span> <span class="n">permutations</span><span class="p">,</span> <span class="n">we</span> <span class="n">can</span> <span class="n">compute</span> <span class="n">the</span> <span class="err">$</span><span class="n">k</span><span class="o">^</span><span class="p">{</span>\<span class="n">text</span><span class="p">{</span><span class="n">th</span><span class="p">}}</span><span class="err">$</span> <span class="n">directly</span> <span class="n">using</span> <span class="n">the</span> <span class="o">**</span><span class="n">factorial</span> <span class="n">number</span> <span class="n">system</span><span class="o">**.</span>
+
+<span class="o">-</span> <span class="n">There</span> <span class="n">are</span> <span class="err">$</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="err">!$</span> <span class="n">permutations</span> <span class="k">for</span> <span class="n">each</span> <span class="n">fixed</span> <span class="n">first</span> <span class="n">digit</span><span class="o">.</span>
+
+<span class="o">-</span> <span class="n">At</span> <span class="n">each</span> <span class="n">step</span><span class="p">,</span> <span class="n">choose</span> <span class="n">the</span> <span class="n">digit</span> <span class="n">at</span> <span class="n">index</span><span class="p">:</span>
+
+    <span class="n">index</span><span class="o">=</span><span class="err">⌊</span><span class="n">k</span><span class="err">−</span><span class="mi">1</span><span class="p">(</span><span class="n">n</span><span class="err">−</span><span class="mi">1</span><span class="p">)</span><span class="err">!⌋</span>\<span class="n">text</span><span class="p">{</span><span class="n">index</span><span class="p">}</span> <span class="o">=</span> \<span class="n">left</span>\<span class="n">lfloor</span> \<span class="n">frac</span><span class="p">{</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">}{(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="err">!</span><span class="p">}</span> \<span class="n">right</span>\<span class="n">rfloor</span>
+<span class="o">-</span> <span class="n">Remove</span> <span class="n">the</span> <span class="n">chosen</span> <span class="n">digit</span> <span class="ow">and</span> <span class="n">recurse</span> <span class="k">with</span> <span class="n">updated</span> <span class="err">$</span><span class="n">k</span><span class="err">$</span> <span class="ow">and</span> <span class="err">$</span><span class="n">n</span><span class="err">$</span><span class="o">.</span>
+
+
+<span class="o">---</span>
+
+<span class="c1">## Python Code</span>
+
+<span class="err">```</span><span class="n">python</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">getPermutation</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+    <span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)]</span>
+    <span class="n">fact</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">fact</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fact</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">i</span>
+
+    <span class="n">k</span> <span class="o">-=</span> <span class="mi">1</span>  <span class="c1"># Convert to 0-based index</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="n">fact</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
+        <span class="n">idx</span> <span class="o">=</span> <span class="n">k</span> <span class="o">//</span> <span class="n">f</span>
+        <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">idx</span><span class="p">])</span>
+        <span class="n">nums</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">idx</span><span class="p">)</span>
+        <span class="n">k</span> <span class="o">%=</span> <span class="n">f</span>
+
+    <span class="k">return</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">res</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h2 id="example_9">Example<a class="headerlink" href="#example_9" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="n">getPermutation</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+<span class="c1"># Output: &quot;2314&quot;</span>
+</code></pre></div>
+<hr />
+<h2 id="time-space-complexity_4">Time &amp; Space Complexity<a class="headerlink" href="#time-space-complexity_4" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>Time:</strong> <span class="arithmatex">\(O(n^2)\)</span> — due to list <code>.pop()</code> being <span class="arithmatex">\(O(n)\)</span></p>
+</li>
+<li>
+<p><strong>Space:</strong> <span class="arithmatex">\(O(n)\)</span> for factorials, result, and remaining numbers</p>
+</li>
+</ul>
+<hr />
+<h1 id="maximal-string-lexicographically-largest-by-swapping">Maximal String (Lexicographically Largest by Swapping)<a class="headerlink" href="#maximal-string-lexicographically-largest-by-swapping" title="Permanent link">&para;</a></h1>
+<h2 id="problem-statement_8">Problem Statement<a class="headerlink" href="#problem-statement_8" title="Permanent link">&para;</a></h2>
+<p>Given a string <span class="arithmatex">\(s\)</span> of digits and an integer <span class="arithmatex">\(k\)</span>, return the <strong>lexicographically largest string</strong> possible by performing <strong>at most <span class="arithmatex">\(k\)</span> swaps</strong> of characters.</p>
+<p>Each swap can be between any two characters in the string.</p>
+<h3 id="example_10">Example<a class="headerlink" href="#example_10" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">Input</span><span class="p">:</span> <span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;254&quot;</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">Output</span><span class="p">:</span> <span class="s2">&quot;524&quot;</span>
+
+<span class="n">Input</span><span class="p">:</span> <span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;254&quot;</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">Output</span><span class="p">:</span> <span class="s2">&quot;542&quot;</span>
+<span class="err">````</span>
+
+<span class="o">---</span>
+
+<span class="c1">## Key Insight</span>
+
+<span class="n">Use</span> <span class="o">**</span><span class="n">backtracking</span><span class="o">**</span> <span class="n">to</span> <span class="k">try</span> <span class="n">swapping</span> <span class="n">the</span> <span class="n">current</span> <span class="n">character</span> <span class="k">with</span> <span class="nb">all</span> <span class="n">greater</span> <span class="n">digits</span> <span class="n">on</span> <span class="n">the</span> <span class="n">right</span><span class="o">.</span>
+
+<span class="o">-</span> <span class="n">At</span> <span class="n">each</span> <span class="n">index</span><span class="p">,</span> <span class="n">find</span> <span class="n">the</span> <span class="o">**</span><span class="n">maximum</span> <span class="n">digit</span><span class="o">**</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">remaining</span> <span class="n">substring</span><span class="o">.</span>
+
+<span class="o">-</span> <span class="n">If</span> <span class="n">a</span> <span class="n">better</span> <span class="n">digit</span> <span class="n">exists</span><span class="p">,</span> <span class="n">swap</span> <span class="n">it</span> <span class="k">with</span> <span class="n">the</span> <span class="n">current</span> <span class="n">character</span><span class="o">.</span>
+
+<span class="o">-</span> <span class="n">Try</span> <span class="nb">all</span> <span class="n">such</span> <span class="n">swaps</span> <span class="ow">and</span> <span class="n">recurse</span> <span class="k">with</span> <span class="err">$</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="err">$</span><span class="o">.</span>
+
+<span class="o">-</span> <span class="n">Always</span> <span class="n">track</span> <span class="n">the</span> <span class="n">current</span> <span class="o">**</span><span class="n">best</span> <span class="p">(</span><span class="n">maximum</span><span class="p">)</span> <span class="n">string</span><span class="o">**</span> <span class="n">seen</span> <span class="n">so</span> <span class="n">far</span><span class="o">.</span>
+
+
+<span class="o">---</span>
+
+<span class="c1">## Python Code</span>
+
+<span class="err">```</span><span class="n">python</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">maximalString</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="n">best</span> <span class="o">=</span> <span class="p">[</span><span class="n">s</span><span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">backtrack</span><span class="p">(</span><span class="n">s_list</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">idx</span><span class="p">):</span>
+        <span class="n">current</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">s_list</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">current</span> <span class="o">&gt;</span> <span class="n">best</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="n">best</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">current</span>
+        <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">idx</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">s_list</span><span class="p">):</span>
+            <span class="k">return</span>
+
+        <span class="n">max_digit</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">s_list</span><span class="p">[</span><span class="n">idx</span><span class="p">:])</span>
+        <span class="k">if</span> <span class="n">max_digit</span> <span class="o">!=</span> <span class="n">s_list</span><span class="p">[</span><span class="n">idx</span><span class="p">]:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s_list</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">idx</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">s_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">max_digit</span><span class="p">:</span>
+                    <span class="n">s_list</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">s_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">s_list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">s_list</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+                    <span class="n">backtrack</span><span class="p">(</span><span class="n">s_list</span><span class="p">,</span> <span class="n">k</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+                    <span class="n">s_list</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="n">s_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">s_list</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">s_list</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">backtrack</span><span class="p">(</span><span class="n">s_list</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">backtrack</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="n">k</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">best</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</code></pre></div>
+<hr />
+<h2 id="example_11">Example<a class="headerlink" href="#example_11" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="n">maximalString</span><span class="p">(</span><span class="s2">&quot;129814999&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="c1"># Output: &quot;999984211&quot;</span>
+</code></pre></div>
+<hr />
+<h2 id="time-space-complexity_5">Time &amp; Space Complexity<a class="headerlink" href="#time-space-complexity_5" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>Time:</strong> <span class="arithmatex">\(O((n!)^k)\)</span> in worst case (but small <span class="arithmatex">\(n \leq 9\)</span> and <span class="arithmatex">\(k \leq 5\)</span> makes it feasible)</p>
+</li>
+<li>
+<p><strong>Space:</strong> <span class="arithmatex">\(O(n)\)</span> for recursion stack and list manipulation</p>
+</li>
+</ul>
+<hr />
+<h1 id="subsets-ii-all-subsets-with-duplicates">Subsets II (All Subsets With Duplicates)<a class="headerlink" href="#subsets-ii-all-subsets-with-duplicates" title="Permanent link">&para;</a></h1>
+<h2 id="problem-statement_9">Problem Statement<a class="headerlink" href="#problem-statement_9" title="Permanent link">&para;</a></h2>
+<p>Given an integer array <span class="arithmatex">\(A\)</span> that <strong>may contain duplicates</strong>, return all possible subsets (the power set).</p>
+<ul>
+<li>Each subset must be in <strong>non-descending order</strong></li>
+<li>The solution set must <strong>not contain duplicate subsets</strong></li>
+<li>The output should be <strong>lexicographically sorted</strong></li>
+</ul>
+<h3 id="example_12">Example<a class="headerlink" href="#example_12" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">Input</span><span class="p">:</span> <span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">Output</span><span class="p">:</span>
+<span class="p">[</span>
+ <span class="p">[],</span>
+ <span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="p">]</span>
+<span class="err">````</span>
+
+<span class="o">---</span>
+
+<span class="c1">## Key Insight</span>
+
+<span class="n">Use</span> <span class="o">**</span><span class="n">backtracking</span><span class="o">**</span> <span class="n">to</span> <span class="n">generate</span> <span class="nb">all</span> <span class="n">subsets</span><span class="o">.</span>
+
+<span class="o">-</span> <span class="n">Sort</span> <span class="n">the</span> <span class="n">array</span> <span class="n">to</span> <span class="n">bring</span> <span class="n">duplicates</span> <span class="n">together</span><span class="o">.</span>
+
+<span class="o">-</span> <span class="n">At</span> <span class="n">each</span> <span class="n">recursive</span> <span class="n">level</span><span class="p">,</span> <span class="o">**</span><span class="n">skip</span> <span class="n">duplicates</span><span class="o">**</span> <span class="n">to</span> <span class="n">avoid</span> <span class="n">repeated</span> <span class="n">subsets</span><span class="o">.</span>
+
+<span class="o">-</span> <span class="n">Always</span> <span class="n">proceed</span> <span class="n">forward</span> <span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">e</span><span class="o">.</span><span class="p">,</span> <span class="n">no</span> <span class="n">reuse</span> <span class="n">of</span> <span class="n">earlier</span> <span class="n">elements</span><span class="p">)</span><span class="o">.</span>
+
+
+<span class="o">---</span>
+
+<span class="c1">## Python Code</span>
+
+<span class="err">```</span><span class="n">python</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">subsetsWithDup</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">nums</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">backtrack</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="p">[:])</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="n">start</span> <span class="ow">and</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">nums</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]:</span>
+                <span class="k">continue</span>
+            <span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">backtrack</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+            <span class="n">path</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+
+    <span class="n">backtrack</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">[])</span>
+    <span class="k">return</span> <span class="n">res</span>
+</code></pre></div>
+<hr />
+<h2 id="example_13">Example<a class="headerlink" href="#example_13" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="n">subsetsWithDup</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="c1"># Output: [[], [1], [1, 2], [1, 2, 2], [2], [2, 2]]</span>
+</code></pre></div>
+<hr />
+<h2 id="time-space-complexity_6">Time &amp; Space Complexity<a class="headerlink" href="#time-space-complexity_6" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>Time:</strong> <span class="arithmatex">\(O(2^n)\)</span> subsets generated, with pruning from duplicate skipping</p>
+</li>
+<li>
+<p><strong>Space:</strong> <span class="arithmatex">\(O(n)\)</span> recursion stack + output size</p>
+</li>
+</ul>
+<hr />
+<h1 id="combinations-k-combinations-from-1-to-n">Combinations (k-Combinations from 1 to n)<a class="headerlink" href="#combinations-k-combinations-from-1-to-n" title="Permanent link">&para;</a></h1>
+<h2 id="problem-statement_10">Problem Statement<a class="headerlink" href="#problem-statement_10" title="Permanent link">&para;</a></h2>
+<p>Given two integers <span class="arithmatex">\(n\)</span> and <span class="arithmatex">\(k\)</span>, return all possible combinations of <span class="arithmatex">\(k\)</span> numbers chosen from the range <span class="arithmatex">\(1\)</span> to <span class="arithmatex">\(n\)</span>.</p>
+<ul>
+<li>Each combination must be in <strong>ascending order</strong></li>
+<li>The result should be <strong>lexicographically sorted</strong></li>
+</ul>
+<h3 id="example_14">Example<a class="headerlink" href="#example_14" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">Input</span><span class="p">:</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">Output</span><span class="p">:</span>
+<span class="p">[</span>
+ <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="p">]</span>
+<span class="err">````</span>
+
+<span class="o">---</span>
+
+<span class="c1">## Key Insight</span>
+
+<span class="n">This</span> <span class="ow">is</span> <span class="n">a</span> <span class="o">**</span><span class="n">combinatorial</span> <span class="n">backtracking</span><span class="o">**</span> <span class="n">problem</span><span class="o">.</span>
+
+<span class="o">-</span> <span class="n">At</span> <span class="n">each</span> <span class="n">step</span><span class="p">,</span> <span class="n">select</span> <span class="n">the</span> <span class="nb">next</span> <span class="n">number</span> <span class="kn">from</span><span class="w"> </span><span class="nn">the</span> <span class="n">remaining</span> <span class="nb">range</span>
+
+<span class="o">-</span> <span class="n">Use</span> <span class="n">a</span> <span class="n">growing</span> <span class="nb">list</span> <span class="err">`</span><span class="n">path</span><span class="err">`</span> <span class="n">to</span> <span class="n">store</span> <span class="n">the</span> <span class="n">current</span> <span class="n">combination</span>
+
+<span class="o">-</span> <span class="n">Stop</span> <span class="n">recursion</span> <span class="n">when</span> <span class="err">`</span><span class="n">k</span><span class="err">`</span> <span class="n">elements</span> <span class="n">are</span> <span class="n">chosen</span>
+
+<span class="o">-</span> <span class="n">To</span> <span class="n">prune</span> <span class="n">unnecessary</span> <span class="n">calls</span><span class="p">,</span> <span class="n">limit</span> <span class="n">upper</span> <span class="n">bound</span> <span class="n">of</span> <span class="n">loop</span><span class="p">:</span>
+
+    <span class="n">end</span><span class="o">=</span><span class="n">n</span><span class="err">−</span><span class="n">remaining</span><span class="o">+</span><span class="mi">1</span>\<span class="n">text</span><span class="p">{</span><span class="n">end</span><span class="p">}</span> <span class="o">=</span> <span class="n">n</span> <span class="o">-</span> \<span class="n">text</span><span class="p">{</span><span class="n">remaining</span><span class="p">}</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="o">---</span>
+
+<span class="c1">## Python Code</span>
+
+<span class="err">```</span><span class="n">python</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">combine</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">backtrack</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="o">==</span> <span class="n">k</span><span class="p">:</span>
+            <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="p">[:])</span>
+            <span class="k">return</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">n</span> <span class="o">-</span> <span class="p">(</span><span class="n">k</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">path</span><span class="p">))</span> <span class="o">+</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            <span class="n">backtrack</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+            <span class="n">path</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+
+    <span class="n">backtrack</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="p">[])</span>
+    <span class="k">return</span> <span class="n">res</span>
+</code></pre></div>
+<hr />
+<h2 id="example_15">Example<a class="headerlink" href="#example_15" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="n">combine</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="c1"># Output: [[1, 2], [1, 3], [2, 3]]</span>
+</code></pre></div>
+<hr />
+<h2 id="time-space-complexity_7">Time &amp; Space Complexity<a class="headerlink" href="#time-space-complexity_7" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>Time:</strong> <span class="arithmatex">\(O\left(\binom{n}{k} \cdot k\right)\)</span> — total combinations × length of each</p>
+</li>
+<li>
+<p><strong>Space:</strong> <span class="arithmatex">\(O(k)\)</span> for recursion stack; output space is also <span class="arithmatex">\(O\left(\binom{n}{k} \cdot k\right)\)</span></p>
+</li>
+</ul>
+<hr />
+<h1 id="combination-sum-ii-each-number-used-at-most-once">Combination Sum II (Each Number Used At Most Once)<a class="headerlink" href="#combination-sum-ii-each-number-used-at-most-once" title="Permanent link">&para;</a></h1>
+<h2 id="problem-statement_11">Problem Statement<a class="headerlink" href="#problem-statement_11" title="Permanent link">&para;</a></h2>
+<p>Given a list of integers <span class="arithmatex">\(A\)</span> (which may contain duplicates) and a target sum <span class="arithmatex">\(B\)</span>,<br />
+return all <strong>unique combinations</strong> where each number is used <strong>at most once</strong>, and the sum is exactly <span class="arithmatex">\(B\)</span>.</p>
+<ul>
+<li>Each combination must be in <strong>non-descending order</strong></li>
+<li>The result must be <strong>lexicographically sorted</strong></li>
+<li>The solution set must <strong>not contain duplicate combinations</strong></li>
+</ul>
+<h3 id="example_16">Example<a class="headerlink" href="#example_16" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">Input</span><span class="p">:</span> <span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span> <span class="n">B</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">Output</span><span class="p">:</span>
+<span class="p">[</span>
+ <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">6</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<span class="p">]</span>
+<span class="err">````</span>
+
+<span class="o">---</span>
+
+<span class="c1">## Key Insight</span>
+
+<span class="o">-</span> <span class="n">Sort</span> <span class="n">the</span> <span class="nb">input</span> <span class="n">to</span> <span class="n">bring</span> <span class="n">duplicates</span> <span class="n">together</span>
+
+<span class="o">-</span> <span class="n">Use</span> <span class="o">**</span><span class="n">backtracking</span><span class="o">**</span> <span class="n">to</span> <span class="n">explore</span> <span class="nb">all</span> <span class="n">subsets</span> <span class="n">that</span> <span class="nb">sum</span> <span class="n">to</span> <span class="err">$</span><span class="n">B</span><span class="err">$</span>
+
+<span class="o">-</span> <span class="n">At</span> <span class="n">each</span> <span class="n">step</span><span class="p">:</span>
+
+    <span class="o">-</span> <span class="n">Skip</span> <span class="n">duplicates</span> <span class="n">by</span> <span class="n">checking</span> <span class="k">if</span> <span class="err">`</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="err">`</span> <span class="ow">and</span> <span class="err">`</span><span class="n">i</span> <span class="o">&gt;</span> <span class="n">start</span><span class="err">`</span>
+
+    <span class="o">-</span> <span class="n">Do</span> <span class="ow">not</span> <span class="n">reuse</span> <span class="n">the</span> <span class="n">same</span> <span class="n">number</span> <span class="err">—</span> <span class="n">move</span> <span class="n">to</span> <span class="err">`</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="err">`</span> <span class="n">after</span> <span class="n">including</span> <span class="err">`</span><span class="n">A</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="err">`</span>
+
+
+<span class="o">---</span>
+
+<span class="c1">## Python Code</span>
+
+<span class="err">```</span><span class="n">python</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">combinationSum2</span><span class="p">(</span><span class="n">candidates</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">candidates</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">backtrack</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">total</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">total</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+            <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="p">[:])</span>
+            <span class="k">return</span>
+        <span class="k">if</span> <span class="n">total</span> <span class="o">&gt;</span> <span class="n">target</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">candidates</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="n">start</span> <span class="ow">and</span> <span class="n">candidates</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">candidates</span><span class="p">[</span><span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]:</span>
+                <span class="k">continue</span>
+            <span class="k">if</span> <span class="n">candidates</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">target</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">candidates</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">backtrack</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">total</span> <span class="o">+</span> <span class="n">candidates</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">path</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+
+    <span class="n">backtrack</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">[],</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">res</span>
+</code></pre></div>
+<hr />
+<h2 id="example_17">Example<a class="headerlink" href="#example_17" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="n">combinationSum2</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="mi">8</span><span class="p">)</span>
+<span class="c1"># Output: [[1, 1, 6], [1, 2, 5], [1, 7], [2, 6]]</span>
+</code></pre></div>
+<hr />
+<h2 id="time-space-complexity_8">Time &amp; Space Complexity<a class="headerlink" href="#time-space-complexity_8" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>Time:</strong> Exponential in number of elements — pruned by early stopping and skipping duplicates</p>
+</li>
+<li>
+<p><strong>Space:</strong> <span class="arithmatex">\(O(k)\)</span> recursion stack; output depends on number of valid combinations</p>
+</li>
+</ul>
+<hr />
+<h1 id="combination-sum-each-number-can-be-used-unlimited-times">Combination Sum (Each Number Can Be Used Unlimited Times)<a class="headerlink" href="#combination-sum-each-number-can-be-used-unlimited-times" title="Permanent link">&para;</a></h1>
+<h2 id="problem-statement_12">Problem Statement<a class="headerlink" href="#problem-statement_12" title="Permanent link">&para;</a></h2>
+<p>Given a list of <strong>positive integers</strong> <span class="arithmatex">\(A\)</span> and a target sum <span class="arithmatex">\(B\)</span>,<br />
+return all <strong>unique combinations</strong> in which elements from <span class="arithmatex">\(A\)</span> (with <strong>unlimited</strong> usage) sum to <span class="arithmatex">\(B\)</span>.</p>
+<ul>
+<li>Each combination must be in <strong>non-descending order</strong></li>
+<li>The result must be <strong>lexicographically sorted</strong></li>
+<li>The solution set must <strong>not contain duplicate combinations</strong></li>
+</ul>
+<h3 id="example_18">Example<a class="headerlink" href="#example_18" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">Input</span><span class="p">:</span> <span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span> <span class="n">B</span> <span class="o">=</span> <span class="mi">7</span>
+<span class="n">Output</span><span class="p">:</span>
+<span class="p">[</span>
+ <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">7</span><span class="p">]</span>
+<span class="p">]</span>
+<span class="err">````</span>
+
+<span class="o">---</span>
+
+<span class="c1">## Key Insight</span>
+
+<span class="n">This</span> <span class="ow">is</span> <span class="n">a</span> <span class="o">**</span><span class="n">classic</span> <span class="n">unbounded</span> <span class="n">knapsack</span><span class="o">**</span> <span class="n">problem</span><span class="o">.</span>
+
+<span class="o">-</span> <span class="n">Sort</span> <span class="ow">and</span> <span class="n">deduplicate</span> <span class="n">the</span> <span class="nb">input</span>
+
+<span class="o">-</span> <span class="n">Use</span> <span class="o">**</span><span class="n">backtracking</span><span class="o">**</span> <span class="n">to</span> <span class="n">explore</span> <span class="nb">all</span> <span class="n">combinations</span>
+
+<span class="o">-</span> <span class="n">At</span> <span class="n">each</span> <span class="n">step</span><span class="p">:</span>
+
+    <span class="o">-</span> <span class="n">Reuse</span> <span class="n">the</span> <span class="n">same</span> <span class="n">number</span> <span class="n">by</span> <span class="n">passing</span> <span class="n">the</span> <span class="n">same</span> <span class="n">index</span> <span class="err">`</span><span class="n">i</span><span class="err">`</span>
+
+    <span class="o">-</span> <span class="n">Stop</span> <span class="k">if</span> <span class="n">the</span> <span class="n">remaining</span> <span class="n">target</span> <span class="ow">is</span> <span class="n">zero</span>
+
+    <span class="o">-</span> <span class="n">Break</span> <span class="k">if</span> <span class="n">the</span> <span class="n">current</span> <span class="n">number</span> <span class="n">exceeds</span> <span class="n">the</span> <span class="n">remaining</span> <span class="n">target</span>
+
+
+<span class="o">---</span>
+
+<span class="c1">## Python Code</span>
+
+<span class="err">```</span><span class="n">python</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">combinationSum</span><span class="p">(</span><span class="n">candidates</span><span class="p">,</span> <span class="n">target</span><span class="p">):</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">candidates</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">candidates</span><span class="p">))</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">backtrack</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">total</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">total</span> <span class="o">==</span> <span class="n">target</span><span class="p">:</span>
+            <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="p">[:])</span>
+            <span class="k">return</span>
+        <span class="k">if</span> <span class="n">total</span> <span class="o">&gt;</span> <span class="n">target</span><span class="p">:</span>
+            <span class="k">return</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">candidates</span><span class="p">)):</span>
+            <span class="k">if</span> <span class="n">candidates</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">target</span> <span class="o">-</span> <span class="n">total</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">candidates</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">backtrack</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">total</span> <span class="o">+</span> <span class="n">candidates</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>  <span class="c1"># reuse same i</span>
+            <span class="n">path</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+
+    <span class="n">backtrack</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">[],</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">res</span>
+</code></pre></div>
+<hr />
+<h2 id="example_19">Example<a class="headerlink" href="#example_19" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="n">combinationSum</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="mi">6</span><span class="p">)</span>
+<span class="c1"># Output: [[2, 2, 2], [3, 3]]</span>
+</code></pre></div>
+<hr />
+<h2 id="time-space-complexity_9">Time &amp; Space Complexity<a class="headerlink" href="#time-space-complexity_9" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>Time:</strong> Exponential in worst-case (many combinations)</p>
+</li>
+<li>
+<p><strong>Space:</strong> <span class="arithmatex">\(O(B)\)</span> recursion stack; output depends on number of solutions</p>
+</li>
+</ul>
+<hr />
+<h1 id="all-possible-subsets-power-set-via-backtracking">All Possible Subsets (Power Set via Backtracking)<a class="headerlink" href="#all-possible-subsets-power-set-via-backtracking" title="Permanent link">&para;</a></h1>
+<h2 id="problem-statement_13">Problem Statement<a class="headerlink" href="#problem-statement_13" title="Permanent link">&para;</a></h2>
+<p>Given a list of <strong>distinct integers</strong> <span class="arithmatex">\(A\)</span>, return all possible <strong>subsets</strong> (the power set).</p>
+<ul>
+<li>Each subset must be in <strong>non-descending order</strong></li>
+<li>The solution set must be <strong>lexicographically sorted</strong></li>
+</ul>
+<h3 id="example_20">Example<a class="headerlink" href="#example_20" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">Input</span><span class="p">:</span> <span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">Output</span><span class="p">:</span>
+<span class="p">[</span>
+ <span class="p">[],</span>
+ <span class="p">[</span><span class="mi">1</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">2</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+<span class="p">]</span>
+<span class="err">````</span>
+
+<span class="o">---</span>
+
+<span class="c1">## Key Insight</span>
+
+<span class="n">This</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">classic</span> <span class="o">**</span><span class="n">power</span> <span class="nb">set</span><span class="o">**</span> <span class="n">problem</span><span class="o">.</span>
+
+<span class="n">Use</span> <span class="o">**</span><span class="n">backtracking</span><span class="o">**</span> <span class="n">to</span> <span class="n">generate</span> <span class="nb">all</span> <span class="n">subsets</span><span class="p">:</span>
+
+<span class="o">-</span> <span class="n">At</span> <span class="n">each</span> <span class="n">step</span><span class="p">,</span> <span class="n">we</span> <span class="n">can</span> <span class="n">either</span> <span class="o">**</span><span class="n">include</span><span class="o">**</span> <span class="n">the</span> <span class="n">current</span> <span class="n">number</span> <span class="ow">or</span> <span class="o">**</span><span class="n">skip</span><span class="o">**</span> <span class="n">it</span>
+
+<span class="o">-</span> <span class="n">By</span> <span class="n">iterating</span> <span class="kn">from</span><span class="w"> </span><span class="nn">left</span> <span class="n">to</span> <span class="n">right</span><span class="p">,</span> <span class="ow">and</span> <span class="n">always</span> <span class="n">moving</span> <span class="n">forward</span><span class="p">,</span> <span class="n">subsets</span> <span class="n">are</span> <span class="n">guaranteed</span> <span class="n">to</span> <span class="n">be</span> <span class="nb">sorted</span>
+
+<span class="o">-</span> <span class="n">Sorting</span> <span class="n">the</span> <span class="n">array</span> <span class="n">first</span> <span class="n">ensures</span> <span class="n">lexicographic</span> <span class="n">output</span>
+
+
+<span class="o">---</span>
+
+<span class="c1">## Python Code</span>
+
+<span class="err">```</span><span class="n">python</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">subsets</span><span class="p">(</span><span class="n">nums</span><span class="p">):</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">nums</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">backtrack</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="p">[:])</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">nums</span><span class="p">)):</span>
+            <span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nums</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="n">backtrack</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+            <span class="n">path</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+
+    <span class="n">backtrack</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">[])</span>
+    <span class="k">return</span> <span class="n">res</span>
+</code></pre></div>
+<hr />
+<h2 id="example_21">Example<a class="headerlink" href="#example_21" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="n">subsets</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="c1"># Output: [[], [1], [1, 2], [2]]</span>
+</code></pre></div>
+<hr />
+<h2 id="time-space-complexity_10">Time &amp; Space Complexity<a class="headerlink" href="#time-space-complexity_10" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>Time:</strong> <span class="arithmatex">\(O(2^n \cdot n)\)</span> — <span class="arithmatex">\(2^n\)</span> subsets, each up to <span class="arithmatex">\(n\)</span> in length</p>
+</li>
+<li>
+<p><strong>Space:</strong> <span class="arithmatex">\(O(n)\)</span> recursion stack; output takes <span class="arithmatex">\(O(2^n \cdot n)\)</span></p>
+</li>
+</ul>
+<hr />
+<h1 id="word-break-dictionary-segmentation-using-backtracking">Word Break (Dictionary Segmentation Using Backtracking)<a class="headerlink" href="#word-break-dictionary-segmentation-using-backtracking" title="Permanent link">&para;</a></h1>
+<h2 id="problem-statement_14">Problem Statement<a class="headerlink" href="#problem-statement_14" title="Permanent link">&para;</a></h2>
+<p>Given a string <span class="arithmatex">\(s\)</span> and a set of words <code>wordDict</code>, return all possible <strong>sentences</strong> where spaces are inserted to form a valid sequence of dictionary words.</p>
+<p>Each word in the sentence must appear in the given dictionary.</p>
+<h3 id="example_22">Example<a class="headerlink" href="#example_22" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">Input</span><span class="p">:</span> 
+<span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;catsanddog&quot;</span><span class="p">,</span> 
+<span class="n">wordDict</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;cat&quot;</span><span class="p">,</span> <span class="s2">&quot;cats&quot;</span><span class="p">,</span> <span class="s2">&quot;and&quot;</span><span class="p">,</span> <span class="s2">&quot;sand&quot;</span><span class="p">,</span> <span class="s2">&quot;dog&quot;</span><span class="p">]</span>
+
+<span class="n">Output</span><span class="p">:</span>
+<span class="p">[</span>
+ <span class="s2">&quot;cat sand dog&quot;</span><span class="p">,</span>
+ <span class="s2">&quot;cats and dog&quot;</span>
+<span class="p">]</span>
+<span class="err">````</span>
+
+<span class="o">---</span>
+
+<span class="c1">## Key Insight</span>
+
+<span class="n">This</span> <span class="ow">is</span> <span class="n">a</span> <span class="o">**</span><span class="n">backtracking</span><span class="o">**</span> <span class="n">problem</span> <span class="k">with</span> <span class="o">**</span><span class="n">memoization</span><span class="o">**</span> <span class="n">to</span> <span class="n">avoid</span> <span class="n">recomputing</span> <span class="n">subproblems</span><span class="o">.</span>
+
+<span class="o">-</span> <span class="n">Try</span> <span class="nb">all</span> <span class="n">prefixes</span> <span class="n">of</span> <span class="n">the</span> <span class="n">string</span>
+
+<span class="o">-</span> <span class="n">If</span> <span class="n">a</span> <span class="n">prefix</span> <span class="ow">is</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">dictionary</span><span class="p">,</span> <span class="n">recursively</span> <span class="n">process</span> <span class="n">the</span> <span class="n">suffix</span>
+
+<span class="o">-</span> <span class="n">Use</span> <span class="n">a</span> <span class="n">memoization</span> <span class="n">dictionary</span> <span class="err">`</span><span class="n">dp</span><span class="p">[</span><span class="n">start</span><span class="p">]</span><span class="err">`</span> <span class="n">to</span> <span class="n">store</span> <span class="n">valid</span> <span class="n">sentence</span> <span class="n">endings</span> <span class="k">for</span> <span class="n">substring</span> <span class="err">`</span><span class="n">s</span><span class="p">[</span><span class="n">start</span><span class="p">:]</span><span class="err">`</span>
+
+
+<span class="o">---</span>
+
+<span class="c1">## Python Code</span>
+
+<span class="err">```</span><span class="n">python</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">wordBreak</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">wordDict</span><span class="p">):</span>
+    <span class="n">wordSet</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">wordDict</span><span class="p">)</span>
+    <span class="n">dp</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">backtrack</span><span class="p">(</span><span class="n">start</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">start</span> <span class="ow">in</span> <span class="n">dp</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">dp</span><span class="p">[</span><span class="n">start</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">start</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+            <span class="k">return</span> <span class="p">[</span><span class="s2">&quot;&quot;</span><span class="p">]</span>
+
+        <span class="n">sentences</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">end</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">word</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">wordSet</span><span class="p">:</span>
+                <span class="n">rest</span> <span class="o">=</span> <span class="n">backtrack</span><span class="p">(</span><span class="n">end</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rest</span><span class="p">:</span>
+                    <span class="n">sentence</span> <span class="o">=</span> <span class="n">word</span> <span class="o">+</span> <span class="p">(</span><span class="s2">&quot; &quot;</span> <span class="o">+</span> <span class="n">r</span> <span class="k">if</span> <span class="n">r</span> <span class="k">else</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+                    <span class="n">sentences</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sentence</span><span class="p">)</span>
+
+        <span class="n">dp</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">=</span> <span class="n">sentences</span>
+        <span class="k">return</span> <span class="n">sentences</span>
+
+    <span class="k">return</span> <span class="n">backtrack</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+<hr />
+<h2 id="example_23">Example<a class="headerlink" href="#example_23" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="n">wordBreak</span><span class="p">(</span><span class="s2">&quot;pineapplepenapple&quot;</span><span class="p">,</span> <span class="p">[</span>
+ <span class="s2">&quot;apple&quot;</span><span class="p">,</span> <span class="s2">&quot;pen&quot;</span><span class="p">,</span> <span class="s2">&quot;applepen&quot;</span><span class="p">,</span> <span class="s2">&quot;pine&quot;</span><span class="p">,</span> <span class="s2">&quot;pineapple&quot;</span>
+<span class="p">])</span>
+<span class="c1"># Output:</span>
+<span class="c1"># [&quot;pine apple pen apple&quot;, &quot;pineapple pen apple&quot;, &quot;pine applepen apple&quot;]</span>
+</code></pre></div>
+<hr />
+<h2 id="time-space-complexity_11">Time &amp; Space Complexity<a class="headerlink" href="#time-space-complexity_11" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>Time:</strong> Exponential in worst-case, but <strong>pruned by memoization</strong></p>
+</li>
+<li>
+<p><strong>Space:</strong> <span class="arithmatex">\(O(n^2)\)</span> for memo and recursive call stack</p>
+</li>
+</ul>
+<hr />
+<h1 id="restore-ip-addresses">Restore IP Addresses<a class="headerlink" href="#restore-ip-addresses" title="Permanent link">&para;</a></h1>
+<h2 id="problem-statement_15">Problem Statement<a class="headerlink" href="#problem-statement_15" title="Permanent link">&para;</a></h2>
+<p>Given a string <span class="arithmatex">\(s\)</span> containing only digits, return all possible valid <strong>IP address combinations</strong> that can be formed by inserting dots into <span class="arithmatex">\(s\)</span>.</p>
+<p>A valid IP address consists of exactly <strong>four integers</strong> (each between 0 and 255), separated by dots.<br />
+- No segment can have <strong>leading zeros</strong> (e.g. "01" is invalid, "0" is valid).</p>
+<h3 id="example_24">Example<a class="headerlink" href="#example_24" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">Input</span><span class="p">:</span> <span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;25525511135&quot;</span>
+<span class="n">Output</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;255.255.11.135&quot;</span><span class="p">,</span> <span class="s2">&quot;255.255.111.35&quot;</span><span class="p">]</span>
+<span class="err">````</span>
+
+<span class="o">---</span>
+
+<span class="c1">## Key Insight</span>
+
+<span class="n">Use</span> <span class="o">**</span><span class="n">backtracking</span><span class="o">**</span> <span class="n">to</span> <span class="n">explore</span> <span class="nb">all</span> <span class="n">possible</span> <span class="n">ways</span> <span class="n">to</span> <span class="n">insert</span> <span class="mi">3</span> <span class="n">dots</span> <span class="p">(</span><span class="n">dividing</span> <span class="n">string</span> <span class="n">into</span> <span class="mi">4</span> <span class="n">parts</span><span class="p">):</span>
+
+<span class="n">At</span> <span class="n">each</span> <span class="n">recursive</span> <span class="n">step</span><span class="p">:</span>
+
+<span class="o">-</span> <span class="n">Try</span> <span class="n">placing</span> <span class="n">a</span> <span class="n">dot</span> <span class="n">after</span> <span class="mi">1</span> <span class="n">to</span> <span class="mi">3</span> <span class="n">digits</span>
+
+<span class="o">-</span> <span class="n">Check</span> <span class="k">if</span> <span class="n">the</span> <span class="n">segment</span> <span class="ow">is</span> <span class="n">valid</span> <span class="p">(</span><span class="err">≤</span> <span class="mi">255</span><span class="p">,</span> <span class="n">no</span> <span class="n">leading</span> <span class="n">zeros</span><span class="p">)</span>
+
+<span class="o">-</span> <span class="n">If</span> <span class="n">valid</span><span class="p">,</span> <span class="n">recurse</span> <span class="k">with</span> <span class="n">the</span> <span class="nb">next</span> <span class="n">segment</span>
+
+
+<span class="n">Stop</span> <span class="n">early</span> <span class="k">if</span> <span class="n">more</span> <span class="n">than</span> <span class="mi">4</span> <span class="n">segments</span> <span class="ow">or</span> <span class="n">the</span> <span class="n">string</span> <span class="ow">is</span> <span class="n">exhausted</span><span class="o">.</span>
+
+<span class="o">---</span>
+
+<span class="c1">## Python Code</span>
+
+<span class="err">```</span><span class="n">python</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">restoreIpAddresses</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">backtrack</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">start</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+                <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
+            <span class="k">return</span>
+        <span class="k">for</span> <span class="n">end</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">start</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">min</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="n">start</span> <span class="o">+</span> <span class="mi">4</span><span class="p">)):</span>
+            <span class="n">part</span> <span class="o">=</span> <span class="n">s</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">end</span><span class="p">]</span>
+            <span class="k">if</span> <span class="p">(</span><span class="n">part</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;0&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">len</span><span class="p">(</span><span class="n">part</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">or</span> <span class="nb">int</span><span class="p">(</span><span class="n">part</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">255</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">backtrack</span><span class="p">(</span><span class="n">end</span><span class="p">,</span> <span class="n">path</span> <span class="o">+</span> <span class="p">[</span><span class="n">part</span><span class="p">])</span>
+
+    <span class="n">backtrack</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">[])</span>
+    <span class="k">return</span> <span class="n">res</span>
+</code></pre></div>
+<hr />
+<h2 id="example_25">Example<a class="headerlink" href="#example_25" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="n">restoreIpAddresses</span><span class="p">(</span><span class="s2">&quot;0000&quot;</span><span class="p">)</span>
+<span class="c1"># Output: [&quot;0.0.0.0&quot;]</span>
+</code></pre></div>
+<hr />
+<h2 id="time-space-complexity_12">Time &amp; Space Complexity<a class="headerlink" href="#time-space-complexity_12" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>Time:</strong> <span class="arithmatex">\(O(1)\)</span> — worst-case bounded since only 3 dots → <span class="arithmatex">\(O(3^4)\)</span></p>
+</li>
+<li>
+<p><strong>Space:</strong> <span class="arithmatex">\(O(1)\)</span> recursion depth, result space depends on number of valid IPs</p>
+</li>
+</ul>
+<hr />
+<h1 id="rat-in-a-maze-find-all-paths">Rat in a Maze (Find All Paths)<a class="headerlink" href="#rat-in-a-maze-find-all-paths" title="Permanent link">&para;</a></h1>
+<h2 id="problem-statement_16">Problem Statement<a class="headerlink" href="#problem-statement_16" title="Permanent link">&para;</a></h2>
+<p>Given an <span class="arithmatex">\(n \times n\)</span> maze represented by a binary matrix,<br />
+find all paths from the top-left cell <span class="arithmatex">\((0, 0)\)</span> to the bottom-right cell <span class="arithmatex">\((n-1, n-1)\)</span>.</p>
+<ul>
+<li>A cell with <code>1</code> is traversable, <code>0</code> is blocked.</li>
+<li>Valid moves are <strong>down (<code>D</code>)</strong>, <strong>left (<code>L</code>)</strong>, <strong>right (<code>R</code>)</strong>, and <strong>up (<code>U</code>)</strong>.</li>
+<li>The rat <strong>cannot visit the same cell more than once</strong> in the same path.</li>
+<li>Return all paths in <strong>lexicographic order</strong>.</li>
+</ul>
+<h3 id="example_26">Example<a class="headerlink" href="#example_26" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">Input</span><span class="p">:</span>
+<span class="n">maze</span> <span class="o">=</span> <span class="p">[</span>
+ <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="p">]</span>
+
+<span class="n">Output</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;DDRDRR&quot;</span><span class="p">,</span> <span class="s2">&quot;DRDDRR&quot;</span><span class="p">]</span>
+<span class="err">````</span>
+
+<span class="o">---</span>
+
+<span class="c1">## Key Insight</span>
+
+<span class="n">This</span> <span class="ow">is</span> <span class="n">a</span> <span class="n">classic</span> <span class="o">**</span><span class="n">backtracking</span><span class="o">**</span> <span class="n">problem</span> <span class="k">with</span> <span class="n">visited</span> <span class="n">tracking</span><span class="o">.</span>
+
+<span class="o">-</span> <span class="n">Try</span> <span class="nb">all</span> <span class="n">four</span> <span class="n">directions</span> <span class="ow">in</span> <span class="n">fixed</span> <span class="n">lexicographic</span> <span class="n">order</span>
+
+<span class="o">-</span> <span class="n">Only</span> <span class="n">move</span> <span class="n">to</span> <span class="n">valid</span><span class="p">,</span> <span class="n">unvisited</span><span class="p">,</span> <span class="nb">open</span> <span class="n">cells</span>
+
+<span class="o">-</span> <span class="n">Mark</span> <span class="n">cells</span> <span class="k">as</span> <span class="n">visited</span> <span class="n">during</span> <span class="n">recursion</span> <span class="ow">and</span> <span class="n">unmark</span> <span class="p">(</span><span class="n">backtrack</span><span class="p">)</span> <span class="n">afterward</span>
+
+
+<span class="o">---</span>
+
+<span class="c1">## Python Code</span>
+
+<span class="err">```</span><span class="n">python</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">findPaths</span><span class="p">(</span><span class="n">maze</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+    <span class="n">res</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">visited</span> <span class="o">=</span> <span class="p">[[</span><span class="kc">False</span><span class="p">]</span><span class="o">*</span><span class="n">n</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+    <span class="n">directions</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;L&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;R&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;U&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">)]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">is_valid</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">r</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="ow">and</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="n">c</span> <span class="o">&lt;</span> <span class="n">n</span> <span class="ow">and</span> <span class="n">maze</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="n">c</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">visited</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="n">c</span><span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">backtrack</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">r</span> <span class="o">==</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span> <span class="ow">and</span> <span class="n">c</span> <span class="o">==</span> <span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">res</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">path</span><span class="p">)</span>
+            <span class="k">return</span>
+        <span class="n">visited</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">for</span> <span class="n">dir_char</span><span class="p">,</span> <span class="n">dr</span><span class="p">,</span> <span class="n">dc</span> <span class="ow">in</span> <span class="n">directions</span><span class="p">:</span>
+            <span class="n">nr</span><span class="p">,</span> <span class="n">nc</span> <span class="o">=</span> <span class="n">r</span> <span class="o">+</span> <span class="n">dr</span><span class="p">,</span> <span class="n">c</span> <span class="o">+</span> <span class="n">dc</span>
+            <span class="k">if</span> <span class="n">is_valid</span><span class="p">(</span><span class="n">nr</span><span class="p">,</span> <span class="n">nc</span><span class="p">):</span>
+                <span class="n">backtrack</span><span class="p">(</span><span class="n">nr</span><span class="p">,</span> <span class="n">nc</span><span class="p">,</span> <span class="n">path</span> <span class="o">+</span> <span class="n">dir_char</span><span class="p">)</span>
+        <span class="n">visited</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">if</span> <span class="n">maze</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">backtrack</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">res</span>
+</code></pre></div>
+<hr />
+<h2 id="example_27">Example<a class="headerlink" href="#example_27" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="n">findPaths</span><span class="p">([</span>
+ <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span>
+ <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="p">],</span> <span class="mi">4</span><span class="p">)</span>
+<span class="c1"># Output: [&quot;DDRDRR&quot;, &quot;DRDDRR&quot;]</span>
+</code></pre></div>
+<hr />
+<h2 id="time-space-complexity_13">Time &amp; Space Complexity<a class="headerlink" href="#time-space-complexity_13" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>Time:</strong> <span class="arithmatex">\(O(4^{n^2})\)</span> worst case (exponential paths), pruned by visited matrix</p>
+</li>
+<li>
+<p><strong>Space:</strong> <span class="arithmatex">\(O(n^2)\)</span> for recursion stack and visited matrix</p>
+</li>
+</ul>
+<hr />
+<h1 id="word-search-existence-of-a-word-in-a-grid">Word Search (Existence of a Word in a Grid)<a class="headerlink" href="#word-search-existence-of-a-word-in-a-grid" title="Permanent link">&para;</a></h1>
+<h2 id="problem-statement_17">Problem Statement<a class="headerlink" href="#problem-statement_17" title="Permanent link">&para;</a></h2>
+<p>Given a 2D board of characters and a word, return <strong>true</strong> if the word exists in the board.</p>
+<ul>
+<li>The word can be constructed from letters of sequentially adjacent cells.</li>
+<li>Adjacent cells are <strong>horizontally or vertically</strong> neighboring.</li>
+<li>The same letter cell may <strong>not</strong> be used more than once.</li>
+</ul>
+<h3 id="example_28">Example<a class="headerlink" href="#example_28" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">Input</span><span class="p">:</span>
+<span class="n">board</span> <span class="o">=</span> <span class="p">[</span>
+ <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="s1">&#39;B&#39;</span><span class="p">,</span><span class="s1">&#39;C&#39;</span><span class="p">,</span><span class="s1">&#39;E&#39;</span><span class="p">],</span>
+ <span class="p">[</span><span class="s1">&#39;S&#39;</span><span class="p">,</span><span class="s1">&#39;F&#39;</span><span class="p">,</span><span class="s1">&#39;C&#39;</span><span class="p">,</span><span class="s1">&#39;S&#39;</span><span class="p">],</span>
+ <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="s1">&#39;D&#39;</span><span class="p">,</span><span class="s1">&#39;E&#39;</span><span class="p">,</span><span class="s1">&#39;E&#39;</span><span class="p">]</span>
+<span class="p">],</span> <span class="n">word</span> <span class="o">=</span> <span class="s2">&quot;ABCCED&quot;</span>
+
+<span class="n">Output</span><span class="p">:</span> <span class="kc">True</span>
+<span class="err">````</span>
+
+<span class="o">---</span>
+
+<span class="c1">## Key Insight</span>
+
+<span class="n">Use</span> <span class="o">**</span><span class="n">backtracking</span> <span class="n">DFS</span><span class="o">**</span> <span class="n">to</span> <span class="n">explore</span> <span class="nb">all</span> <span class="n">valid</span> <span class="n">paths</span> <span class="kn">from</span><span class="w"> </span><span class="nn">each</span> <span class="n">cell</span><span class="o">.</span>
+
+<span class="o">-</span> <span class="n">Start</span> <span class="n">DFS</span> <span class="kn">from</span><span class="w"> </span><span class="nn">every</span> <span class="n">cell</span> <span class="n">that</span> <span class="n">matches</span> <span class="n">the</span> <span class="n">first</span> <span class="n">letter</span>
+
+<span class="o">-</span> <span class="n">At</span> <span class="n">each</span> <span class="n">step</span><span class="p">,</span> <span class="n">check</span> <span class="n">adjacent</span> <span class="n">unvisited</span> <span class="n">cells</span> <span class="k">for</span> <span class="n">the</span> <span class="nb">next</span> <span class="n">character</span>
+
+<span class="o">-</span> <span class="n">Temporarily</span> <span class="n">mark</span> <span class="n">the</span> <span class="n">visited</span> <span class="n">cells</span> <span class="n">to</span> <span class="n">avoid</span> <span class="n">revisiting</span>
+
+<span class="o">-</span> <span class="n">Restore</span> <span class="n">the</span> <span class="n">cell</span> <span class="p">(</span><span class="n">backtrack</span><span class="p">)</span> <span class="n">after</span> <span class="n">recursion</span>
+
+
+<span class="o">---</span>
+
+<span class="c1">## Python Code</span>
+
+<span class="err">```</span><span class="n">python</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">exist</span><span class="p">(</span><span class="n">board</span><span class="p">,</span> <span class="n">word</span><span class="p">):</span>
+    <span class="n">rows</span><span class="p">,</span> <span class="n">cols</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">board</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">board</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">dfs</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">word</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">if</span> <span class="n">r</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">r</span> <span class="o">&gt;=</span> <span class="n">rows</span> <span class="ow">or</span> <span class="n">c</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">c</span> <span class="o">&gt;=</span> <span class="n">cols</span> <span class="ow">or</span> <span class="n">board</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="n">c</span><span class="p">]</span> <span class="o">!=</span> <span class="n">word</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="n">temp</span> <span class="o">=</span> <span class="n">board</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="n">c</span><span class="p">]</span>
+        <span class="n">board</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;#&quot;</span>
+
+        <span class="n">found</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">dfs</span><span class="p">(</span><span class="n">r</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">or</span>
+            <span class="n">dfs</span><span class="p">(</span><span class="n">r</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">or</span>
+            <span class="n">dfs</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">or</span>
+            <span class="n">dfs</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="n">board</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="n">c</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span>
+        <span class="k">return</span> <span class="n">found</span>
+
+    <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rows</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cols</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">board</span><span class="p">[</span><span class="n">r</span><span class="p">][</span><span class="n">c</span><span class="p">]</span> <span class="o">==</span> <span class="n">word</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">and</span> <span class="n">dfs</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span>
+                <span class="k">return</span> <span class="kc">True</span>
+
+    <span class="k">return</span> <span class="kc">False</span>
+</code></pre></div>
+<hr />
+<h2 id="example_29">Example<a class="headerlink" href="#example_29" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="n">exist</span><span class="p">([</span>
+ <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="s1">&#39;B&#39;</span><span class="p">,</span><span class="s1">&#39;C&#39;</span><span class="p">,</span><span class="s1">&#39;E&#39;</span><span class="p">],</span>
+ <span class="p">[</span><span class="s1">&#39;S&#39;</span><span class="p">,</span><span class="s1">&#39;F&#39;</span><span class="p">,</span><span class="s1">&#39;C&#39;</span><span class="p">,</span><span class="s1">&#39;S&#39;</span><span class="p">],</span>
+ <span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span><span class="s1">&#39;D&#39;</span><span class="p">,</span><span class="s1">&#39;E&#39;</span><span class="p">,</span><span class="s1">&#39;E&#39;</span><span class="p">]</span>
+<span class="p">],</span> <span class="s2">&quot;SEE&quot;</span><span class="p">)</span>
+<span class="c1"># Output: True</span>
+</code></pre></div>
+<hr />
+<h2 id="time-space-complexity_14">Time &amp; Space Complexity<a class="headerlink" href="#time-space-complexity_14" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>Time:</strong> <span class="arithmatex">\(O(m \cdot n \cdot 4^L)\)</span> where <span class="arithmatex">\(L\)</span> is the length of the word</p>
+</li>
+<li>
+<p><strong>Space:</strong> <span class="arithmatex">\(O(L)\)</span> recursion depth; <span class="arithmatex">\(O(1)\)</span> extra space (in-place visited marking)</p>
+</li>
+</ul>
+<hr />
+<p>Here is the <strong>first problem</strong> from the Backtracking PDF formatted in clean markdown:</p>
+<hr />
+<h2 id="problem-reverse-linked-list-recursion">Problem: Reverse Linked List (Recursion)<a class="headerlink" href="#problem-reverse-linked-list-recursion" title="Permanent link">&para;</a></h2>
+<h3 id="problem-statement_18">Problem Statement<a class="headerlink" href="#problem-statement_18" title="Permanent link">&para;</a></h3>
+<p>Reverse a singly linked list using recursion.</p>
+<p>Given the head of a singly linked list, reverse the list and return the new head.</p>
+<h3 id="constraints_1">Constraints<a class="headerlink" href="#constraints_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Number of nodes: <span class="arithmatex">\(1 \leq N \leq 10^5\)</span></li>
+</ul>
+<hr />
+<h3 id="recursive-insight">Recursive Insight<a class="headerlink" href="#recursive-insight" title="Permanent link">&para;</a></h3>
+<p>The idea is to recursively reverse the rest of the list, and then put the current node at the end.</p>
+<h3 id="recursive-relation">Recursive Relation<a class="headerlink" href="#recursive-relation" title="Permanent link">&para;</a></h3>
+<p>If <code>head</code> is the current node:</p>
+<ul>
+<li>Reverse rest of the list: <code>rev = reverse(head.next)</code></li>
+<li>Then, <code>head.next.next = head</code> and <code>head.next = None</code></li>
+</ul>
+<hr />
+<h3 id="python-code_2">Python Code<a class="headerlink" href="#python-code_2" title="Permanent link">&para;</a></h3>
+<p><div class="highlight"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ListNode</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="nb">next</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">val</span> <span class="o">=</span> <span class="n">val</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="nb">next</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">reverseList</span><span class="p">(</span><span class="n">head</span><span class="p">:</span> <span class="n">ListNode</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ListNode</span><span class="p">:</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">head</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">head</span><span class="o">.</span><span class="n">next</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">head</span>
+    <span class="n">new_head</span> <span class="o">=</span> <span class="n">reverseList</span><span class="p">(</span><span class="n">head</span><span class="o">.</span><span class="n">next</span><span class="p">)</span>
+    <span class="n">head</span><span class="o">.</span><span class="n">next</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="n">head</span>
+    <span class="n">head</span><span class="o">.</span><span class="n">next</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">return</span> <span class="n">new_head</span>
+<span class="err">````</span>
+
+<span class="o">---</span>
+
+<span class="c1">### Example</span>
+
+<span class="n">Given</span><span class="p">:</span>
+</code></pre></div>
+1 → 2 → 3 → 4 → 5 → None
+<div class="highlight"><pre><span></span><code>After reversing:
+</code></pre></div>
+5 → 4 → 3 → 2 → 1 → None
+<div class="highlight"><pre><span></span><code>---
+
+### Time Complexity
+
+- $O(N)$ where $N$ is the number of nodes.
+
+
+### Space Complexity
+
+- $O(N)$ recursive call stack.
+
+
+## Problem: Modular Expression — Compute $A^B \mod C$
+
+### Problem Statement
+Given three integers $A$, $B$, and $C$, compute:
+
+$$
+(A^B) \mod C
+$$
+
+Efficiently compute this even for very large $B$ (up to $10^9$).
+
+---
+
+### Constraints
+- $-10^9 \leq A \leq 10^9$
+- $0 \leq B \leq 10^9$
+- $1 \leq C \leq 10^9$
+
+If the result is negative, return a non-negative number in range $[0, C-1]$.
+
+---
+
+### Mathematical Insight: Binary Exponentiation
+
+We use binary exponentiation (also known as exponentiation by squaring), which reduces the time complexity from $O(B)$ to $O(\log B)$.
+
+---
+
+### Binary Exponentiation Logic
+
+To compute $x^n$:
+
+$$
+x^n = 
+\begin{cases}
+(x^{n/2})^2 &amp; \text{if } n \text{ is even} \\
+x \cdot (x^{(n-1)/2})^2 &amp; \text{if } n \text{ is odd}
+\end{cases}
+$$
+
+At each step, take result modulo $C$ to avoid overflow.
+
+---
+
+### Python Code
+
+```python
+def mod_pow(x: int, n: int, d: int) -&gt; int:
+    base = x % d
+    if base &lt; 0:
+        base += d
+
+    result = 1
+    while n &gt; 0:
+        if n % 2 == 1:
+            result = (result * base) % d
+        base = (base * base) % d
+        n //= 2
+
+    return result % d
+</code></pre></div></p>
+<h2 id="problem-letter-phone-digit-to-letter-combinations">Problem: Letter Phone (Digit-to-Letter Combinations)<a class="headerlink" href="#problem-letter-phone-digit-to-letter-combinations" title="Permanent link">&para;</a></h2>
+<h3 id="problem-statement_19">Problem Statement<a class="headerlink" href="#problem-statement_19" title="Permanent link">&para;</a></h3>
+<p>Given a string of digits (from <code>0–9</code>), return all possible letter combinations that the number could represent using a telephone keypad.</p>
+<h3 id="digit-to-letter-mapping_1">Digit to Letter Mapping:<a class="headerlink" href="#digit-to-letter-mapping_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>0 → 0 1 → 1  
+2 → abc 3 → def  
+4 → ghi 5 → jkl  
+6 → mno 7 → pqrs  
+8 → tuv 9 → wxyz
+
+````
+
+---
+
+### Example
+
+#### Input:
+```python
+A = &quot;23&quot;
+````
+
+#### Output:
+
+```python
+[&quot;ad&quot;, &quot;ae&quot;, &quot;af&quot;, &quot;bd&quot;, &quot;be&quot;, &quot;bf&quot;, &quot;cd&quot;, &quot;ce&quot;, &quot;cf&quot;]
+</code></pre></div>
+<hr />
+<h3 id="approach">Approach<a class="headerlink" href="#approach" title="Permanent link">&para;</a></h3>
+<p>This is a <strong>Cartesian product</strong> problem using <strong>backtracking</strong>.</p>
+<ul>
+<li>
+<p>At each index, try all characters mapped from the current digit.</p>
+</li>
+<li>
+<p>Recurse to the next index.</p>
+</li>
+<li>
+<p>Append the full path to the result when complete.</p>
+</li>
+</ul>
+<hr />
+<h3 id="python-code_3">Python Code<a class="headerlink" href="#python-code_3" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">letterCombinations</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">A</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">[]</span>
+
+    <span class="n">digit_map</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">&quot;0&quot;</span><span class="p">,</span> <span class="s2">&quot;1&quot;</span><span class="p">,</span> <span class="s2">&quot;abc&quot;</span><span class="p">,</span> <span class="s2">&quot;def&quot;</span><span class="p">,</span> <span class="s2">&quot;ghi&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;jkl&quot;</span><span class="p">,</span> <span class="s2">&quot;mno&quot;</span><span class="p">,</span> <span class="s2">&quot;pqrs&quot;</span><span class="p">,</span> <span class="s2">&quot;tuv&quot;</span><span class="p">,</span> <span class="s2">&quot;wxyz&quot;</span>
+    <span class="p">]</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">backtrack</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">index</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">):</span>
+            <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
+            <span class="k">return</span>
+        <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">digit_map</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">A</span><span class="p">[</span><span class="n">index</span><span class="p">])]:</span>
+            <span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">char</span><span class="p">)</span>
+            <span class="n">backtrack</span><span class="p">(</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+            <span class="n">path</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>
+
+    <span class="n">backtrack</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">[])</span>
+    <span class="k">return</span> <span class="n">result</span>
+</code></pre></div>
+<hr />
+<h3 id="example-usage">Example Usage<a class="headerlink" href="#example-usage" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><span class="n">letterCombinations</span><span class="p">(</span><span class="s2">&quot;23&quot;</span><span class="p">)</span>
+<span class="c1"># Output: [&#39;ad&#39;, &#39;ae&#39;, &#39;af&#39;, &#39;bd&#39;, &#39;be&#39;, &#39;bf&#39;, &#39;cd&#39;, &#39;ce&#39;, &#39;cf&#39;]</span>
+</code></pre></div>
+<hr />
+<h3 id="time-complexity">Time Complexity<a class="headerlink" href="#time-complexity" title="Permanent link">&para;</a></h3>
+<ul>
+<li><span class="arithmatex">\(O(4^n)\)</span> — where <span class="arithmatex">\(n\)</span> is the length of the digit string (since max 4 letters per digit)</li>
+</ul>
+<h3 id="space-complexity">Space Complexity<a class="headerlink" href="#space-complexity" title="Permanent link">&para;</a></h3>
+<ul>
+<li><span class="arithmatex">\(O(n)\)</span> — recursion stack and temporary path</li>
+</ul>
 
 
 
@@ -1253,6 +2446,44 @@ def letterCombinations(digits):
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../hashing/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Hashing">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Hashing
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../heaps_and_maps/" class="md-footer__link md-footer__link--next" aria-label="Next: Heaps and Maps">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Heaps and Maps
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">
