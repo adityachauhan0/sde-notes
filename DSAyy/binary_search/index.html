@@ -9,6 +9,8 @@
       
       
       
+        <link rel="prev" href="../heaps_and_maps/">
+      
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -16,7 +18,7 @@
     
     
       
-        <title>Binary search - SDE Prep A2Z</title>
+        <title>Binary Search - SDE Prep A2Z</title>
       
     
     
@@ -117,7 +119,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Binary search
+              Binary Search
             
           </span>
         </div>
@@ -270,10 +272,12 @@
   
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
+      <li class="md-tabs__item md-tabs__item--active">
         <a href="../arrays/" class="md-tabs__link">
           
   
@@ -345,26 +349,31 @@
       
   
   
+    
   
   
+  
     
     
     
     
+      
+        
+        
       
       
         
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   
@@ -377,7 +386,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             DSA
@@ -655,6 +664,548 @@
   
 
       </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backtracking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Backtracking
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../heaps_and_maps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Heaps and Maps
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Binary Search
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Binary Search
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#search-in-bitonic-array" class="md-nav__link">
+    <span class="md-ellipsis">
+      Search in Bitonic Array
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Search in Bitonic Array">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how" class="md-nav__link">
+    <span class="md-ellipsis">
+      How
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#smaller-or-equal-elements" class="md-nav__link">
+    <span class="md-ellipsis">
+      Smaller or equal elements.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wood-cutting-made-easy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Wood Cutting Made easy
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matrix-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      Matrix Search
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#search-for-a-range" class="md-nav__link">
+    <span class="md-ellipsis">
+      Search for a Range.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sorted-insertion-position" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sorted Insertion Position
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#capacity-to-ship-packages-within-b-days" class="md-nav__link">
+    <span class="md-ellipsis">
+      Capacity to Ship packages within B days.
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#matrix-median" class="md-nav__link">
+    <span class="md-ellipsis">
+      Matrix Median
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#square-root-of-integer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Square root of Integer
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#allocate-books" class="md-nav__link">
+    <span class="md-ellipsis">
+      Allocate Books
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#painters-partition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Painter's Partition
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#red-zone-detection-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      Red Zone Detection Problem
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Red Zone Detection Problem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problem Statement
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Problem Statement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constraints:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mathematical-explanation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mathematical Explanation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Python Code
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modular-power-function-compute-xn-mod-d" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modular Power Function: Compute \((x^n) \mod d\)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Modular Power Function: Compute \((x^n) \mod d\)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-statement_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problem Statement
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Problem Statement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#constraints_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constraints:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mathematical-insight-binary-exponentiation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mathematical Insight: Binary Exponentiation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mathematical Insight: Binary Exponentiation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#recurrence" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recurrence:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-points" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Points:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-code_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Python Code
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#simple-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Simple Queries
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Simple Queries">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-statement_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problem Statement
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Problem Statement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#constraints_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constraints:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-1-count-occurrences-of-each-maximum" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 1: Count Occurrences of Each Maximum
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-product-of-divisors-fx" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 2: Product of Divisors \(f(x)\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-3-build-list-g-and-answer-queries" class="md-nav__link">
+    <span class="md-ellipsis">
+      Step 3: Build List \(G\) and Answer Queries
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-code_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Python Code
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#median-of-two-sorted-arrays" class="md-nav__link">
+    <span class="md-ellipsis">
+      Median of Two Sorted Arrays
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Median of Two Sorted Arrays">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-statement_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problem Statement
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Problem Statement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#constraints_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constraints:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#approach" class="md-nav__link">
+    <span class="md-ellipsis">
+      Approach
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-code_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Python Code
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rotated-sorted-array-search" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rotated Sorted Array Search
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Rotated Sorted Array Search">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#problem-statement_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Problem Statement
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-insight" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Insight
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#binary-search-strategy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Binary Search Strategy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python-code_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Python Code
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -1863,6 +2414,28 @@ This allows us to perform binary search.</p>
       
         <footer class="md-footer">
   
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../heaps_and_maps/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Heaps and Maps">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Heaps and Maps
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
     
   
   <div class="md-footer-meta md-typeset">
