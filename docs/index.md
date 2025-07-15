@@ -28,7 +28,9 @@ Jaake padle gaandu:
 - 𝖂𝖍𝖆𝖙 𝖙𝖍𝖊 𝖘𝖎𝖌𝖒𝖆 [Binary Search](DSAyy/binary_search.md)
 - 𝖘𝖍𝖚𝖙 𝖚𝖕 𝖋𝖆𝖌𝖌𝖔𝖙 [Heaps and Maps](DSAyy/heaps_and_maps.md)
 - 𝐍ιووεr 🙆🏾👨🏿‍🦱 [BackTracking](DSAyy/backtracking.md)
-
+- DMBS [DBMS](DSAyy/DBMS.md)
+- OOPS [OOPS](DSAyy/OOPs.md)
+- OS [OS](DSAyy/OS.md)
 ---
 
 

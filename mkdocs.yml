@@ -72,6 +72,9 @@ nav:
       - Backtracking: DSAyy/backtracking.md
       - Heaps and Maps: DSAyy/heaps_and_maps.md
       - Binary Search: DSAyy/binary_search.md
+      - DBMS: DSAyy/DBMS.md
+      - OOPS: DSAyy/OOPs.md
+      - OS: DSAyy/OS.md 
 markdown_extensions:
   - pymdownx.arithmatex:
       generic: true
