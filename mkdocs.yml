@@ -75,7 +75,9 @@ nav:
       - DBMS: DSAyy/DBMS.md
       - OOPS: DSAyy/OOPs.md
       - OS: DSAyy/OS.md 
-      - SQL: DSAyy/SQL_practice.md
+  - SQL:
+      - MySQL Syntax: DSAyy/SQL_QuickReference.md
+      - Some Practice Questions: DSAyy/SQL_practice.md
 markdown_extensions:
   - pymdownx.arithmatex:
       generic: true

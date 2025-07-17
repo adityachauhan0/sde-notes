@@ -32,6 +32,7 @@ Jaake padle gaandu:
 - OOPS [OOPS](DSAyy/OOPs.md)
 - OS [OS](DSAyy/OS.md)
 - SQL [SQL](DSAyy/SQL_practice.md)
+- MySQL Quick Reference [SQL](DSAyy/SQL_QuickReference.md)
 ---
 
 

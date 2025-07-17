@@ -69,12 +69,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "SQL practice.md",
+                "file": "SQL_QuickReference.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "SQL practice"
+              "title": "SQL_QuickReference"
             }
           }
         ],
@@ -229,6 +229,7 @@
   },
   "active": "e208b5c5e8e38360",
   "lastOpenFiles": [
+    "SQL_QuickReference.md",
     "OS.md",
     "SQL practice.md",
     "OOPs.md",
