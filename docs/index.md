@@ -31,6 +31,7 @@ Jaake padle gaandu:
 - DMBS [DBMS](DSAyy/DBMS.md)
 - OOPS [OOPS](DSAyy/OOPs.md)
 - OS [OS](DSAyy/OS.md)
+- SQL [SQL](DSAyy/SQL_practice.md)
 ---
 
 
