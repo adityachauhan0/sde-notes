@@ -75,6 +75,7 @@ nav:
       - DBMS: DSAyy/DBMS.md
       - OOPS: DSAyy/OOPs.md
       - OS: DSAyy/OS.md 
+      - System Design Leetcode: DSAyy/sysleet.md
   - SQL:
       - MySQL Syntax: DSAyy/SQL_QuickReference.md
       - Some Practice Questions: DSAyy/SQL_practice.md

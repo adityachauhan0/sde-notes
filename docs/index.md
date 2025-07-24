@@ -33,6 +33,7 @@ Jaake padle gaandu:
 - OS [OS](DSAyy/OS.md)
 - SQL [SQL](DSAyy/SQL_practice.md)
 - MySQL Quick Reference [SQL](DSAyy/SQL_QuickReference.md)
+- System Leetcode [Design](DSAyy/sysleet.md)
 ---
 
 
