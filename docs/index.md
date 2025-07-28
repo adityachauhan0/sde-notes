@@ -34,6 +34,7 @@ Jaake padle gaandu:
 - SQL [SQL](DSAyy/SQL_practice.md)
 - MySQL Quick Reference [SQL](DSAyy/SQL_QuickReference.md)
 - System Leetcode [Design](DSAyy/sysleet.md)
+- System Design Interview [Desgin](DSAyy/Design_Questions.md)
 ---
 
 

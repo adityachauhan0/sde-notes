@@ -79,6 +79,8 @@ nav:
   - SQL:
       - MySQL Syntax: DSAyy/SQL_QuickReference.md
       - Some Practice Questions: DSAyy/SQL_practice.md
+  - System Design:
+      - System Design Questions: DSAyy/Design_Questions.md
 markdown_extensions:
   - pymdownx.arithmatex:
       generic: true
