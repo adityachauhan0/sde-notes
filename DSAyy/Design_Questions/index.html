@@ -1,0 +1,4829 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.14">
+    
+    
+      
+        <title>Design Leetcode - SDE Prep A2Z</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.342714a4.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=D2Coding+Ligature:300,300i,400,400i,700,700i%7CJetBrainsMono+Nerd+Font:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"D2Coding Ligature";--md-code-font:"JetBrainsMono Nerd Font"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../styles/custom.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css">
+    
+      <link rel="stylesheet" href="../../styles/fonts.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#design-leetcode" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="SDE Prep A2Z" class="md-header__button md-logo" aria-label="SDE Prep A2Z" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            SDE Prep A2Z
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Design Leetcode
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="deep-purple" data-md-color-accent="deep-purple"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="dracula" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dracula Mode"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Dracula Mode" for="__palette_3" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a9 9 0 0 0-9 9v11l3-3 3 3 3-3 3 3 3-3 3 3V11a9 9 0 0 0-9-9M9 8a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2m6 0a2 2 0 0 1 2 2 2 2 0 0 1-2 2 2 2 0 0 1-2-2 2 2 0 0 1 2-2"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="neon" data-md-color-primary="lime" data-md-color-accent="pink"  aria-label="Neon Pulse Mode"  type="radio" name="__palette" id="__palette_3">
+    
+      <label class="md-header__button md-icon" title="Neon Pulse Mode" for="__palette_4" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11h3v2h-3zM1 11h3v2H1zM13 1v3h-2V1zM4.92 3.5l2.13 2.14-1.42 1.41L3.5 4.93zm12.03 2.13 2.12-2.13 1.43 1.43-2.13 2.12zM12 6a6 6 0 0 1 6 6c0 2.22-1.21 4.16-3 5.2V19a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1v-1.8c-1.79-1.04-3-2.98-3-5.2a6 6 0 0 1 6-6m2 15v1a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-1zm-3-3h2v-2.13c1.73-.44 3-2.01 3-3.87a4 4 0 0 0-4-4 4 4 0 0 0-4 4c0 1.86 1.27 3.43 3 3.87z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="cyberpunk" data-md-color-primary="yellow" data-md-color-accent="light-blue"  aria-label="Cyberpunk Mode"  type="radio" name="__palette" id="__palette_4">
+    
+      <label class="md-header__button md-icon" title="Cyberpunk Mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2a2 2 0 0 1 2 2c0 .74-.4 1.39-1 1.73V7h1a7 7 0 0 1 7 7h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v1a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-1H2a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1a7 7 0 0 1 7-7h1V5.73c-.6-.34-1-.99-1-1.73a2 2 0 0 1 2-2M7.5 13A2.5 2.5 0 0 0 5 15.5 2.5 2.5 0 0 0 7.5 18a2.5 2.5 0 0 0 2.5-2.5A2.5 2.5 0 0 0 7.5 13m9 0a2.5 2.5 0 0 0-2.5 2.5 2.5 2.5 0 0 0 2.5 2.5 2.5 2.5 0 0 0 2.5-2.5 2.5 2.5 0 0 0-2.5-2.5"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../arrays/" class="md-tabs__link">
+          
+  
+  
+  DSA
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../SQL_QuickReference/" class="md-tabs__link">
+          
+  
+  
+  SQL
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="SDE Prep A2Z" class="md-nav__button md-logo" aria-label="SDE Prep A2Z" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    SDE Prep A2Z
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    DSA
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            DSA
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../arrays/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Arrays
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Dynamic Programming
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../graph/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Graphs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../trees/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Trees
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../TwoPointers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Two Pointers
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../LinkedList/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Linked Lists
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stacks_queues/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Stacks and Queues
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Strings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Strings
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Maths/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Maths
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../bit_manipulation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Bit Manipulation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Greedy/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Greedy
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../hashing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Hashing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backtracking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Backtracking
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../heaps_and_maps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Heaps and Maps
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../binary_search/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Binary Search
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DBMS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    DBMS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OOPs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    OOPS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../OS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    OS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sysleet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    System Design Leetcode
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    SQL
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            SQL
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQL_QuickReference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    MySQL Syntax
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SQL_practice/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Some Practice Questions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#0-problem-statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      0. Problem Statement
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-requirements" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Requirements
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Requirements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#functional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Functional
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nonfunctional" class="md-nav__link">
+    <span class="md-ellipsis">
+      Non‑Functional
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-rough-sizing-sample-assumptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Rough Sizing (sample assumptions)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-high-level-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. High-Level Architecture
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-critical-flow-submission-judge-result" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Critical Flow (Submission → Judge → Result)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-data-model-simplified-er-ascii" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Data Model (simplified ER ASCII)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-judgesandbox-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Judge/Sandbox Design
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-storage-caching" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Storage &amp; Caching
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-api-sketch" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. API Sketch
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-scalingha-strategies" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Scaling/HA Strategies
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-consistency-reliability" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Consistency &amp; Reliability
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-security" class="md-nav__link">
+    <span class="md-ellipsis">
+      11. Security
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-observability" class="md-nav__link">
+    <span class="md-ellipsis">
+      12. Observability
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-contestleaderboard-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      13. Contest/Leaderboard Pipeline
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#14-trade-offs-alternatives" class="md-nav__link">
+    <span class="md-ellipsis">
+      14. Trade-offs &amp; Alternatives
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#15-future-enhancements" class="md-nav__link">
+    <span class="md-ellipsis">
+      15. Future Enhancements
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#16-what-to-deep-dive-next" class="md-nav__link">
+    <span class="md-ellipsis">
+      16. What to Deep-Dive Next?
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="design-leetcode">Design Leetcode<a class="headerlink" href="#design-leetcode" title="Permanent link">&para;</a></h1>
+<h2 id="0-problem-statement">0. Problem Statement<a class="headerlink" href="#0-problem-statement" title="Permanent link">&para;</a></h2>
+<p>Design an online coding platform (like LeetCode): users solve problems in many languages, code runs securely, results &amp; stats are recorded, and contests are hosted.</p>
+<hr />
+<h2 id="1-requirements">1. Requirements<a class="headerlink" href="#1-requirements" title="Permanent link">&para;</a></h2>
+<h3 id="functional">Functional<a class="headerlink" href="#functional" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Browse/search problems by tag/difficulty.</p>
+</li>
+<li>
+<p>Code editor: <strong>Run (samples)</strong> vs <strong>Submit (hidden tests)</strong>.</p>
+</li>
+<li>
+<p>Auto-judge (AC/WA/TLE/MLE/RE).</p>
+</li>
+<li>
+<p>User auth/profile/stats/streaks.</p>
+</li>
+<li>
+<p>Contests: register, timed submissions, live leaderboard.</p>
+</li>
+<li>
+<p>Admin CRUD for problems and testcases.</p>
+</li>
+<li>
+<p>Rate limiting for abuse prevention.</p>
+</li>
+</ul>
+<h3 id="nonfunctional">Non‑Functional<a class="headerlink" href="#nonfunctional" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>P95 read latency &lt;150 ms globally; P95 judge latency &lt;5 s (easy) / &lt;15 s (hard).</p>
+</li>
+<li>
+<p>99.9% availability.</p>
+</li>
+<li>
+<p>Secure isolation of untrusted code.</p>
+</li>
+<li>
+<p>Elastic compute for bursty submissions.</p>
+</li>
+<li>
+<p>Strong consistency for submission status; eventual for analytics.</p>
+</li>
+</ul>
+<hr />
+<h2 id="2-rough-sizing-sample-assumptions">2. Rough Sizing (sample assumptions)<a class="headerlink" href="#2-rough-sizing-sample-assumptions" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>15 M MAU / 1.5 M DAU / 80k peak concurrent.</p>
+</li>
+<li>
+<p>Read QPS ~60k; submission QPS peak ~3k.</p>
+</li>
+<li>
+<p>500 M+ historical submissions (2–3 KB metadata each, code ~5–20 KB).</p>
+</li>
+<li>
+<p>Problems: 3k–10k; test bundles ~50 MB/problem (store in object storage).</p>
+</li>
+</ul>
+<hr />
+<h2 id="3-high-level-architecture">3. High-Level Architecture<a class="headerlink" href="#3-high-level-architecture" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>Users (Web/Mobile/CLI)
+        |
+        v
++--------------------+
+| CDN / Edge Cache   |
++--------------------+
+        |
+        v
++--------------------+        +-----------------+
+| API Gateway        |&lt;------&gt;| Auth Service    |
++--------------------+        +-----------------+
+   |        |    \
+   |        |     \                         +------------------+
+   |        |      \-----&gt; Search Service -&gt;| OpenSearch/ES     |
+   |        |                                +------------------+
+   |        |
+   |   +------------------+     +------------------+
+   |   | Problem Service  |----&gt;| Problem DB (SQL) |
+   |   +------------------+     +------------------+
+   |
+   |   +------------------+     +---------------------+
+   +--&gt;| Submission Svc   |----&gt;| Submission DB (SQL) |
+       +------------------+     +---------------------+
+                 |
+                 v
+          +----------------+
+          |  Job Queue     |  (Kafka/SQS/PubSub)
+          +----------------+
+                 |
+                 v
+       +-----------------------+
+       | Judge Orchestrator    |
+       +-----------------------+
+          /        |        \
+         /         |         \
++--------------+ +--------------+ +--------------+
+| Worker Pool  | | Worker Pool  | | Worker Pool  |  (multi-region)
+| (Firecracker)| | (Docker)     | | (GPU, etc.)  |
++--------------+ +--------------+ +--------------+
+        |               |               |
+        v               v               v
+  Testcases / Code / Logs in Object Storage (S3/GCS/MinIO)
+        |
+        v
++------------------+
+| Result Writer    |
++------------------+
+        |
+        v
+ Cache (Redis)  &lt;----&gt;  Leaderboards / Stats Service  &lt;----&gt;  Analytics DB/WH (ClickHouse/BigQuery)
+</code></pre></div>
+<hr />
+<h2 id="4-critical-flow-submission-judge-result">4. Critical Flow (Submission → Judge → Result)<a class="headerlink" href="#4-critical-flow-submission-judge-result" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>Client
+  | POST /submissions (code, lang, RUN/SUBMIT)
+  v
+Submission Service
+  |-- persist metadata (SQL)
+  |-- store code blob (S3)
+  |-- enqueue job (Kafka/SQS)
+  v
+Judge Orchestrator
+  |-- lease job
+  |-- pick idle worker (Redis set / gRPC)
+  v
+Worker
+  |-- fetch test bundle (S3)
+  |-- compile/run in microVM/container (timeouts, mem limits)
+  |-- compute verdict, capture logs
+  v
+Result Writer
+  |-- update Submission DB
+  |-- publish event (WebSocket topic)
+  |-- invalidate caches / update stats
+  v
+Client gets verdict via poll or push
+</code></pre></div>
+<p>ASCII sequence:</p>
+<div class="highlight"><pre><span></span><code>User -&gt; API -&gt; SubmissionSvc -&gt; DB
+                   |              \
+                   |               -&gt; Queue
+                   v
+              Orchestrator -&gt; Worker -&gt; S3 -&gt; Worker -&gt; Result
+                                          ^              |
+                                          |--------------|
+Result -&gt; SubmissionSvc -&gt; DB -&gt; WebSocket -&gt; User
+</code></pre></div>
+<hr />
+<h2 id="5-data-model-simplified-er-ascii">5. Data Model (simplified ER ASCII)<a class="headerlink" href="#5-data-model-simplified-er-ascii" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>+-------+        +-------------+        +-----------+
+| User  |1----*&lt; | Submission  |&gt; *----1| Problem   |
++-------+        +-------------+        +-----------+
+| id    |        | id          |        | id        |
+| name  |        | user_id     |        | title     |
+| ...   |        | problem_id  |        | tags[]    |
++-------+        | lang        |        | ...       |
+                 | verdict     |        +-----------+
+                 | runtime_ms  |
+                 | created_at  |        +--------------+
+                 +-------------+   1--*&lt;| TestBundle   |
+                                      | +--------------+
+                                      | | problem_id   |
+                                      | | version      |
+                                      | | s3_path      |
+                                      | | type         |
+                                      | +--------------+
+
++----------+       +-----------------+
+| Contest  |1---*&lt; | ContestScoreRow |
++----------+       +-----------------+
+| id       |       | contest_id      |
+| start_ts |       | user_id         |
+| end_ts   |       | score           |
+| problems[]       | penalty         |
++----------+       +-----------------+
+</code></pre></div>
+<hr />
+<h2 id="6-judgesandbox-design">6. Judge/Sandbox Design<a class="headerlink" href="#6-judgesandbox-design" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>+---------------------+
+| Worker Node         |
+|  +---------------+  |
+|  | VM Snapshot   |&lt;-+-- Pre-baked per language (fast boot)
+|  +---------------+  |
+|  | Firecracker VM|  |
+|  | (seccomp,     |  |
+|  | cgroups, no   |  |
+|  | net)          |  |
+|  +---------------+  |
+|  | Runner Agent  |-- compile/run, parse result
+|  +---------------+  |
++---------------------+
+</code></pre></div>
+<p>Key points: microVM isolation, read-only FS, throttle CPU/mem, kill after timeout.</p>
+<hr />
+<h2 id="7-storage-caching">7. Storage &amp; Caching<a class="headerlink" href="#7-storage-caching" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>SQL (Aurora/Postgres/MySQL):</strong> Users, problems meta, fresh submissions. Partition submissions (by user_id hash or time). Read replicas for scale.</p>
+</li>
+<li>
+<p><strong>Object Storage:</strong> Testcases, code blobs, logs, editorials. Versioned &amp; replicated.</p>
+</li>
+<li>
+<p><strong>Redis:</strong></p>
+<ul>
+<li>
+<p>Hot problem meta (<code>problem:{id}:v{n}</code>)</p>
+</li>
+<li>
+<p>User stats/streak counters</p>
+</li>
+<li>
+<p>Contest leaderboard top-K</p>
+</li>
+<li>
+<p>Rate-limits (token bucket)</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Search (OpenSearch/Elastic):</strong> Full-text search on titles/editorials.</p>
+</li>
+<li>
+<p><strong>Cold Analytics (ClickHouse/BigQuery/S3 Parquet):</strong> Historical queries, BI, ML features.</p>
+</li>
+</ul>
+<hr />
+<h2 id="8-api-sketch">8. API Sketch<a class="headerlink" href="#8-api-sketch" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>GET  /problems?tag=&amp;difficulty=&amp;search=
+GET  /problems/{slug}
+POST /submissions {problemId, lang, code, mode:RUN|SUBMIT}
+GET  /submissions/{id}
+WS   /live/submissions/{id}
+
+POST /contests/{id}/register
+GET  /contests/{id}/leaderboard
+GET  /users/{id}/stats
+
+Admin:
+POST /problems
+POST /problems/{id}/tests
+</code></pre></div>
+<hr />
+<h2 id="9-scalingha-strategies">9. Scaling/HA Strategies<a class="headerlink" href="#9-scalingha-strategies" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>Stateless services</strong> behind k8s + HPA.</p>
+</li>
+<li>
+<p><strong>Judge workers</strong> auto-scale on queue lag / in-flight jobs; use spot/cheap instances.</p>
+</li>
+<li>
+<p><strong>DB scaling:</strong> Read replicas; partition submissions, or hybrid SQL + NoSQL.</p>
+</li>
+<li>
+<p><strong>Queue:</strong> Kafka (topic per priority) or SQS; DLQ for poison jobs.</p>
+</li>
+<li>
+<p><strong>Multi-region:</strong></p>
+<ul>
+<li>
+<p>Edge CDN for problem pages.</p>
+</li>
+<li>
+<p>Regional judge clusters.</p>
+</li>
+<li>
+<p>Global object storage replication.</p>
+</li>
+<li>
+<p>Use global load balancer; sticky region for sessions.</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="10-consistency-reliability">10. Consistency &amp; Reliability<a class="headerlink" href="#10-consistency-reliability" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>Idempotent submissions:</strong> Client gets <code>submission_id</code>; retransmit safe.</p>
+</li>
+<li>
+<p><strong>Exactly-once-ish judge:</strong> Orchestrator uses leases; worker ACK writes result via transactional outbox.</p>
+</li>
+<li>
+<p><strong>Stats eventual:</strong> Update counters async; recompute nightly for correctness.</p>
+</li>
+<li>
+<p><strong>Failures:</strong></p>
+<ul>
+<li>
+<p>Worker crash → lease expires → requeue.</p>
+</li>
+<li>
+<p>Queue outage → buffer in DB table.</p>
+</li>
+<li>
+<p>DB failover → driver retries, circuit breaker.</p>
+</li>
+</ul>
+</li>
+</ul>
+<hr />
+<h2 id="11-security">11. Security<a class="headerlink" href="#11-security" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>WAF + rate limits.</p>
+</li>
+<li>
+<p>JWT/OAuth2 auth; bcrypt/argon2 hashing.</p>
+</li>
+<li>
+<p>Encrypt at rest (KMS) &amp; TLS everywhere.</p>
+</li>
+<li>
+<p>Sandbox: syscall filtering, no outbound net, tmpfs, cgroups.</p>
+</li>
+<li>
+<p>Audit logs for admin ops; GDPR deletion workflow.</p>
+</li>
+</ul>
+<hr />
+<h2 id="12-observability">12. Observability<a class="headerlink" href="#12-observability" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Metrics: queue depth, judge P95, compile failure rate, cache hit %, DB slow queries.</p>
+</li>
+<li>
+<p>Tracing: API→orchestrator→worker (Jaeger/OTel).</p>
+</li>
+<li>
+<p>Logs: structured JSON, centralized (ELK/Loki).</p>
+</li>
+<li>
+<p>Alerting: SLO-based alerts, anomaly detection on submission spikes.</p>
+</li>
+</ul>
+<hr />
+<h2 id="13-contestleaderboard-pipeline">13. Contest/Leaderboard Pipeline<a class="headerlink" href="#13-contestleaderboard-pipeline" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>[submission_result topic]
+          |
+          v
+   Contest Service
+     |-- validate contest window
+     |-- compute score delta (penalty rules)
+     |-- update in-memory leaderboard (Redis sorted sets)
+     |-- batch persist (SQL)
+          |
+          v
+   /leaderboard endpoint (read from Redis)
+</code></pre></div>
+<p>Freeze after contest end to SQL, publish static snapshot.</p>
+<hr />
+<h2 id="14-trade-offs-alternatives">14. Trade-offs &amp; Alternatives<a class="headerlink" href="#14-trade-offs-alternatives" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Decision</th>
+<th>Chosen</th>
+<th>Alternative</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Isolation</td>
+<td>Firecracker</td>
+<td>Docker only</td>
+<td>Better security; small boot penalty</td>
+</tr>
+<tr>
+<td>Submissions store</td>
+<td>SQL partitioned</td>
+<td>NoSQL (Cassandra)</td>
+<td>SQL simplifies joins, transactions</td>
+</tr>
+<tr>
+<td>Result delivery</td>
+<td>Poll + WS</td>
+<td>Long-poll only</td>
+<td>WS improves UX; keep polling fallback</td>
+</tr>
+<tr>
+<td>Global queue</td>
+<td>Per-region queues</td>
+<td>Global single Kafka</td>
+<td>Regional queues reduce latency/BLAST radius</td>
+</tr>
+<tr>
+<td>Search</td>
+<td>OpenSearch</td>
+<td>DB full-text</td>
+<td>Scalability, relevance tuning</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="15-future-enhancements">15. Future Enhancements<a class="headerlink" href="#15-future-enhancements" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>ML-driven recommendations &amp; difficulty personalization.</p>
+</li>
+<li>
+<p>Collaborative rooms / mock interviews.</p>
+</li>
+<li>
+<p>IDE plugins (VSCode) using same submission API.</p>
+</li>
+<li>
+<p>AI hints/explanations after WA.</p>
+</li>
+<li>
+<p>Company portals &amp; custom problem sets.</p>
+</li>
+</ul>
+<hr />
+<h2 id="16-what-to-deep-dive-next">16. What to Deep-Dive Next?<a class="headerlink" href="#16-what-to-deep-dive-next" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Judge Orchestrator algorithms (load balancing, lease protocol).</p>
+</li>
+<li>
+<p>Problem/testcase versioning &amp; cache invalidation.</p>
+</li>
+<li>
+<p>Data partitioning scheme for submissions.</p>
+</li>
+<li>
+<p>Real-time leaderboard consistency model.</p>
+</li>
+<li>
+<p>Cost optimization (spot instances, cold storage lifecycle).</p>
+</li>
+</ul>
+<hr />
+<h1 id="system-design-interview-design-a-url-shortener-eg-tinyurlbitly">System Design Interview: <strong>Design a URL Shortener (e.g., TinyURL/bit.ly)</strong><a class="headerlink" href="#system-design-interview-design-a-url-shortener-eg-tinyurlbitly" title="Permanent link">&para;</a></h1>
+<hr />
+<h2 id="0-problem-statement-30-sec-pitch">0. Problem Statement (30-sec pitch)<a class="headerlink" href="#0-problem-statement-30-sec-pitch" title="Permanent link">&para;</a></h2>
+<p>Build a service that converts long URLs into short codes (e.g., <code>https://bit.ly/xYz123</code>). When users hit the short URL, they get redirected to the original long URL. Track basic stats (clicks, creation time).</p>
+<hr />
+<h2 id="1-requirements_1">1. Requirements<a class="headerlink" href="#1-requirements_1" title="Permanent link">&para;</a></h2>
+<h3 id="functional_1">Functional<a class="headerlink" href="#functional_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Create short URL from a long URL.</p>
+</li>
+<li>
+<p>Redirect short URL → original URL.</p>
+</li>
+<li>
+<p>Optional: custom alias (if available), link expiration, basic analytics (click count, last access time).</p>
+</li>
+<li>
+<p>Admin: delete/disable malicious links.</p>
+</li>
+</ul>
+<h3 id="non-functional">Non-Functional<a class="headerlink" href="#non-functional" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Low latency for redirect (&lt;50 ms P95).</p>
+</li>
+<li>
+<p>High availability (people share links everywhere).</p>
+</li>
+<li>
+<p>Handle read-heavy traffic (redirects) vs fewer writes (shorten operations).</p>
+</li>
+<li>
+<p>Prevent collisions &amp; brute-force scanning.</p>
+</li>
+<li>
+<p>Scale to billions of URLs.</p>
+</li>
+</ul>
+<hr />
+<h2 id="2-back-of-the-envelope-numbers-assume">2. Back-of-the-Envelope Numbers (Assume)<a class="headerlink" href="#2-back-of-the-envelope-numbers-assume" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>100M new URLs/year ≈ ~3 URLs/sec average, peaks 10x.</p>
+</li>
+<li>
+<p>Redirects 1000x more than creations → ~3K QPS average, peaks higher.</p>
+</li>
+<li>
+<p>Each record: longURL (~500 bytes avg), metadata (~200 bytes). ~1 KB/record → 100M KB ≈ 100 GB/year (metadata only; easy to store).</p>
+</li>
+<li>
+<p>Link lifetime: “forever”—design for pruning/archiving later.</p>
+</li>
+</ul>
+<hr />
+<h2 id="3-core-api-sketch">3. Core API Sketch<a class="headerlink" href="#3-core-api-sketch" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="err">POST /api/v1/shorten</span>
+<span class="err">Body: { &quot;longUrl&quot;: &quot;...&quot;, &quot;customAlias&quot;: &quot;myLink&quot;, &quot;expireAt&quot;: &quot;2025-12-31T00:00:00Z&quot; }</span>
+<span class="err">Resp: { &quot;shortUrl&quot;: &quot;https://sho.rt/AbC123&quot; }</span>
+
+<span class="err">GET /AbC123        -&gt; 301 Redirect to original URL</span>
+
+<span class="err">GET /api/v1/stats/AbC123</span>
+<span class="err">Resp: { &quot;createdAt&quot;: &quot;...&quot;, &quot;redirectCount&quot;: 12345, &quot;lastAccessAt&quot;: &quot;...&quot; }</span>
+</code></pre></div>
+<hr />
+<h2 id="4-data-model-simplified">4. Data Model (Simplified)<a class="headerlink" href="#4-data-model-simplified" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>URLMapping
+-----------
+short_code (PK)   VARCHAR(8)   // e.g., &quot;AbC123&quot;
+long_url          TEXT
+created_at        TIMESTAMP
+expire_at         TIMESTAMP NULL
+click_count       BIGINT
+creator_user_id   BIGINT NULL
+is_active         BOOL
+</code></pre></div>
+<p>Indexes:</p>
+<ul>
+<li>
+<p>PK on <code>short_code</code></p>
+</li>
+<li>
+<p>Secondary index on <code>creator_user_id</code> (to list user’s links)</p>
+</li>
+<li>
+<p>Optional TTL index if using a NoSQL with TTL.</p>
+</li>
+</ul>
+<hr />
+<h2 id="5-high-level-architecture-ascii">5. High-Level Architecture (ASCII)<a class="headerlink" href="#5-high-level-architecture-ascii" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>Clients (Web / Mobile / API)
+          |
+          v
++-------------------+
+|  CDN / Edge Cache |  &lt;- cache popular redirects
++-------------------+
+          |
+          v
++-------------------+         +--------------------+
+|  API Gateway      | &lt;-----&gt; | Auth / RateLimit   |
++-------------------+         +--------------------+
+     |         \
+     |          \  POST /shorten
+     |           \
+     v            v
++---------------------+     +----------------------+
+| URL Service         |     | Stats/Analytics Svc  |
++---------------------+     +----------------------+
+     |     \                       ^
+     |      \                      |
+     v       v                     |
++-----------+  +----------------+  |
+| KV Store  |  | SQL/NoSQL DB   |  |
+| (Redis)   |  | (Cassandra/My) |  |
++-----------+  +----------------+  |
+     ^                                \
+     |  GET /{code}                    \ batch/stream
+     |                                  v
+     +---------------------------+  +---------------------+
+                                 |  | Stream (Kafka/KDS) |
+                                 +-&gt;| Click Aggregator   |
+                                    +---------------------+
+</code></pre></div>
+<hr />
+<h2 id="6-how-to-generate-the-short-code">6. How to Generate the Short Code?<a class="headerlink" href="#6-how-to-generate-the-short-code" title="Permanent link">&para;</a></h2>
+<p><strong>Goal:</strong> Unique, short, URL-safe string.</p>
+<h3 id="options">Options<a class="headerlink" href="#options" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p><strong>Hash + Collision Handling</strong></p>
+<ul>
+<li>
+<p>Take MD5/SHA1 of long URL → base62 encode first N chars.</p>
+</li>
+<li>
+<p>If collision → append random chars or rehash with salt.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Auto-Increment ID + Base62</strong></p>
+<ul>
+<li>
+<p>Maintain a counter (e.g., in DB or Redis).</p>
+</li>
+<li>
+<p>Convert integer to base62 (0-9, a-z, A-Z) → short code.</p>
+</li>
+<li>
+<p>Easy, ordered, no collisions. Need to avoid single counter bottleneck.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Snowflake / UUID-based + Base62</strong></p>
+<ul>
+<li>Use distributed ID generators.</li>
+</ul>
+</li>
+</ol>
+<p><strong>Interview Tip:</strong> Say you’ll start with <strong>auto-increment + base62</strong> (simple) and mention sharding counter or using Snowflake if needed.</p>
+<hr />
+<h2 id="7-end-to-end-flows">7. End-to-End Flows<a class="headerlink" href="#7-end-to-end-flows" title="Permanent link">&para;</a></h2>
+<h3 id="create-short-url">Create Short URL<a class="headerlink" href="#create-short-url" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Client -&gt; API /shorten
+   |
+   v
+1. Validate URL
+2. Generate code (Base62(counter))
+3. Store {code → longURL, meta} in DB
+4. Return short URL
+</code></pre></div>
+<h3 id="redirect">Redirect<a class="headerlink" href="#redirect" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>User hits https://sho.rt/AbC123
+  |
+  v
+1. CDN/Edge checks cache
+2. If miss -&gt; API/Redirect service
+3. Read longURL from cache (Redis) else DB
+4. 301 redirect to longURL
+5. Async record click event (fire-and-forget to queue)
+</code></pre></div>
+<p><strong>ASCII Sequence:</strong></p>
+<div class="highlight"><pre><span></span><code>Client --&gt; CDN --&gt; API --&gt; Cache? --&gt; DB
+                     |       |         |
+                     |&lt;------|         |
+                     | Redirect 301    |
+                     v
+              Analytics Queue --&gt; Stats Processor --&gt; DB
+</code></pre></div>
+<hr />
+<h2 id="8-caching-strategy">8. Caching Strategy<a class="headerlink" href="#8-caching-strategy" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>Edge/CDN</strong>: Cache popular redirects; set short TTL to allow disabling malicious links.</p>
+</li>
+<li>
+<p><strong>Redis</strong>: <code>GET /{code}</code> → fetch from Redis first. Cache aside pattern.</p>
+</li>
+<li>
+<p>Invalidate cache if link disabled/expired.</p>
+</li>
+</ul>
+<hr />
+<h2 id="9-db-choices-scaling">9. DB Choices &amp; Scaling<a class="headerlink" href="#9-db-choices-scaling" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>Writes (shorten)</strong>: comparatively low → SQL fine. Partition on <code>short_code</code> or just single instance with replicas.</p>
+</li>
+<li>
+<p><strong>Reads (redirects)</strong>: heavy, but read-mostly → shard by <code>short_code</code> hash if using NoSQL (Cassandra/DynamoDB).</p>
+</li>
+<li>
+<p><strong>Hybrid</strong>: SQL for metadata + Redis for hot path.</p>
+</li>
+</ul>
+<hr />
+<h2 id="10-availability-consistency">10. Availability &amp; Consistency<a class="headerlink" href="#10-availability-consistency" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>Redirect path:</strong> prioritize availability (serve from cache).</p>
+</li>
+<li>
+<p><strong>Creation path:</strong> strong consistency for uniqueness (transaction on code).</p>
+</li>
+<li>
+<p><strong>Stats:</strong> eventual consistency (aggregate clicks asynchronously).</p>
+</li>
+</ul>
+<p>CAP thinking: For redirect lookups, choose AP (eventual) because stale read (e.g., one more click) is okay.</p>
+<hr />
+<h2 id="11-security-abuse">11. Security &amp; Abuse<a class="headerlink" href="#11-security-abuse" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Validate user-submitted URLs (no XSS/data: URIs).</p>
+</li>
+<li>
+<p>Rate limit shorten API (prevent spam).</p>
+</li>
+<li>
+<p>Blacklist malicious domains.</p>
+</li>
+<li>
+<p>Add CAPTCHA for anonymous users.</p>
+</li>
+</ul>
+<hr />
+<h2 id="12-observability_1">12. Observability<a class="headerlink" href="#12-observability_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Metrics: QPS shorten/redirect, latency, cache hit %, error rates.</p>
+</li>
+<li>
+<p>Logs: per redirect (sampled) + full for creation.</p>
+</li>
+<li>
+<p>Alerts when sudden spike on a link (possible attack).</p>
+</li>
+</ul>
+<hr />
+<h2 id="13-enhancements-extensions">13. Enhancements / Extensions<a class="headerlink" href="#13-enhancements-extensions" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Custom domains for enterprise (e.g., go.company.com).</p>
+</li>
+<li>
+<p>QR code generation.</p>
+</li>
+<li>
+<p>Per-country/device analytics.</p>
+</li>
+<li>
+<p>Link preview cards.</p>
+</li>
+<li>
+<p>Expiring or one-time-use links.</p>
+</li>
+<li>
+<p>A/B testing short code lengths.</p>
+</li>
+</ul>
+<hr />
+<h2 id="14-trade-offs-cheat-sheet">14. Trade-offs Cheat Sheet<a class="headerlink" href="#14-trade-offs-cheat-sheet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Issue</th>
+<th>Option A</th>
+<th>Option B</th>
+<th>Pick &amp; Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Code gen</td>
+<td>Counter+Base62</td>
+<td>Hash+collision</td>
+<td>Counter is simple &amp; deterministic</td>
+</tr>
+<tr>
+<td>Store</td>
+<td>SQL</td>
+<td>NoSQL KV</td>
+<td>SQL OK early; migrate to NoSQL as scale grows</td>
+</tr>
+<tr>
+<td>Click stats</td>
+<td>Sync update</td>
+<td>Async stream</td>
+<td>Async keeps redirect path fast</td>
+</tr>
+<tr>
+<td>Cache invalidation</td>
+<td>TTL</td>
+<td>Explicit delete</td>
+<td>TTL simple; plus admin delete call</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="15-how-to-present-in-interview-timeline">15. How to Present in Interview (Timeline)<a class="headerlink" href="#15-how-to-present-in-interview-timeline" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p><strong>Clarify scope</strong> (30–60s).</p>
+</li>
+<li>
+<p><strong>Reqs &amp; traffic</strong> (2 min).</p>
+</li>
+<li>
+<p><strong>API + data model</strong> (3 min).</p>
+</li>
+<li>
+<p><strong>High-level design &amp; flows</strong> (5–7 min).</p>
+</li>
+<li>
+<p><strong>Deep dive</strong> (ID gen, cache, DB scaling) (5–7 min).</p>
+</li>
+<li>
+<p><strong>Discuss trade-offs &amp; extensions</strong> (2–3 min).</p>
+</li>
+<li>
+<p><strong>Wrap-up &amp; questions</strong> (1 min).</p>
+</li>
+</ol>
+<hr />
+<h1 id="system-design-interview-design-instagram-image-feed-sharing-platform">System Design Interview: <strong>Design Instagram (Image Feed Sharing Platform)</strong><a class="headerlink" href="#system-design-interview-design-instagram-image-feed-sharing-platform" title="Permanent link">&para;</a></h1>
+<hr />
+<h2 id="0-problem-statement-elevator-pitch">0. Problem Statement (Elevator Pitch)<a class="headerlink" href="#0-problem-statement-elevator-pitch" title="Permanent link">&para;</a></h2>
+<p>Build a platform where users post photos/videos, follow others, and see a personalized, reverse‑chronological (or ranked) feed. Support likes/comments, notifications, and basic search.</p>
+<hr />
+<h2 id="1-requirements_2">1. Requirements<a class="headerlink" href="#1-requirements_2" title="Permanent link">&para;</a></h2>
+<h3 id="functional_2">Functional<a class="headerlink" href="#functional_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>User signup/login, follow/unfollow.</p>
+</li>
+<li>
+<p>Post photo/video with caption &amp; tags.</p>
+</li>
+<li>
+<p>Generate a <strong>home feed</strong> (timeline of followed users’ posts).</p>
+</li>
+<li>
+<p>Like/comment on posts.</p>
+</li>
+<li>
+<p>Notifications (someone liked/commented/followed).</p>
+</li>
+<li>
+<p>Basic search: users, hashtags.</p>
+</li>
+<li>
+<p>Optional: Stories, reels, messaging (out of scope here).</p>
+</li>
+</ul>
+<h3 id="non-functional_1">Non-Functional<a class="headerlink" href="#non-functional_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Low feed latency (&lt;200 ms P95 read).</p>
+</li>
+<li>
+<p>High availability (99.9%).</p>
+</li>
+<li>
+<p>Write-heavy on media upload; read-heavy on feeds.</p>
+</li>
+<li>
+<p>Support millions of DAU; peak traffic spikes (celebrity posts).</p>
+</li>
+<li>
+<p>Strong consistency for actions like follow/like; eventual OK for counters.</p>
+</li>
+</ul>
+<p>Assumptions (numbers help sizing discussions):</p>
+<ul>
+<li>
+<p>50M MAU, 5M DAU, 500k peak concurrent.</p>
+</li>
+<li>
+<p>2M new posts/day (~23/sec avg; 10x spikes).</p>
+</li>
+<li>
+<p>Average photo 500KB (compressed), video ~5–20MB (we’ll mostly focus on photos).</p>
+</li>
+<li>
+<p>Each user follows ~200 accounts on average.</p>
+</li>
+</ul>
+<hr />
+<h2 id="2-high-level-architecture-ascii">2. High-Level Architecture (ASCII)<a class="headerlink" href="#2-high-level-architecture-ascii" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>Clients (iOS/Android/Web)
+        |
+        v
++------------------+
+| CDN (images/vid) |
++------------------+
+        |
+        v
++--------------------+       +---------------------+
+| API Gateway        |&lt;-----&gt;| Auth/Rate Limit Svc |
++--------------------+       +---------------------+
+   |        |     \
+   |        |      \-------------------+
+   |        |                          \
+   v        v                           v
++-----------+-----------+      +---------------------+
+| User/Follow Service   |      | Post Service        |
++-----------+-----------+      +---------------------+
+            |                          |
+            v                          v
+      User DB (SQL)             Post DB (SQL/NoSQL)
+            |                          |
+            +------------+-------------+
+                         |
+                         v
+                 Feed Generation Layer
+            (Fan-out on write/read, Redis)
+                         |
+                         v
+                   Feed Cache Store
+                 (Redis / Cassandra)
+                         |
+                         v
+                +------------------+
+                | Notification Svc |
+                +------------------+
+                         |
+                         v
+                   Push/Email/WebSocket
+
+Media Path:
+Client -&gt; Upload Svc -&gt; Object Storage (S3/GCS) -&gt; CDN edge delivery
+</code></pre></div>
+<hr />
+<h2 id="3-core-data-models-simplified">3. Core Data Models (Simplified)<a class="headerlink" href="#3-core-data-models-simplified" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>User(id, username, name, bio, created_at, ...)
+Follow(follower_id, followee_id, created_at)           // directed edge
+
+Post(id, user_id, media_url, caption, tags[], created_at)
+
+FeedItem(user_id, post_id, created_at)                  // materialized feed rows
+
+Like(post_id, user_id, created_at)
+Comment(id, post_id, user_id, text, created_at)
+
+Notification(id, to_user_id, type, actor_id, post_id, created_at, seen)
+</code></pre></div>
+<p>Indexes:</p>
+<ul>
+<li>
+<p>Follow: idx on follower_id (to get my followees quickly).</p>
+</li>
+<li>
+<p>Post: idx on user_id, created_at (fetch user’s posts).</p>
+</li>
+<li>
+<p>FeedItem: composite (user_id, created_at DESC).</p>
+</li>
+<li>
+<p>Like/Comment: post_id idx.</p>
+</li>
+</ul>
+<hr />
+<h2 id="4-apis-representative">4. APIs (Representative)<a class="headerlink" href="#4-apis-representative" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="err">POST /users          (signup)</span>
+<span class="err">POST /login</span>
+<span class="err">POST /follow         {targetUserId}</span>
+<span class="err">DELETE /follow/{id}</span>
+
+<span class="err">POST /posts          (upload metadata, get upload URL)</span>
+<span class="err">GET  /posts/{id}</span>
+<span class="err">GET  /users/{id}/posts?limit=...</span>
+
+<span class="err">GET  /feed?cursor=...</span>
+<span class="err">POST /posts/{id}/like</span>
+<span class="err">POST /posts/{id}/comment  {text}</span>
+
+<span class="err">GET  /notifications?cursor=...</span>
+</code></pre></div>
+<p>Internal:</p>
+<ul>
+<li>
+<p>FeedService: <code>PUT /fanout/{post_id}</code> (distribute to followers)</p>
+</li>
+<li>
+<p>NotificationService subscribes to events (like, comment, follow).</p>
+</li>
+</ul>
+<hr />
+<h2 id="5-media-upload-delivery-flow">5. Media Upload &amp; Delivery Flow<a class="headerlink" href="#5-media-upload-delivery-flow" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>Client asks for upload URL → Upload Service issues pre-signed S3 URL.</p>
+</li>
+<li>
+<p>Client uploads media directly to S3 (bypasses API servers).</p>
+</li>
+<li>
+<p>Post metadata saved in DB (media_url = S3 path).</p>
+</li>
+<li>
+<p>CDN fronts S3 for fast global delivery.</p>
+</li>
+</ol>
+<div class="highlight"><pre><span></span><code>Client -&gt; API (request upload URL)
+Client -&gt; S3 (PUT media)
+API -&gt; Post Svc (save post record)
+CDN -&gt; end users fetch media
+</code></pre></div>
+<hr />
+<h2 id="6-feed-generation-strategies">6. Feed Generation Strategies<a class="headerlink" href="#6-feed-generation-strategies" title="Permanent link">&para;</a></h2>
+<p><strong>Two classic models:</strong></p>
+<ol>
+<li>
+<p><strong>Fan-out on Write</strong> (Push):</p>
+<ul>
+<li>
+<p>When user A posts, push that post_id into all followers’ feed lists.</p>
+</li>
+<li>
+<p>Pros: fast read; Cons: heavy write for celebrities (millions of followers).</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Fan-out on Read</strong> (Pull):</p>
+<ul>
+<li>
+<p>On feed request, dynamically gather posts from followees, sort &amp; return.</p>
+</li>
+<li>
+<p>Pros: cheap write; Cons: slow read for users with many followees.</p>
+</li>
+</ul>
+</li>
+</ol>
+<p><strong>Hybrid (common realistic choice):</strong></p>
+<ul>
+<li>
+<p>Push for “normal” users (&lt;100k followers).</p>
+</li>
+<li>
+<p>Pull for “celeb” users (store their posts separately; followers merge on read).</p>
+</li>
+</ul>
+<p>Implementation detail:</p>
+<ul>
+<li>
+<p>Use Redis lists or Cassandra wide rows keyed by <code>user_id</code> to store feed items.</p>
+</li>
+<li>
+<p>Use background workers to fan-out posts.</p>
+</li>
+</ul>
+<p>ASCII for fan-out on write:</p>
+<div class="highlight"><pre><span></span><code>New Post -&gt; Post Svc -&gt; Fetch follower IDs (Follow DB/Cache)
+                   \
+                    -&gt; For each follower:
+                         enqueue &quot;Insert FeedItem(follower, post)&quot;
+                           |
+                           v
+                      Feed Store (Redis/Cassandra)
+</code></pre></div>
+<p>Feed read path:</p>
+<div class="highlight"><pre><span></span><code>Client -&gt; API /feed?cursor=... 
+  |
+  v
+Feed Svc -&gt; Redis/Cassandra (get latest N post_ids)
+          -&gt; Batch query Post DB/Cache for post details
+          -&gt; Return to client
+</code></pre></div>
+<hr />
+<h2 id="7-caching-strategy">7. Caching Strategy<a class="headerlink" href="#7-caching-strategy" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>Redis</strong> for:</p>
+<ul>
+<li>
+<p>User sessions, rate limits.</p>
+</li>
+<li>
+<p>Feed lists per user (latest 500 post_ids).</p>
+</li>
+<li>
+<p>Post metadata hot cache.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>CDN edge</strong> for media files.</p>
+</li>
+<li>
+<p><strong>Write-behind/Write-through</strong> patterns for counters (likes) to reduce DB writes.</p>
+</li>
+</ul>
+<hr />
+<h2 id="8-scaling-partitioning">8. Scaling &amp; Partitioning<a class="headerlink" href="#8-scaling-partitioning" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>User/Follow DB</strong>: Relational (Postgres/MySQL) with sharding by user_id hash when needed; or migrate to Cassandra for Follow edges.</p>
+</li>
+<li>
+<p><strong>Post storage</strong>: Could be in Cassandra (wide rows by user_id) for high write throughput.</p>
+</li>
+<li>
+<p><strong>Feed store</strong>: Redis + Cassandra. Partition by user_id.</p>
+</li>
+<li>
+<p><strong>Microservices</strong>: Deploy behind Kubernetes; use autoscaling on CPU/QPS.</p>
+</li>
+</ul>
+<p>Queue/Stream (Kafka/Pulsar) for:</p>
+<ul>
+<li>
+<p>Post fan-out tasks.</p>
+</li>
+<li>
+<p>Notification events.</p>
+</li>
+<li>
+<p>Analytics pipelines.</p>
+</li>
+</ul>
+<hr />
+<h2 id="9-consistency-reliability">9. Consistency &amp; Reliability<a class="headerlink" href="#9-consistency-reliability" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>Strong</strong>: follow relationship, like toggling (use transactions or idempotent ops).</p>
+</li>
+<li>
+<p><strong>Eventual</strong>: feed materialization, like counters, notifications read status replication.</p>
+</li>
+</ul>
+<p>Failure handling:</p>
+<ul>
+<li>
+<p>If fan-out workers fail, jobs remain in queue (retry).</p>
+</li>
+<li>
+<p>Redis outage → fallback to pull model temporarily.</p>
+</li>
+<li>
+<p>CDN outage → backup domain or multi-CDN.</p>
+</li>
+</ul>
+<hr />
+<h2 id="10-notifications">10. Notifications<a class="headerlink" href="#10-notifications" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Subscribe to events (post, like, comment, follow) via Kafka.</p>
+</li>
+<li>
+<p>Notification service creates records and pushes via:</p>
+<ul>
+<li>
+<p>Mobile push (FCM/APNs)</p>
+</li>
+<li>
+<p>WebSocket/long-poll</p>
+</li>
+<li>
+<p>Email (optional)</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>Store notifications in SQL/NoSQL keyed by <code>to_user_id</code> with pagination.</p>
+<hr />
+<h2 id="11-security-privacy">11. Security &amp; Privacy<a class="headerlink" href="#11-security-privacy" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>OAuth/JWT tokens for API calls.</p>
+</li>
+<li>
+<p>Media URLs signed or public? Usually public behind unguessable paths + CDN.</p>
+</li>
+<li>
+<p>Rate limiting &amp; spam detection for comments/likes.</p>
+</li>
+<li>
+<p>GDPR: delete user → remove posts or anonymize.</p>
+</li>
+</ul>
+<hr />
+<h2 id="12-observability_2">12. Observability<a class="headerlink" href="#12-observability_2" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Metrics: feed latency, fan-out queue lag, cache hit rate, media upload errors.</p>
+</li>
+<li>
+<p>Tracing: API → service → DB (OpenTelemetry/Jaeger).</p>
+</li>
+<li>
+<p>Logs: aggregated in ELK / Loki.</p>
+</li>
+<li>
+<p>Alerts: SLO breaches (P95 &gt; target), queue backlogs, error spikes.</p>
+</li>
+</ul>
+<hr />
+<h2 id="13-trade-offs-quick-table">13. Trade-offs (Quick Table)<a class="headerlink" href="#13-trade-offs-quick-table" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Problem</th>
+<th>Option A (Chosen)</th>
+<th>Option B</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Feed gen</td>
+<td>Hybrid push/pull</td>
+<td>Pure push or pure pull</td>
+<td>Balance cost &amp; latency</td>
+</tr>
+<tr>
+<td>Store posts</td>
+<td>Cassandra/SQL + Redis cache</td>
+<td>Only SQL</td>
+<td>Better write scaling</td>
+</tr>
+<tr>
+<td>Media hosting</td>
+<td>S3 + CDN</td>
+<td>Self-hosted NAS</td>
+<td>Reliability &amp; cost</td>
+</tr>
+<tr>
+<td>Notifications</td>
+<td>Stream + async workers</td>
+<td>Sync DB writes on actions</td>
+<td>Non-blocking UX</td>
+</tr>
+<tr>
+<td>Likes counters</td>
+<td>Cache increment + async sync</td>
+<td>Every like = DB write</td>
+<td>Reduce DB load</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="14-optional-enhancements">14. Optional Enhancements<a class="headerlink" href="#14-optional-enhancements" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Ranking feed with ML (engagement prediction).</p>
+</li>
+<li>
+<p>Stories (24h TTL) using TTL tables.</p>
+</li>
+<li>
+<p>Reels (short videos) with transcoding pipeline (FFmpeg workers).</p>
+</li>
+<li>
+<p>Hashtag/Explore using Search service (Elastic).</p>
+</li>
+<li>
+<p>Content moderation: AI image checks, report abuse flow.</p>
+</li>
+</ul>
+<hr />
+<h2 id="15-interview-wrap-up-how-to-present">15. Interview Wrap-up (How to Present)<a class="headerlink" href="#15-interview-wrap-up-how-to-present" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p>Clarify features &amp; scale.</p>
+</li>
+<li>
+<p>Identify core components: Users/Follow, Posts/Media, Feed, Notifications.</p>
+</li>
+<li>
+<p>Dive into <strong>feed generation</strong> (key complexity).</p>
+</li>
+<li>
+<p>Discuss storage, caching, scalability &amp; consistency.</p>
+</li>
+<li>
+<p>Mention observability, security, trade-offs.</p>
+</li>
+<li>
+<p>Close with potential improvements.</p>
+</li>
+</ol>
+<hr />
+<h2 id="16-ascii-cheat-sheet-revision-page">16. ASCII Cheat Sheet (Revision Page)<a class="headerlink" href="#16-ascii-cheat-sheet-revision-page" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>Users -&gt; Post -&gt; Fanout -&gt; FeedStore -&gt; Feed API -&gt; Users
+Media: Client -&gt; S3 -&gt; CDN -&gt; Client
+Follow edges: SQL/Cassandra
+Cache: Redis for Feed &amp; hot posts
+Queue: Kafka for fanout &amp; notifications
+Hybrid push/pull feed to handle celebs
+</code></pre></div>
+<hr />
+<h1 id="design-whatsapp">Design Whatsapp<a class="headerlink" href="#design-whatsapp" title="Permanent link">&para;</a></h1>
+<h2 id="0-problem-statement_1">0. Problem Statement<a class="headerlink" href="#0-problem-statement_1" title="Permanent link">&para;</a></h2>
+<p>Build a mobile-first chat app where users send/receive real-time messages (1:1 &amp; groups), see delivery/read receipts, and work on flaky mobile networks.</p>
+<hr />
+<h2 id="1-requirements_3">1. Requirements<a class="headerlink" href="#1-requirements_3" title="Permanent link">&para;</a></h2>
+<h3 id="functional_3">Functional<a class="headerlink" href="#functional_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Register/login with phone or email.</p>
+</li>
+<li>
+<p>One-to-one and group chats (≤256 members, say).</p>
+</li>
+<li>
+<p>Send text, images, voice notes, small videos.</p>
+</li>
+<li>
+<p>Online/offline status, “typing…” indicator.</p>
+</li>
+<li>
+<p>Delivery states: sent ✓, delivered ✓✓, read ✓✓ blue.</p>
+</li>
+<li>
+<p>Message sync across devices, basic search.</p>
+</li>
+<li>
+<p>Optional (out of scope here): end-to-end encryption details, calls, stickers, story/status.</p>
+</li>
+</ul>
+<h3 id="non-functional_2">Non-Functional<a class="headerlink" href="#non-functional_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Low latency (P95 send→deliver &lt; 200 ms within same region).</p>
+</li>
+<li>
+<p>High availability (99.9%+).</p>
+</li>
+<li>
+<p>Mobile network tolerant (offline queueing, retries).</p>
+</li>
+<li>
+<p>Scalability: 50M DAU, peak 2M concurrent connections.</p>
+</li>
+<li>
+<p>Durability: no message loss.</p>
+</li>
+<li>
+<p>Privacy &amp; security (TLS, ideally E2EE—mention but skip crypto deep dive unless asked).</p>
+</li>
+</ul>
+<hr />
+<h2 id="2-rough-sizing-assumptions">2. Rough Sizing Assumptions<a class="headerlink" href="#2-rough-sizing-assumptions" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Messages/day: 5B (≈ 57k/sec avg; 5× bursts).</p>
+</li>
+<li>
+<p>Avg message payload: text ~200B, media links ~1KB metadata (media big but goes to object storage/CDN).</p>
+</li>
+<li>
+<p>Stored history: keep 30 days hot (fast store), then archive.</p>
+</li>
+<li>
+<p>Concurrent connections: 2M WebSocket sessions (scale horizontally).</p>
+</li>
+</ul>
+<hr />
+<h2 id="3-high-level-architecture-ascii">3. High-Level Architecture (ASCII)<a class="headerlink" href="#3-high-level-architecture-ascii" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>        Mobile/Web Clients
+                |
+        +------------------+
+        |  Edge Load Bal.  |
+        +------------------+
+                |
+        +------------------+
+        |  Gateway/API     |  &lt;-- Auth, Rate limit
+        +------------------+
+          |        \
+          |         \-----------------------+
+   (REST gRPC)                              \
+          v                                   v
++-------------------+                 +-------------------+
+|  Messaging Svc    | &lt;---- Pub/Sub --&gt;|  Presence Svc     |
+|  (Router/Fanout)  |                  |  (online/typing)  |
++-------------------+                  +-------------------+
+    |       |   \                              |
+    |       |    \                             v
+    |       |     \                     +---------------+
+    |       |      +--&gt; Notification --&gt;| Push Service  |
+    |       |                            +---------------+
+    |       v
+    |   +------------------+      +---------------------+
+    |   | Message Store    |      | Media Service       |
+    |   | (Cassandra/Scylla|      | (Upload to S3/CDN)  |
+    |   +------------------+      +---------------------+
+    |             |
+    +--&gt; Search/Index (Elastic)  (async pipeline)
+    |
+    +--&gt; Analytics/Spam (Kafka -&gt; Spark/Flink -&gt; DWH)
+</code></pre></div>
+<p>Long-lived connections (WebSocket/GRPC streams) exit at <strong>Messaging Service</strong>, which routes messages.</p>
+<hr />
+<h2 id="4-data-model-simplified_1">4. Data Model (Simplified)<a class="headerlink" href="#4-data-model-simplified_1" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>User(id, phone, name, avatar_url, last_seen_ts)
+
+Conversation(id, type: &quot;direct&quot;|&quot;group&quot;, member_ids[], created_at)
+
+Message(id (UUID), conv_id, sender_id, type:text/image/voice,
+        body, media_url, ts_server, status_map{user_id:status}, ttl?)
+
+DeliveryReceipt(msg_id, user_id, status: SENT|DELIVERED|READ, ts)
+
+Presence(user_id, status: online/offline, last_seen_ts, typing_for_conv_id?)
+</code></pre></div>
+<p>(Use wide-column store: <code>PartitionKey = conv_id</code>, clustering by <code>ts</code> → efficient time-ordered reads.)</p>
+<hr />
+<h2 id="5-apis-examples">5. APIs (Examples)<a class="headerlink" href="#5-apis-examples" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="err">POST   /register              {phone, otp}</span>
+<span class="err">POST   /conversations         {members[]}</span>
+<span class="err">GET    /conversations?limit=...</span>
+<span class="err">GET    /messages?convId=..&amp;cursor=..</span>
+<span class="err">POST   /messages               {convId, body, type}</span>
+<span class="err">POST   /receipts               {msgId, status}</span>
+<span class="err">GET    /presence/{userId}</span>
+<span class="err">WS     /connect (bi-dir stream for messages/events)</span>
+<span class="err">POST   /media/upload-url</span>
+</code></pre></div>
+<hr />
+<h2 id="6-critical-flow-send-deliver-message">6. Critical Flow: Send &amp; Deliver Message<a class="headerlink" href="#6-critical-flow-send-deliver-message" title="Permanent link">&para;</a></h2>
+<h3 id="sequence-ascii">Sequence (ASCII)<a class="headerlink" href="#sequence-ascii" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Sender Client
+   |  send msg over WS
+   v
+Messaging Svc (entry shard)
+   | assign msg_id, ts, persist to Message Store (write quorum)
+   | publish to convo topic (Kafka/PubSub)
+   v
+Router/Fanout workers
+   | fetch conv members
+   | push msg to each online member&#39;s WS session
+   | store &quot;undelivered&quot; flag for offline members
+   v
+Recipient Client(s)
+   | receive msg, ACK receipt (DELIVERED)
+   v
+Messaging Svc updates receipt in DB, propagate to sender
+   | when user reads: send READ receipt
+</code></pre></div>
+<hr />
+<h2 id="7-presence-typing-indicators">7. Presence &amp; Typing Indicators<a class="headerlink" href="#7-presence-typing-indicators" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>Presence service</strong> maintains in-memory state (Redis/Memory + gossip).</p>
+</li>
+<li>
+<p>Clients ping every N seconds; if miss deadlines → offline.</p>
+</li>
+<li>
+<p>Typing: short-lived events (<code>typing_start</code>, <code>typing_stop</code>) published to convo members via WS.</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code>Client -&gt; Presence Svc (ping)
+Presence Svc -&gt; publish presence events to subscribers (WS)
+</code></pre></div>
+<hr />
+<h2 id="8-storage-choices">8. Storage Choices<a class="headerlink" href="#8-storage-choices" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>Messages:</strong> Cassandra/Scylla/Bigtable (append-only, high write throughput, time-sorted). Partition by conversation.</p>
+</li>
+<li>
+<p><strong>Receipts:</strong> Same partition or separate table keyed by msg_id.</p>
+</li>
+<li>
+<p><strong>Media:</strong> S3/GCS + CDN. Metadata in DB; clients upload via pre-signed URLs.</p>
+</li>
+<li>
+<p><strong>Search:</strong> Elastic/OpenSearch indexing async (consume from Kafka).</p>
+</li>
+<li>
+<p><strong>Redis:</strong></p>
+<ul>
+<li>
+<p>Session tokens / WS connection map</p>
+</li>
+<li>
+<p>Unread counts</p>
+</li>
+<li>
+<p>Presence/typing ephemeral data</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Cold Archive:</strong> After 30/90 days, move to cheaper storage (S3 Glacier + index pointer).</p>
+</li>
+</ul>
+<hr />
+<h2 id="9-scaling-sharding">9. Scaling &amp; Sharding<a class="headerlink" href="#9-scaling-sharding" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>Messaging Svc shards</strong> by conversation_id hash → ensures users in same convo hit same shard (or use consistent hashing ring + stateful routers).</p>
+</li>
+<li>
+<p><strong>Cassandra</strong> auto-shards by partition key (conv_id). Keep partition size reasonable (limit messages per partition; rotate conv partition IDs by time).</p>
+</li>
+<li>
+<p><strong>WebSocket scale:</strong> Use load balancer + sticky sessions to a shard; or use a message broker (NATS/Kafka) for fanout to connection managers.</p>
+</li>
+</ul>
+<hr />
+<h2 id="10-consistency-delivery-semantics">10. Consistency &amp; Delivery Semantics<a class="headerlink" href="#10-consistency-delivery-semantics" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>At-least-once delivery</strong> to clients (idempotent message IDs prevent dupes).</p>
+</li>
+<li>
+<p><strong>Write path</strong> uses quorum writes (Cassandra RF=3, W=2) to ensure durability.</p>
+</li>
+<li>
+<p><strong>Receipts are eventual;</strong> message delivery status can lag slightly.</p>
+</li>
+<li>
+<p><strong>Ordering:</strong> preserve per-conversation ordering by server timestamp; if multiple servers, sequence numbers per conv.</p>
+</li>
+</ul>
+<hr />
+<h2 id="11-offline-retry-strategy">11. Offline &amp; Retry Strategy<a class="headerlink" href="#11-offline-retry-strategy" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Client queues outgoing msgs locally if offline.</p>
+</li>
+<li>
+<p>On reconnect, it resends unsent msgs (idempotent on msg_id).</p>
+</li>
+<li>
+<p>Server stores undelivered msgs → pushes when user reconnects (pull via sync API).</p>
+</li>
+<li>
+<p>Use “since_ts” sync endpoints to fetch missed events.</p>
+</li>
+</ul>
+<hr />
+<h2 id="12-security-mention-e2ee-briefly">12. Security (Mention E2EE Briefly)<a class="headerlink" href="#12-security-mention-e2ee-briefly" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>Transport security:</strong> TLS for all connections.</p>
+</li>
+<li>
+<p><strong>Auth:</strong> OAuth/JWT after OTP verification.</p>
+</li>
+<li>
+<p><strong>E2EE (advanced):</strong> Double ratchet (Signal protocol). Server stores only cipher texts. Keys on client. (State this is extra and can be discussed if asked.)</p>
+</li>
+<li>
+<p><strong>Abuse checks:</strong> limit media size, spam detection, report feature.</p>
+</li>
+</ul>
+<hr />
+<h2 id="13-observability-ops">13. Observability &amp; Ops<a class="headerlink" href="#13-observability-ops" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Metrics: WS connections count, send→deliver latency, Cassandra write/read latency, queue lag.</p>
+</li>
+<li>
+<p>Tracing: per message path (OpenTelemetry).</p>
+</li>
+<li>
+<p>Logs: sampled to control volume.</p>
+</li>
+<li>
+<p>Alerts: surge in undelivered msgs, partition hot-spot, WS error rate.</p>
+</li>
+</ul>
+<hr />
+<h2 id="14-trade-offs-alternatives_1">14. Trade-offs &amp; Alternatives<a class="headerlink" href="#14-trade-offs-alternatives_1" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Choice</th>
+<th>Alternative</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Protocol</td>
+<td>WebSocket/GRPC streams</td>
+<td>Long-polling</td>
+<td>WS reduces overhead for real-time</td>
+</tr>
+<tr>
+<td>Store</td>
+<td>Cassandra wide-rows</td>
+<td>SQL sharding / Mongo</td>
+<td>High write throughput, linear scale</td>
+</tr>
+<tr>
+<td>Fanout</td>
+<td>Server-side per conv</td>
+<td>Client pull every N seconds</td>
+<td>Real-time UX vs polling overhead</td>
+</tr>
+<tr>
+<td>Ordering</td>
+<td>Server seq per conv</td>
+<td>Client timestamp reconcile</td>
+<td>Simpler consistency model</td>
+</tr>
+<tr>
+<td>Receipts</td>
+<td>Async updates</td>
+<td>Sync on every read</td>
+<td>Lower latency in hot path</td>
+</tr>
+<tr>
+<td>Presence storage</td>
+<td>Redis/in-memory + heartbeats</td>
+<td>DB per update</td>
+<td>Low latency, high churn data</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="15-extensions-future">15. Extensions / Future<a class="headerlink" href="#15-extensions-future" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Voice/video calls (WebRTC signaling service).</p>
+</li>
+<li>
+<p>Stickers/GIF search service.</p>
+</li>
+<li>
+<p>Message reactions, thread replies.</p>
+</li>
+<li>
+<p>Multi-device sync (complicated key sync in E2EE).</p>
+</li>
+<li>
+<p>Large group (&gt;1k) broadcast channels (optimize fanout differently).</p>
+</li>
+<li>
+<p>Message recall/delete for everyone.</p>
+</li>
+</ul>
+<hr />
+<h2 id="16-interview-wrap-up-cheat-sheet">16. Interview Wrap-up Cheat Sheet<a class="headerlink" href="#16-interview-wrap-up-cheat-sheet" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>1) Clarify: 1:1 + group chat, receipts, presence
+2) Scale: 5B msgs/day, 2M concurrent
+3) Architecture: WS gateway -&gt; Messaging svc -&gt; Cassandra + Pub/Sub
+4) Flows: send msg, deliver, receipts, offline sync
+5) Presence/typing ephemeral via Redis
+6) Consistency: per-conv ordering, at-least-once delivery
+7) Trade-offs &amp; failure handling
+8) Mention E2EE &amp; future features
+</code></pre></div>
+<hr />
+<h1 id="design-google-drive">Design Google Drive<a class="headerlink" href="#design-google-drive" title="Permanent link">&para;</a></h1>
+<h2 id="0-problem-statement_2">0. Problem Statement<a class="headerlink" href="#0-problem-statement_2" title="Permanent link">&para;</a></h2>
+<p>Build a service where users upload, store, and sync files across devices, share them with others, and view version history.</p>
+<hr />
+<h2 id="1-requirements_4">1. Requirements<a class="headerlink" href="#1-requirements_4" title="Permanent link">&para;</a></h2>
+<h3 id="functional_4">Functional<a class="headerlink" href="#functional_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>User auth, create folders/files.</p>
+</li>
+<li>
+<p>Upload/download files (web &amp; desktop/mobile clients).</p>
+</li>
+<li>
+<p>Automatic client sync (detect local changes, push to cloud, pull remote changes).</p>
+</li>
+<li>
+<p>File versioning &amp; conflict resolution.</p>
+</li>
+<li>
+<p>Sharing: link-based &amp; permission-based (read/write).</p>
+</li>
+<li>
+<p>Search by filename and (optional) content.</p>
+</li>
+</ul>
+<h3 id="nonfunctional_1">Non‑Functional<a class="headerlink" href="#nonfunctional_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>High durability (11+ 9’s), availability (99.9%+).</p>
+</li>
+<li>
+<p>Efficient bandwidth usage (chunking, delta sync).</p>
+</li>
+<li>
+<p>Low upload/download latency, but sync can be eventually consistent.</p>
+</li>
+<li>
+<p>Scale to hundreds of millions of files and users.</p>
+</li>
+<li>
+<p>Security: encryption at rest &amp; in transit.</p>
+</li>
+</ul>
+<p><em>Assumptions (for sizing talk):</em></p>
+<ul>
+<li>
+<p>10M MAU, avg 5 GB/user → 50 PB total data.</p>
+</li>
+<li>
+<p>Avg file 2 MB, but long tail (GB videos).</p>
+</li>
+<li>
+<p>200K concurrent active sync clients.</p>
+</li>
+<li>
+<p>1M file change events/day (~11/s avg, spikes 10×).</p>
+</li>
+</ul>
+<hr />
+<h2 id="2-high-level-architecture-ascii_1">2. High-Level Architecture (ASCII)<a class="headerlink" href="#2-high-level-architecture-ascii_1" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>Clients (Desktop Agents / Mobile / Web)
+        |            ^
+        v            |
++---------------------------+
+|  Sync &amp; API Gateway      |
+|  (REST/gRPC/WebSocket)   |
++------------+--------------+
+             |
+             v
+      +--------------+            +----------------------+
+      | Metadata Svc |&lt;----------&gt;|  Auth / ACL Service  |
+      +--------------+            +----------------------+
+             |
+             v
+   +--------------------+         +----------------------+
+   | Metadata Store     |         | Notification/Queue   |
+   | (SQL + Cache)      |         | (Kafka/SNS/SQS)      |
+   +--------------------+         +----------------------+
+             |                                |
+             | change events                  | fanout
+             v                                v
+    +-------------------+            +-------------------+
+    | Chunking/Dedup Svc|            | Sync Orchestrator |
+    +-------------------+            +-------------------+
+             |                                |
+             v                                v
+   +----------------------+          +-----------------------+
+   | Object Storage (S3)  | &lt;------&gt; | CDN (downloads)       |
+   +----------------------+          +-----------------------+
+             ^
+             |
+      +-------------------+
+      | Virus Scan / DLP  |
+      +-------------------+
+
+Search Pipeline:
+Queue -&gt; Indexer -&gt; Search Service (Elastic/OpenSearch)
+</code></pre></div>
+<hr />
+<h2 id="3-data-model-simplified">3. Data Model (Simplified)<a class="headerlink" href="#3-data-model-simplified" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>User(id, email, hashed_pw, quota, created_at)
+
+FileEntry(id, user_id, parent_folder_id, name, is_folder, latest_version_id, created_at)
+
+FileVersion(id, file_id, chunk_list[], size, md5, created_at)
+
+Chunk(id, checksum_sha256, size, storage_path, ref_count)
+
+ShareLink(id, file_id/folder_id, owner_id, token, perms, expiry)
+
+ACL(resource_id, subject_id (user/group), permission)
+</code></pre></div>
+<p>Indexes:</p>
+<ul>
+<li>
+<p>FileEntry: (user_id, parent_folder_id, name) unique.</p>
+</li>
+<li>
+<p>Chunk: checksum for dedup.</p>
+</li>
+<li>
+<p>FileVersion: file_id index.</p>
+</li>
+<li>
+<p>ACL/ShareLink: token unique index.</p>
+</li>
+</ul>
+<hr />
+<h2 id="4-core-apis">4. Core APIs<a class="headerlink" href="#4-core-apis" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="err">POST   /files/upload-init {parentId, name, size}</span>
+<span class="err">PUT    /files/upload-chunk?uploadId=..&amp;chunkNo=..   (stream data)</span>
+<span class="err">POST   /files/upload-complete {uploadId}</span>
+<span class="err">GET    /files/{fileId}/download-url</span>
+
+<span class="err">GET    /tree?parentId=...</span>
+<span class="err">POST   /folders</span>
+<span class="err">DELETE /files/{id}</span>
+<span class="err">GET    /files/{id}/versions</span>
+<span class="err">POST   /share/link {fileId, perms, expiry}</span>
+<span class="err">GET    /search?q=...</span>
+
+<span class="err">WS     /sync/subscribe  (server push for file change events)</span>
+</code></pre></div>
+<p>Client sync protocol (desktop agent):</p>
+<ul>
+<li>
+<p>Poll/WS for changes since last cursor.</p>
+</li>
+<li>
+<p>Local file watcher triggers upload for modified files.</p>
+</li>
+</ul>
+<hr />
+<h2 id="5-upload-sync-flow">5. Upload / Sync Flow<a class="headerlink" href="#5-upload-sync-flow" title="Permanent link">&para;</a></h2>
+<h3 id="upload-chunked-dedup">Upload (Chunked &amp; Dedup)<a class="headerlink" href="#upload-chunked-dedup" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Client -&gt; upload-init
+  | server returns chunk size, uploadId
+Client -&gt; for each chunk:
+          - compute hash
+          - ask server &quot;haveChunk(hash)?&quot;
+             yes -&gt; skip upload
+             no  -&gt; upload chunk to S3 pre-signed URL
+Client -&gt; upload-complete (list of chunk hashes)
+Server -&gt; create FileVersion (chunks list) &amp; update metadata
+Server -&gt; push &quot;file_changed&quot; event to queue
+</code></pre></div>
+<p>ASCII sequence:</p>
+<div class="highlight"><pre><span></span><code>Client ---init---&gt; API
+Client --chunk hash--&gt; ChunkSvc -&gt; found? skip : uploadURL
+Client ---PUT chunk--&gt; S3
+Client ---complete--&gt; API -&gt; Metadata DB
+API -&gt; Queue &quot;file_changed&quot;
+Sync Orchestrator -&gt; notify other devices via WS
+</code></pre></div>
+<h3 id="sync-pull-remote-changes">Sync (Pull Remote Changes)<a class="headerlink" href="#sync-pull-remote-changes" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>1. Client connects (WS) &amp; sends lastCursor.
+2. Server streams events since cursor (create/update/delete).
+3. Client downloads new/updated files via CDN.
+4. Update local cursor.
+</code></pre></div>
+<hr />
+<h2 id="6-chunking-dedup-strategy">6. Chunking &amp; Dedup Strategy<a class="headerlink" href="#6-chunking-dedup-strategy" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Fixed size (e.g., 4 MB) or variable (Rabin fingerprinting) to improve delta detection.</p>
+</li>
+<li>
+<p>Hash each chunk (SHA-256). Store in Chunk table; if exists, increase ref_count.</p>
+</li>
+<li>
+<p>Store chunks in object storage using content-addressable paths.</p>
+</li>
+<li>
+<p>Benefits: Saves bandwidth &amp; storage for repeated content/versioning.</p>
+</li>
+</ul>
+<hr />
+<h2 id="7-conflict-resolution">7. Conflict Resolution<a class="headerlink" href="#7-conflict-resolution" title="Permanent link">&para;</a></h2>
+<p>Cases: Two devices edit same file offline.<br />
+Approach:</p>
+<ul>
+<li>
+<p>On upload, compare base version vs latest server version.</p>
+</li>
+<li>
+<p>If mismatch → conflict: store both versions; mark one as “conflict copy (device name timestamp)”.</p>
+</li>
+<li>
+<p>Optionally merge for text files (not for binaries).</p>
+</li>
+</ul>
+<hr />
+<h2 id="8-storage-indexing">8. Storage &amp; Indexing<a class="headerlink" href="#8-storage-indexing" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>Metadata:</strong> Relational DB (Postgres/Aurora) for transactions (file tree ops). Scale via sharding by user_id + read replicas. Cache hot paths in Redis.</p>
+</li>
+<li>
+<p><strong>Chunks &amp; Versions:</strong> Object storage (S3/GCS). Lifecycle policies to move old versions to cheaper tiers (Glacier).</p>
+</li>
+<li>
+<p><strong>Search:</strong> Index file/folder names + maybe content (OCR/PDF parse) into Elastic.</p>
+</li>
+<li>
+<p><strong>Queues:</strong> Kafka/SNS for event distribution (sync notifications, search indexer, audit logs).</p>
+</li>
+<li>
+<p><strong>Virus Scanning / DLP:</strong> Lambda/worker triggered on new chunks.</p>
+</li>
+</ul>
+<hr />
+<h2 id="9-caching-cdn">9. Caching &amp; CDN<a class="headerlink" href="#9-caching-cdn" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Serve downloads via CDN edge (signed URLs).</p>
+</li>
+<li>
+<p>Metadata read caching in Redis to reduce DB load.</p>
+</li>
+<li>
+<p>Client-side local cache for unchanged files.</p>
+</li>
+</ul>
+<hr />
+<h2 id="10-scalability-partitioning">10. Scalability &amp; Partitioning<a class="headerlink" href="#10-scalability-partitioning" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>API &amp; Sync Gateway:</strong> Stateless, scale horizontally (k8s + autoscaling).</p>
+</li>
+<li>
+<p><strong>Metadata DB:</strong> Shard by user_id; use consistent hashing. Foreign keys constrained within shard.</p>
+</li>
+<li>
+<p><strong>Chunk store:</strong> Object storage auto-scales. Maintain a small service to manage ref_counts and chunk GC.</p>
+</li>
+<li>
+<p><strong>Notification fanout:</strong> Partition topics by user_id.</p>
+</li>
+<li>
+<p><strong>Search indexing:</strong> Distributed consumers of queue.</p>
+</li>
+</ul>
+<hr />
+<h2 id="11-consistency-reliability">11. Consistency &amp; Reliability<a class="headerlink" href="#11-consistency-reliability" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>Metadata ops:</strong> Use transactions to keep file tree consistent.</p>
+</li>
+<li>
+<p><strong>Upload finishing:</strong> Two-phase (init → chunks → commit). If commit fails, mark orphaned chunks for GC.</p>
+</li>
+<li>
+<p><strong>Eventual consistency:</strong> Other devices may see changes after small delay. Acceptable for sync.</p>
+</li>
+<li>
+<p><strong>Idempotency:</strong> upload-complete with same uploadId should not duplicate versions.</p>
+</li>
+</ul>
+<hr />
+<h2 id="12-security">12. Security<a class="headerlink" href="#12-security" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>TLS for all traffic.</p>
+</li>
+<li>
+<p>Encryption at rest: S3 SSE/KMS; metadata DB encryption.</p>
+</li>
+<li>
+<p>Access control: verify ACL/share link token on every download.</p>
+</li>
+<li>
+<p>Signed URLs (short TTL) for direct S3/CDN access.</p>
+</li>
+<li>
+<p>Audit logs for admin actions &amp; sharing; GDPR delete.</p>
+</li>
+</ul>
+<hr />
+<h2 id="13-observability">13. Observability<a class="headerlink" href="#13-observability" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Metrics: upload success rate, average chunk dedup %, metadata DB latency, queue lag, sync delay.</p>
+</li>
+<li>
+<p>Tracing: request path (OpenTelemetry).</p>
+</li>
+<li>
+<p>Logs: structured; sample large uploads.</p>
+</li>
+<li>
+<p>Alerts: spike in 5xx, drop in dedup ratio (bug), backlog in notifications.</p>
+</li>
+</ul>
+<hr />
+<h2 id="14-trade-offs-alternatives_2">14. Trade-offs &amp; Alternatives<a class="headerlink" href="#14-trade-offs-alternatives_2" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Choice</th>
+<th>Alternative</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chunk size</td>
+<td>Fixed 4 MB</td>
+<td>Variable chunking</td>
+<td>Simpler, good enough dedup</td>
+</tr>
+<tr>
+<td>Metadata store</td>
+<td>SQL sharded by user</td>
+<td>NoSQL Doc store</td>
+<td>Strong consistency &amp; transactions</td>
+</tr>
+<tr>
+<td>Sync notif</td>
+<td>WS + cursor</td>
+<td>Long polling</td>
+<td>Lower latency, less overhead</td>
+</tr>
+<tr>
+<td>Dedup store</td>
+<td>Global chunk store</td>
+<td>Per-user dedup</td>
+<td>Better space saving, but heavier GC</td>
+</tr>
+<tr>
+<td>Conflict policy</td>
+<td>Keep both versions</td>
+<td>Last-write-wins</td>
+<td>Avoid silent data loss</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="15-extensions-future-work">15. Extensions / Future Work<a class="headerlink" href="#15-extensions-future-work" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Real-time collaborative editing (Google Docs style—CRDT/OT).</p>
+</li>
+<li>
+<p>Delta-sync within files (binary diffs).</p>
+</li>
+<li>
+<p>Offline sharing via LAN sync between devices.</p>
+</li>
+<li>
+<p>Advanced search (content OCR, image labels).</p>
+</li>
+<li>
+<p>Ransomware detection (sudden mass encrypt &amp; upload).</p>
+</li>
+<li>
+<p>Quota management, billing service.</p>
+</li>
+</ul>
+<hr />
+<h2 id="16-interview-wrap-up-cheat-sheet_1">16. Interview Wrap-Up Cheat Sheet<a class="headerlink" href="#16-interview-wrap-up-cheat-sheet_1" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>1) Clarify features: upload, sync, share, versions
+2) Traffic &amp; size assumptions
+3) Core pieces: Metadata DB, Chunk store, Sync/Notif pipeline
+4) Flows: chunked upload + dedup, sync subscribe/pull
+5) Consistency &amp; conflicts
+6) Security &amp; observability
+7) Trade-offs
+8) Future enhancements
+</code></pre></div>
+<hr />
+<h1 id="design-youtube">Design Youtube<a class="headerlink" href="#design-youtube" title="Permanent link">&para;</a></h1>
+<h2 id="0-problem-statement_3">0. Problem Statement<a class="headerlink" href="#0-problem-statement_3" title="Permanent link">&para;</a></h2>
+<p>Build a platform where creators upload videos. Users browse/search, stream videos (adaptive bitrate), like/comment/subscribe, and get recommendations.</p>
+<hr />
+<h2 id="1-requirements_5">1. Requirements<a class="headerlink" href="#1-requirements_5" title="Permanent link">&para;</a></h2>
+<h3 id="functional_5">Functional<a class="headerlink" href="#functional_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Upload videos (large files), process/transcode to multiple qualities.</p>
+</li>
+<li>
+<p>Store &amp; stream videos via CDN (HLS/DASH).</p>
+</li>
+<li>
+<p>Browse/search videos, channels, categories.</p>
+</li>
+<li>
+<p>Watch page: player, likes, comments, views counter.</p>
+</li>
+<li>
+<p>Subscriptions &amp; notifications.</p>
+</li>
+<li>
+<p>Recommendation feed (“Home”, “Up next”).</p>
+</li>
+<li>
+<p>Optional/out of scope: live streaming, ads, DRM.</p>
+</li>
+</ul>
+<h3 id="nonfunctional_2">Non‑Functional<a class="headerlink" href="#nonfunctional_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>High write cost for upload/transcode; extremely high read (stream) traffic.</p>
+</li>
+<li>
+<p>Low startup delay (&lt;2s) &amp; smooth playback (ABR).</p>
+</li>
+<li>
+<p>99.9% availability, global distribution.</p>
+</li>
+<li>
+<p>Durability for original uploads (11x9s).</p>
+</li>
+<li>
+<p>Eventually consistent counters/metrics OK.</p>
+</li>
+</ul>
+<hr />
+<h2 id="2-rough-sizing-assume">2. Rough Sizing (assume)<a class="headerlink" href="#2-rough-sizing-assume" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>20M DAU, 3M daily video plays, peak 100k concurrent streams.</p>
+</li>
+<li>
+<p>Uploads: 50k videos/day, avg 500MB (orig).</p>
+</li>
+<li>
+<p>Store originals + ~6 encoded renditions (144p–1080p).</p>
+</li>
+<li>
+<p>Peak stream bitrate ~3 Mbps (HD), average 1 Mbps.</p>
+</li>
+<li>
+<p>Metadata small (KBs), but logs huge (TB/day).</p>
+</li>
+</ul>
+<hr />
+<h2 id="3-high-level-architecture_1">3. High-Level Architecture<a class="headerlink" href="#3-high-level-architecture_1" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>Creators (Upload)          Viewers (Stream)
+      |                           |
+      v                           v
++-----------------+        +------------------+
+| Upload Service  |        | CDN (Edge POPs)  |
++-----------------+        +------------------+
+      |                           ^
+      v                           |
++----------------------+     +---------------------+
+| Object Storage (orig)|     | Streaming Gateway   |
++----------------------+     +---------------------+
+      |                           ^
+      v                           |
++----------------------+     +----------------------+
+| Transcode Pipeline   |--&gt;  | Manifest/Chunk Store |
+| (FFmpeg workers)     |     | (S3/GCS)             |
++----------------------+     +----------------------+
+      |
+      v
++----------------------+
+| Metadata Service     |
++----------------------+
+      |
+      v
++----------------------+     +---------------------+
+| Metadata DB (SQL)    |&lt;---&gt;| Search Service      |
++----------------------+     | (Elastic/OpenSearch)|
+      |                       +---------------------+
+      v
++----------------------+     +---------------------+
+| Reco/Analytics Svc   |&lt;---&gt;| Event Stream (Kafka)|
++----------------------+     +---------------------+
+</code></pre></div>
+<hr />
+<h2 id="4-core-data-model-simplified">4. Core Data Model (simplified)<a class="headerlink" href="#4-core-data-model-simplified" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>User(id, name, email, ...)
+
+Channel(id, user_id, title, desc, subs_count, ...)
+
+Video(id, channel_id, title, desc, tags[], duration, status,
+      upload_ts, views, likes, manifest_path, thumbnails[])
+
+TranscodeJob(id, video_id, status, profiles[], created_at, updated_at)
+
+Comment(id, video_id, user_id, text, ts)
+
+Subscription(user_id, channel_id, created_at)
+</code></pre></div>
+<p>Indexes:</p>
+<ul>
+<li>
+<p>Video: (title, tags) full-text; (channel_id, upload_ts) for listing.</p>
+</li>
+<li>
+<p>Comment: video_id index.</p>
+</li>
+<li>
+<p>Subscription: user_id index.</p>
+</li>
+</ul>
+<hr />
+<h2 id="5-key-apis">5. Key APIs<a class="headerlink" href="#5-key-apis" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="err">POST /videos/upload-init     -&gt; {uploadUrl}</span>
+<span class="err">POST /videos/{id}/metadata</span>
+<span class="err">GET  /videos/{id}            -&gt; metadata + manifest URLs</span>
+<span class="err">GET  /videos?search=...&amp;tag=...</span>
+
+<span class="err">POST /channels/{id}/subscribe</span>
+<span class="err">GET  /users/{id}/feed</span>
+
+<span class="err">POST /videos/{id}/like</span>
+<span class="err">POST /videos/{id}/comment</span>
+<span class="err">GET  /videos/{id}/comments?cursor=...</span>
+</code></pre></div>
+<p>Internal:</p>
+<ul>
+<li>
+<p><code>/transcode/start</code>, <code>/transcode/status</code></p>
+</li>
+<li>
+<p>Event topics: <code>video_uploaded</code>, <code>video_transcoded</code>, <code>video_played</code>, <code>like_added</code></p>
+</li>
+</ul>
+<hr />
+<h2 id="6-critical-flows">6. Critical Flows<a class="headerlink" href="#6-critical-flows" title="Permanent link">&para;</a></h2>
+<h3 id="a-upload-transcode-publish">A) Upload → Transcode → Publish<a class="headerlink" href="#a-upload-transcode-publish" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Client -&gt; Upload Svc: request upload URL
+Client -&gt; PUT original file to Object Storage (S3)
+Upload Svc -&gt; create Video record (status=UPLOADING)
+Upload Svc -&gt; enqueue TranscodeJob (Kafka)
+Transcoder Workers -&gt; pull job
+    - download original
+    - transcode into renditions (240p,360p,480p,720p,1080p) -&gt; chunk + manifest (HLS/DASH)
+    - store chunks/manifests in storage
+    - capture thumbnails
+    - update Video(status=READY, manifest_path)
+    - send event &quot;video_transcoded&quot;
+</code></pre></div>
+<p>ASCII:</p>
+<div class="highlight"><pre><span></span><code>Uploader --&gt; UploadSvc --&gt; S3(orig)
+                      \--&gt; Kafka(Job)
+Kafka -&gt; Transcoder -&gt; S3(encoded) -&gt; Video DB READY
+</code></pre></div>
+<h3 id="b-playback-adaptive-streaming">B) Playback (Adaptive Streaming)<a class="headerlink" href="#b-playback-adaptive-streaming" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Player requests /video/{id}
+  API returns metadata + manifest URL
+Player fetches manifest (.m3u8/.mpd) from CDN
+CDN serves segment chunks (.ts/.m4s) from edge cache
+Player switches bitrate based on bandwidth
+Player sends play/pause/finish events -&gt; Event Stream
+</code></pre></div>
+<p>ASCII:</p>
+<div class="highlight"><pre><span></span><code>Player -&gt; API -&gt; manifest URL
+Player -&gt; CDN (manifest + chunks)
+CDN miss -&gt; origin storage -&gt; edge cache
+</code></pre></div>
+<hr />
+<h2 id="7-streaming-details">7. Streaming Details<a class="headerlink" href="#7-streaming-details" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Use <strong>HLS/DASH</strong>: manifest lists multiple bitrates; segments ~2–6s.</p>
+</li>
+<li>
+<p><strong>CDN</strong> caches segments globally; origin is object storage.</p>
+</li>
+<li>
+<p>For startup, push first segments closer (pre-warm) or use shorter first chunk.</p>
+</li>
+<li>
+<p>DRM (optional): Widevine/FairPlay; license server.</p>
+</li>
+</ul>
+<hr />
+<h2 id="8-storage-caching">8. Storage &amp; Caching<a class="headerlink" href="#8-storage-caching" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>Object Storage (S3/GCS):</strong> Originals, encoded chunks, manifests, thumbnails.</p>
+</li>
+<li>
+<p>Lifecycle rules to move cold originals to Glacier.</p>
+</li>
+<li>
+<p><strong>CDN:</strong> Akamai/CloudFront/Cloudflare for edge caching.</p>
+</li>
+<li>
+<p><strong>Metadata DB:</strong> SQL (Postgres/Aurora) with read replicas; cache hot video meta in Redis.</p>
+</li>
+<li>
+<p><strong>Search Index:</strong> Elastic; ingest from DB via pipeline.</p>
+</li>
+<li>
+<p><strong>Event Logging:</strong> Kafka -&gt; DWH (BigQuery/Redshift) for analytics/reco.</p>
+</li>
+</ul>
+<hr />
+<h2 id="9-recommendations-simple-view">9. Recommendations (simple view)<a class="headerlink" href="#9-recommendations-simple-view" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Collect watch history and implicit signals (view duration, likes).</p>
+</li>
+<li>
+<p>Batch jobs (Spark) compute candidate videos (collaborative filtering).</p>
+</li>
+<li>
+<p>Online service re-ranks using freshness/popularity.</p>
+</li>
+<li>
+<p>Cache per-user home feed.</p>
+</li>
+</ul>
+<hr />
+<h2 id="10-scalability-ha">10. Scalability &amp; HA<a class="headerlink" href="#10-scalability-ha" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Stateless services in k8s (auto-scale).</p>
+</li>
+<li>
+<p>Transcoder pool scales with upload backlog (spot instances).</p>
+</li>
+<li>
+<p>DB: shard by video_id/channel_id if needed.</p>
+</li>
+<li>
+<p>Kafka cluster for events (multi-broker).</p>
+</li>
+<li>
+<p>Multi-region: replicate manifests/chunks; geo-DNS to nearest CDN POP.</p>
+</li>
+</ul>
+<hr />
+<h2 id="11-consistency-counters">11. Consistency &amp; Counters<a class="headerlink" href="#11-consistency-counters" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><code>views</code>, <code>likes</code> counters updated asynchronously:</p>
+<ul>
+<li>Client fires event → Kafka → counter service increments in Redis + periodic batch flush to DB.</li>
+</ul>
+</li>
+<li>
+<p>Comments strongly consistent per video (SQL transaction).</p>
+</li>
+<li>
+<p>Video status transitions via state machine.</p>
+</li>
+</ul>
+<hr />
+<h2 id="12-security_1">12. Security<a class="headerlink" href="#12-security_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Auth tokens (JWT).</p>
+</li>
+<li>
+<p>Upload URLs are pre-signed short TTL.</p>
+</li>
+<li>
+<p>DRM/tokens on manifests if premium content.</p>
+</li>
+<li>
+<p>Abuse detection: scan uploads (hash match, AI).</p>
+</li>
+<li>
+<p>Rate limiting on comments/likes.</p>
+</li>
+</ul>
+<hr />
+<h2 id="13-observability_1">13. Observability<a class="headerlink" href="#13-observability_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Metrics: startup latency, rebuffer ratio, CDN hit %, transcode job latency, DB QPS.</p>
+</li>
+<li>
+<p>Tracing: upload &amp; playback request path.</p>
+</li>
+<li>
+<p>Logs: sampled for playback, full for errors.</p>
+</li>
+<li>
+<p>Alerts: spike in 5xx, drop in CDN hit %, transcode backlog.</p>
+</li>
+</ul>
+<hr />
+<h2 id="14-trade-offs-cheat-sheet_1">14. Trade-offs (cheat sheet)<a class="headerlink" href="#14-trade-offs-cheat-sheet_1" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Area</th>
+<th>Choice</th>
+<th>Alternative</th>
+<th>Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Streaming</td>
+<td>HLS/DASH + CDN</td>
+<td>Progressive download</td>
+<td>ABR, better QoE</td>
+</tr>
+<tr>
+<td>Transcoding</td>
+<td>Async pipeline (FFmpeg farm)</td>
+<td>Sync on upload</td>
+<td>Non-blocking, scalable</td>
+</tr>
+<tr>
+<td>Counters</td>
+<td>Async increment via Kafka</td>
+<td>Sync DB update</td>
+<td>Reduce DB hot spots</td>
+</tr>
+<tr>
+<td>Metadata DB</td>
+<td>SQL + cache</td>
+<td>NoSQL only</td>
+<td>Transactions &amp; joins</td>
+</tr>
+<tr>
+<td>Search</td>
+<td>Elastic</td>
+<td>DB LIKE queries</td>
+<td>Relevance, scale</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="15-future-enhancements_1">15. Future Enhancements<a class="headerlink" href="#15-future-enhancements_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Live streaming (RTMP ingest → HLS).</p>
+</li>
+<li>
+<p>Ads insertion (client/server-side).</p>
+</li>
+<li>
+<p>Personalized home feed with deep ML.</p>
+</li>
+<li>
+<p>Offline download (encrypted segments).</p>
+</li>
+<li>
+<p>Comment moderation (NLP).</p>
+</li>
+<li>
+<p>Multi-CDN switching for resilience.</p>
+</li>
+</ul>
+<hr />
+<h2 id="16-interview-wrap-up-quick-recap">16. Interview Wrap-up (Quick Recap)<a class="headerlink" href="#16-interview-wrap-up-quick-recap" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>1. Clarify: upload, transcode, stream, search, reco
+2. Size assumptions (uploads, playbacks)
+3. Architecture: upload-&gt;transcode-&gt;store-&gt;CDN; metadata &amp; search
+4. Flows: upload/transcode, playback, counters
+5. Scalability: CDN, async pipeline, shards
+6. Consistency: async counters, strong for meta
+7. Trade-offs + future work
+</code></pre></div>
+<hr />
+<h1 id="design-uber">Design Uber<a class="headerlink" href="#design-uber" title="Permanent link">&para;</a></h1>
+<h2 id="0-problem-statement_4">0. Problem Statement<a class="headerlink" href="#0-problem-statement_4" title="Permanent link">&para;</a></h2>
+<p>Build a platform where riders request trips, nearby drivers get matched, both track each other in real time, fare is calculated/paid, and trip history is stored.</p>
+<hr />
+<h2 id="1-requirements_6">1. Requirements<a class="headerlink" href="#1-requirements_6" title="Permanent link">&para;</a></h2>
+<h3 id="functional_6">Functional<a class="headerlink" href="#functional_6" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Rider: signup/login, request/cancel ride, real‑time driver ETA, pay, rate.</p>
+</li>
+<li>
+<p>Driver: go online/offline, accept/reject, navigation, earnings, rate rider.</p>
+</li>
+<li>
+<p>Matching: pick best driver (distance, ETA, rating, car type).</p>
+</li>
+<li>
+<p>Pricing: base + distance + time (+ surge).</p>
+</li>
+<li>
+<p>Trip lifecycle: request → dispatch → accept → pickup → dropoff → payment.</p>
+</li>
+<li>
+<p>Notifications (push/SMS).</p>
+</li>
+<li>
+<p>Admin/ops dashboards (fraud, support).</p>
+</li>
+</ul>
+<h3 id="nonfunctional_3">Non‑Functional<a class="headerlink" href="#nonfunctional_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Low latency: match within ~2–3 s; location updates every 2–5 s.</p>
+</li>
+<li>
+<p>High availability (99.9%); global scale.</p>
+</li>
+<li>
+<p>Accurate, scalable location indexing.</p>
+</li>
+<li>
+<p>Strong consistency for money flows; eventual OK for analytics.</p>
+</li>
+<li>
+<p>Security (PII, payments).</p>
+</li>
+</ul>
+<hr />
+<h2 id="2-rough-sizing-assume_1">2. Rough Sizing (assume)<a class="headerlink" href="#2-rough-sizing-assume_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>10M DAU riders, 1M DAU drivers.</p>
+</li>
+<li>
+<p>500k concurrent users, 50k live trips.</p>
+</li>
+<li>
+<p>Location updates: each active user every 3 s → ~170k updates/sec peak.</p>
+</li>
+<li>
+<p>Trip requests ~5k/sec peak.</p>
+</li>
+<li>
+<p>Store billions of trip records (metadata ~2–3 KB).</p>
+</li>
+</ul>
+<hr />
+<h2 id="3-high-level-architecture_2">3. High-Level Architecture<a class="headerlink" href="#3-high-level-architecture_2" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>Clients (Rider/Driver apps)
+        |
+        v
++--------------------+
+| API Gateway        |
++--------------------+
+   |   |      \
+   |   |       \---- Auth/Rate Limit
+   |   |
+   |   +--&gt; User/Driver Service  --&gt; SQL DB (users, cars, docs)
+   |
+   +--&gt; Trip Service  -----------&gt; Trip DB (SQL/Cassandra)
+   |
+   +--&gt; Matching Service --------&gt; Geo Index (Redis/ElasticGeo)
+   |                \
+   |                 \--&gt; Pricing Service (surge, fare calc)
+   |
+   +--&gt; Location Service -------&gt; In-memory/Redis + Kafka (stream)
+   |
+   +--&gt; Payment Service --------&gt; Payment Gateway, Ledger DB
+   |
+   +--&gt; Notification Service ---&gt; Push/SMS/Email
+   |
+   +--&gt; Analytics Stream (Kafka) -&gt; DWH/ML
+</code></pre></div>
+<p><strong>Realtime comms:</strong> WebSockets/GRPC streams for location &amp; status pushes.</p>
+<hr />
+<h2 id="4-core-data-model-simplified_1">4. Core Data Model (simplified)<a class="headerlink" href="#4-core-data-model-simplified_1" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>User(id, name, phone, type: rider/driver, rating, ...)
+DriverStatus(driver_id, online/offline, car_type, last_loc)
+
+Trip(id, rider_id, driver_id, status,
+     start_loc(lat,lng), end_loc(lat,lng),
+     start_ts, end_ts, distance_km, duration_sec,
+     fare, surge_multiplier, payment_status)
+
+GeoCell(cell_id, driver_ids[])   // ephemeral index of available drivers
+
+PaymentTxn(id, trip_id, amount, currency, method, status, created_at)
+
+Rating(id, trip_id, rater_id, ratee_id, stars, comment)
+</code></pre></div>
+<p>Indexes:</p>
+<ul>
+<li>
+<p>Trip by rider_id/driver_id + time.</p>
+</li>
+<li>
+<p>Geo index by cell_id.</p>
+</li>
+<li>
+<p>PaymentTxn by trip_id.</p>
+</li>
+</ul>
+<hr />
+<h2 id="5-key-apis_1">5. Key APIs<a class="headerlink" href="#5-key-apis_1" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><span class="err">POST /rider/ride/request   {pickup, dropoff, type}</span>
+<span class="err">POST /rider/ride/cancel</span>
+<span class="err">GET  /rider/trips?cursor=...</span>
+
+<span class="err">POST /driver/status        {online:true/false}</span>
+<span class="err">POST /driver/location      {lat,lng, ts}</span>
+<span class="err">POST /driver/ride/accept   {tripId}</span>
+<span class="err">POST /driver/ride/complete {tripId, odometer, time}</span>
+
+<span class="err">POST /payment/charge       {tripId, token}</span>
+<span class="err">POST /rating               {tripId, stars, comment}</span>
+
+<span class="err">WS  /realtime/updates  (driver &amp; rider)</span>
+</code></pre></div>
+<hr />
+<h2 id="6-critical-flows_1">6. Critical Flows<a class="headerlink" href="#6-critical-flows_1" title="Permanent link">&para;</a></h2>
+<h3 id="a-rider-requests-ride-match-driver">A) Rider Requests Ride → Match Driver<a class="headerlink" href="#a-rider-requests-ride-match-driver" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Rider App -&gt; Trip Svc: request(pickup, dropoff)
+Trip Svc -&gt; Matching Svc: find driver
+Matching Svc:
+   - Query Geo Index for nearby drivers
+   - Rank by ETA, rating, car type
+   - Reserve first driver (optimistic lock)
+   - Send offer to Driver app (push/WS)
+Driver -&gt; accept
+Matching Svc -&gt; confirm assignment
+Trip Svc -&gt; update trip.status=ASSIGNED
+Notify Rider (driver info, ETA)
+</code></pre></div>
+<p>ASCII:</p>
+<div class="highlight"><pre><span></span><code>Rider -&gt; TripSvc -&gt; MatchSvc -&gt; GeoIndex
+                          |-&gt; Driver (offer)
+Driver -&gt; MatchSvc (accept)
+MatchSvc -&gt; TripSvc -&gt; Rider/Driver notify
+</code></pre></div>
+<h3 id="b-realtime-location-updates">B) Realtime Location Updates<a class="headerlink" href="#b-realtime-location-updates" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Driver App -&gt; Location Svc (WS/HTTP) every 3 s
+Location Svc -&gt; update Redis/Memory + publish to Kafka
+Matching Svc subscribes for up-to-date locations
+Trip Svc pushes driver location to Rider via WS
+</code></pre></div>
+<p>ASCII:</p>
+<div class="highlight"><pre><span></span><code>Driver -&gt; LocSvc -&gt; Redis/Kafka
+                   ^          \
+                   |           -&gt; TripSvc -&gt; Rider WS
+                   +-&gt; MatchSvc (reads Redis)
+</code></pre></div>
+<h3 id="c-trip-completion-payment">C) Trip Completion &amp; Payment<a class="headerlink" href="#c-trip-completion-payment" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Driver marks complete (or auto by geofence)
+Trip Svc calculates final fare (time+distance+surge)
+Payment Svc charges card/wallet
+Payment status -&gt; Trip Svc
+Both rate each other
+</code></pre></div>
+<hr />
+<h2 id="7-geo-indexing-matching">7. Geo Indexing &amp; Matching<a class="headerlink" href="#7-geo-indexing-matching" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Divide world into grid cells (e.g., Geohash level 6/7).</p>
+</li>
+<li>
+<p>Maintain <strong>available drivers</strong> per cell in Redis (sorted by timestamp or load).</p>
+</li>
+<li>
+<p>To find nearby: take rider cell + neighbors, compute ETA with road graph (optional: external routing API).</p>
+</li>
+<li>
+<p>Locking/reservation: set a short TTL key <code>driver:{id}:locked</code> to avoid double-assign.</p>
+</li>
+</ul>
+<hr />
+<h2 id="8-pricing-surge">8. Pricing &amp; Surge<a class="headerlink" href="#8-pricing-surge" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Base fare + per km + per minute.</p>
+</li>
+<li>
+<p>Surge multiplier based on <strong>demand/supply ratio</strong> per region cell.</p>
+</li>
+<li>
+<p>Pre-calc surge every N seconds with streaming data (Kafka → Flink).</p>
+</li>
+<li>
+<p>Final fare recalculated after trip using actual metrics.</p>
+</li>
+</ul>
+<hr />
+<h2 id="9-storage-streams">9. Storage &amp; Streams<a class="headerlink" href="#9-storage-streams" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>Redis/In-memory:</strong> live locations, geo cells, driver availability.</p>
+</li>
+<li>
+<p><strong>Kafka/PubSub:</strong> location events, trip events, pricing signals, analytics.</p>
+</li>
+<li>
+<p><strong>SQL (Postgres/Aurora):</strong> users, trips (hot), payments, ratings. Partition trips by month/user_id.</p>
+</li>
+<li>
+<p><strong>Cassandra/Bigtable (optional):</strong> very high write trip events/history.</p>
+</li>
+<li>
+<p><strong>Ledger DB (ACID):</strong> payment records, settlement.</p>
+</li>
+</ul>
+<hr />
+<h2 id="10-consistency-reliability_1">10. Consistency &amp; Reliability<a class="headerlink" href="#10-consistency-reliability_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Trip state transitions (FSM): REQUESTED → DRIVER_OFFERED → ASSIGNED → STARTED → COMPLETED → PAID. Enforce via single writer or transactions.</p>
+</li>
+<li>
+<p>Location updates: eventual consistency OK.</p>
+</li>
+<li>
+<p>Payments: <strong>strong consistency / idempotency</strong> (retry-safe tokens, transaction records).</p>
+</li>
+<li>
+<p>If driver rejects/no response: timeout &amp; rematch.</p>
+</li>
+<li>
+<p>If Redis down: fallback to slower DB geo query (degraded mode).</p>
+</li>
+</ul>
+<hr />
+<h2 id="11-security_1">11. Security<a class="headerlink" href="#11-security_1" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>OAuth/JWT for APIs; TLS everywhere.</p>
+</li>
+<li>
+<p>Validate location spoofing (anomaly detection).</p>
+</li>
+<li>
+<p>Mask phone numbers via relay service.</p>
+</li>
+<li>
+<p>PCI compliance for card data (tokenize via gateway).</p>
+</li>
+<li>
+<p>Audit logs for fare changes, manual adjustments.</p>
+</li>
+</ul>
+<hr />
+<h2 id="12-observability_3">12. Observability<a class="headerlink" href="#12-observability_3" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Metrics: match latency, acceptance rate, cancel rate, ETA accuracy, surge ratio, payment failures.</p>
+</li>
+<li>
+<p>Logs: trip state transitions, driver online events.</p>
+</li>
+<li>
+<p>Tracing: request across Trip→Match→Payment.</p>
+</li>
+<li>
+<p>Alerts: spike in unmatched requests, Redis miss %, Kafka lag.</p>
+</li>
+</ul>
+<hr />
+<h2 id="13-trade-offs">13. Trade-offs<a class="headerlink" href="#13-trade-offs" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Choice</th>
+<th>Alternative</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Location store</td>
+<td>Redis + Kafka</td>
+<td>Only DB</td>
+<td>Low-latency, high QPS updates</td>
+</tr>
+<tr>
+<td>Geo search</td>
+<td>Geohash grid + Redis sets</td>
+<td>R-tree in SQL</td>
+<td>Simpler, faster in-memory</td>
+</tr>
+<tr>
+<td>Match strategy</td>
+<td>Nearest ETA + lock</td>
+<td>Broadcast to many drivers</td>
+<td>Reduce spam/notification load</td>
+</tr>
+<tr>
+<td>Payments</td>
+<td>Async confirm after trip</td>
+<td>Pre-authorize full amount</td>
+<td>UX vs certainty; can pre-auth too</td>
+</tr>
+<tr>
+<td>Surge calc</td>
+<td>Stream processing</td>
+<td>Batch hourly</td>
+<td>Real-time demand spikes</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="14-extensions-future-work">14. Extensions / Future Work<a class="headerlink" href="#14-extensions-future-work" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Pooling (UberPool): route optimization with multiple pickups.</p>
+</li>
+<li>
+<p>Scheduled rides (cron-like matching).</p>
+</li>
+<li>
+<p>Multi-stop trips.</p>
+</li>
+<li>
+<p>Driver incentives &amp; gamification service.</p>
+</li>
+<li>
+<p>Fraud detection ML pipeline (fake trips, GPS spoofing).</p>
+</li>
+<li>
+<p>In-app chat/call (VoIP).</p>
+</li>
+<li>
+<p>Multi-region replication &amp; failover.</p>
+</li>
+</ul>
+<hr />
+<h2 id="15-interview-wrap-up-cheat-sheet">15. Interview Wrap-Up Cheat Sheet<a class="headerlink" href="#15-interview-wrap-up-cheat-sheet" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>1) Clarify: rider/driver, match, real-time, payment
+2) Estimate traffic (trip reqs, loc updates)
+3) Arch: TripSvc, MatchSvc, LocationSvc, PaymentSvc, Redis+Kafka
+4) Flows: request-&gt;match, location updates, payment
+5) Geo indexing (geohash), surge, locking
+6) Consistency (trip FSM), idempotent payments
+7) Trade-offs, failures, future features
+</code></pre></div>
+<hr />
+<h1 id="design-google-docs">Design Google Docs<a class="headerlink" href="#design-google-docs" title="Permanent link">&para;</a></h1>
+<h2 id="0-problem-statement_5">0. Problem Statement<a class="headerlink" href="#0-problem-statement_5" title="Permanent link">&para;</a></h2>
+<p>Multiple users edit the same document simultaneously and see each other’s changes in near real time, with version history and offline sync.</p>
+<hr />
+<h2 id="1-requirements_7">1. Requirements<a class="headerlink" href="#1-requirements_7" title="Permanent link">&para;</a></h2>
+<h3 id="functional_7">Functional<a class="headerlink" href="#functional_7" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Create/open/share documents (permissions: owner/editor/viewer).</p>
+</li>
+<li>
+<p>Real-time collaborative editing (multiple cursors, selections).</p>
+</li>
+<li>
+<p>Conflict-free merges (no lost updates).</p>
+</li>
+<li>
+<p>Presence indicators (who’s online, cursor position).</p>
+</li>
+<li>
+<p>Commenting &amp; basic formatting (bold/italic/headers).</p>
+</li>
+<li>
+<p>Version history &amp; “undo/redo”.</p>
+</li>
+<li>
+<p>Offline editing → sync on reconnect.</p>
+</li>
+</ul>
+<h3 id="nonfunctional_4">Non‑Functional<a class="headerlink" href="#nonfunctional_4" title="Permanent link">&para;</a></h3>
+<ul>
+<li>
+<p>Low latency: local echo instantly, remote updates &lt;150 ms.</p>
+</li>
+<li>
+<p>High availability; data durability.</p>
+</li>
+<li>
+<p>Support thousands of concurrent docs, ~50 editors/doc (typical).</p>
+</li>
+<li>
+<p>Strong security (doc ACL, encryption in transit).</p>
+</li>
+<li>
+<p>Consistency model: eventual but convergent (all see same doc state).</p>
+</li>
+</ul>
+<p><em>Assumptions</em>: 5M DAU, 200k concurrent editors, avg doc size ~100 KB (plain text), edits ~5 ops/sec/doc peak.</p>
+<hr />
+<h2 id="2-core-challenge-concurrency-control">2. Core Challenge: Concurrency Control<a class="headerlink" href="#2-core-challenge-concurrency-control" title="Permanent link">&para;</a></h2>
+<p>Two mainstream approaches:</p>
+<ol>
+<li>
+<p><strong>Operational Transformation (OT)</strong>: Transform incoming ops against concurrent ones to preserve intent.</p>
+</li>
+<li>
+<p><strong>CRDTs (Conflict-free Replicated Data Types)</strong>: Data structure designed to converge automatically (e.g., RGA, Yjs).</p>
+</li>
+</ol>
+<p><strong>Pick one</strong> (mention both). For interview, choose <strong>OT</strong> (classic in Google Docs) or <strong>CRDT</strong> (modern, simpler to reason distributedly).</p>
+<hr />
+<h2 id="3-high-level-architecture_3">3. High-Level Architecture<a class="headerlink" href="#3-high-level-architecture_3" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>Clients (Web/Mobile/Desktop)
+        |  WebSocket (bi-dir)
+        v
++------------------------+
+|  Realtime Collaboration|
+|  Gateway (WS servers)  |
++------------------------+
+        |
+        v
++------------------------+       +--------------------+
+|  Doc Session Service   |&lt;-----&gt;| Presence Service   |
+|  (OT/CRDT engine)      |       | (cursors, users)   |
++------------------------+       +--------------------+
+        |
+        v
++------------------------+       +-------------------+
+|  Persistence Service   |&lt;-----&gt;| Version/History   |
+|  (Doc store + cache)   |       | Service           |
++------------------------+       +-------------------+
+        |
+        v
++------------------------+
+|  Storage (DB/Object)   |
++------------------------+
+
+Async:
+Event Stream (Kafka) -&gt; Search Indexer, Analytics, Backup
+</code></pre></div>
+<hr />
+<h2 id="4-data-model-simplified_2">4. Data Model (Simplified)<a class="headerlink" href="#4-data-model-simplified_2" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>Document(id, owner_id, title, created_at, acl[])
+
+DocState(id=doc_id, current_version, snapshot_path)
+
+Operation(id, doc_id, user_id, base_version, op_payload, ts)
+
+Comment(id, doc_id, user_id, range(start,end), text, ts)
+
+Presence(doc_id, user_id, cursor_pos, selection_range, last_ping_ts)
+</code></pre></div>
+<ul>
+<li>
+<p><strong>OT op_payload</strong> example: “insert ‘abc’ at position 42”, “delete 3 chars at 15”.</p>
+</li>
+<li>
+<p><strong>CRDT</strong> state: sequence of character IDs (id = (counter, replica_id)).</p>
+</li>
+</ul>
+<p>Indexes:</p>
+<ul>
+<li>
+<p>Document by owner/shared.</p>
+</li>
+<li>
+<p>Operation by doc_id &amp; version.</p>
+</li>
+<li>
+<p>Presence ephemeral (in-memory store).</p>
+</li>
+</ul>
+<hr />
+<h2 id="5-key-apis-protocols">5. Key APIs / Protocols<a class="headerlink" href="#5-key-apis-protocols" title="Permanent link">&para;</a></h2>
+<p><strong>HTTP (REST) for CRUD &amp; sharing:</strong></p>
+<div class="highlight"><pre><span></span><code><span class="err">POST /docs          {title}</span>
+<span class="err">GET  /docs/{id}</span>
+<span class="err">POST /docs/{id}/share {userId, role}</span>
+<span class="err">GET  /docs/{id}/history?cursor=...</span>
+</code></pre></div>
+<p><strong>WebSocket for realtime:</strong></p>
+<ul>
+<li>
+<p><code>join_doc</code> {docId, lastKnownVersion}</p>
+</li>
+<li>
+<p><code>op</code> {docId, clientSeq, baseVersion, payload}</p>
+</li>
+<li>
+<p><code>presence</code> {cursorPos, selection}</p>
+</li>
+<li>
+<p><code>ack</code> {clientSeq, committedVersion}</p>
+</li>
+<li>
+<p><code>remote_op</code> (server → clients)</p>
+</li>
+</ul>
+<hr />
+<h2 id="6-critical-flows_2">6. Critical Flows<a class="headerlink" href="#6-critical-flows_2" title="Permanent link">&para;</a></h2>
+<h3 id="a-client-edit-broadcast">A) Client Edit → Broadcast<a class="headerlink" href="#a-client-edit-broadcast" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Client types &quot;Hi&quot;
+  |
+  v
+1. Apply locally (optimistic)
+2. Send op over WS: baseVersion=42, insert(&quot;Hi&quot;, pos=10)
+3. Server receives op, transforms against unseen ops (OT) or merges (CRDT)
+4. Server increments version → 43, persists op
+5. Server broadcasts transformed op to other clients
+6. Clients integrate op into their state; update cursors
+</code></pre></div>
+<p>ASCII sequence:</p>
+<div class="highlight"><pre><span></span><code>Client -&gt; (op v42) -&gt; Collab Server
+Collab Server: transform/merge -&gt; v43
+Collab Server -&gt; persist op -&gt; broadcast to others
+Others -&gt; apply op
+Sender -&gt; ack (confirm v43)
+</code></pre></div>
+<h3 id="b-new-user-joins-existing-doc">B) New User Joins Existing Doc<a class="headerlink" href="#b-new-user-joins-existing-doc" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Client -&gt; join_doc(docId, lastVersion=0)
+Server -&gt; send snapshot (or patch from lastVersion)
+Client -&gt; apply, now at currentVersion
+Server -&gt; start streaming new ops
+</code></pre></div>
+<h3 id="c-offline-reconnect">C) Offline → Reconnect<a class="headerlink" href="#c-offline-reconnect" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code>Client offline: buffer ops with local seq
+Reconnect: send ops batch with baseVersion
+Server transforms/merges; resolves conflicts
+Client gets ack &amp; any missed remote ops
+</code></pre></div>
+<hr />
+<h2 id="7-ot-vs-crdt-quick-notes">7. OT vs CRDT Quick Notes<a class="headerlink" href="#7-ot-vs-crdt-quick-notes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>OT</th>
+<th>CRDT</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Convergence</td>
+<td>Needs transform functions</td>
+<td>Guaranteed by design</td>
+</tr>
+<tr>
+<td>Complexity</td>
+<td>Transform functions per op type</td>
+<td>More memory overhead (IDs)</td>
+</tr>
+<tr>
+<td>Latency</td>
+<td>Central server simplifies OT</td>
+<td>P2P possible, but server common</td>
+</tr>
+<tr>
+<td>Industry use</td>
+<td>Google Docs, Etherpad</td>
+<td>Figma, Notion (Yjs/Automerge)</td>
+</tr>
+</tbody>
+</table>
+<p>In interview: explain one deeply, mention the other.</p>
+<hr />
+<h2 id="8-persistence-snapshots">8. Persistence &amp; Snapshots<a class="headerlink" href="#8-persistence-snapshots" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Store every op → replay to reconstruct doc (costly).</p>
+</li>
+<li>
+<p>Periodic <strong>snapshots</strong> (e.g., every N ops or 5 minutes): persist full doc text/structure to object storage.</p>
+</li>
+<li>
+<p>On load: snapshot + ops after snapshot = current state.</p>
+</li>
+<li>
+<p>Version history: pointer to snapshot + op range.</p>
+</li>
+</ul>
+<hr />
+<h2 id="9-presence-cursors-comments">9. Presence, Cursors &amp; Comments<a class="headerlink" href="#9-presence-cursors-comments" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Presence service keeps ephemeral states in Redis or in-memory map (TTL).</p>
+</li>
+<li>
+<p>Broadcast cursor/selection updates throttled (e.g., 2–4/s).</p>
+</li>
+<li>
+<p>Comments stored in DB; anchored to character ranges (need to update ranges as text changes -&gt; track with op transforms).</p>
+</li>
+</ul>
+<hr />
+<h2 id="10-scaling-sharding">10. Scaling &amp; Sharding<a class="headerlink" href="#10-scaling-sharding" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>Session sharding</strong>: route all WS for a doc to same “doc session” node (sticky by doc_id hash).</p>
+</li>
+<li>
+<p><strong>Backpressure</strong>: If &gt;N active editors, split doc into sections or raise limits.</p>
+</li>
+<li>
+<p><strong>Storage</strong>:</p>
+<ul>
+<li>
+<p>Ops in append-only store (Cassandra/Kafka log + DB).</p>
+</li>
+<li>
+<p>Snapshots in object store (S3).</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Cache</strong>: Redis for hot snapshots.</p>
+</li>
+</ul>
+<hr />
+<h2 id="11-consistency-fault-tolerance">11. Consistency &amp; Fault Tolerance<a class="headerlink" href="#11-consistency-fault-tolerance" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>Server as authority</strong> for version numbers (linearizable per document).</p>
+</li>
+<li>
+<p>If doc session node crashes:</p>
+<ul>
+<li>
+<p>Rebuild state from last snapshot + ops (warm standby or stateless compute).</p>
+</li>
+<li>
+<p>Clients reconnect; some ops may need retransmission (idempotent via clientSeq).</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Exactly-once apply via operation IDs.</p>
+</li>
+</ul>
+<hr />
+<h2 id="12-security_2">12. Security<a class="headerlink" href="#12-security_2" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>ACL checks on every join/op.</p>
+</li>
+<li>
+<p>TLS WS connections; JWT auth.</p>
+</li>
+<li>
+<p>Data encryption at rest.</p>
+</li>
+<li>
+<p>Audit logs for doc access/changes.</p>
+</li>
+<li>
+<p>Rate limiting to avoid flooding (DoS).</p>
+</li>
+</ul>
+<hr />
+<h2 id="13-observability_2">13. Observability<a class="headerlink" href="#13-observability_2" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Metrics: ops/sec, transform latency, broadcast latency, reconnect rate.</p>
+</li>
+<li>
+<p>Tracing: WS message path (OpenTelemetry).</p>
+</li>
+<li>
+<p>Logs: sample ops (size, type), errors.</p>
+</li>
+<li>
+<p>Alerts: spike in missed acks, doc rebuilds, transform timeouts.</p>
+</li>
+</ul>
+<hr />
+<h2 id="14-trade-offs-cheat-sheet_2">14. Trade-offs Cheat Sheet<a class="headerlink" href="#14-trade-offs-cheat-sheet_2" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Choice</th>
+<th>Alternative</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Concurrency</td>
+<td>OT w/ central server</td>
+<td>CRDT</td>
+<td>Simpler to reason, widely known</td>
+</tr>
+<tr>
+<td>Transport</td>
+<td>WebSocket bi-dir</td>
+<td>Long-polling</td>
+<td>Lower latency, push-friendly</td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>Ops + periodic snapshots</td>
+<td>Full overwrite per save</td>
+<td>Efficient, keeps history</td>
+</tr>
+<tr>
+<td>Presence</td>
+<td>Redis/in-memory ephemeral</td>
+<td>SQL persistence</td>
+<td>Low latency, high churn</td>
+</tr>
+<tr>
+<td>Offline sync</td>
+<td>Buffer ops locally, transform</td>
+<td>Lock doc (no offline edits)</td>
+<td>Better UX</td>
+</tr>
+<tr>
+<td>Versioning</td>
+<td>Incremental version numbers</td>
+<td>Vector clocks</td>
+<td>Simpler for centralized system</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="15-future-enhancements_2">15. Future Enhancements<a class="headerlink" href="#15-future-enhancements_2" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Rich text &amp; embedded objects (images, tables) → tree CRDT/OT.</p>
+</li>
+<li>
+<p>Real-time cursors colors, avatars, chat side panel.</p>
+</li>
+<li>
+<p>Permissions per section of doc.</p>
+</li>
+<li>
+<p>Comment threads &amp; suggestions mode (“track changes”).</p>
+</li>
+<li>
+<p>Export to PDF/Word.</p>
+</li>
+<li>
+<p>ML-powered grammar/style suggestions.</p>
+</li>
+</ul>
+<hr />
+<h2 id="16-interview-wrap-up-cheat-sheet_2">16. Interview Wrap-Up (Cheat Sheet)<a class="headerlink" href="#16-interview-wrap-up-cheat-sheet_2" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code>1. Clarify: real-time edits, multi-user, versioning, offline
+2. Consistency approach: OT or CRDT (pick one, mention other)
+3. Arch: WS gateway -&gt; Doc session svc -&gt; storage (ops + snapshots)
+4. Flows: edit op, join doc, offline sync
+5. Presence &amp; comments (ephemeral vs persistent)
+6. Scaling: shard by doc, snapshots, caching
+7. Fault tolerance, security, observability
+8. Trade-offs &amp; future features
+</code></pre></div>
+<hr />
+<h1 id="revision-sheet">Revision Sheet<a class="headerlink" href="#revision-sheet" title="Permanent link">&para;</a></h1>
+<h2 id="a-10step-blueprint-use-for-any-system-design">A. 10‑Step Blueprint (use for ANY system design)<a class="headerlink" href="#a-10step-blueprint-use-for-any-system-design" title="Permanent link">&para;</a></h2>
+<ol>
+<li>
+<p><strong>Clarify scope &amp; constraints</strong> (features, users, regions).</p>
+</li>
+<li>
+<p><strong>Traffic &amp; sizing</strong> (R/W QPS, storage, latency SLOs).</p>
+</li>
+<li>
+<p><strong>APIs &amp; data model (high-level)</strong>.</p>
+</li>
+<li>
+<p><strong>Core flows / sequence</strong> (happy path first).</p>
+</li>
+<li>
+<p><strong>High-level architecture diagram</strong> (clients → gateway → services → DB/queue/cache).</p>
+</li>
+<li>
+<p><strong>Storage choices &amp; partitioning</strong>.</p>
+</li>
+<li>
+<p><strong>Caching, CDN, queues, search</strong> (where &amp; why).</p>
+</li>
+<li>
+<p><strong>Scaling &amp; HA</strong> (sharding, replicas, autoscale, multi-region).</p>
+</li>
+<li>
+<p><strong>Consistency, fault tolerance, idempotency</strong>.</p>
+</li>
+<li>
+<p><strong>Security, observability, trade-offs, future work</strong>.</p>
+</li>
+</ol>
+<p>Keep each section to 1–3 lines when answering fast.</p>
+<hr />
+<h2 id="b-fast-sizing-cheats">B. Fast Sizing Cheats<a class="headerlink" href="#b-fast-sizing-cheats" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>Throughput:</strong> QPS = (events/day) ÷ 86,400. Peak ≈ 5–10× avg.</p>
+</li>
+<li>
+<p><strong>Storage/Year:</strong> events/day × size × 365. Keep “hot” vs “cold”.</p>
+</li>
+<li>
+<p><strong>Cache hit % target:</strong> 80–95%.</p>
+</li>
+<li>
+<p><strong>Latency targets (P95):</strong> API read &lt;150ms, write &lt;300ms, background (async) secs/mins.</p>
+</li>
+<li>
+<p><strong>Judge/ML jobs:</strong> talk “queue depth” &amp; “worker autoscale”.</p>
+</li>
+<li>
+<p><strong>WS connections per node:</strong> typically 20k–50k (depends on infra).</p>
+</li>
+<li>
+<p><strong>Shard key rule:</strong> Cardinality high, uniform distribution, low cross-shard ops.</p>
+</li>
+</ul>
+<hr />
+<h2 id="c-building-blocks-quick-list">C. Building Blocks Quick List<a class="headerlink" href="#c-building-blocks-quick-list" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>Gateway:</strong> auth, rate limit, routing.</p>
+</li>
+<li>
+<p><strong>Services:</strong> user, content, search, feed, messaging, payment. Stateless.</p>
+</li>
+<li>
+<p><strong>DB:</strong> SQL (transactions/relational), NoSQL KV (scale, wide rows), Columnar (analytics), Graph (relationships).</p>
+</li>
+<li>
+<p><strong>Cache:</strong> Redis/Memcached; patterns: read-through, write-through, write-behind, TTL + version keys.</p>
+</li>
+<li>
+<p><strong>Queue/Stream:</strong> Kafka/SQS/PubSub for decoupling, retries, backpressure, event sourcing.</p>
+</li>
+<li>
+<p><strong>Search:</strong> Elastic/OpenSearch for full-text &amp; ranking.</p>
+</li>
+<li>
+<p><strong>Blob store:</strong> S3/GCS/MinIO for big binaries; pre-signed URLs.</p>
+</li>
+<li>
+<p><strong>Compute isolation:</strong> containers vs microVMs (Firecracker).</p>
+</li>
+<li>
+<p><strong>Realtime:</strong> WebSocket/gRPC streaming, SSE.</p>
+</li>
+<li>
+<p><strong>CDN:</strong> static media, HLS video segments, problem statements.</p>
+</li>
+</ul>
+<hr />
+<h2 id="d-consistency-patterns">D. Consistency Patterns<a class="headerlink" href="#d-consistency-patterns" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>Strong:</strong> Payments, order booking, submission state.</p>
+</li>
+<li>
+<p><strong>Eventual:</strong> Counts, feeds, notifications, analytics.</p>
+</li>
+<li>
+<p><strong>Idempotency keys</strong> for POSTS.</p>
+</li>
+<li>
+<p><strong>Exactly-once feel:</strong> “At-least-once + idempotent consumer”.</p>
+</li>
+<li>
+<p><strong>Leader election &amp; leases</strong> for workers.</p>
+</li>
+</ul>
+<hr />
+<h2 id="e-goto-trade-offs-memorize-a-few">E. Go‑To Trade-offs (memorize a few)<a class="headerlink" href="#e-goto-trade-offs-memorize-a-few" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Topic</th>
+<th>Option A</th>
+<th>Option B</th>
+<th>Pick Reason</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Feed</td>
+<td>Push (fanout-on-write)</td>
+<td>Pull (on read)</td>
+<td>Hybrid: push for normal, pull for celebs</td>
+</tr>
+<tr>
+<td>Code exec isolation</td>
+<td>Containers</td>
+<td>MicroVM</td>
+<td>Security vs startup speed</td>
+</tr>
+<tr>
+<td>Counters</td>
+<td>Async batch update</td>
+<td>Sync DB write</td>
+<td>Scale &amp; hot-spot avoidance</td>
+</tr>
+<tr>
+<td>Sharding</td>
+<td>User_id hash</td>
+<td>Time-based</td>
+<td>Access pattern decides</td>
+</tr>
+<tr>
+<td>Search</td>
+<td>Elastic</td>
+<td>DB LIKE</td>
+<td>Relevance, scale</td>
+</tr>
+<tr>
+<td>Realtime</td>
+<td>WebSocket</td>
+<td>Polling</td>
+<td>Lower latency &amp; bandwidth</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="f-security-observability-checklist">F. Security &amp; Observability Checklist<a class="headerlink" href="#f-security-observability-checklist" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>Security:</strong> TLS everywhere, OAuth/JWT, rate limits, WAF, KMS encryption, audit logs.</p>
+</li>
+<li>
+<p><strong>Privacy:</strong> GDPR delete, PII masking, access control.</p>
+</li>
+<li>
+<p><strong>Observability:</strong> Metrics (SLOs), traces (OTel/Jaeger), logs (structured), alerts (SLO breaches).</p>
+</li>
+<li>
+<p><strong>Abuse/Fraud:</strong> anomaly detection, CAPTCHAs, throttling.</p>
+</li>
+</ul>
+<hr />
+<h2 id="g-common-interviewer-follow-ups">G. Common Interviewer Follow-ups<a class="headerlink" href="#g-common-interviewer-follow-ups" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>“How will you <strong>scale the database</strong> when it grows?”</p>
+</li>
+<li>
+<p>“What if a <strong>worker crashes mid-job</strong>?”</p>
+</li>
+<li>
+<p>“How do you handle <strong>hot keys / celebrity users</strong>?”</p>
+</li>
+<li>
+<p>“What happens if <strong>a region goes down</strong>?” Multi-region DR plan.</p>
+</li>
+<li>
+<p>“How do you ensure <strong>idempotency</strong> on retries?”</p>
+</li>
+<li>
+<p>“How to <strong>paginate &amp; sort</strong> efficiently?” (cursors &gt; OFFSET).</p>
+</li>
+<li>
+<p>“How do you <strong>invalidate caches</strong> on updates?” (version keys, pub/sub).</p>
+</li>
+</ul>
+<p>Prepare 1–2 line responses for each.</p>
+<hr />
+<h2 id="h-15-common-system-design-questions-with-ultra-short-answer-skeletons">H. 15 Common System Design Questions (with ultra-short answer skeletons)<a class="headerlink" href="#h-15-common-system-design-questions-with-ultra-short-answer-skeletons" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>Use the 10-step blueprint; below are the <strong>core angles to highlight</strong>.</p>
+</blockquote>
+<ol>
+<li>
+<p><strong>URL Shortener</strong></p>
+<ul>
+<li>
+<p><em>Bottleneck:</em> Read-heavy redirect.</p>
+</li>
+<li>
+<p><em>Key points:</em> Base62 ID gen, cache redirects, SQL or KV store, TTL/custom aliases.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Instagram/Twitter Feed</strong></p>
+<ul>
+<li>
+<p><em>Bottleneck:</em> Feed fanout &amp; reads.</p>
+</li>
+<li>
+<p><em>Key points:</em> Hybrid push/pull, Redis/Cassandra feed store, media on CDN.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>WhatsApp/Chat</strong></p>
+<ul>
+<li>
+<p><em>Bottleneck:</em> Real-time WS connections, ordering, durability.</p>
+</li>
+<li>
+<p><em>Key points:</em> WS gateway, Cassandra for messages (partition by convo), receipts async, presence in Redis.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Dropbox/Google Drive</strong></p>
+<ul>
+<li>
+<p><em>Bottleneck:</em> Sync &amp; storage.</p>
+</li>
+<li>
+<p><em>Key points:</em> Chunking + dedup, metadata SQL, object storage, sync via WS/long-poll, conflict resolution.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Uber/Ride Hailing</strong></p>
+<ul>
+<li>
+<p><em>Bottleneck:</em> Geo index &amp; matching latency.</p>
+</li>
+<li>
+<p><em>Key points:</em> Geohash + Redis, Kafka for locations, trip FSM, payment idempotency.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>YouTube/Netflix</strong></p>
+<ul>
+<li>
+<p><em>Bottleneck:</em> Video streaming scale.</p>
+</li>
+<li>
+<p><em>Key points:</em> Upload→transcode pipeline, HLS/DASH, CDN, async counters.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>LeetCode/Online Judge</strong></p>
+<ul>
+<li>
+<p><em>Bottleneck:</em> Secure code execution at scale.</p>
+</li>
+<li>
+<p><em>Key points:</em> Queue + worker farm, Firecracker isolation, testcases in S3, P95 judge latency.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Google Docs (Realtime Editor)</strong></p>
+<ul>
+<li>
+<p><em>Bottleneck:</em> Concurrent edits merging.</p>
+</li>
+<li>
+<p><em>Key points:</em> OT or CRDT, WS sessions per doc, ops + snapshots, presence ephemeral.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Rate Limiter (API Gateway)</strong></p>
+<ul>
+<li>
+<p><em>Bottleneck:</em> Fast counters per key.</p>
+</li>
+<li>
+<p><em>Key points:</em> Token bucket/leaky bucket in Redis/Lua, distributed sync, sliding window.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Notification/Email Service</strong></p>
+<ul>
+<li>
+<p><em>Bottleneck:</em> Fanout &amp; retries.</p>
+</li>
+<li>
+<p><em>Key points:</em> Topic-based queues, worker pools, exponential backoff, dedup &amp; idempotency.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Search Autocomplete</strong></p>
+<ul>
+<li>
+<p><em>Bottleneck:</em> Low-latency prefix queries.</p>
+</li>
+<li>
+<p><em>Key points:</em> Trie or ES n-gram index, cache hot prefixes, debounce client.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Analytics/Clickstream Pipeline</strong></p>
+<ul>
+<li>
+<p><em>Bottleneck:</em> High write, batch/stream processing.</p>
+</li>
+<li>
+<p><em>Key points:</em> Ingest → Kafka → stream/batch (Flink/Spark) → DWH (BigQuery), cold storage.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Ticket Booking (Seat Reservation)</strong></p>
+<ul>
+<li>
+<p><em>Bottleneck:</em> Concurrency &amp; overbooking.</p>
+</li>
+<li>
+<p><em>Key points:</em> Pessimistic locks or optimistic + retry, hold reservations with TTL, shards per event.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Food Delivery (Swiggy/Zomato)</strong></p>
+<ul>
+<li>
+<p><em>Bottleneck:</em> Matching restaurants, delivery, real-time order state.</p>
+</li>
+<li>
+<p><em>Key points:</em> Order svc, delivery svc, location tracking, status events, surge/ETA calc.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Payment/Wallet Service</strong></p>
+<ul>
+<li>
+<p><em>Bottleneck:</em> Strong consistency &amp; ledger accuracy.</p>
+</li>
+<li>
+<p><em>Key points:</em> Double-entry ledger, idempotent operations, saga/outbox, PCI-compliant gateway.</p>
+</li>
+</ul>
+</li>
+</ol>
+<hr />
+<h2 id="i-flashcard-snippets">I. Flashcard Snippets<a class="headerlink" href="#i-flashcard-snippets" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p><strong>Idempotency token:</strong> “client-generated UUID per request; server stores processed IDs”.</p>
+</li>
+<li>
+<p><strong>Cache invalidation:</strong> “Versioned keys or pub/sub to evict; avoid stale reads.”</p>
+</li>
+<li>
+<p><strong>Hot partition fix:</strong> “Consistent hashing w/ virtual nodes; split key space; add L2 cache.”</p>
+</li>
+<li>
+<p><strong>DLQ (dead-letter queue):</strong> “Failed msgs &gt; N retries go to DLQ for manual/auto replay.”</p>
+</li>
+<li>
+<p><strong>Backpressure:</strong> “Consumer lag metric; scale consumers; rate-limit producers.”</p>
+</li>
+</ul>
+<hr />
+<h2 id="j-last-minute-tips">J. Last-Minute Tips<a class="headerlink" href="#j-last-minute-tips" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>Speak in <strong>layers</strong>: client → gateway → services → data.</p>
+</li>
+<li>
+<p>Always mention <strong>metrics &amp; alerts</strong> at the end.</p>
+</li>
+<li>
+<p>Use <strong>numbers</strong> (even rough) to show realism.</p>
+</li>
+<li>
+<p>Show <strong>trade-offs</strong>: it’s not about the “perfect” design.</p>
+</li>
+<li>
+<p>Timebox: don’t deep dive early; breadth first, then drill when asked.</p>
+</li>
+</ul>
+<hr />
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/your/repo" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs", "navigation.top", "content.code.copy", "content.code.annotate", "content.math", "navigation.footer", "navigation.sections", "navigation.instant", "navigation.tracking", "search.highlight", "search.share", "search.suggest"], "search": "../../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.13a4f30d.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/contrib/auto-render.min.js"></script>
+      
+        <script src="../../javascripts/katex-render.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>
