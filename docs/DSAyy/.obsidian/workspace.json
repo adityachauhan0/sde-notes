@@ -83,12 +83,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "System Design Leetcode.md",
+                "file": "Design_Questions.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "System Design Leetcode"
+              "title": "Design_Questions"
             }
           }
         ],
@@ -232,17 +232,18 @@
   },
   "left-ribbon": {
     "hiddenItems": {
-      "table-editor-obsidian:Advanced Tables Toolbar": false,
       "switcher:Open quick switcher": false,
       "graph:Open graph view": false,
       "canvas:Create new canvas": false,
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
-      "command-palette:Open command palette": false
+      "command-palette:Open command palette": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
   "active": "dee6b7b254a2b062",
   "lastOpenFiles": [
+    "Design_Questions.md",
     "SQL_QuickReference.md",
     "System Design Leetcode.md",
     "OS.md",
